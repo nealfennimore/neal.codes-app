@@ -8,7 +8,7 @@
     "start": "forever start ./server/express.js",
     "prebuild": "npm install",
     "build": "webpack --config ./webpack.config.js -p --progress",
-    "develop": "NODE_ENV=development webpack-dev-server --hot --inline --content-base ./dev",
+    "develop": "NODE_ENV=development webpack-dev-server --hot --inline --content-base ./dev"
   },
   "repository": {
     "type": "git",
