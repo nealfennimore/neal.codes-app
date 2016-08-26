@@ -1,6 +1,9 @@
 const path = require('path');
 
 module.exports = {
+    server: {
+        port: 4545
+    },
     paths: {
         CLIENT: path.resolve(__dirname, 'client'),
         PUBLIC: path.resolve(__dirname, 'public'),
