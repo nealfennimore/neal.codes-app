@@ -8,10 +8,10 @@ const config = require('./config');
 const isDev = process.env.NODE_ENV === 'development';
 
 var webpackConfig =  {
-    context: config.paths.ROOT,
+    context: config.paths.CLIENT,
 
     resolve: {
-        root: config.paths.ROOT,
+        root: config.paths.CLIENT,
         alias: {
             styles: 'scss',
             scss: 'scss',
