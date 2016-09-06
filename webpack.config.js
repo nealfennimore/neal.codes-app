@@ -7,7 +7,7 @@ const config = require('./config');
 
 const isDev = process.env.NODE_ENV === 'development';
 
-var webpackConfig =  {
+const webpackConfig =  {
     context: config.paths.CLIENT,
 
     resolve: {
@@ -63,7 +63,7 @@ var webpackConfig =  {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ['react-hot', 'babel-loader']
+                loaders: ['babel-loader']
             },
 
             // HTML
