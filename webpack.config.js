@@ -14,8 +14,9 @@ const webpackConfig =  {
         root: config.paths.CLIENT,
         alias: {
             styles: 'scss',
-            scss: 'scss',
-            scripts: 'js'
+            scripts: 'js',
+            containers: 'js/containers',
+            reducers: 'js/reducers',
         },
         extensions: ['', '.js', '.jsx', '.scss']
     },
