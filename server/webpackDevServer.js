@@ -5,6 +5,7 @@ const config  = require('../config');
 const webpackConfig = require('../webpack.config');
 
 // Add hot module reloading
+if(!(webpackConfig.plugins instanceof Array)){ webpackConfig.plugins = []; }
 webpackConfig.plugins.unshift(new webpack.HotModuleReplacementPlugin());
 
 // Add inline mode
