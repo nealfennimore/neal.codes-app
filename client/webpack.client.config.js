@@ -3,11 +3,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer      = require('autoprefixer');
 const merge             = require('lodash/merge');
 
-const config = require('./config');
+const config = require('../config');
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const webpackConfig =  {
+var webpackConfig =  {
     context: config.paths.CLIENT,
 
     resolve: {
@@ -133,7 +133,7 @@ const webpackConfig =  {
 if(isDev){
     // Merge in dev settings if exists
     try {
-        var devWebpackConfig = require('./webpack.config.development.js');
+        var devWebpackConfig = require('./webpack.client.development.config.js');
         webpackConfig = merge({}, webpackConfig, {module: {loaders: null}},  devWebpackConfig);
     } catch(e){
         console.error('Error loading webpack development config. Loading defaults.', e)
