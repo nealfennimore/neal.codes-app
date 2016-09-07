@@ -9,6 +9,7 @@ module.exports = {
     },
     paths: {
         CLIENT: path.resolve(__dirname, 'client'),
+        SERVER: path.resolve(__dirname, 'server'),
         PUBLIC: path.resolve(__dirname, 'public'),
         DEV: path.resolve(__dirname, 'dev')
     },
