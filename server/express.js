@@ -1,19 +1,10 @@
-const express = require('express');
-const path    = require('path');
+// import path from 'path';
+import express from 'express';
+import handleRender from './rendering';
 
-const config  = require('../config');
-const app     = express();
+const { server } = require('../config');
+const app = express();
 
-// Serve compiled static assets
-app.use(express.static(config.paths.PUBLIC));
+app.get('/', handleRender);
 
-app.get('/', (req, res) => {
-    res.render(
-        path.resolve(config.paths.PUBLIC, 'index.html')
-    );
-});
-
-app.get('/projects', (req, res) => {
-});
-
-app.listen(config.server.port);
+app.listen(server.port);
