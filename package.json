@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm run build",
-    "start": "forever start ./server/express.js",
+    "start": "NODE_ENV=production node ./server/server.bundle.js",
     "prebuild": "npm install",
-    "build": "webpack --config ./webpack.config.js -p --progress",
+    "build": "webpack --config ./server/webpack.server.config.js -p && webpack --config ./client/webpack.client.config.js -p",
     "develop": "NODE_ENV=development node ./server/webpackDevServer.js"
   },
   "repository": {
