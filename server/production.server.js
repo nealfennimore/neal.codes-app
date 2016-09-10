@@ -1,10 +1,12 @@
 import express from 'express';
 import handleRender from './rendering';
 
-import { server } from '../config';
+import config from '../config';
 
 const app = express();
 
 app.get('/', handleRender);
 
-app.listen(server.port);
+app.listen(config.server.port, ()=>{
+    console.log('Starting production server', config.server.port);
+});
