@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../config');
 
 module.exports = {
     output: {
@@ -14,7 +14,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ['babel-loader']
+                loaders: ['react-hot-loader', 'babel-loader']
             },
 
             // HTML
