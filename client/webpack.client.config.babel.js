@@ -1,9 +1,9 @@
-const webpack           = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const autoprefixer      = require('autoprefixer');
-const merge             = require('lodash/merge');
+import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import autoprefixer from 'autoprefixer';
+import merge from 'lodash/merge';
 
-const config = require('../config');
+import config  from '../config'
 
 const isDev = process.env.NODE_ENV === 'development';
 

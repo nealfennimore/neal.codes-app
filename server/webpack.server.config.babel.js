@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const config  = require('../config');
+import webpack from 'webpack';
+import config from '../config';
 
 module.exports = {
     target: 'node',
@@ -13,17 +13,17 @@ module.exports = {
     },
 
     context: config.paths.SERVER,
-    entry: './express.js',
+    entry: './production.server.js',
     output: {
         path: config.paths.SERVER,
-        filename: 'server.bundle.js',
+        filename: 'production.server.bundle.js',
     },
     plugins: [
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         warnings: false
-        //     }
-        // })
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
     ],
     module: {
         loaders: [

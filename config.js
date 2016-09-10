@@ -1,9 +1,9 @@
 const path = require('path');
 
-module.exports = {
+const config = {
     server: {
         port: 4545,
-        ip: '0.0.0.0', // Set to 0.0.0.0 for all
+        ip: '0.0.0.0',
         hostname: 'docker.local',
         protocol: 'https'
     },
@@ -18,3 +18,5 @@ module.exports = {
         VENDOR_SCSS: /vendorStyles\.scss$/
     }
 };
+
+export default config;

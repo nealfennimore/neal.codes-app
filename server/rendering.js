@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import reducers from 'reducers';
-import App from 'containers';
+import reducers from '../client/js/reducers';
+import App from '../client/js/containers';
 
 import { renderToString } from 'react-dom/server';
 
