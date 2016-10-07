@@ -133,7 +133,7 @@ var webpackConfig =  {
 if(isDev){
     // Merge in dev settings if exists
     try {
-        var devWebpackConfig = require('./webpack.client.development.config.js');
+        var devWebpackConfig = require('./webpack.client.development.config.babel.js');
         webpackConfig = merge({}, webpackConfig, {module: {loaders: null}},  devWebpackConfig);
     } catch(e){
         console.error('Error loading webpack development config. Loading defaults.', e)
