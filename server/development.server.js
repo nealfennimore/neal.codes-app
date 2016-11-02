@@ -3,9 +3,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import express from 'express';
 
-import handleRender from './rendering';
-import webpackConfig from '../client/webpack.client.config.babel';
+import webpackConfig from './webpack.server.development.config.babel';
 import config from '../config';
+import handleRender from './rendering';
 
 const app = express();
 
