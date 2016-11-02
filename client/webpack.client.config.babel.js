@@ -28,9 +28,7 @@ var webpackConfig =  {
             'react',
             'react-dom'
         ],
-        vendorStyles: ['./scss/vendor/vendor.scss'],
-
-        html: ['./index.html']
+        vendorStyles: ['./scss/vendor/vendor.scss']
     },
 
     output: {
