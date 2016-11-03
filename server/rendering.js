@@ -36,7 +36,11 @@ export default function handleRender(req, res) {
     // Render the component to a string
     const html = renderToString(
         <Provider store={store}>
-            <App />
+            <App
+                value={store.getState()}
+                onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
+                onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
+            />
         </Provider>
     );
 

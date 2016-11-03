@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import styles from 'scss/main';
+
+import styles from 'styles/main.scss';
 
 class Counter extends Component {
     constructor(props) {
@@ -19,26 +20,14 @@ class Counter extends Component {
     }
 
     render() {
-        const { value, onIncrement, onDecrement } = this.props;
+        const { value=0, onIncrement, onDecrement } = this.props;
         return (
             <p className={styles.greeting}>
-            Clicked: {value} times
-            {' '}
-            <button onClick={onIncrement}>
-            +
-            </button>
-            {' '}
-            <button onClick={onDecrement}>
-            -
-            </button>
-            {' '}
-            <button onClick={this.incrementIfOdd}>
-            Increment if odd
-            </button>
-            {' '}
-            <button onClick={this.incrementAsync}>
-            Increment async
-            </button>
+                Clicked: {value} times
+                <button onClick={onIncrement}>+</button>
+                <button onClick={onDecrement}>-</button>
+                <button onClick={this.incrementIfOdd}>Increment if odd</button>
+                <button onClick={this.incrementAsync}>Increment async</button>
             </p>
         );
     }
