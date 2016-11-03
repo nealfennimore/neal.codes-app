@@ -6,10 +6,13 @@ module.exports = {
     resolve: {
         root: config.paths.CLIENT,
         alias: {
+            styles: 'scss',
+            scripts: 'js',
             containers: 'js/containers',
             reducers: 'js/reducers',
+            utils: 'js/utils'
         },
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.scss']
     },
 
     context: config.paths.SERVER,
@@ -35,6 +38,10 @@ module.exports = {
             {
                 test: /\.json$/,
                 loader: 'json-loader'
+            },
+            {
+                test: /\.scss$/,
+                loader: 'css-loader/locals?modules&importLoaders=1&localIdentName=[path][name]-[local]'
             }
         ]
     }

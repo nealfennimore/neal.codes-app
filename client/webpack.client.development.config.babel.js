@@ -29,7 +29,7 @@ module.exports = {
                 excludes: config.regex.VENDOR_SCSS,
                 loaders: [
                     'style',
-                    'css?modules&importLoaders=1&sourceMap&localIdentName=[path][name]-[local]_[hash:base64:5]',
+                    'css?modules&importLoaders=1&sourceMap&localIdentName=[path][name]-[local]',
                     'postcss',
                     'resolve-url',
                     'sass?sourceMap'

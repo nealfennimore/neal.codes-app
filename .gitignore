@@ -3,3 +3,4 @@ dev
 *.log
 public/*
 server/production.server.bundle.js
+server/development.server.bundle.js

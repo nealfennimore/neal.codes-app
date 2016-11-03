@@ -1,20 +1,11 @@
-require.extensions['.scss'] = () => { return; };
-
 import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import autoprefixer from 'autoprefixer';
-import merge from 'lodash/merge';
+import nodeExternals from 'webpack-node-externals';
+import config from '../config';
 
-import config  from '../config';
-
-const isDev = process.env.NODE_ENV === 'development';
-
-var webpackConfig =  {
+var serverWebpackConfig =  {
+    name: 'server',
     target: 'node',
-
-    devtool: 'eval',
-
-    context: config.paths.CLIENT,
+    context: config.paths.SERVER,
 
     resolve: {
         root: config.paths.CLIENT,
@@ -28,105 +19,40 @@ var webpackConfig =  {
         extensions: ['', '.js', '.jsx', '.scss']
     },
 
-    entry: {
-        app: ['./app'],
+    // externals: [nodeExternals()],
 
-        vendor: [
-            'react',
-            'react-dom'
-        ],
-        vendorStyles: ['./scss/vendor/vendor.scss']
-    },
+    entry: './development.server.js',
 
     output: {
-        filename: '[name].js',
-        chunkFilename: '[id].js',
-        path: config.paths.DEV,
-        pathinfo: true
+        path: config.paths.SERVER,
+        filename: 'development.server.bundle.js'
     },
 
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
             }
         })
     ],
 
     module: {
         loaders: [
-
-            // Javascript
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders: ['react-hot-loader', 'babel-loader']
+                loader: 'babel-loader'
             },
-
-            // HTML
             {
-                test: /\.html$/,
-                loader: 'file?name=[name].[ext]'
+                test: /\.json$/,
+                loader: 'json-loader'
             },
-
-            // CSS Locals
             {
                 test: /\.scss$/,
-                excludes: config.regex.VENDOR_SCSS,
-                loaders: [
-                    'style',
-                    'css?modules&importLoaders=1&sourceMap&localIdentName=[path][name]-[local]_[hash:base64:5]',
-                    'postcss',
-                    'resolve-url',
-                    'sass'
-                ]
-            },
-
-            // CSS Globals
-            {
-                test: config.regex.VENDOR_SCSS,
-                loaders: [
-                    'style',
-                    'css',
-                    'postcss',
-                    'resolve-url',
-                    'sass'
-                ]
-            },
-
-            // Images
-            {
-                test: /.*\.(gif|png|jpe?g|svg)$/i,
-                loaders: [
-                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
-                    'image-webpack'
-                ]
-            },
-
-            // Fonts
-            {
-                test: /\.(eot|svg|ttf|woff|woff2)\?.*$/,
-                loader: 'file?name=fonts/[name].[ext]'
+                loader: 'css-loader/locals?modules&importLoaders=1&localIdentName=[path][name]-[local]'
             }
         ]
-    },
-    postcss: function () {
-        return [autoprefixer];
-    },
-    imageWebpackLoader: {
-        pngquant: {
-            quality: '65-90',
-            speed: 4
-        },
-        svgo: {
-            plugins: [{
-                removeViewBox: false
-            }, {
-                removeEmptyAttrs: false
-            }]
-        }
     }
 };
 
-console.log(webpackConfig);
-module.exports = webpackConfig;
+module.exports = serverWebpackConfig;

@@ -3,6 +3,7 @@ const path = require('path');
 const config = {
     server: {
         port: 4545,
+        devPort: 4546,
         ip: '0.0.0.0',
         hostname: 'docker.local',
         protocol: 'https'

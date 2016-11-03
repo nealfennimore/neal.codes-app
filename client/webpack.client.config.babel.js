@@ -8,6 +8,8 @@ import config  from '../config'
 const isDev = process.env.NODE_ENV === 'development';
 
 var webpackConfig =  {
+    name: 'client',
+
     context: config.paths.CLIENT,
 
     resolve: {
@@ -76,7 +78,7 @@ var webpackConfig =  {
                 test: /\.scss$/,
                 excludes: config.regex.VENDOR_SCSS,
                 loader: ExtractTextPlugin.extract('style', [
-                    'css?modules&importLoaders=1&sourceMap&localIdentName=[path][name]-[local]_[hash:base64:5]',
+                    'css?modules&importLoaders=1&sourceMap&localIdentName=[path][name]-[local]',
                     'postcss',
                     'resolve-url',
                     'sass?sourceMap'
