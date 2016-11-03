@@ -35,7 +35,7 @@ module.exports = merge({}, webpackCommon, {
             },
             {
                 test: /\.scss$/,
-                loader: 'css-loader/locals?modules&importLoaders=1&localIdentName=[path][name]-[local]'
+                loader: `css-loader/locals?modules&importLoaders=1&localIdentName=${config.webpack.cssModuleName}`
             }
         ]
     }

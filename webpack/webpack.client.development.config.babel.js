@@ -32,7 +32,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
                 excludes: config.regex.VENDOR_SCSS,
                 loaders: [
                     'style',
-                    'css?modules&importLoaders=1&sourceMap&localIdentName=[path][name]-[local]',
+                    `css?modules&importLoaders=1&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
                     'postcss',
                     'resolve-url',
                     'sass?sourceMap'
