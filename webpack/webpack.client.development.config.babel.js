@@ -1,11 +1,16 @@
 import merge from 'lodash/merge';
 
 import webpackCommonClientConfig from './common/webpack.common.client.config.js';
-import config from '../config';
+
+import {
+    paths: {DEV}, 
+    regex: {VENDOR_SCSS}, 
+    webpack: {cssModuleName}
+} from '../config';
 
 module.exports = merge({}, webpackCommonClientConfig, {
     output: {
-        path: config.paths.DEV,
+        path: DEV,
         pathinfo: true
     },
     devtool: 'eval',
@@ -29,10 +34,10 @@ module.exports = merge({}, webpackCommonClientConfig, {
             // CSS Locals
             {
                 test: /\.scss$/,
-                excludes: config.regex.VENDOR_SCSS,
+                excludes: VENDOR_SCSS,
                 loaders: [
                     'style',
-                    `css?modules&importLoaders=1&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
+                    `css?modules&importLoaders=1&sourceMap&localIdentName=${cssModuleName}`,
                     'postcss',
                     'resolve-url',
                     'sass?sourceMap'
@@ -41,7 +46,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
             // CSS Globals
             {
-                test: config.regex.VENDOR_SCSS,
+                test: VENDOR_SCSS,
                 loaders: [
                     'style',
                     'css',

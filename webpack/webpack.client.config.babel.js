@@ -4,12 +4,16 @@ import autoprefixer from 'autoprefixer';
 import merge from 'lodash/merge';
 
 import webpackCommonClientConfig from './common/webpack.common.client.config.js';
-import config  from '../config'
+import {
+    paths: {PUBLIC}, 
+    regex: {VENDOR_SCSS, VENDOR_FILES}, 
+    webpack: {cssModuleName}
+} from '../config';
 
 module.exports = merge({}, webpackCommonClientConfig, {
 
     output: {
-        path: config.paths.PUBLIC
+        path: PUBLIC
     },
 
     plugins: [
@@ -23,7 +27,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
         new webpack.SourceMapDevToolPlugin({
             filename: '[file].map',
             exclude: [
-                config.regex.VENDOR_FILES,
+                VENDOR_FILES,
                 /html\.js$/,
                 /styles\.js$/
             ]
@@ -56,9 +60,9 @@ module.exports = merge({}, webpackCommonClientConfig, {
             // App styles with CSS locals
             {
                 test: /\.scss$/,
-                excludes: config.regex.VENDOR_SCSS,
+                excludes: VENDOR_SCSS,
                 loader: ExtractTextPlugin.extract('style', [
-                    `css?modules&importLoaders=1&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
+                    `css?modules&importLoaders=1&sourceMap&localIdentName=${cssModuleName}`,
                     'postcss',
                     'resolve-url',
                     'sass?sourceMap'
@@ -67,7 +71,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
             // Vendor styles
             {
-                test: config.regex.VENDOR_SCSS,
+                test: VENDOR_SCSS,
                 loader: ExtractTextPlugin.extract('style', [
                     'css',
                     'postcss',

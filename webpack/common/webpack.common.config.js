@@ -1,8 +1,10 @@
-import config  from '../../config';
+import {
+    paths: {CLIENT}
+}  from '../../config';
 
 module.exports = {
     resolve: {
-        root: config.paths.CLIENT,
+        root: CLIENT,
         alias: {
             styles: 'scss',
             scripts: 'js',
