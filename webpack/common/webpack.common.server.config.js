@@ -1,31 +1,18 @@
 import webpack from 'webpack';
-import nodeExternals from 'webpack-node-externals';
-import config from '../config';
+import merge from 'lodash/merge';
 
-var serverWebpackConfig =  {
-    name: 'server',
+import webpackCommon from './webpack.common.config.js';
+import config from '../../config';
+
+module.exports = merge({}, webpackCommon, {
     target: 'node',
+    name: 'server',
     context: config.paths.SERVER,
 
-    resolve: {
-        root: config.paths.CLIENT,
-        alias: {
-            styles: 'scss',
-            scripts: 'js',
-            containers: 'js/containers',
-            reducers: 'js/reducers',
-            utils: 'js/utils'
-        },
-        extensions: ['', '.js', '.jsx', '.scss']
-    },
-
-    // externals: [nodeExternals()],
-
-    entry: './development.server.js',
-
+    entry: null,
     output: {
         path: config.paths.SERVER,
-        filename: 'development.server.bundle.js'
+        filename: null
     },
 
     plugins: [
@@ -35,7 +22,6 @@ var serverWebpackConfig =  {
             }
         })
     ],
-
     module: {
         loaders: [
             {
@@ -53,6 +39,4 @@ var serverWebpackConfig =  {
             }
         ]
     }
-};
-
-module.exports = serverWebpackConfig;
+});

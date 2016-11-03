@@ -3,39 +3,12 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import merge from 'lodash/merge';
 
+import webpackCommonClientConfig from './common/webpack.common.client.config.js';
 import config  from '../config'
 
-const isDev = process.env.NODE_ENV === 'development';
-
-var webpackConfig =  {
-    name: 'client',
-
-    context: config.paths.CLIENT,
-
-    resolve: {
-        root: config.paths.CLIENT,
-        alias: {
-            styles: 'scss',
-            scripts: 'js',
-            containers: 'js/containers',
-            reducers: 'js/reducers',
-        },
-        extensions: ['', '.js', '.jsx', '.scss']
-    },
-
-    entry: {
-        app: ['./app'],
-
-        vendor: [
-            'react',
-            'react-dom'
-        ],
-        vendorStyles: ['./scss/vendor/vendor.scss']
-    },
+module.exports = merge({}, webpackCommonClientConfig, {
 
     output: {
-        filename: '[name].js',
-        chunkFilename: '[id].js',
         path: config.paths.PUBLIC
     },
 
@@ -54,7 +27,14 @@ var webpackConfig =  {
                 /html\.js$/,
                 /styles\.js$/
             ]
-        })
+        }),
+        webpackConfig.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env': {
+                    NODE_ENV: JSON.stringify('production')
+                }
+            })
+        );
     ],
 
     module: {
@@ -128,26 +108,4 @@ var webpackConfig =  {
             }]
         }
     }
-};
-
-if(isDev){
-    // Merge in dev settings if exists
-    try {
-        var devWebpackConfig = require('./webpack.client.development.config.babel.js');
-        webpackConfig = merge({}, webpackConfig, {module: {loaders: null}},  devWebpackConfig);
-    } catch(e){
-        console.error('Error loading webpack development config. Loading defaults.', e)
-    }
-
-} else {
-    // Put in production to generate react production mode
-    webpackConfig.plugins.push(
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('production')
-            }
-        })
-    );
-}
-
-module.exports = webpackConfig;
+});

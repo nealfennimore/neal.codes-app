@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm run build",
-    "start": "NODE_ENV=production node ./server/production.server.bundle.js",
+    "start": "NODE_ENV=production node ./server/build/production.server.bundle.js",
     "prebuild": "npm install",
     "build": "npm run buildClient && npm run buildServer",
-    "buildClient": "webpack --config ./client/webpack.client.config.babel.js -p --progress",
-    "buildServer": "webpack --config ./server/webpack.server.config.babel.js -p --progress",
-    "buildDevServer": "webpack --config ./server/webpack.server.development.config.babel.js -p --progress",
+    "buildClient": "webpack --config ./webpack/webpack.client.config.babel.js -p --progress",
+    "buildServer": "webpack --config ./webpack/webpack.server.config.babel.js -p --progress",
+    "buildDevServer": "webpack --config ./webpack/webpack.server.development.config.babel.js -p --progress",
     "predevelop": "npm run buildDevServer",
-    "develop": "concurrently --kill-others \"NODE_ENV=development babel-node ./server/development.server.bundle.js\" \"NODE_ENV=development babel-node ./server/development.server.watch.js\""
+    "develop": "concurrently --kill-others \"NODE_ENV=development babel-node ./server/build/development.server.bundle.js\" \"NODE_ENV=development babel-node ./server/development.server.watch.js\""
   },
   "repository": {
     "type": "git",

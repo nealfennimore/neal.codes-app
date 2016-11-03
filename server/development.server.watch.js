@@ -4,7 +4,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import express from 'express';
 
 import config from '../config.js';
-import webpackClientConfig from '../client/webpack.client.config.babel';
+import webpackClientConfig from '../webpack/webpack.client.development.config.babel';
 
 const app = express();
 

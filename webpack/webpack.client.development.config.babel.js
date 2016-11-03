@@ -1,6 +1,9 @@
+import merge from 'lodash/merge';
+
+import webpackCommonClientConfig from './common/webpack.common.client.config.js';
 import config from '../config';
 
-module.exports = {
+module.exports = merge({}, webpackCommonClientConfig, {
     output: {
         path: config.paths.DEV,
         pathinfo: true
@@ -64,4 +67,4 @@ module.exports = {
             }
         ]
     }
-};
+});
