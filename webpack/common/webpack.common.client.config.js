@@ -1,4 +1,3 @@
-import webpack from 'webpack';
 import merge from 'lodash/merge';
 
 import webpackCommon from './webpack.common.config.js';
