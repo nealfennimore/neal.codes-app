@@ -2,19 +2,16 @@ import webpack from 'webpack';
 import merge from 'lodash/merge';
 
 import webpackCommon from './webpack.common.config.js';
-import {
-    paths: {SERVER}, 
-    webpack: {cssModuleName}
-} from '../../config';
+import config from '../../config';
 
 module.exports = merge({}, webpackCommon, {
     target: 'node',
     name: 'server',
-    context: SERVER,
+    context: config.paths.SERVER,
 
     entry: null,
     output: {
-        path: SERVER,
+        path: config.paths.SERVER,
         filename: null
     },
 
@@ -38,7 +35,7 @@ module.exports = merge({}, webpackCommon, {
             },
             {
                 test: /\.scss$/,
-                loader: `css-loader/locals?modules&importLoaders=1&localIdentName=${cssModuleName}`
+                loader: `css-loader/locals?modules&importLoaders=1&localIdentName=${config.webpack.cssModuleName}`
             }
         ]
     }

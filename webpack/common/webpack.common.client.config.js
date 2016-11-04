@@ -2,14 +2,12 @@ import webpack from 'webpack';
 import merge from 'lodash/merge';
 
 import webpackCommon from './webpack.common.config.js';
-import {
-    paths: {CLIENT}
-} from '../../config';
+import config from '../../config';
 
 module.exports = merge({}, webpackCommon, {
     name: 'client',
     target: 'web',
-    context: CLIENT,
+    context: config.paths.CLIENT,
 
     entry: {
         app: ['./app'],
