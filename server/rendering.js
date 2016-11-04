@@ -18,7 +18,7 @@ function renderFullPage(html, preloadedState) {
                 <link rel="stylesheet" href="/app.css" media="screen" title="App styles" charset="utf-8">
             </head>
             <body>
-                <div id="app"><div>${html}</div></div>
+                <div id="app">${html}</div>
                 <script>debugger;</script>
                 <script>
                     window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}

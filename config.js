@@ -1,4 +1,5 @@
-const path = require('path');
+import path from 'path';
+import buildVersion from './buildStamp.js';
 
 const config = {
     server: {
@@ -19,7 +20,7 @@ const config = {
         VENDOR_SCSS: /vendorStyles\.scss$/
     },
     webpack: {
-        cssModuleName: '[path][name]-[local]'
+        cssModuleName: `[name]-[local]__${buildVersion}`
     }
 };
 

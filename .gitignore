@@ -3,3 +3,4 @@ dev
 *.log
 public/*
 server/build/*
+buildStamp.js
