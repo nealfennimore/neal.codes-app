@@ -4,7 +4,7 @@ import autoprefixer from 'autoprefixer';
 import merge from 'lodash/merge';
 
 import webpackCommonClientConfig from './common/webpack.common.client.config.js';
-import config  from '../config'
+import config from '../config';
 
 module.exports = merge({}, webpackCommonClientConfig, {
 
@@ -28,13 +28,11 @@ module.exports = merge({}, webpackCommonClientConfig, {
                 /styles\.js$/
             ]
         }),
-        webpackConfig.plugins.push(
-            new webpack.DefinePlugin({
-                'process.env': {
-                    NODE_ENV: JSON.stringify('production')
-                }
-            })
-        );
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        })
     ],
 
     module: {
