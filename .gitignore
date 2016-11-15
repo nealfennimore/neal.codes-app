@@ -4,3 +4,4 @@ dev
 public/*
 server/build/*
 buildStamp.js
+config.js

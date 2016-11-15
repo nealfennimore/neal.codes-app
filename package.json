@@ -4,17 +4,18 @@
   "description": "Personal build tools",
   "main": "index.js",
   "scripts": {
-    "createBuildVersion": "./buildVersion.sh",
+    "createBuildVersion": "./scripts/buildVersion.sh",
+    "createConfig": "./scripts/buildConfig.sh",
 
     "prestart": "npm run build",
     "start": "NODE_ENV=production node ./server/build/production.server.bundle.js",
 
-    "prebuild": "npm install",
-    "build": "npm run createBuildVersion && npm run buildClient && npm run buildServer",
+    "prebuild": "npm install && npm run createConfig && npm run createBuildVersion",
+    "build": "npm run buildClient && npm run buildServer",
     "buildClient": "webpack --config ./webpack/webpack.client.config.babel.js -p --progress",
     "buildServer": "webpack --config ./webpack/webpack.server.config.babel.js -p --progress",
 
-    "prebuildDevServer": "npm run createBuildVersion",
+    "prebuildDevServer": "npm run createConfig && npm run createBuildVersion",
     "buildDevServer": "webpack --config ./webpack/webpack.server.development.config.babel.js -p --progress",
 
     "predevelop": "npm run buildDevServer",
