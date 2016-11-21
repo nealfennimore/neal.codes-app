@@ -1,3 +1,4 @@
+import webpack from 'webpack';
 import merge from 'lodash/merge';
 import path from 'path';
 
