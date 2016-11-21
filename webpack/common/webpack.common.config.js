@@ -7,7 +7,7 @@ module.exports = {
             styles: 'scss',
             scripts: 'js',
             containers: 'js/containers',
-            reducers: 'js/reducers',
+            reducers: 'js/reducers'
         },
         extensions: ['', '.js', '.jsx', '.scss']
     },

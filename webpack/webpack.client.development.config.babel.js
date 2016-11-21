@@ -15,7 +15,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
             // Javascript
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loaders: ['react-hot-loader', 'babel-loader']
             },

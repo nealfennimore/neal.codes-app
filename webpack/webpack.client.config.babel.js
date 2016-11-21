@@ -40,7 +40,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
             // Javascript
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loaders: ['babel-loader']
             },
