@@ -1,3 +1,4 @@
+import webpack from 'webpack';
 import merge from 'lodash/merge';
 
 import webpackCommonClientConfig from './common/webpack.common.client.config.js';
@@ -9,7 +10,13 @@ module.exports = merge({}, webpackCommonClientConfig, {
         pathinfo: true
     },
     devtool: 'eval',
-    plugins: null,
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development')
+            }
+        })
+    ],
     module: {
         loaders: [
 

@@ -9,5 +9,13 @@ module.exports = merge({}, webpackCommonServerConfig, {
 
     output: {
         filename: './build/development.server.bundle.js'
-    }
+    },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development')
+            }
+        })
+    ],
 });
