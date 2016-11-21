@@ -1,4 +1,6 @@
 import serialize from 'serialize-javascript';
+import head from './head';
+import footer from './footer';
 
 export default function page({
     content='',
@@ -10,16 +12,14 @@ export default function page({
             <head>
                 <meta charset="utf-8">
                 <title></title>
-                <link rel="stylesheet" href="/vendorStyles.css" media="screen" title="Vendor styles" charset="utf-8">
-                <link rel="stylesheet" href="/app.css" media="screen" title="App styles" charset="utf-8">
+                ${head}
             </head>
             <body>
                 <div id="app">${content}</div>
                 <script>
                     window.__PRELOADED_STATE__ = ${ serialize(initialState, {isJSON: true}) }
                 </script>
-                <script src="/vendor.js"></script>
-                <script src="/app.js"></script>
+                ${footer}
             </body>
         </html>
     `;

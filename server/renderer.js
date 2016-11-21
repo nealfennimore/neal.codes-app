@@ -6,7 +6,7 @@ import { RouterContext } from 'react-router'
 
 import reducers from 'reducers';
 import App from 'containers';
-import page from './page';
+import page from './templates/page';
 
 
 export default function handleRender(res, renderProps) {
