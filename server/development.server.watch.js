@@ -46,5 +46,5 @@ app.use(
 );
 
 app.listen(config.server.devPort, config.server.ip, ()=>{
-    console.log('Dev watch server started on', `${config.server.ip}:${config.server.devPort}`);
+    console.log('Development watch server started on', `${config.server.ip}:${config.server.devPort}`);
 });

@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 
 import reducers from '../client/js/reducers';
 import App from '../client/js/containers';
+import { RouterContext } from 'react-router'
 
 import { renderToString } from 'react-dom/server';
 
@@ -30,18 +31,14 @@ function renderFullPage(html, preloadedState) {
     `;
 }
 
-export default function handleRender(req, res) {
+export default function handleRender(res, renderProps) {
     // Create a new Redux store instance
     const store = createStore(reducers);
 
     // Render the component to a string
     const html = renderToString(
         <Provider store={store}>
-            <App
-                value={store.getState()}
-                onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
-                onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
-            />
+            <RouterContext {...renderProps} />
         </Provider>
     );
 

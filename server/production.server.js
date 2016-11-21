@@ -1,11 +1,10 @@
 import express from 'express';
-import handleRender from './rendering';
-
 import config from '../config';
+import handleRouting from './routing';
 
 const app = express();
 
-app.get('/', handleRender);
+app.get('*', handleRouting);
 
 app.listen(config.server.port, ()=>{
     console.log('Starting production server', config.server.port);
