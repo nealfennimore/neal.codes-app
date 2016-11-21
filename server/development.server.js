@@ -6,7 +6,7 @@ const app = express();
 
 // Since the asset and HMR json files are not actually in the filesystem
 // 404 to allow to be pointed into the development upstream on nginx
-app.get(/(\.js(on)?|\.css)$/, (req, res)=>res.sendStatus(404));
+app.get(/(\.js(on)?|\.css|\.ico)$/, (req, res)=>res.sendStatus(404));
 
 app.get('*', handleRouting);
 

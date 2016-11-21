@@ -16,7 +16,7 @@ export default function handleRouting(req, res, next){
         }
 
         if (!renderProps) {
-            return next(new Error('Render props required. Check to see if request is for an asset.'));
+            return next(new Error(`Render props required. Check to see if request is for an asset: ${req.url}`));
         }
 
         handleRender(res, renderProps);
