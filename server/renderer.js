@@ -1,17 +1,19 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router'
+import thunk from 'redux-thunk';
 
 import reducers from 'reducers';
-import App from 'containers';
 import page from './templates/page';
-
 
 export default function handleRender(res, renderProps) {
     // Create a new Redux store instance
-    const store = createStore(reducers);
+    const store = createStore(
+        reducers,
+        applyMiddleware(thunk)
+    );
 
     // Render the component to a string
     const content = renderToString(
