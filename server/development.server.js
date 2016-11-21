@@ -4,9 +4,9 @@ import handleRouting from './routing';
 
 const app = express();
 
-// Since the asset files are not actually in the filesystem
+// Since the asset and HMR json files are not actually in the filesystem
 // 404 to allow to be pointed into the development upstream on nginx
-app.get(/(\.js|\.css)$/, (req, res)=>res.sendStatus(404));
+app.get(/(\.js(on)?|\.css)$/, (req, res)=>res.sendStatus(404));
 
 app.get('*', handleRouting);
 
