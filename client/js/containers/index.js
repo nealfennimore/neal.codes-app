@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 
 import styles from 'styles/main.scss';
 
+const NOOP = Function.prototype;
+
 class Counter extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +22,7 @@ class Counter extends Component {
     }
 
     render() {
-        const { value=0, onIncrement, onDecrement } = this.props;
+        const { value=0, onIncrement=NOOP, onDecrement=NOOP } = this.props;
         return (
             <p className={styles.greeting}>
                 Clicked: {value} times
@@ -34,9 +36,9 @@ class Counter extends Component {
 }
 
 Counter.propTypes = {
-    value: PropTypes.number.isRequired,
-    onIncrement: PropTypes.func.isRequired,
-    onDecrement: PropTypes.func.isRequired
+    value: PropTypes.number,
+    onIncrement: PropTypes.func,
+    onDecrement: PropTypes.func
 };
 
 export default Counter;
