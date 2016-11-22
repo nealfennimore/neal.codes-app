@@ -12,7 +12,9 @@ module.exports = {
             components: 'client/js/components',
             reducers: 'client/js/reducers',
             // Server paths
-            server: 'server'
+            server: 'server',
+            // Shared paths
+            shared: 'shared'
         },
         extensions: ['', '.js', '.jsx', '.scss']
     },
