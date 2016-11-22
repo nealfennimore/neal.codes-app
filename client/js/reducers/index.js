@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import blog from 'reducers/blog';
 
 function counter(state = 0, action) {
     switch (action.type) {
@@ -14,5 +15,6 @@ function counter(state = 0, action) {
 
 export default combineReducers({
     counter,
+    blog,
     routing: routerReducer
 });

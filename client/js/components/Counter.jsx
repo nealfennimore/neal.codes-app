@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import styles from 'styles/main.scss';
 
@@ -25,6 +26,7 @@ class Counter extends Component {
         const { value=0, onIncrement=NOOP, onDecrement=NOOP } = this.props;
         return (
             <p className={styles.greeting}>
+                <Link to={'/blog'}><button>Blog</button></Link>
                 Clicked: {value} times
                 <button onClick={onIncrement}>+</button>
                 <button onClick={onDecrement}>-</button>
