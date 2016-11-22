@@ -1,20 +1,19 @@
 import React from 'react'
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import {syncHistoryWithStore} from 'react-router-redux';
+import {Router, Route, IndexRoute} from 'react-router';
 import { Layout, Home } from 'containers';
 
-export default function( props={} ) {
-    let history = browserHistory;
+// Fixes HMR by not recreating routes
+// https://github.com/reactjs/react-router-redux/issues/179#issuecomment-241771171
+const ROUTES = (
+    <Route path='/' component={Layout}>
+        <IndexRoute component={Home} />
+    </Route>
+);
 
-    if (props.store) {
-        history = syncHistoryWithStore(browserHistory, props.store);
-    }
-
+export default function({history}) {
     return (
         <Router history={history}>
-            <Route path='/' component={Layout}>
-                <IndexRoute component={Home} />
-            </Route>
+            {ROUTES}
         </Router>
     );
 }

@@ -15,11 +15,11 @@ const store = createStore(reducers, preloadedState, composeEnhancers(
     applyMiddleware(...middleware)
 ));
 
-syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(browserHistory, store);
 
 render(
     <Provider store={store}>
-        <Routes store={store} />
+        <Routes history={history} />
     </Provider>,
     document.getElementById('app')
 );

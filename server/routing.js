@@ -1,10 +1,11 @@
 import handleRender from './renderer';
+import { browserHistory as history } from 'react-router';
 import routes from 'routes';
 import { match } from 'react-router';
 
 export default function handleRouting(req, res, next){
     match({
-        routes: routes(),
+        routes: routes({ history }),
         location: req.url
     }, (err, redirectLocation, renderProps) => {
         if (err) {
