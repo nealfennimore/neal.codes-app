@@ -1,2 +1,7 @@
-export { default as Layout } from 'containers/Layout';
-export { default as Home } from 'containers/Home';
+import Layout from 'containers/Layout';
+import Home from 'containers/Home';
+
+module.exports = {
+    Layout,
+    Home
+};
