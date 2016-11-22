@@ -1,7 +1,7 @@
 import { isBrowser } from 'shared/env';
 
 function constructParam(name, queryParams){
-    return `${name}=${isBrowser ? encodeURIComponent(queryParams[name]) : queryParams[name]}`;
+    return `${name}=${encodeURIComponent(queryParams[name])}`;
 }
 
 export function constructParams(paramNames, queryParams){
