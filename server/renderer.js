@@ -7,12 +7,15 @@ import thunk from 'redux-thunk';
 
 import reducers from 'reducers';
 import page from './templates/page';
+import middleware, { composeEnhancers } from '../client/middleware';
 
 export default function handleRender(res, renderProps) {
     // Create a new Redux store instance
     const store = createStore(
         reducers,
-        applyMiddleware(thunk)
+        composeEnhancers(
+            applyMiddleware(...middleware)
+        )
     );
 
     // Render the component to a string
