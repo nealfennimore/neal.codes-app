@@ -1,7 +1,8 @@
 import handleRender from './renderer';
 import { browserHistory as history } from 'react-router';
-import routes from 'client/routes';
 import { match } from 'react-router';
+import { Promise } from 'bluebird';
+import routes from 'client/routes';
 
 export default function handleRouting(req, res, next){
     match({
@@ -20,6 +21,6 @@ export default function handleRouting(req, res, next){
             return next(new Error(`Render props required. Check to see if request is for an asset: ${req.url}`));
         }
 
-        handleRender(res, renderProps);
+        handleRender({res, renderProps, next});
     });
 }
