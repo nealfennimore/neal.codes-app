@@ -5113,6 +5113,12 @@
       "from": "redux@latest",
       "resolved": "https://registry.npmjs.org/redux/-/redux-3.6.0.tgz"
     },
+    "redux-immutable-state-invariant": {
+      "version": "1.2.4",
+      "from": "redux-immutable-state-invariant@latest",
+      "resolved": "https://registry.npmjs.org/redux-immutable-state-invariant/-/redux-immutable-state-invariant-1.2.4.tgz",
+      "dev": true
+    },
     "redux-thunk": {
       "version": "2.1.0",
       "from": "redux-thunk@latest",
