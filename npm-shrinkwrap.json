@@ -790,9 +790,8 @@
     },
     "bluebird": {
       "version": "2.9.6",
-      "from": "bluebird@2.9.6",
-      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-2.9.6.tgz",
-      "dev": true
+      "from": "https://registry.npmjs.org/bluebird/-/bluebird-2.9.6.tgz",
+      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-2.9.6.tgz"
     },
     "boom": {
       "version": "2.10.1",
@@ -3197,6 +3196,11 @@
       "from": "http-errors@>=1.5.0 <1.6.0",
       "resolved": "https://registry.npmjs.org/http-errors/-/http-errors-1.5.0.tgz"
     },
+    "http-https": {
+      "version": "1.0.0",
+      "from": "http-https@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/http-https/-/http-https-1.0.0.tgz"
+    },
     "http-signature": {
       "version": "1.1.1",
       "from": "http-signature@>=1.1.0 <1.2.0",
@@ -4386,6 +4390,11 @@
       "version": "2.0.0",
       "from": "object.omit@>=2.0.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/object.omit/-/object.omit-2.0.0.tgz"
+    },
+    "oboe": {
+      "version": "2.1.2",
+      "from": "oboe@latest",
+      "resolved": "https://registry.npmjs.org/oboe/-/oboe-2.1.2.tgz"
     },
     "on-finished": {
       "version": "2.3.0",

@@ -57,9 +57,11 @@
     "webpack-hot-middleware": "^2.12.2"
   },
   "dependencies": {
+    "bluebird": "https://registry.npmjs.org/bluebird/-/bluebird-2.9.6.tgz",
     "express": "^4.14.0",
     "forever": "^0.15.2",
     "lodash": "^4.15.0",
+    "oboe": "^2.1.2",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
