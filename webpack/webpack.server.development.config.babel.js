@@ -15,7 +15,9 @@ module.exports = merge({}, webpackCommonServerConfig, {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('development')
+                NODE_ENV: JSON.stringify('development'),
+                NODE_BUILD: JSON.stringify('server'),
+                NODE_TLS_REJECT_UNAUTHORIZED: JSON.stringify('0')
             }
         })
     ],
