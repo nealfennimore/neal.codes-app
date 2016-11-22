@@ -1,6 +1,6 @@
 import handleRender from './renderer';
 import { browserHistory as history } from 'react-router';
-import routes from 'routes';
+import routes from 'client/routes';
 import { match } from 'react-router';
 
 export default function handleRouting(req, res, next){

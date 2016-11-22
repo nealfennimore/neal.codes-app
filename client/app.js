@@ -5,9 +5,9 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { createStore, applyMiddleware } from 'redux';
 
-import middleware, { composeEnhancers } from './middleware';
+import middleware, { composeEnhancers } from 'client/middleware';
 import reducers from 'reducers';
-import Routes from 'routes';
+import Routes from 'client/routes';
 
 // Grab the state from a global injected into server-generated HTML
 const preloadedState = window.__PRELOADED_STATE__;
