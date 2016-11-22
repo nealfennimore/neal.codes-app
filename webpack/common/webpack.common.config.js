@@ -8,9 +8,11 @@ module.exports = {
             client: 'client',
             styles: 'client/scss',
             scripts: 'client/js',
+            actions: 'client/js/actions',
             containers: 'client/js/containers',
             components: 'client/js/components',
             reducers: 'client/js/reducers',
+            services: 'client/js/services',
             // Server paths
             server: 'server',
             // Shared paths
