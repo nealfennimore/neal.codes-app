@@ -20,7 +20,8 @@ module.exports = merge({}, webpackCommon, {
             compress: {
                 warnings: false
             }
-        })
+        }),
+        new webpack.DefinePlugin({ 'global.GENTLY': false }) // Fixes superagent not bundling... https://github.com/visionmedia/superagent/issues/672#issuecomment-153408805
     ],
     module: {
         loaders: [
