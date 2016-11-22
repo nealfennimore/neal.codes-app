@@ -19,7 +19,7 @@ module.exports = merge({}, webpackCommon, {
             'redux',
             'redux-thunk',
             'bluebird',
-            'oboe'
+            'reqwest'
 
         ],
         vendorStyles: ['./scss/vendor/vendor.scss']
