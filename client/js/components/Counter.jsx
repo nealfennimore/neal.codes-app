@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 import styles from 'styles/main.scss';
 
