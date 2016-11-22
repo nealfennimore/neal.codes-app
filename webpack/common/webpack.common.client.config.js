@@ -13,7 +13,14 @@ module.exports = merge({}, webpackCommon, {
 
         vendor: [
             'react',
-            'react-dom'
+            'react-dom',
+            'react-router',
+            'react-router-redux',
+            'redux',
+            'redux-thunk',
+            'bluebird',
+            'oboe'
+
         ],
         vendorStyles: ['./scss/vendor/vendor.scss']
     },
