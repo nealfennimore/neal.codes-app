@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 import merge from 'lodash/merge';
+import { queryParams } from 'shared/blog';
 
-const mergeQuery = (page, queryParams)=>merge({}, queryParams, {queryParams: {page}});
+const getParams = (page)=>merge({}, queryParams, {queryParams: {page}});
 
-const Pagination = ({pagination: {prev, next}, onClick, queryParams}) => {
+const Pagination = ({pagination: {prev, next}, onClick}) => {
     if(!prev && !next){ return null; }
 
-    const getPage = (page)=>onClick(mergeQuery(page, queryParams));
+    const getPage = (page)=>onClick(getParams(page));
 
     return (
         <div>
@@ -18,8 +19,7 @@ const Pagination = ({pagination: {prev, next}, onClick, queryParams}) => {
 
 Pagination.propTypes = {
     pagination: PropTypes.object.isRequired,
-    onClick: PropTypes.func.isRequired,
-    queryParams: PropTypes.object.isRequired
+    onClick: PropTypes.func.isRequired
 };
 
 export default Pagination;

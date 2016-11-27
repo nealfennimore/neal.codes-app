@@ -4,8 +4,7 @@ import Posts from 'components/blog/posts/Posts';
 
 const PostsPage = ({
     blog: {posts, meta: {pagination}},
-    fetchPosts,
-    queryParams
+    fetchPosts
 }) => {
     return (
         <div>
@@ -13,7 +12,6 @@ const PostsPage = ({
             <Pagination
                 pagination={pagination}
                 onClick={fetchPosts}
-                queryParams={queryParams}
             />
         </div>
     );
@@ -24,8 +22,7 @@ PostsPage.propTypes = {
         posts: PropTypes.arrayOf(React.PropTypes.object),
         meta: PropTypes.object
     }),
-    fetchPosts: PropTypes.func.isRequired,
-    queryParams: PropTypes.object.isRequired
+    fetchPosts: PropTypes.func.isRequired
 };
 
 export default PostsPage;

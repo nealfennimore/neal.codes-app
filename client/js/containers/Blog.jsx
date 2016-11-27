@@ -3,19 +3,10 @@ import { connect } from 'react-redux';
 import { renderChildren } from 'shared/react';
 import { fetchPosts } from 'actions/blogActions';
 
+import { queryParams } from 'shared/blog';
 import PostsPage from 'components/blog/posts';
 
-const queryParams = {
-    queryParams: {
-        limit: 1
-    }
-};
-
 class Blog extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount(){
         const { blog: {posts=[]} } = this.props;
         if(!posts.length){ this.props.fetchPosts(queryParams); }
@@ -30,7 +21,6 @@ class Blog extends Component {
                     <PostsPage
                         blog={blog}
                         fetchPosts={this.props.fetchPosts}
-                        queryParams={queryParams}
                     />
                 }
             </div>
