@@ -23,12 +23,14 @@ const store = createStore(
 
 function fetchData({components}){
     const defaultPromise = ()=> Promise.resolve();
-    return get(last(components), 'WrappedComponent.fetchData', defaultPromise);
+    return get(last(components), 'fetchData', defaultPromise);
 }
 
 export default function handleRender({res, renderProps, next}) {
+    const { router } = renderProps;
+
     // Fetch data server-side if we need to
-    fetchData(renderProps)({store})
+    fetchData(renderProps)({store, router})
         .then(()=> {
             // Render the component to a string
             const content = renderToString(
