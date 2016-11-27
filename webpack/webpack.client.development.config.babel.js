@@ -7,7 +7,8 @@ import config from '../config';
 module.exports = merge({}, webpackCommonClientConfig, {
     output: {
         path: config.paths.DEV,
-        pathinfo: true
+        pathinfo: true,
+        publicPath: '/' // https://github.com/coryhouse/react-slingshot/issues/75#issuecomment-198787201
     },
     devtool: 'eval',
     plugins: [
