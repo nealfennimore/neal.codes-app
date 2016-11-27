@@ -7,6 +7,9 @@ import config from '../../config';
 module.exports = merge({}, webpackCommon, {
     target: 'node',
     name: 'server',
+    node: {
+        __dirname: true // superagent fix: https://github.com/visionmedia/superagent/wiki/SuperAgent-for-Webpack
+    },
     context: config.paths.SERVER,
 
     entry: null,
@@ -17,11 +20,11 @@ module.exports = merge({}, webpackCommon, {
 
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
+            compress: false,
+            sourceMap: true,
+            beautify: true
         }),
-        new webpack.DefinePlugin({ 'global.GENTLY': false }) // Fixes superagent not bundling... https://github.com/visionmedia/superagent/issues/672#issuecomment-153408805
+        new webpack.DefinePlugin({ 'global.GENTLY': false }) // superagent fix: https://github.com/visionmedia/superagent/wiki/SuperAgent-for-Webpack
     ],
     module: {
         loaders: [
