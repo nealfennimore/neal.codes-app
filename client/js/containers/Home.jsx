@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import { Link } from 'react-router';
 
 import Counter from 'components/Counter';
 
@@ -10,6 +11,7 @@ export default class Home extends Component {
         return (
             <div>
                 <Counter />
+                <Link to={'/blog/somewhere'}>Somewhere</Link>
             </div>
         );
     }

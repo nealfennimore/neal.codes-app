@@ -1,10 +1,17 @@
 import { fetcher } from 'shared/api';
 
 const posts = (args={})=>fetcher({
-    rootPath: 'posts',
+    path: 'posts',
     ...args
 });
 
+const postBySlug = ({slug='', ...rest})=>fetcher({
+    path: 'posts/slug',
+    id: slug,
+    ...rest
+});
+
 export default {
-    posts
+    posts,
+    postBySlug
 };
