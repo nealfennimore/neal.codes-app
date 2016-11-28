@@ -61,6 +61,7 @@
     "bluebird": "^3.4.6",
     "express": "^4.14.0",
     "forever": "^0.15.2",
+    "foundation-sites": "^6.2.4",
     "lodash": "^4.15.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

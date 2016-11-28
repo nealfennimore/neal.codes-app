@@ -2175,6 +2175,11 @@
       "from": "forwarded@>=0.1.0 <0.2.0",
       "resolved": "https://registry.npmjs.org/forwarded/-/forwarded-0.1.0.tgz"
     },
+    "foundation-sites": {
+      "version": "6.2.4",
+      "from": "foundation-sites@latest",
+      "resolved": "https://registry.npmjs.org/foundation-sites/-/foundation-sites-6.2.4.tgz"
+    },
     "fresh": {
       "version": "0.3.0",
       "from": "fresh@0.3.0",
@@ -3698,6 +3703,11 @@
       "from": "jpegtran-bin@>=3.0.0 <4.0.0",
       "resolved": "https://registry.npmjs.org/jpegtran-bin/-/jpegtran-bin-3.1.0.tgz",
       "dev": true
+    },
+    "jquery": {
+      "version": "2.2.4",
+      "from": "jquery@>=2.2.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-2.2.4.tgz"
     },
     "js-base64": {
       "version": "2.1.9",
@@ -6282,6 +6292,11 @@
       "from": "webpack-sources@>=0.1.0 <0.2.0",
       "resolved": "https://registry.npmjs.org/webpack-sources/-/webpack-sources-0.1.2.tgz",
       "dev": true
+    },
+    "what-input": {
+      "version": "2.1.1",
+      "from": "what-input@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/what-input/-/what-input-2.1.1.tgz"
     },
     "whatwg-fetch": {
       "version": "1.0.0",
