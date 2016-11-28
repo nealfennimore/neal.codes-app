@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import merge from 'lodash/merge';
 import { queryParams } from 'shared/blog';
 
-const getParams = (page)=>merge({}, queryParams, {queryParams: {page}});
+const getParams = (page)=>merge({}, queryParams, {params: {page}});
 
 const Pagination = ({pagination: {prev, next}, onClick}) => {
     if(!prev && !next){ return null; }

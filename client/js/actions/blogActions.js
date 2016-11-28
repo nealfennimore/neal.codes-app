@@ -19,7 +19,7 @@ export function receivePosts(posts){
 /**
  * Fetch posts based on query params sent
  *
- * @param  {Object} [args={}] Object containing queryParams
+ * @param  {Object} [args={}] Object containing params
  *
  * @return {function}
  */

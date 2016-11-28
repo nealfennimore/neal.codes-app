@@ -1,20 +1,18 @@
-import { isBrowser } from 'shared/env';
-
-function constructParam(name, queryParams){
-    return `${name}=${encodeURIComponent(queryParams[name])}`;
+function constructParam(name, params){
+    return `${name}=${encodeURIComponent(params[name])}`;
 }
 
-export function constructParams(paramNames, queryParams){
-    return paramNames.map((name)=>constructParam(name, queryParams)).join('&');
+export function constructParams(paramNames, params){
+    return paramNames.map((name)=>constructParam(name, params)).join('&');
 }
 
-export function constructURL(path, queryParams){
-    let paramNames = Object.keys(queryParams),
-        params     = '';
+export function constructURL(path, params){
+    let paramNames = Object.keys(params),
+        _params    = '';
 
     if(paramNames.length){
-        params = `?${constructParams(paramNames, queryParams)}`;
+        _params = `?${constructParams(paramNames, params)}`;
     }
 
-    return `${path}${params}`;
+    return `${path}${_params}`;
 }
