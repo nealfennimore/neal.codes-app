@@ -15,7 +15,7 @@ class Blog extends Component {
     render() {
         const { blog, params, dispatch, children } = this.props;
         return (
-            <div>
+            <main>
                 { children ?
                     renderChildren(children, {blog, params, dispatch}) :
                     <PostsPage
@@ -23,7 +23,7 @@ class Blog extends Component {
                         fetchPosts={this.props.fetchPosts}
                     />
                 }
-            </div>
+            </main>
         );
     }
 }

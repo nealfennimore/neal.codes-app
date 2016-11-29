@@ -4,12 +4,12 @@ import { truncate } from 'shared/formatting';
 
 const Post = ({post}) => {
     return (
-        <li className='small-12 column'>
+        <article className='small-12 column'>
             <Link to={`/blog/${post.slug}`}>{post.title}</Link>
             <p>
                 {truncate(post.markdown, 150)}
             </p>
-        </li>
+        </article>
     );
 };
 

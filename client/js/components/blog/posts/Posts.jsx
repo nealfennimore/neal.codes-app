@@ -3,11 +3,11 @@ import Post from 'components/blog/posts/Post';
 
 const Posts = ({posts}) => {
     return (
-        <ul className='row'>
+        <div className='row'>
             {posts.map(post=>(
                 <Post key={post.id} post={post} />
             ))}
-        </ul>
+        </div>
     );
 };
 
