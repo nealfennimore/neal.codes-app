@@ -1,0 +1,40 @@
+@import '~styles/util';
+
+.links {
+    list-style-type: none;
+    margin: 0;
+
+
+    li {
+        display: inline-block;
+        margin-right: rem-calc(30);
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        a {
+            position: relative;
+
+            &.active {
+                font-weight: bold;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                background-color: $primary-color;
+                height: 1px;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                transform: translateY(150%) scaleX(0);
+                transition: all .25s;
+            }
+
+            &:hover:after {
+                transform: translateY(150%) scaleX(1);
+            }
+        }
+    }
+}
