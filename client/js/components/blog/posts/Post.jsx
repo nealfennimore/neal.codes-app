@@ -4,7 +4,7 @@ import { truncate } from 'shared/formatting';
 
 const Post = ({post}) => {
     return (
-        <li>
+        <li className='small-12 column'>
             <Link to={`/blog/${post.slug}`}>{post.title}</Link>
             <p>
                 {truncate(post.markdown, 150)}
@@ -14,7 +14,11 @@ const Post = ({post}) => {
 };
 
 Post.propTypes = {
-    post: PropTypes.object.isRequired
+    post: PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        markdown: PropTypes.string.isRequired
+    })
 };
 
 export default Post;
