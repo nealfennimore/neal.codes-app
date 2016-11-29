@@ -54,7 +54,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
             // App styles with CSS locals
             {
                 test: /\.scss$/,
-                excludes: config.regex.VENDOR_SCSS,
+                exclude: config.regex.VENDOR_SCSS,
                 loader: ExtractTextPlugin.extract('style', [
                     `css?modules&importLoaders=1&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
                     'postcss',

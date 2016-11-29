@@ -37,7 +37,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
             // CSS Locals
             {
                 test: /\.scss$/,
-                excludes: config.regex.VENDOR_SCSS,
+                exclude: config.regex.VENDOR_SCSS,
                 loaders: [
                     'style',
                     `css?modules&importLoaders=1&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
