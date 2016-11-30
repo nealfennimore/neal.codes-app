@@ -1,24 +1,19 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { renderChildren } from 'shared/react';
-import { fetchPosts } from 'actions/blogActions';
+import { fetchPosts, fetchPostsIfNeeded } from 'actions/blogActions';
 
 import { queryParams } from 'shared/blog';
-import PostsPage from 'components/blog/posts';
+import { Posts } from 'components/blog';
 
 class Blog extends Component {
-    componentDidMount(){
-        const { blog: {posts=[]} } = this.props;
-        if(!posts.length){ this.props.fetchPosts(queryParams); }
-    }
-
     render() {
         const { blog, params, dispatch, children } = this.props;
         return (
             <main>
                 { children ?
                     renderChildren(children, {blog, params, dispatch}) :
-                    <PostsPage
+                    <Posts
                         blog={blog}
                         fetchPosts={this.props.fetchPosts}
                     />

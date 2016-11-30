@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
+import Loader from 'components/global/Loader';
 import { fetchPostIfNeeded, fetchPost } from 'actions/blogActions';
 
 export default class Post extends Component {
@@ -15,7 +16,11 @@ export default class Post extends Component {
 
     render() {
         const { blog: {isFetching, post} } = this.props;
-        return (!isFetching && post ? <article dangerouslySetInnerHTML={this.createMarkup()} /> : <div>Loading</div>);
+        return (
+            !isFetching && post ?
+            <article dangerouslySetInnerHTML={this.createMarkup()} /> :
+            <Loader />
+        );
     }
 }
 
