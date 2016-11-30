@@ -6,7 +6,7 @@ import styles from './Navigation.scss';
 
 const Navigation = (props) => {
     return (
-        <nav className={`${styles.navigation} row align-middle align-justify`}>
+        <nav className={`${styles.navigation} row expanded align-middle align-justify`}>
             <Logo />
             <NavigationLinks />
         </nav>
