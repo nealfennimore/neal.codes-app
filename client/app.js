@@ -17,33 +17,26 @@ const store = createStore(reducers, preloadedState, composeEnhancers(
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-render(
-    <AppContainer>
-        <Root
-            store={store}
-            history={history}
-        />
-    </AppContainer>,
-    document.getElementById('app')
-);
+function hotModuleRender(App){
+    render(
+        <AppContainer>
+            <App
+                store={store}
+                history={history}
+            />
+        </AppContainer>,
+        document.getElementById('app')
+    );
+}
+
+hotModuleRender(Root);
 
 if(module.hot){
     module.hot.accept('./js/reducers', ()=>{
-        const reducer = './js/reducers';
-        store.replaceReducer(reducer);
+        store.replaceReducer(require('./js/reducers').default);
     });
 
-    module.hot.accept('./root', ()=> {
-        const NextApp = require('./root').default;
-
-        render(
-            <AppContainer>
-                <NextApp
-                    store={store}
-                    history={history}
-                />
-            </AppContainer>,
-            document.getElementById('app')
-        );
+    module.hot.accept('./root', ()=>{
+        hotModuleRender(require('./root').default);
     });
 }
