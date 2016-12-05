@@ -22,9 +22,6 @@ const Logo = (props) => {
                     <path d="M363.505 44.767l18.467-40.002 3.54 1.83-18.526 39.883-3.48-1.71z" className={styles.forwardSlash}></path>
                     <path d="M390.707 14.736v-4.19l25.016 13.158v2.832l-25.134 14.69v-4.483l20.59-11.564-20.473-10.444z" className={styles.endBracket}></path>
                 </g>
-                <a xmlns="http://www.w3.org/2000/svg" id="anchor" xlinkHref="/" target="_top">
-                    <rect x="0" y="0" width="100%" height="100%" fillOpacity="0"></rect>
-                </a>
             </svg>
         </Link>
     );
