@@ -19,10 +19,9 @@ module.exports = merge({}, webpackCommon, {
             'redux',
             'redux-thunk',
             'bluebird',
-            'superagent'
-
-        ],
-        vendorStyles: ['./scss/vendor/vendor.scss']
+            'superagent',
+            './scss/vendor/vendor.scss'
+        ]
     },
 
     output: {
