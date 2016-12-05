@@ -8,8 +8,6 @@ import webpackClientConfig from '../webpack/webpack.client.development.config.ba
 
 const app = express();
 
-const hotModulePath = '/__webpack_hmr';
-
 // Add hot module reloading
 if(!(webpackClientConfig.plugins instanceof Array)){ webpackClientConfig.plugins = []; }
 webpackClientConfig.plugins.unshift(
@@ -22,19 +20,12 @@ webpackClientConfig.plugins.unshift(
 Object.keys(webpackClientConfig.entry).forEach( key => {
     const entry = webpackClientConfig.entry[key];
     entry.push(
-        `webpack-hot-middleware/client?path=${hotModulePath}&timeout=20000`,
-        'react-hot-loader/patch'
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client'
     );
 });
 
 const compiler = webpack(webpackClientConfig);
-
-app.use(
-    webpackHotMiddleware(compiler, {
-        log: console.log,
-        path: hotModulePath
-    })
-);
 
 app.use(
     webpackDevMiddleware(compiler, {
@@ -43,6 +34,14 @@ app.use(
         noInfo: true,
         stats: { colors: true },
         publicPath: '/'
+    })
+);
+
+app.use(
+    webpackHotMiddleware(compiler, {
+        log: console.log,
+        path: '/__webpack_hmr',
+        timeout: 20000
     })
 );
 

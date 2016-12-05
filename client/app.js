@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
@@ -19,20 +18,31 @@ const store = createStore(reducers, preloadedState, composeEnhancers(
 const history = syncHistoryWithStore(browserHistory, store);
 
 render(
-    <AppContainer
-        component={Root}
-        props={{ store, history }}
-    />,
+    <AppContainer>
+        <Root
+            store={store}
+            history={history}
+        />
+    </AppContainer>,
     document.getElementById('app')
 );
 
 if(module.hot){
+    module.hot.accept('./js/reducers', ()=>{
+        const reducer = './js/reducers';
+        store.replaceReducer(reducer);
+    });
+
     module.hot.accept('./root', ()=> {
+        const NextApp = require('./root').default;
+
         render(
-            <AppContainer
-                component={require('./root').default}
-                props={{ store, history }}
-            />,
+            <AppContainer>
+                <NextApp
+                    store={store}
+                    history={history}
+                />
+            </AppContainer>,
             document.getElementById('app')
         );
     });
