@@ -21,7 +21,7 @@ export default class PostsPage extends Component {
 
     render() {
         const {
-            blog: {isFetching, posts, meta: {pagination}},
+            blog: {isFetching, posts, meta: {pagination={}}},
             fetchPosts
         } = this.props;
 
