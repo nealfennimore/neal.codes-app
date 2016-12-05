@@ -22,7 +22,8 @@ webpackClientConfig.plugins.unshift(
 Object.keys(webpackClientConfig.entry).forEach( key => {
     const entry = webpackClientConfig.entry[key];
     entry.push(
-        `webpack-hot-middleware/client?path=${hotModulePath}&timeout=20000`
+        `webpack-hot-middleware/client?path=${hotModulePath}&timeout=20000`,
+        'react-hot-loader/patch'
     );
 });
 
