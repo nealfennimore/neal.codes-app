@@ -1,0 +1,13 @@
+@import '~styles/util';
+
+.tag {
+    background-color: $primary-color;
+    color: $white;
+    padding: rem-calc(10);
+    border-radius: $global-radius;
+    transition: color 0.2s;
+
+    &:hover {
+        color: rgba($white, 0.8);
+    }
+}

@@ -1,0 +1,15 @@
+@import '~styles/util';
+
+.tags {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+        margin-right: rem-calc(5);
+        display: inline-flex;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
