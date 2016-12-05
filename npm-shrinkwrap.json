@@ -1778,9 +1778,9 @@
       }
     },
     "eslint-config-nfen": {
-      "version": "0.0.7",
-      "from": "eslint-config-nfen@0.0.7",
-      "resolved": "https://registry.npmjs.org/eslint-config-nfen/-/eslint-config-nfen-0.0.7.tgz",
+      "version": "0.0.9",
+      "from": "eslint-config-nfen@latest",
+      "resolved": "https://registry.npmjs.org/eslint-config-nfen/-/eslint-config-nfen-0.0.9.tgz",
       "dev": true
     },
     "eslint-plugin-react": {

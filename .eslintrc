@@ -1,5 +1,5 @@
 {
-    "extends": "eslint-config-nfen",
+    "extends": ["eslint:recommended", "eslint-config-nfen", "plugin:react/recommended"],
     "rules": {
         "indent": [
             2,
@@ -17,6 +17,9 @@
             2,
             "always"
         ]
+    },
+    "globals": {
+        "React": false
     },
     "env": {
         "es6": true,
