@@ -40,7 +40,7 @@ app.use(
 app.use(
     webpackHotMiddleware(compiler, {
         log: console.log,
-        path: '/__webpack_hmr',
+        path: config.webpack.hmrPath,
         timeout: 20000
     })
 );
