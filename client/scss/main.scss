@@ -1,5 +1,7 @@
 @import 'util';
 
-.greeting {
-    color: green;
+@include breakpoint(small only){
+    body {
+        padding-top: $navigation-height;
+    }
 }

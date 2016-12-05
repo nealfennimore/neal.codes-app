@@ -1,6 +1,15 @@
 @import '~styles/util';
 
 .navigation {
-    height: rem-calc(60);
-    background: $secondary-color;
+    height: $navigation-height;
+    background: $white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@include breakpoint(small only){
+    .navigation {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
 }
