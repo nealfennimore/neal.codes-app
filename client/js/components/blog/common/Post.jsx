@@ -6,7 +6,7 @@ import PostRight from './PostRight';
 const Post = ({post}) => {
     return (
         <article className={`small-12 column ${styles.post}`}>
-            <div className="row align-justify">
+            <div className="row align-justify align-middle">
                 <PostLeft post={post}/>
                 <PostRight post={post}/>
             </div>

@@ -9,7 +9,7 @@ const PostLeft = ({post}) => {
         <div className={`${styles.postLeft} column small-8`}>
             <h2><Link to={`/blog/${post.slug}`}>{post.title}</Link></h2>
             <p>
-                {truncate(post.markdown, 150)}
+                {truncate(post.markdown, 170)}
             </p>
         </div>
     );
