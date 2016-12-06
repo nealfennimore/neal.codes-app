@@ -2,41 +2,6 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import blogService from 'services/blog';
 
-///////////
-// Posts //
-///////////
-
-export const REQUEST_POSTS = 'REQUEST_POSTS';
-export function requestPosts(){
-    return { type: REQUEST_POSTS };
-}
-
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export function receivePosts(posts){
-    return { type: RECEIVE_POSTS, posts };
-}
-
-/**
- * Fetch posts based on query params sent
- *
- * @param  {Object} [args={}] Object containing params
- *
- * @return {function}
- */
-export function fetchPosts(args={}){
-    return (dispatch) => {
-        dispatch(requestPosts());
-        return blogService.posts(args)
-            .then((res)=>
-                dispatch(receivePosts(res))
-            );
-    };
-}
-
-//////////
-// Post //
-//////////
-
 export const REQUEST_POST = 'REQUEST_POST';
 export function requestPost(){
     return { type: REQUEST_POST };
@@ -81,7 +46,7 @@ export function fetchPost(args={}){
  */
 export function fetchPostIfNeeded({blog, params: {slug}}){
     const isActivePost = get(blog, 'post.slug', false) === slug;
-    const posts = get(blog, 'posts', []);
+    const posts = get(blog, 'posts.posts', []);
     const post = !isActivePost ? find(posts, p => p.slug === slug) : false;
 
     return (dispatch) => {
