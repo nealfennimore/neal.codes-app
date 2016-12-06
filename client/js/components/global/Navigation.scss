@@ -1,10 +1,17 @@
 @import '~styles/util';
 
-.navigation {
-    height: $navigation-height;
-    background: $white;
+.container {
     border-bottom: 1px solid rgba(0, 0, 0, 0.025);
     width: 100%;
     position: fixed;
     top: 0;
+}
+
+.navigation {
+    height: $navigation-height;
+    background: $white;
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
