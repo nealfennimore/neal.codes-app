@@ -4,8 +4,8 @@ import size from 'lodash/size';
 
 import { queryParams } from 'shared/blog';
 import Loader from 'components/global/Loader';
-import Pagination from 'components/blog/posts/Pagination';
-import Posts from 'components/blog/posts/Posts';
+import Pagination from 'components/blog/common/Pagination';
+import Posts from 'components/blog/common/Posts';
 
 export default class PostsPage extends Component {
     hasPosts(){

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Post from 'components/blog/posts/Post';
+import Post from 'components/blog/common/Post';
 
 const Posts = ({posts}) => {
     return (
