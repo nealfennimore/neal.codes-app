@@ -6,6 +6,7 @@ import { fetchTags, fetchTagsIfNeeded } from 'actions/blog/tags';
 import Posts from 'components/blog/common/Posts';
 import Pagination from 'components/blog/common/Pagination';
 import Loader from 'components/global/Loader';
+import { capitializeWords } from 'shared/formatting';
 
 export default class Tag extends Component {
     componentDidMount(){
@@ -39,6 +40,10 @@ export default class Tag extends Component {
 
         return (
             <div>
+                <div className='row align-middle'>
+                    <h2 className='column'>{capitializeWords(slug.replace(/-/g, ' '))}</h2>
+                    <h3 className='column shrink'><small>{pagination.total} {pagination.total === 1 ? 'Post': 'Posts'}</small></h3>
+                </div>
                 <Posts posts={posts} />
                 <Pagination
                     pagination={pagination}
