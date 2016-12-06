@@ -1,7 +1,7 @@
 import React from 'react'
 import {Router, Route, IndexRoute} from 'react-router';
 import { Layout, Home, Blog } from 'containers';
-import { Post } from 'components/blog';
+import { Post, Tags } from 'components/blog';
 
 // Fixes HMR by not recreating routes
 // https://github.com/reactjs/react-router-redux/issues/179#issuecomment-241771171
@@ -10,6 +10,7 @@ const ROUTES = (
         <IndexRoute component={Home} />
         <Route path='blog' component={Blog}>
             <Route path=':slug' component={Post} />
+            <Route path='tag/:slug' component={Tags} />
         </Route>
     </Route>
 );

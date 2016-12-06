@@ -5,7 +5,7 @@ import styles from './Tag.scss';
 
 const Tag = ({tag: {name, slug}}) => {
     return (
-        <Link to={`/tags/${slug}`} className={styles.tag}>
+        <Link to={`/blog/tag/${slug}`} className={styles.tag}>
             {name}
         </Link>
     );
