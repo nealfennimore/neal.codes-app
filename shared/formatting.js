@@ -6,4 +6,15 @@ export function truncate(str='', size=150){
     } else {
         return newStr;
     }
-};
+}
+
+export function capitialize(str=''){
+    return str.slice(0, 1).toUpperCase() + str.slice(1);
+}
+
+export function capitializeWords(words=''){
+    return words
+        .split(' ')
+        .map(capitialize)
+        .join(' ');
+}
