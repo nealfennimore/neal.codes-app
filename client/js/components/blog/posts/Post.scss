@@ -1,5 +1,13 @@
 @import '~styles/util';
 
 .post {
-    margin-bottom: rem-calc(25);
+    margin-bottom: rem-calc(50);
+}
+
+.postLeft h2 {
+    font-size: ms(2, $global-font-size);
+
+    @include breakpoint(small only){
+        font-size: ms(2, $global-font-size) / 2;
+    }
 }

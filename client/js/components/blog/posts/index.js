@@ -10,7 +10,7 @@ import Posts from 'components/blog/posts/Posts';
 export default class PostsPage extends Component {
     hasPosts(){
         const { blog } = this.props;
-        return size(get(blog, 'posts', [])) > 0;
+        return size(get(blog, 'posts.posts', [])) > 0;
     }
 
     componentDidMount(){
@@ -21,11 +21,12 @@ export default class PostsPage extends Component {
 
     render() {
         const {
-            blog: {isFetching, posts, meta },
+            blog: {posts},
             fetchPosts
         } = this.props;
 
-        const { pagination={} } = meta;
+        const { isFetching, posts:articles } = posts;
+        const { pagination={} } = posts.meta;
 
         if( isFetching || !this.hasPosts() ){
             return <Loader />;
@@ -33,7 +34,7 @@ export default class PostsPage extends Component {
 
         return (
             <div>
-                <Posts posts={posts} />
+                <Posts posts={articles} />
                 <Pagination
                     pagination={pagination}
                     onClick={fetchPosts}
@@ -45,8 +46,12 @@ export default class PostsPage extends Component {
 
 PostsPage.propTypes = {
     blog: PropTypes.shape({
-        posts: PropTypes.arrayOf(React.PropTypes.object),
-        meta: PropTypes.object
+        posts: PropTypes.shape({
+            posts: PropTypes.arrayOf(React.PropTypes.object),
+            meta: PropTypes.object
+        }),
+        post: PropTypes.object,
+        tags: PropTypes.object
     }),
     fetchPosts: PropTypes.func.isRequired
 };
