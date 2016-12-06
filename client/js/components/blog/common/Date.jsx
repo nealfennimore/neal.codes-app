@@ -6,7 +6,7 @@ import styles from './Date.scss';
 const Date = ({date}) => {
     return (
         <span className={styles.date}>
-            {moment(date).format('MMMM Do YYYY')}
+            {moment.utc(date).format('MMMM Do YYYY')}
         </span>
     );
 };
