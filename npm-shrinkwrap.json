@@ -4244,6 +4244,12 @@
         }
       }
     },
+    "modularscale-sass": {
+      "version": "2.1.1",
+      "from": "modularscale-sass@latest",
+      "resolved": "https://registry.npmjs.org/modularscale-sass/-/modularscale-sass-2.1.1.tgz",
+      "dev": true
+    },
     "moment": {
       "version": "2.15.2",
       "from": "moment@>=2.11.2 <3.0.0",
