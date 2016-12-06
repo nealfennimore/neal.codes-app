@@ -3,9 +3,10 @@
 .tag {
     background-color: $primary-color;
     color: $white;
-    padding: rem-calc(10);
+    padding: rem-calc(7.5);
     border-radius: $global-radius;
     transition: color 0.2s;
+    font-size: rem-calc(14);
 
     &:hover {
         color: rgba($white, 0.8);
