@@ -1,24 +1,27 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { renderChildren } from 'shared/react';
-import { fetchPosts, fetchPostsIfNeeded } from 'actions/blogActions';
+import { fetchPosts } from 'actions/blog/posts';
 
 import { queryParams } from 'shared/blog';
 import { Posts } from 'components/blog';
+import styles from './Blog.scss';
 
 class Blog extends Component {
     render() {
         const { blog, params, dispatch, children } = this.props;
         return (
-            <main>
-                { children ?
-                    renderChildren(children, {blog, params, dispatch}) :
-                    <Posts
-                        blog={blog}
-                        fetchPosts={this.props.fetchPosts}
-                    />
-                }
-            </main>
+            <div className={`row align-center align-middle ${styles.blog}`}>
+                <main className="column small-12 medium-10">
+                    { children ?
+                        renderChildren(children, {blog, params, dispatch}) :
+                        <Posts
+                            blog={blog}
+                            fetchPosts={this.props.fetchPosts}
+                        />
+                    }
+                </main>
+            </div>
         );
     }
 }
@@ -27,10 +30,13 @@ Blog.fetchData = ({store}) => store.dispatch(fetchPosts(queryParams));
 
 Blog.propTypes = {
     blog: PropTypes.shape({
-        posts: PropTypes.arrayOf(React.PropTypes.object),
+        posts: PropTypes.object,
         meta: PropTypes.object
     }),
-    children: PropTypes.node
+    children: PropTypes.node,
+    fetchPosts: PropTypes.func,
+    dispatch: PropTypes.func,
+    params: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({

@@ -1,0 +1,8 @@
+@import '~styles/util';
+
+.container {
+    padding-top: $navigation-height;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}

@@ -12,6 +12,12 @@ export default class Home extends Component {
             <div>
                 <Counter />
                 <Link to={'/blog/somewhere'}>Somewhere</Link>
+                <h1>Hi</h1>
+                <h2>Hi</h2>
+                <h3>Hi</h3>
+                <h4>Hi</h4>
+                <h5>Hi</h5>
+                <h6>Hi</h6>
             </div>
         );
     }
