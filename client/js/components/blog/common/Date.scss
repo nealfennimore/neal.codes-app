@@ -1,5 +1,7 @@
 @import '~styles/util';
 
 .date {
+    display: block;
     color: silver;
+    margin-bottom: rem-calc(7.5);
 }
