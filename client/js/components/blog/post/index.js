@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 import Loader from 'components/global/Loader';
-import { fetchPostIfNeeded, fetchPost } from 'actions/blogActions';
+import { fetchPostIfNeeded, fetchPost } from 'actions/blog/post';
 
 export default class Post extends Component {
     componentDidMount(){
@@ -35,7 +35,6 @@ Post.propTypes = {
         slug: PropTypes.string.isRequired
     }),
     blog: PropTypes.shape({
-        posts: PropTypes.array,
-        meta: PropTypes.object
+        post: PropTypes.object
     })
 };
