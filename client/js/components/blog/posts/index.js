@@ -25,8 +25,8 @@ export default class PostsPage extends Component {
             fetchPosts
         } = this.props;
 
-        const { isFetching, posts:articles } = posts;
-        const { pagination={} } = posts.meta;
+        const { isFetching, posts:articles, meta} = posts;
+        const pagination = get(meta, 'pagination', {});
 
         if( isFetching || !this.hasPosts() ){
             return <Loader />;
