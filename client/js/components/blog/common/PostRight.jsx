@@ -5,7 +5,7 @@ import Tags from 'components/blog/common/Tags';
 const PostRight = ({post}) => {
     const { tags, published_at:publishedAt } = post;
     return (
-        <div className="column shrink">
+        <div className="column small-4 medium-3">
             <Date date={publishedAt} />
             <Tags tags={tags} />
         </div>
