@@ -9,7 +9,13 @@ module.exports = merge({}, webpackCommon, {
     context: config.paths.CLIENT,
 
     entry: {
-        app: ['./app'],
+        app: [
+            './app'
+        ],
+
+        fonts: [
+            './fonts/style.scss'
+        ],
 
         vendor: [
             'react',

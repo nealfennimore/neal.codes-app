@@ -54,7 +54,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
             // App styles with CSS locals
             {
                 test: /\.scss$/,
-                exclude: config.regex.VENDOR_SCSS,
+                exclude: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
                 loader: ExtractTextPlugin.extract('style', [
                     `css?modules&importLoaders=1&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
                     'postcss',
@@ -65,7 +65,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
             // Vendor styles
             {
-                test: config.regex.VENDOR_SCSS,
+                test: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
                 loader: ExtractTextPlugin.extract('style', [
                     'css',
                     'postcss',
@@ -76,7 +76,8 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
             // Images
             {
-                test: /.*\.(gif|png|jpe?g|svg)$/i,
+                test: config.regex.IMAGE_FILES,
+                exclude: config.regex.FONT_FILES,
                 loaders: [
                     'file?hash=sha512&digest=hex&name=[hash].[ext]',
                     'image-webpack'
@@ -85,7 +86,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
             // Fonts
             {
-                test: /\.(eot|svg|ttf|woff|woff2)\?.*$/,
+                test: config.regex.FONT_FILES,
                 loader: 'file?name=fonts/[name].[ext]'
             }
         ]
