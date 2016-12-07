@@ -1,0 +1,13 @@
+@import '~styles/main';
+
+.button {
+    margin-bottom: 0;
+    font-size: rem-calc(32);
+    color: $primary-color;
+}
+
+.pages {
+    margin: 0 rem-calc(7.5);
+    color: $medium-gray;
+    font-size: rem-calc(14);
+}
