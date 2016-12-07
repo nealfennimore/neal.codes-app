@@ -10,6 +10,6 @@ app.get(/(\.js(on)?|\.css|\.ico|\.svg|\.png|\.jp(e)?g|\.gif|\.ttf|\.otf|\.woff(2
 
 app.get('*', handleRouting);
 
-app.listen(config.server.port, config.server.ip, () => {
+app.listen(config.server.port, config.server.ip, ()=> {
     console.log('Development server started on', `${config.server.ip}:${config.server.port}`);
 });

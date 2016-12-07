@@ -3,8 +3,6 @@ import { renderToString } from 'react-dom/server';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
-import thunk from 'redux-thunk';
-
 import get from 'lodash/get';
 import last from 'lodash/last';
 
@@ -50,5 +48,8 @@ export default function handleRender({res, renderProps, next}) {
                 })
             );
         })
-        .catch(err => next(err));
+        .catch( err => {
+            const status = err.status || 404;
+            res.redirect(`/${status}`);
+        });
 }
