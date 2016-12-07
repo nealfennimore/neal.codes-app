@@ -1,0 +1,73 @@
+@import "variables";
+
+@font-face {
+  font-family: 'nealcodes';
+  src:
+    url('#{$icomoon-font-path}/nealcodes.ttf?nby5ps') format('truetype'),
+    url('#{$icomoon-font-path}/nealcodes.woff?nby5ps') format('woff'),
+    url('#{$icomoon-font-path}/nealcodes.svg?nby5ps#nealcodes') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'nealcodes' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-left_arrow {
+  &:before {
+    content: $icon-left_arrow;
+  }
+}
+.icon-right_arrow {
+  &:before {
+    content: $icon-right_arrow;
+  }
+}
+.icon-loader {
+  &:before {
+    content: $icon-loader;
+  }
+}
+.icon-plus {
+  &:before {
+    content: $icon-plus;
+  }
+}
+.icon-close {
+  &:before {
+    content: $icon-close;
+  }
+}
+.icon-search {
+  &:before {
+    content: $icon-search;
+  }
+}
+.icon-ion-social-rss {
+  &:before {
+    content: $icon-ion-social-rss;
+  }
+}
+.icon-linkedin {
+  &:before {
+    content: $icon-linkedin;
+  }
+}
+.icon-github {
+  &:before {
+    content: $icon-github;
+  }
+}
+
