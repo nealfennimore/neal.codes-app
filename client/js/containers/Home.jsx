@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Link } from 'react-router';
 
-import styles from './Layout.scss';
+import styles from 'components/global/Content.scss';
 
 export default class Home extends Component {
     constructor(props) {

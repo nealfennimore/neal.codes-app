@@ -5,7 +5,7 @@ import { fetchPosts } from 'actions/blog/posts';
 
 import { queryParams } from 'shared/blog';
 import { Posts } from 'components/blog';
-import styles from './Layout.scss';
+import styles from 'components/global/Content.scss';
 import blogStyles from './Blog.scss';
 
 class Blog extends Component {
