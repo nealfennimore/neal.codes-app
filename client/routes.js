@@ -10,7 +10,7 @@ const ROUTES = (
     <Route path='/' component={Layout}>
         <IndexRoute component={Home} />
         <Route path='blog' component={Blog}>
-            <Route path='page/:page' />
+            <Route path='page/:page' component={Posts} />
             <Route path='tag/:slug' component={Tags} />
             <Route path=':slug' component={Post} />
         </Route>

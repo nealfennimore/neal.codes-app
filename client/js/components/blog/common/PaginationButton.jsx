@@ -1,16 +1,19 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import styles from './Pagination.scss';
 
-const PaginationButton = ({onClick, iconClass}) => {
+const PaginationButton = ({page, iconClass}) => {
+    const url = page === 1 ? '/blog' : `/blog/page/${page}`;
+
     return (
-        <button className={`${styles.button} column shrink`} onClick={onClick}>
+        <Link to={url} className={`${styles.button} column shrink`}>
             <i className={iconClass}></i>
-        </button>
+        </Link>
     );
 };
 
 PaginationButton.propTypes = {
-    onClick: PropTypes.func.isRequired,
+    page: PropTypes.number.isRequired,
     iconClass: PropTypes.string.isRequired
 };
 
