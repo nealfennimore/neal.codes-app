@@ -10,8 +10,8 @@ import Posts from 'components/blog/common/Posts';
 
 export default class PostsPage extends Component {
     componentDidMount(){
-        const { routing, fetchPage } = this.props;
-        const path = get(routing, 'locationBeforeTransitions.pathname');
+        const { location, fetchPage } = this.props;
+        const path = get(location, 'pathname');
 
         if( !this.hasPosts() || !this.hasPostsForPage(path) ){ // Fixes posts not updating when browser backing to /blog
             const page = this.getPage(path);
@@ -20,8 +20,8 @@ export default class PostsPage extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        const oldPath = get(this.props, 'routing.locationBeforeTransitions.pathname');
-        const newPath = get(nextProps, 'routing.locationBeforeTransitions.pathname');
+        const oldPath = get(this.props, 'location.pathname');
+        const newPath = get(nextProps, 'location.pathname');
 
         if(oldPath !== newPath){
             const page = this.getPage(newPath);
@@ -79,5 +79,5 @@ PostsPage.propTypes = {
         tags: PropTypes.object
     }),
     fetchPage: PropTypes.func,
-    routing: PropTypes.object
+    location: PropTypes.object
 };

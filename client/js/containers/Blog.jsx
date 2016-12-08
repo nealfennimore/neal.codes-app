@@ -17,8 +17,8 @@ class Blog extends Component {
                         renderChildren(children, {blog, params, location, dispatch, fetchPosts, fetchPage, routing}) :
                         <Posts
                             blog={blog}
+                            location={location}
                             fetchPage={fetchPage}
-                            routing={routing}
                         />
                     }
                 </main>
