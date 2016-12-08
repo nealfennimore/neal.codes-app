@@ -48,6 +48,12 @@ $animation-duration: 0.5s;
     }
 }
 
+@include breakpoint(large down){
+    .logo {
+        margin-left: rem-calc(10);
+    }
+}
+
 @keyframes show-text {
     33% { opacity: 0; }
     100% { opacity: 1; }
