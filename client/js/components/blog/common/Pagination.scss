@@ -4,6 +4,10 @@
     margin-bottom: 0;
     font-size: rem-calc(32);
     color: $primary-color;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .pages {
