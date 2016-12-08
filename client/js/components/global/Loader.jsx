@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import styles from './Loader.scss';
 
 const Loader = (props) => {
     return (
-        <div>Loading</div>
+        <i className={`icon-loader ${styles.loader}`}></i>
     );
 };
 

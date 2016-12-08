@@ -1,0 +1,8 @@
+@import '~styles/main';
+
+.loader {
+    display: block;
+    color: $primary-color;
+    font-size: rem-calc(50);
+    composes: rotate from '../../../scss/animations';
+}
