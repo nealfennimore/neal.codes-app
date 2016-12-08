@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { renderChildren } from 'shared/react';
-import { fetchPosts } from 'actions/blog/posts';
+import { fetchPosts as fetchPostsAction, fetchPage } from 'actions/blog/posts';
 
 import { queryParams } from 'shared/blog';
 import { Posts } from 'components/blog';
@@ -10,15 +10,17 @@ import blogStyles from './Blog.scss';
 
 class Blog extends Component {
     render() {
-        const { blog, params, dispatch, children } = this.props;
+        const { blog, params, dispatch, children, fetchPosts, fetchPage } = this.props;
         return (
             <div className={`row align-center align-middle ${styles.content} ${blogStyles.blog}`}>
                 <main className="column small-12 medium-10">
                     { children ?
-                        renderChildren(children, {blog, params, dispatch}) :
+                        renderChildren(children, {blog, params, dispatch, fetchPosts, fetchPage}) :
                         <Posts
                             blog={blog}
-                            fetchPosts={this.props.fetchPosts}
+                            fetchPosts={fetchPosts}
+                            fetchPage={fetchPage}
+                            params={params}
                         />
                     }
                 </main>
@@ -27,7 +29,7 @@ class Blog extends Component {
     }
 }
 
-Blog.fetchData = ({store}) => store.dispatch(fetchPosts(queryParams));
+Blog.fetchData = ({store}) => store.dispatch(fetchPostsAction(queryParams));
 
 Blog.propTypes = {
     blog: PropTypes.shape({
@@ -36,6 +38,7 @@ Blog.propTypes = {
     }),
     children: PropTypes.node,
     fetchPosts: PropTypes.func,
+    fetchPage: PropTypes.func,
     dispatch: PropTypes.func,
     params: PropTypes.object
 };
@@ -46,7 +49,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     dispatch,
-    fetchPosts: (args)=> dispatch(fetchPosts(args))
+    fetchPosts: (args)=> dispatch(fetchPostsAction(args)),
+    fetchPage: (page)=> dispatch(fetchPage(page))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);
