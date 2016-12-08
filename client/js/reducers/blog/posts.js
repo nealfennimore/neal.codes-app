@@ -2,7 +2,8 @@ import first from 'lodash/first';
 
 import {
     REQUEST_POSTS,
-    RECEIVE_POSTS
+    RECEIVE_POSTS,
+    CHANGE_PAGE
 } from 'actions/blog/posts';
 
 function posts(state={}, action) {
@@ -16,6 +17,7 @@ function posts(state={}, action) {
         return Object.assign({}, state, {
             isFetching: true
         });
+    case CHANGE_PAGE:
     default:
         return state;
     }

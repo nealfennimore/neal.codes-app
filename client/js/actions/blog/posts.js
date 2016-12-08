@@ -1,4 +1,5 @@
 import blogService from 'services/blog';
+import { setPageParams } from 'shared/blog';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export function requestPosts(){
@@ -8,6 +9,19 @@ export function requestPosts(){
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export function receivePosts(posts){
     return { type: RECEIVE_POSTS, posts };
+}
+
+export const CHANGE_PAGE = 'CHANGE_PAGE';
+export function changePage(){
+    return { type: CHANGE_PAGE };
+}
+
+export function fetchPage(page){
+    return (dispatch) => {
+        const params = setPageParams(page);
+        dispatch(changePage());
+        return dispatch(fetchPosts(params));
+    };
 }
 
 /**
