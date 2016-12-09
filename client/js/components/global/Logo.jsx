@@ -4,7 +4,7 @@ import styles from './Logo.scss';
 
 const Logo = (props) => {
     return (
-        <Link to="/" className={`${styles.logoLink} column`}>
+        <Link to="/" className={`${styles.logoLink} column shrink`}>
             <svg id="logo" className={styles.logo} viewBox="0 -47 416 141" xmlns="http://www.w3.org/2000/svg" xlinkHref="http://www.w3.org/1999/xlink">
                 <title>neal.codes</title>
                 <g id="neal.codes">
