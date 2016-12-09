@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 import blogService from 'services/blog';
 import { setPageParams } from 'shared/blog';
 
@@ -11,16 +13,23 @@ export function receivePosts(posts){
     return { type: RECEIVE_POSTS, posts };
 }
 
-export const CHANGE_PAGE = 'CHANGE_PAGE';
-export function changePage(){
-    return { type: CHANGE_PAGE };
-}
-
 export function fetchPage(page){
     return (dispatch) => {
         const params = setPageParams(page);
-        dispatch(changePage());
         return dispatch(fetchPosts(params));
+    };
+}
+
+export function fetchPageIfNeeded({blog, params: {page}}){
+    const posts = get(blog, 'posts', false);
+    const currentPage = get(posts, 'meta.pagination.page');
+
+    return (dispatch) => {
+        if(posts && currentPage == page){
+            return;
+        } else {
+            return dispatch(fetchPage(page));
+        }
     };
 }
 

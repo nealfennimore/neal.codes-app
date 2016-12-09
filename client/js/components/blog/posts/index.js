@@ -2,17 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import get from 'lodash/get';
 import size from 'lodash/size';
 
-import { fetchPage as fetchPageAction } from 'actions/blog/posts';
+import { fetchPage, fetchPageIfNeeded } from 'actions/blog/posts';
 import Loader from 'components/global/Loader';
 import Pagination from 'components/blog/common/Pagination';
 import Posts from 'components/blog/common/Posts';
 
 export default class PostsPage extends Component {
     componentDidMount(){
-        if( !this.hasPosts() ){
-            const page = get(this.props, 'params.page', 1);
-            this.props.fetchPage(page);
-        }
+        const { dispatch } = this.props;
+        dispatch(fetchPageIfNeeded(this.props));
     }
 
     componentWillReceiveProps(nextProps){
@@ -20,7 +18,8 @@ export default class PostsPage extends Component {
         const newPage = get(nextProps, 'params.page');
 
         if(oldPage != newPage){
-            this.props.fetchPage(newPage);
+            const { dispatch } = this.props;
+            dispatch(fetchPage(newPage));
         }
     }
 
@@ -52,7 +51,7 @@ export default class PostsPage extends Component {
 
 PostsPage.fetchData = ({store, router}) => {
     const page = get(router, 'params.page', 1);
-    return store.dispatch(fetchPageAction(page));
+    return store.dispatch(fetchPage(page));
 };
 
 PostsPage.propTypes = {
@@ -70,5 +69,5 @@ PostsPage.propTypes = {
             PropTypes.number
         ])
     }),
-    fetchPage: PropTypes.func
+    dispatch: PropTypes.func
 };

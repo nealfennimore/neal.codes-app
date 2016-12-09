@@ -9,7 +9,7 @@ import blogStyles from './Blog.scss';
 
 class Blog extends Component {
     render() {
-        const { blog, params, dispatch, fetchPage, children } = this.props;
+        const { blog, params, dispatch, children } = this.props;
         return (
             <div className={`row align-center align-middle ${styles.content} ${blogStyles.blog}`}>
                 <main className="column small-12 medium-10">
@@ -18,7 +18,7 @@ class Blog extends Component {
                         <Posts
                             blog={blog}
                             params={params}
-                            fetchPage={fetchPage}
+                            dispatch={dispatch}
                         />
                     }
                 </main>
@@ -46,7 +46,6 @@ Blog.propTypes = {
         ]),
         slug: PropTypes.string
     }),
-    fetchPage: PropTypes.func,
     dispatch: PropTypes.func,
     children: PropTypes.node
 };
@@ -56,8 +55,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatch,
-    fetchPage: (page)=> dispatch(fetchPageAction(page))
+    dispatch
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);
