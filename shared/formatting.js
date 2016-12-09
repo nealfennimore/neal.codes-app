@@ -8,6 +8,10 @@ export function truncate(str='', size=150){
     }
 }
 
+export function cleanMarkdown(str){
+    return str.replace(/(#|\*|`)/g, '');
+}
+
 export function capitialize(str=''){
     return str.slice(0, 1).toUpperCase() + str.slice(1);
 }
