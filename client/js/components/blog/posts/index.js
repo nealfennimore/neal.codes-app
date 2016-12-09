@@ -10,7 +10,7 @@ import Posts from 'components/blog/common/Posts';
 export default class PostsPage extends Component {
     componentDidMount(){
         if( !this.hasPosts() ){
-            const page = get(this.props, 'params.page', 1)
+            const page = get(this.props, 'params.page', 1);
             this.props.fetchPage(page);
         }
     }

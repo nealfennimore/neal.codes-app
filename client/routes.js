@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 import {Router, Route, IndexRoute} from 'react-router';
 import { Layout, Home, Blog } from 'containers';
 import { Post, Tags } from 'components/blog';
