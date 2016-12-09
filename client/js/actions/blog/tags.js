@@ -49,9 +49,10 @@ export function fetchTags(slug, tagPage){
  */
 export function fetchTagsIfNeeded({blog, params: {slug, tagPage}}){
     const posts = get(blog, `tags.${slug}`, false);
+    const page  = get(posts, 'meta.pagination.page');
 
     return (dispatch) => {
-        if(posts){
+        if(posts && page == tagPage){
             return;
         } else {
             return dispatch(fetchTags(slug, tagPage));
