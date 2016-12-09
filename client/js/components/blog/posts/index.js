@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import get from 'lodash/get';
 import size from 'lodash/size';
-import first from 'lodash/first';
 
 import { fetchPage as fetchPageAction } from 'actions/blog/posts';
 import Loader from 'components/global/Loader';
@@ -10,32 +9,19 @@ import Posts from 'components/blog/common/Posts';
 
 export default class PostsPage extends Component {
     componentDidMount(){
-        const { location, fetchPage } = this.props;
-        const path = get(location, 'pathname');
-
-        if( !this.hasPosts() || !this.hasPostsForPage(path) ){ // Fixes posts not updating when browser backing to /blog
-            const page = this.getPage(path);
-            fetchPage(page);
-        }
-    }
-
-    componentWillReceiveProps(nextProps){
-        const oldPath = get(this.props, 'location.pathname');
-        const newPath = get(nextProps, 'location.pathname');
-
-        if(oldPath !== newPath){
-            const page = this.getPage(newPath);
+        if( !this.hasPosts() ){
+            const page = get(this.props, 'params.page', 1)
             this.props.fetchPage(page);
         }
     }
 
-    getPage(path){
-        return path === '/blog' ? 1 : first(path.match(/\d*$/));
-    }
+    componentWillReceiveProps(nextProps){
+        const oldPage = get(this.props, 'params.page');
+        const newPage = get(nextProps, 'params.page');
 
-    hasPostsForPage(path){
-        const currentPage = get(this.props, 'blog.posts.meta.pagination.page');
-        return this.getPage(path) == currentPage;
+        if(oldPage != newPage){
+            this.props.fetchPage(newPage);
+        }
     }
 
     hasPosts(){
@@ -58,7 +44,7 @@ export default class PostsPage extends Component {
         return (
             <div>
                 <Posts posts={articles} />
-                <Pagination pagination={pagination} />
+                <Pagination pagination={pagination} prefix='/blog' />
             </div>
         );
     }
@@ -73,11 +59,16 @@ PostsPage.propTypes = {
     blog: PropTypes.shape({
         posts: PropTypes.shape({
             posts: PropTypes.arrayOf(React.PropTypes.object),
-            meta: PropTypes.object
-        }),
-        post: PropTypes.object,
-        tags: PropTypes.object
+            meta: PropTypes.shape({
+                pagination: PropTypes.object
+            })
+        })
     }),
-    fetchPage: PropTypes.func,
-    location: PropTypes.object
+    params: PropTypes.shape({
+        page: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
+    }),
+    fetchPage: PropTypes.func
 };

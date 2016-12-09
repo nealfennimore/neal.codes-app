@@ -20,10 +20,11 @@ export function receiveTags(tags, slug){
  *
  * @return {function}
  */
-export function fetchTags(slug, page={}){
-    const args = merge({}, queryParams, page, {
+export function fetchTags(slug, tagPage){
+    const args = merge({}, queryParams, {
         params: {
-            filter: `tags:[${slug}]`
+            filter: `tags:[${slug}]`,
+            page:   Number(tagPage) || 1
         }
     });
 
@@ -46,14 +47,14 @@ export function fetchTags(slug, page={}){
  *
  * @return {Function}
  */
-export function fetchTagsIfNeeded({blog, params: {slug}}){
+export function fetchTagsIfNeeded({blog, params: {slug, tagPage}}){
     const posts = get(blog, `tags.${slug}`, false);
 
     return (dispatch) => {
         if(posts){
             return;
         } else {
-            return dispatch(fetchTags(slug));
+            return dispatch(fetchTags(slug, tagPage));
         }
     };
 }

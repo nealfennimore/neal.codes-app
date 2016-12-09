@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { renderChildren } from 'shared/react';
-import { fetchPosts as fetchPostsAction, fetchPage as fetchPageAction } from 'actions/blog/posts';
+import { fetchPage as fetchPageAction } from 'actions/blog/posts';
 
 import { Posts } from 'components/blog';
 import styles from 'components/global/Content.scss';
@@ -9,15 +9,15 @@ import blogStyles from './Blog.scss';
 
 class Blog extends Component {
     render() {
-        const { blog, params, location, dispatch, children, fetchPosts, fetchPage, routing } = this.props;
+        const { blog, params, dispatch, fetchPage, children } = this.props;
         return (
             <div className={`row align-center align-middle ${styles.content} ${blogStyles.blog}`}>
                 <main className="column small-12 medium-10">
                     { children ?
-                        renderChildren(children, {blog, params, location, dispatch, fetchPosts, fetchPage, routing}) :
+                        renderChildren(children, {blog, params, dispatch}) :
                         <Posts
                             blog={blog}
-                            location={location}
+                            params={params}
                             fetchPage={fetchPage}
                         />
                     }
@@ -32,25 +32,31 @@ Blog.fetchData = ({store}) => store.dispatch(fetchPageAction(1));
 Blog.propTypes = {
     blog: PropTypes.shape({
         posts: PropTypes.object,
-        meta: PropTypes.object
+        post: PropTypes.object,
+        tags: PropTypes.object
     }),
-    children: PropTypes.node,
-    fetchPosts: PropTypes.func,
+    params: PropTypes.shape({
+        page: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        tagPage: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]),
+        slug: PropTypes.string
+    }),
     fetchPage: PropTypes.func,
     dispatch: PropTypes.func,
-    params: PropTypes.object,
-    location: PropTypes.object,
-    routing: PropTypes.object
+    children: PropTypes.node
 };
 
 const mapStateToProps = (state) => ({
-    blog: state.blog,
-    routing: state.routing
+    blog: state.blog
 });
 
 const mapDispatchToProps = (dispatch) => ({
     dispatch,
-    fetchPosts: (args)=> dispatch(fetchPostsAction(args)),
     fetchPage: (page)=> dispatch(fetchPageAction(page))
 });
 

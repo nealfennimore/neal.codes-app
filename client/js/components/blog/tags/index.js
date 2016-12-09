@@ -8,15 +8,20 @@ import Pagination from 'components/blog/common/Pagination';
 import Loader from 'components/global/Loader';
 import { capitializeWords } from 'shared/formatting';
 
-export default class Tag extends Component {
+export default class Tags extends Component {
     componentDidMount(){
         const { dispatch } = this.props;
         dispatch(fetchTagsIfNeeded(this.props));
     }
 
-    hasTags(){
-        const { blog: {tags}, params: {slug} } = this.props;
-        return has(tags, slug);
+    componentWillReceiveProps(nextProps){
+        const oldPage = get(this.props, 'params.tagPage');
+        const newPage = get(nextProps, 'params.tagPage');
+
+        if(oldPage != newPage){
+            const { dispatch, params: {slug} } = nextProps;
+            dispatch(fetchTags(slug, newPage));
+        }
     }
 
     getTags(){
@@ -24,19 +29,23 @@ export default class Tag extends Component {
         return get(tags, slug, {posts:{}, meta:{}});
     }
 
+    hasTags(){
+        const { blog: {tags}, params: {slug} } = this.props;
+        return has(tags, slug);
+    }
+
     render() {
         const {
             blog: { tags: {isFetching} },
-            params: {slug},
-            dispatch
+            params: {slug}
         } = this.props;
 
-        if(isFetching || !this.hasTags() ){
+        if( isFetching || !this.hasTags() ){
             return <Loader />;
         }
 
-        const {posts, meta} = this.getTags();
-        const {pagination={}} = meta;
+        const { posts, meta } = this.getTags();
+        const pagination = get(meta, 'pagination', {});
 
         return (
             <div>
@@ -47,22 +56,26 @@ export default class Tag extends Component {
                 <Posts posts={posts} />
                 <Pagination
                     pagination={pagination}
-                    onClick={(page)=>dispatch(fetchTags(slug, page))}
+                    prefix={`/blog/tag/${slug}`}
                 />
             </div>
         );
     }
 }
 
-Tag.fetchData = ({
+Tags.fetchData = ({
     store: {dispatch},
-    router: {params: {slug}}
-}) => dispatch(fetchTags(slug));
+    router: {params: {slug, tagPage}}
+}) => dispatch(fetchTags(slug, tagPage));
 
-Tag.propTypes = {
+Tags.propTypes = {
     dispatch: PropTypes.func,
     params: PropTypes.shape({
-        slug: PropTypes.string.isRequired
+        slug: PropTypes.string.isRequired,
+        tagPage: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ])
     }),
     blog: PropTypes.shape({
         tags: PropTypes.object

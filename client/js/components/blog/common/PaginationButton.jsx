@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import styles from './Pagination.scss';
 
-const PaginationButton = ({page, iconClass}) => {
-    const url = page === 1 ? '/blog' : `/blog/page/${page}`;
+const PaginationButton = ({prefix, page, iconClass}) => {
+    const url = page === 1 ? prefix : `${prefix}/page/${page}`;
 
     return (
         <Link to={url} className={`${styles.button} column shrink`}>
@@ -14,6 +14,7 @@ const PaginationButton = ({page, iconClass}) => {
 
 PaginationButton.propTypes = {
     page: PropTypes.number.isRequired,
+    prefix: PropTypes.string.isRequired,
     iconClass: PropTypes.string.isRequired
 };
 
