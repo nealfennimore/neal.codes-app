@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import {Router, Route, IndexRoute} from 'react-router';
-import { Layout, Home, Blog } from 'containers';
+import { Layout, Home, Blog, Projects } from 'containers';
 import { Post, Tags } from 'components/blog';
 import { NotFound } from 'components/common';
 
@@ -9,10 +9,14 @@ import { NotFound } from 'components/common';
 const ROUTES = (
     <Route path='/' component={Layout}>
         <IndexRoute component={Home} />
+
         <Route path='blog(/page/:page)' component={Blog}>
             <Route path='tag/:slug(/page/:tagPage)' component={Tags} />
             <Route path=':slug' component={Post} />
         </Route>
+
+        <Route path='/projects' component={Projects} />
+
         <Route path='*' status={404} component={NotFound} />
     </Route>
 );
