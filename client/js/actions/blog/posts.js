@@ -22,7 +22,7 @@ export function fetchPage(page){
 
 export function fetchPageIfNeeded({blog, params: {page}}){
     const posts = get(blog, 'posts', false);
-    const currentPage = get(posts, 'meta.pagination.page');
+    const currentPage = get(posts, 'meta.pagination.page', 1);
 
     return (dispatch) => {
         if(posts && currentPage == page){
