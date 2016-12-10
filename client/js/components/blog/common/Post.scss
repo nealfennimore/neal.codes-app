@@ -4,10 +4,21 @@
     margin-bottom: rem-calc(35);
 }
 
-.postLeft h2 {
-    font-size: ms(2, $global-font-size);
-
-    @include breakpoint(small only){
-        font-size: ms(2, $global-font-size) / 2;
+.postLeft {
+    .readMore {
+        color: $medium-gray;
+        margin-left: rem-calc(10);
+        font-size: rem-calc(28);
+        line-height: rem-calc(16);
+        display: inline-block;
+        transform: translateY(40%);
     }
+
+    h2 {
+       font-size: rem-calc(ms(2, $global-font-size));
+
+       @include breakpoint(small only){
+           font-size: rem-calc(ms(2, $global-font-size)) / 2;
+       }
+   }
 }
