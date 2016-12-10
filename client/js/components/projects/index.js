@@ -1,27 +1,20 @@
 import React, { PropTypes } from 'react';
 import chunk from 'lodash/chunk';
 
-import projectData from './projects';
-import Project from './Project';
+import ProjectsRow from 'components/projects/ProjectsRow';
 
-const projects = chunk(projectData, 2);
+const ProjectList = ({projects}) => {
+    const rows = chunk(projects, 2);
 
-const ProjectList = (props) => {
     return (
         <div>
-            {projects.map(row => {
-                return (
-                    <div className='row'>
-                        {row.map(project => <Project {...project} /> )}
-                    </div>
-                );
-            })}
+            {rows.map((row, i) => <ProjectsRow key={i} row={row} />)}
         </div>
     );
 };
 
 ProjectList.propTypes = {
-
+    projects: PropTypes.array
 };
 
 export default ProjectList;

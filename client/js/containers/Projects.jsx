@@ -1,18 +1,17 @@
 import React, {Component, PropTypes} from 'react';
-import { Link } from 'react-router';
-import ProjectList from 'components/projects';
+import { connect } from 'react-redux';
 
+import ProjectList from 'components/projects';
 import styles from 'components/global/Content.scss';
 
-export default class Projects extends Component {
-    constructor(props) {
-        super(props);
-    }
+class Projects extends Component {
     render() {
+        const { projects } = this.props;
+
         return (
             <div className={`${styles.content} row align-middle align-center`}>
                 <div className='column small-10'>
-                    <ProjectList />
+                    <ProjectList projects={projects} />
                 </div>
             </div>
         );
@@ -20,5 +19,16 @@ export default class Projects extends Component {
 }
 
 Projects.propTypes = {
-
+    dispatch: PropTypes.func,
+    projects: PropTypes.array
 };
+
+const mapStateToProps = (state) => ({
+    projects: state.projects
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    dispatch
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);
