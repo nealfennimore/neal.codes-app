@@ -20,7 +20,7 @@ export function fetchPage(page){
     };
 }
 
-export function fetchPageIfNeeded({blog, params: {page}}){
+export function fetchPageIfNeeded({blog, params: {page=1}}){
     const posts = get(blog, 'posts', false);
     const currentPage = get(posts, 'meta.pagination.page', 1);
 
