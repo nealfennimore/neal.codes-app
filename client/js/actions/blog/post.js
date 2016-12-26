@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import { Promise } from 'bluebird';
 import blogService from 'services/blog';
 
 export const REQUEST_POST = 'REQUEST_POST';
@@ -15,6 +16,13 @@ export function receivePost(posts){
 export const SET_ACTIVE_POST = 'SET_ACTIVE_POST';
 export function setActivePost(posts){
     return { type: SET_ACTIVE_POST, posts };
+}
+
+export function setPost(post){
+    return (dispatch) => {
+        dispatch(setActivePost(post));
+        return Promise.resolve();
+    };
 }
 
 /**
@@ -51,9 +59,9 @@ export function fetchPostIfNeeded({blog, params: {slug}}){
 
     return (dispatch) => {
         if(isActivePost){
-            return; // Do nothing
+            return Promise.resolve(); // Do nothing
         } else if(post){
-            return dispatch(setActivePost([post]));
+            return dispatch(setPost([post]));
         } else {
             return dispatch(fetchPost({slug}));
         }

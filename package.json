@@ -63,6 +63,7 @@
     "express": "^4.14.0",
     "forever": "^0.15.2",
     "foundation-sites": "^6.2.4",
+    "highlight.js": "^9.9.0",
     "lodash": "^4.15.0",
     "moment": "https://registry.npmjs.org/moment/-/moment-2.15.2.tgz",
     "react": "^15.1.0",

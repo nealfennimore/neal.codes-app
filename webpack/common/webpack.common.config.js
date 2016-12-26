@@ -13,6 +13,7 @@ module.exports = {
             components: 'client/js/components',
             reducers: 'client/js/reducers',
             services: 'client/js/services',
+            lib: 'client/lib',
             // Server paths
             server: 'server',
             // Shared paths

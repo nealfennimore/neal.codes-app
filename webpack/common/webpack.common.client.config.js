@@ -26,7 +26,8 @@ module.exports = merge({}, webpackCommon, {
             'redux-thunk',
             'bluebird',
             'superagent',
-            './scss/vendor/vendor.scss'
+            './scss/vendor/vendor.scss',
+            './lib/highlight.js'
         ]
     },
 
