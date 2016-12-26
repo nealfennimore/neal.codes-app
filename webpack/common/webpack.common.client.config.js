@@ -20,12 +20,15 @@ module.exports = merge({}, webpackCommon, {
         vendor: [
             'react',
             'react-dom',
+            'react-redux',
             'react-router',
             'react-router-redux',
             'redux',
             'redux-thunk',
             'bluebird',
             'superagent',
+            'serialize-javascript',
+            'moment',
             './scss/vendor/vendor.scss',
             './lib/highlight.js'
         ]
