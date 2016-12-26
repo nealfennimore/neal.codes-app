@@ -5,3 +5,4 @@ public/*
 server/build/*
 buildStamp.js
 config.js
+.DS_Store
