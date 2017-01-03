@@ -8,6 +8,6 @@ module.exports = merge({}, webpackCommonServerConfig, {
     entry: './production.server.js',
 
     output: {
-        filename: './build/production.server.bundle.js'
+        filename: 'production.server.bundle.js'
     }
 });

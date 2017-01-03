@@ -9,7 +9,7 @@ module.exports = merge({}, webpackCommonServerConfig, {
     entry: './development.server.js',
 
     output: {
-        filename: './build/development.server.bundle.js'
+        filename: 'development.server.bundle.js'
     },
 
     plugins: [

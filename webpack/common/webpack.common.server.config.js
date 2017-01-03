@@ -14,7 +14,7 @@ module.exports = merge({}, webpackCommon, {
 
     entry: null,
     output: {
-        path: config.paths.SERVER,
+        path: config.paths.SERVER + '/build',
         filename: null
     },
 
