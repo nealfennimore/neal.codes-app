@@ -6,6 +6,7 @@ module.exports = {
         alias: {
             // Client paths
             client: 'client',
+            images: 'client/images',
             styles: 'client/scss',
             scripts: 'client/js',
             actions: 'client/js/actions',

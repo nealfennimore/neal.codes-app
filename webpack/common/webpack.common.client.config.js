@@ -1,4 +1,5 @@
 import merge from 'lodash/merge';
+import autoprefixer from 'autoprefixer';
 
 import webpackCommon from './webpack.common.config.js';
 import config from '../../config';
@@ -40,5 +41,27 @@ module.exports = merge({}, webpackCommon, {
         path: null
     },
 
-    plugins: null
+    plugins: null,
+
+    postcss: function () {
+        return [autoprefixer];
+    },
+    responsiveLoader: {
+        sizes: [300, 480, 768],
+        placeholder: true,
+        placeholderSize: 50
+    },
+    imageWebpackLoader: {
+        pngquant: {
+            quality: '65-90',
+            speed: 4
+        },
+        svgo: {
+            plugins: [{
+                removeViewBox: false
+            }, {
+                removeEmptyAttrs: false
+            }]
+        }
+    }
 });

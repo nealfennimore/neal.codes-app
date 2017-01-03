@@ -1,0 +1,26 @@
+@import '~styles/main';
+
+.project {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    .overlay {
+        color: $white;
+        padding: $global-padding;
+        background-color: $primary-color;
+        width: 100%;
+        height: 100%;
+        transform: translateY(100%);
+        transition: transform 0.25s ease-out;
+
+        h2 {
+            font-size: rem-calc(28);
+        }
+    }
+
+    &:hover {
+        .overlay { transform: translateY(0%); }
+    }
+
+}

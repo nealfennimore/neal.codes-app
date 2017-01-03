@@ -1,6 +1,5 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import autoprefixer from 'autoprefixer';
 import merge from 'lodash/merge';
 
 import webpackCommonClientConfig from './common/webpack.common.client.config.js';
@@ -75,12 +74,22 @@ module.exports = merge({}, webpackCommonClientConfig, {
             },
 
             // Images
+            // {
+            //     test: config.regex.IMAGE_FILES,
+            //     exclude: config.regex.FONT_FILES,
+            //     loaders: [
+            //         'file?hash=sha512&digest=hex&name=images/[hash].[ext]',
+            //         'image-webpack'
+            //     ]
+            // },
+
             {
-                test: config.regex.IMAGE_FILES,
-                exclude: config.regex.FONT_FILES,
+                test: config.regex.PROJECT_IMAGE_FILES,
+                exclude: [config.regex.FONT_FILES, config.regex.IMAGE_FILES],
                 loaders: [
-                    'file?hash=sha512&digest=hex&name=images/[hash].[ext]',
-                    'image-webpack'
+                    // 'file?hash=sha512&digest=hex&name=images/projects/[hash].[ext]',
+                    // 'image-webpack',
+                    'responsive'
                 ]
             },
 
@@ -90,21 +99,5 @@ module.exports = merge({}, webpackCommonClientConfig, {
                 loader: 'file?name=fonts/[name].[ext]'
             }
         ]
-    },
-    postcss: function () {
-        return [autoprefixer];
-    },
-    imageWebpackLoader: {
-        pngquant: {
-            quality: '65-90',
-            speed: 4
-        },
-        svgo: {
-            plugins: [{
-                removeViewBox: false
-            }, {
-                removeEmptyAttrs: false
-            }]
-        }
     }
 });
