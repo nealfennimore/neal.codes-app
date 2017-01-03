@@ -40,7 +40,17 @@ module.exports = merge({}, webpackCommon, {
             {
                 test: /\.scss$/,
                 loader: `css-loader/locals?modules&importLoaders=1&localIdentName=${config.webpack.cssModuleName}`
+            },
+            {
+                test: config.regex.PROJECT_IMAGE_FILES,
+                exclude: [config.regex.FONT_FILES],
+                loaders: [
+                    'responsive'
+                ]
             }
         ]
-    }
+    },
+    responsiveLoader: {
+        pass: true // Disable responsive loader on server
+    },
 });

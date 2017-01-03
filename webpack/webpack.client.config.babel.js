@@ -85,7 +85,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
             {
                 test: config.regex.PROJECT_IMAGE_FILES,
-                exclude: [config.regex.FONT_FILES, config.regex.IMAGE_FILES],
+                exclude: [config.regex.FONT_FILES],
                 loaders: [
                     // 'file?hash=sha512&digest=hex&name=images/projects/[hash].[ext]',
                     // 'image-webpack',

@@ -1,4 +1,4 @@
-import HYMCover from 'responsive!images/projects/HonorYourMom/HYM-cover.jpg';
+import HYMCover from 'images/projects/HonorYourMom/HYM-cover.jpg';
 
 const initialState = [
     {

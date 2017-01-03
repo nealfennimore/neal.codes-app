@@ -46,11 +46,6 @@ module.exports = merge({}, webpackCommon, {
     postcss: function () {
         return [autoprefixer];
     },
-    responsiveLoader: {
-        sizes: [300, 480, 768],
-        placeholder: true,
-        placeholderSize: 50
-    },
     imageWebpackLoader: {
         pngquant: {
             quality: '65-90',
