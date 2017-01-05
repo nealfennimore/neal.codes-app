@@ -1,18 +1,26 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 
+import { showProjectModal, hideProjectModal } from 'actions/projects';
 import ProjectList from 'components/projects';
+import ProjectModal from 'components/projects/ProjectModal';
 import styles from 'components/global/Content.scss';
 
 class Projects extends Component {
     render() {
-        const { projects } = this.props;
+        const {
+            projects: {projects, modal},
+            showProjectModal:showModal,
+            hideProjectModal:hideModal
+         } = this.props;
 
         return (
             <div className={`${styles.content} row align-middle align-center`}>
                 <div className='column small-10'>
-                    <ProjectList projects={projects} />
+                    <ProjectList projects={projects} onProjectClick={(id)=>showModal(id)} />
                 </div>
+
+                { modal.isActive ? <ProjectModal project={projects[modal.activeID]} onHide={()=>hideModal()} /> : null}
             </div>
         );
     }
@@ -20,7 +28,12 @@ class Projects extends Component {
 
 Projects.propTypes = {
     dispatch: PropTypes.func,
-    projects: PropTypes.array
+    showProjectModal: PropTypes.func,
+    hideProjectModal: PropTypes.func,
+    projects: PropTypes.shape({
+        projects: PropTypes.array,
+        modal: PropTypes.object
+    })
 };
 
 const mapStateToProps = (state) => ({
@@ -28,7 +41,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatch
+    dispatch,
+    showProjectModal: (id)=> dispatch(showProjectModal(id)),
+    hideProjectModal: ()=> dispatch(hideProjectModal()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);
