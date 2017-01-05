@@ -23,6 +23,7 @@ import HYMHonoredMom from 'images/projects/HonorYourMom/HYM-honored-mom.jpg';
 
 const initialState = [
     {
+        id: 0,
         title: 'Hope Cards',
         subtitle: 'Greeting cards that help save lifes',
         coverImage: HopecardsCover,
@@ -36,6 +37,7 @@ const initialState = [
         ]
     },
     {
+        id: 1,
         title: 'Honor Your Mom',
         subtitle: 'A tribute to moms everywhere',
         coverImage: HYMCover,
