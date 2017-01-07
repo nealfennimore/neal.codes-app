@@ -11,10 +11,10 @@
     "build": "npm run buildClient && npm run buildServer",
     "buildClient": "webpack --config ./webpack/webpack.client.config.babel.js -p --progress",
     "buildServer": "webpack --config ./webpack/webpack.server.config.babel.js -p --progress",
-    "prebuildDevServer": "npm run createBuildVersion",
-    "buildDevServer": "webpack --config ./webpack/webpack.server.development.config.babel.js -p --progress --watch",
-    "predevelop": "npm run buildDevServer &",
-    "develop": "concurrently --kill-others \"NODE_ENV=development NODE_TLS_REJECT_UNAUTHORIZED=0 nodemon --watch ./server/build --delay 10 --exec babel-node ./server/build/development.server.bundle.js\" \"NODE_ENV=development babel-node ./server/development.server.watch.js\""
+    "prestartWebpackDevServerWatcher": "npm run createBuildVersion",
+    "startWebpackDevServerWatcher": "webpack --config ./webpack/webpack.server.development.config.babel.js -d --progress --watch",
+    "predevelop": "npm run startWebpackDevServerWatcher &",
+    "develop": "concurrently --kill-others \"NODE_ENV=development NODE_TLS_REJECT_UNAUTHORIZED=0 nodemon --watch ./server/build --exec babel-node ./server/build/development.server.bundle.js\" \"NODE_ENV=development babel-node ./server/development.server.watch.js\""
   },
   "repository": {
     "type": "git",

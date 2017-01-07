@@ -21,4 +21,8 @@ module.exports = merge({}, webpackCommonServerConfig, {
             }
         })
     ],
+
+    watchOptions: {
+        aggregateTimeout: 10000
+    }
 });
