@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { showProjectModal, hideProjectModal } from 'actions/projects';
 import ProjectList from 'components/projects';
 import ProjectModal from 'components/projects/ProjectModal';
-import styles from 'components/global/Content.scss';
+import styles from './Projects.scss';
 
 class Projects extends Component {
     render() {
@@ -15,7 +15,7 @@ class Projects extends Component {
          } = this.props;
 
         return (
-            <div className={`${styles.content} row align-middle align-center`}>
+            <div className={`${styles.projects} row align-middle align-center`}>
                 <div className='column small-10'>
                     <ProjectList projects={projects} onProjectClick={(id)=>showModal(id)} />
                 </div>

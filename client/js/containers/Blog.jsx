@@ -4,14 +4,13 @@ import { renderChildren } from 'shared/react';
 import { fetchPage as fetchPageAction } from 'actions/blog/posts';
 
 import { Posts } from 'components/blog';
-import styles from 'components/global/Content.scss';
-import blogStyles from './Blog.scss';
+import styles from './Blog.scss';
 
 class Blog extends Component {
     render() {
         const { blog, params, dispatch, children } = this.props;
         return (
-            <div className={`row align-center align-middle ${styles.content} ${blogStyles.blog}`}>
+            <div className={`row align-center align-middle ${styles.blog}`}>
                 <main className="column small-12 medium-10">
                     { children ?
                         renderChildren(children, {blog, params, dispatch}) :
