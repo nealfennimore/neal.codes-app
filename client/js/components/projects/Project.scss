@@ -43,4 +43,7 @@
         .overlay { transform: translateY(-100%); }
     }
 
+    @include breakpoint(small only){
+        margin-bottom: map-get($grid-column-gutter, 'small');
+    }
 }
