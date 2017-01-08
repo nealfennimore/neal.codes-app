@@ -21,8 +21,17 @@
         z-index: 1;
         top: 100%;
 
-        h2 {
-            font-size: rem-calc(28);
+
+        .titles {
+            height: 100%;
+
+            h2 {
+                font-size: rem-calc(28);
+            }
+
+            i {
+                font-size: rem-calc(32);
+            }
         }
 
         @include breakpoint(small only){

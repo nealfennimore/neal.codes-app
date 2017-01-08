@@ -6,8 +6,13 @@ const Project = ({id, title, subtitle, coverImage, onProjectClick}) => {
         <div className={`column small-12 medium-6 ${styles.project}`}>
             <img src={coverImage.src} srcSet={coverImage.srcSet} onClick={()=>onProjectClick(id)}/>
             <div className={styles.overlay} onClick={()=>onProjectClick(id)}>
-                <h2>{title}</h2>
-                <p>{subtitle}</p>
+                <div className={`row align-middle align-center text-center ${styles.titles}`}>
+                    <div className='column small-8'>
+                        <h2>{title}</h2>
+                        <p>{subtitle}</p>
+                        <i className='icon-plus'></i>
+                    </div>
+                </div>
             </div>
         </div>
     );
