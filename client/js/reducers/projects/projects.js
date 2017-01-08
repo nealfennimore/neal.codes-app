@@ -26,6 +26,7 @@ const initialState = [
         id: 0,
         title: 'Hope Cards',
         subtitle: 'Greeting cards that help save lifes',
+        description: 'Launched on Giving Tuesday and while very similar to the Honor Your Mom app, it instead allowed users to send multiple greeting cards to different addresses.',
         coverImage: HopecardsCover,
         images: [
             HopecardsHomepage,
@@ -40,6 +41,9 @@ const initialState = [
         id: 1,
         title: 'Honor Your Mom',
         subtitle: 'A tribute to moms everywhere',
+        description: `For Mother's Day, people can make a donation in their mother's name by uploading an image and having a custom postcard sent out to their address. Their mom will also have a dedication page that lives up on the site.
+
+        This Rails app was retooled by me for better integration with services we used in the organization.`,
         coverImage: HYMCover,
         images: [
             HYMHomepage,
