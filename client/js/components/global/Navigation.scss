@@ -5,6 +5,7 @@
     width: 100%;
     position: fixed;
     top: 0;
+    z-index: $navigation-z-index;
 
     @include inverse(){
         border-bottom: none;
