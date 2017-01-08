@@ -4,9 +4,6 @@ import { Link } from 'react-router';
 import styles from 'components/global/Content.scss';
 
 export default class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <div className={`${styles.content} row align-middle align-center`}>

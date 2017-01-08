@@ -13,6 +13,12 @@ $animation-duration: 0.5s;
         fill: $primary-color;
     }
 
+    @include inverse() {
+        path {
+            fill: $white;
+        }
+    }
+
     .letter {
         opacity: 0;
     }

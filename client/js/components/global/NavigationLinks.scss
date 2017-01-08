@@ -36,5 +36,13 @@
                 transform: translateY(150%) scaleX(1);
             }
         }
+
+
+        @include inverse(){
+            a {
+                color: $white;
+                &:after { background-color: $white; }
+            }
+        }
     }
 }

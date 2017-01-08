@@ -5,4 +5,8 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+    @include inverse(true) {
+        @include inverseStyles();
+    }
 }

@@ -1,0 +1,24 @@
+@mixin create-context($classes, $same-level: false) {
+    @each $class in $classes{
+        @if($same-level == true){
+            &:global(.#{$class}) {
+                @content;
+            }
+        } @else {
+            :global(.#{$class}) & {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin inverse($same-level: false){
+    @include create-context(inverse, $same-level){
+        @content;
+    }
+}
+
+@mixin inverseStyles(){
+    background-color: $primary-color;
+    color: $white;
+}
