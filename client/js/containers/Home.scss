@@ -3,6 +3,36 @@
 .home {
     composes: content from 'components/global/Content.scss';
 
+    .summary {
+        margin-bottom: rem-calc(42);
+    }
+
+    a {
+        i {
+            color: $white;
+            font-size: rem-calc(42);
+            transition: transform 0.25s ease-in-out;
+            display: block;
+            margin-bottom: rem-calc(10);
+        }
+
+        span {
+            display: block;
+            color: $white;
+            opacity: 0;
+            transition: all 0.25s ease-in-out;
+        }
+
+        &:hover {
+            i {
+                transform: scale(1.2)translateY(-10%);
+            }
+            span {
+                opacity: 1;
+            }
+        }
+    }
+
     @include inverse(){
         :global(.subheader){
             color: darken($white, 5%);
