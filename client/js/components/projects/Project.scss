@@ -4,7 +4,7 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    
+
     img {
         border: 1px solid rgba(0,0,0,0.05);
     }
@@ -13,7 +13,7 @@
         color: $white;
         padding: $global-padding;
         background-color: $primary-color;
-        width: 100%;
+        width: calc(100% - #{$global-padding * 2} + 2px);
         height: 100%;
         transform: translateY(0%);
         transition: transform 0.25s ease-out;
