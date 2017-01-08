@@ -4,5 +4,9 @@
     display: block;
     color: $primary-color;
     font-size: rem-calc(50);
-    composes: rotate from '../../../scss/animations';
+    composes: rotate from 'styles/animations.scss';
+
+    @include inverse(){
+        color: $white;
+    }
 }
