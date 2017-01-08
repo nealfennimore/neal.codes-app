@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 
 import blogService from 'services/blog';
 import { setPageParams } from 'shared/blog';
@@ -25,7 +26,7 @@ export function fetchPageIfNeeded({blog, params: {page=1}}){
     const currentPage = get(posts, 'meta.pagination.page', 1);
 
     return (dispatch) => {
-        if(posts && currentPage == page){
+        if(!isEmpty(posts) && currentPage == page){
             return;
         } else {
             return dispatch(fetchPage(page));
