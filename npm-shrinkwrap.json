@@ -5454,7 +5454,7 @@
     "responsive-loader": {
       "version": "0.7.0",
       "from": "git+https://github.com/nealfennimore/responsive-loader.git",
-      "resolved": "git+https://github.com/nealfennimore/responsive-loader.git#70bf74f3edddf479de4b3ff378eaf76541574cf9",
+      "resolved": "git+https://github.com/nealfennimore/responsive-loader.git#f4ca8e9f230cd0c89516c6636a9e15cd56ad618e",
       "dev": true
     },
     "restore-cursor": {
