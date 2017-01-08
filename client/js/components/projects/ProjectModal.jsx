@@ -5,7 +5,13 @@ import ProjectModalGallery from './ProjectModalGallery';
 const ProjectModal = ({onHide, project}) => {
     return (
         <div className={styles.modal}>
-            <button onClick={onHide}>Hide</button>
+            <div className={`row ${styles.close}`}>
+                <div className='column'>
+                    <button className={styles.closeButton} onClick={onHide}>
+                        <i className='icon-close'></i>
+                    </button>
+                </div>
+            </div>
             <ProjectModalGallery project={project} />
         </div>
     );

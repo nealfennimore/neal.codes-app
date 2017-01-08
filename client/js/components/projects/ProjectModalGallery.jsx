@@ -16,7 +16,7 @@ export default class ProjectModalGallery extends Component {
     prev(){
         this.setState(
             Object.assign({}, this.state, {
-                imageIndex: Math.min(0, this.state.imageIndex - 1)
+                imageIndex: Math.max(0, this.state.imageIndex - 1)
             }
         ));
     }
@@ -33,17 +33,29 @@ export default class ProjectModalGallery extends Component {
 
 
     render() {
-        const { project: {images}} = this.props;
+        const { project: {images, title, subtitle}} = this.props;
         const { imageIndex } = this.state;
         const activeImage = images[imageIndex];
 
         return (
-            <div className={`${styles.gallery} row`}>
-                { imageIndex > 0 ? <button className='column shrink' onClick={this.prev}>prev</button> : null }
-                <div className='column'>
-                    <img src={activeImage.src} srcSet={activeImage.srcSet}/>
+            <div className={`${styles.gallery} row align-middle align-center`}>
+                <div className='columns small-11 medium-8'>
+                    <div className='row align-middle'>
+                        <div className='column small-1 text-center'>
+                            { imageIndex > 0 ? <button onClick={this.prev}><i className='icon-left_arrow'></i></button> : null }
+                        </div>
+                        <div className={`${styles.image} column small-10`}>
+                            <img src={activeImage.src} srcSet={activeImage.srcSet}/>
+                        </div>
+                        <div className='column small-1 text-center'>
+                            { imageIndex < (images.length - 1) ? <button onClick={this.next}><i className='icon-right_arrow'></i></button> : null }
+                        </div>
+                    </div>
                 </div>
-                { imageIndex < (images.length - 1) ? <button  className='column shrink' onClick={this.next}>next</button> : null }
+                <div className='column small-10 medium-4'>
+                    <h3>{title}</h3>
+                    <p>{subtitle}</p>
+                </div>
             </div>
         );
     }
