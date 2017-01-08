@@ -2,4 +2,10 @@
 
 .home {
     composes: content from 'components/global/Content.scss';
+
+    @include inverse(){
+        :global(.subheader){
+            color: darken($white, 5%);
+        }
+    }
 }
