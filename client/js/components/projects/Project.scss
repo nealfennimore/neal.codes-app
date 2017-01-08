@@ -13,7 +13,7 @@
         color: $white;
         padding: $global-padding;
         background-color: $primary-color;
-        width: calc(100% - #{$global-padding * 2} + 2px);
+        width: calc(100% - #{map-get($grid-column-gutter, 'medium')});
         height: 100%;
         transform: translateY(0%);
         transition: transform 0.25s ease-out;
@@ -23,6 +23,10 @@
 
         h2 {
             font-size: rem-calc(28);
+        }
+
+        @include breakpoint(small only){
+            width: calc(100% - #{map-get($grid-column-gutter, 'small')});
         }
     }
 
