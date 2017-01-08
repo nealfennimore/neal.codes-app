@@ -27,7 +27,7 @@ export default class Home extends Component {
                         <div className='column small-2'>
                             <Link to='https://www.linkedin.com/in/nealfennimore'>
                                 <i className='icon-linkedin'></i>
-                                <span>Linkedin</span>
+                                <span>LinkedIn</span>
                             </Link>
                         </div>
                         <div className='column small-2'>
