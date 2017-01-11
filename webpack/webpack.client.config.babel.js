@@ -12,6 +12,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
     },
 
     plugins: [
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/), // Use only the en locale from momentjs
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
