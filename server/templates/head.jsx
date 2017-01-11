@@ -4,7 +4,7 @@ import { isDevelopment } from 'shared/env';
 let styleSheets = '';
 
 function template(fileName){
-    return `<link rel="stylesheet" href="/${fileName}.css" media="screen" title="${fileName} styles" charset="utf-8">`;
+    return `<link rel="stylesheet" href="/${fileName}.css" />`;
 }
 
 // Stylesheets are injected by the style-loader in development
