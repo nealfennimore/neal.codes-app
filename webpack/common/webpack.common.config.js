@@ -25,7 +25,6 @@ module.exports = {
     responsiveLoader: {
         name: '[name]-[width]',
         sizes: [300, 480, 768],
-        placeholder: true,
-        placeholderSize: 50
+        placeholder: false
     },
 };
