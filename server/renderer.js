@@ -49,6 +49,7 @@ export default function handleRender({res, renderProps, next}) {
             );
         })
         .catch( err => {
+            console.error(err);
             const status = err.status || 404;
             res.redirect(`/${status}`);
         });
