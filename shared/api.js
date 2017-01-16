@@ -1,12 +1,10 @@
 import { GET } from 'services';
+import config from '../config';
 import { constructURL } from 'shared/url';
 import { isBrowser } from 'shared/env';
 
 export function getAPIRootPath(){
-    // The hostname is dockerhost on the server as the API request needs
-    // to go dinto the nginx container directly, since there is no DNS to find
-    // the server's actual hostname
-    const host = isBrowser ? '' : 'https://dockerhost';
+    const host = isBrowser ? '' : `${config.server.protocol}://${config.server.hostname}`;
     return `${host}/api`;
 }
 
@@ -18,4 +16,4 @@ export function fetcher({
     if(id){ id = `/${id}`; }
     const endpoint = `${getAPIRootPath()}/${path}${id}`;
     return GET(constructURL(endpoint, params));
-};
+}
