@@ -1,4 +1,3 @@
-import { browserHistory } from 'react-router'
 import merge from 'lodash/merge';
 
 const POSTS_PER_PAGE = 4;
