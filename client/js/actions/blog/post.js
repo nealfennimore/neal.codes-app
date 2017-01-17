@@ -32,9 +32,15 @@ export function setPost(post){
  *
  * @return {Function}
  */
-export function fetchPost(args={}){
+export function fetchPost({slug}){
     return (dispatch) => {
         dispatch(requestPost());
+
+        const args = {
+            slug,
+            params: {include: 'tags'}
+        };
+
         return blogService.postBySlug(args)
             .then((res)=>
                 dispatch(receivePost(res.posts))
