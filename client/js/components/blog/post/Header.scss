@@ -5,11 +5,8 @@
 }
 
 .title {
-    font-size: ms(3, $global-font-size);
-    margin-bottom: $global-margin;
-
     @include breakpoint(small only){
-        font-size: ms(2, $global-font-size);
+
     }
 }
 

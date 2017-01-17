@@ -1,7 +1,7 @@
 @import '~styles/main';
 
 .post {
-    margin-bottom: rem-calc(35);
+
 }
 
 .postLeft {
@@ -13,12 +13,4 @@
         display: inline-block;
         transform: translateY(40%);
     }
-
-    h2 {
-       font-size: rem-calc(ms(2, $global-font-size));
-
-       @include breakpoint(small only){
-           font-size: rem-calc(ms(2, $global-font-size)) / 2;
-       }
-   }
 }
