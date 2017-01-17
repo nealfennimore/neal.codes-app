@@ -3,16 +3,17 @@ import moment from 'moment';
 
 import styles from './Date.scss';
 
-const Date = ({date}) => {
+const Date = ({date, className=''}) => {
     return (
-        <span className={styles.date}>
+        <time dateTime={date} className={`${styles.date} ${className}`}>
             {moment.utc(date).format('MMMM Do YYYY')}
-        </span>
+        </time>
     );
 };
 
 Date.propTypes = {
-    date: PropTypes.string.isRequired
+    date: PropTypes.string.isRequired,
+    className: PropTypes.string
 };
 
 export default Date;
