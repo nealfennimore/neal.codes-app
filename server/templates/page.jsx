@@ -4,16 +4,13 @@ import footer from './footer';
 
 export default function page({
     content='',
-    initialState={}
+    initialState={},
+    router
 }) {
     return `
         <!doctype html>
         <html>
-            <head>
-                <meta charset="utf-8">
-                <title></title>
-                ${head}
-            </head>
+            ${head({initialState, router})}
             <body>
                 <div id="app">${content}</div>
                 <script>
@@ -23,4 +20,4 @@ export default function page({
             </body>
         </html>
     `;
-};
+}

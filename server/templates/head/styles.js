@@ -1,4 +1,4 @@
-import clientConfig from '../../webpack/common/webpack.common.client.config.js';
+import clientConfig from '../../../webpack/common/webpack.common.client.config.js';
 import { isDevelopment } from 'shared/env';
 
 let styleSheets = '';
@@ -12,10 +12,5 @@ if(!isDevelopment){
     const files = Object.keys(clientConfig.entry).reverse();
     styleSheets = files.map(template).join('\n');
 }
-
-styleSheets += `
-    <script src="https://use.typekit.net/ppk4ako.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
-`;
 
 export default styleSheets;
