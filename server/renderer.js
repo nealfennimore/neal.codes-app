@@ -43,6 +43,7 @@ export default function handleRender({res, renderProps, next}) {
             // Send the rendered page back to the client
             res.send(
                 page({
+                    router,
                     content,
                     initialState
                 })
