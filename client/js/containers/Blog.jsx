@@ -11,7 +11,7 @@ class Blog extends Component {
         const { blog, params, dispatch, children } = this.props;
         return (
             <div className={`row align-center align-middle ${styles.blog}`}>
-                <main className="column small-12 medium-10">
+                <main className="column small-11 medium-10">
                     { children ?
                         renderChildren(children, {blog, params, dispatch}) :
                         <Posts
