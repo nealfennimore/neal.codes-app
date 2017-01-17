@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import has from 'lodash/has';
 import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
 
 import { fetchTags, fetchTagsIfNeeded } from 'actions/blog/tags';
 import Posts from 'components/blog/common/Posts';
@@ -15,12 +16,9 @@ export default class Tags extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        const oldPage = get(this.props, 'params.tagPage');
-        const newPage = get(nextProps, 'params.tagPage');
-
-        if(oldPage != newPage){
-            const { dispatch, params: {slug} } = nextProps;
-            dispatch(fetchTags(slug, newPage));
+        if(!isEqual(this.props.params, nextProps.params)){
+            const { dispatch } = nextProps;
+            dispatch(fetchTagsIfNeeded(nextProps));
         }
     }
 

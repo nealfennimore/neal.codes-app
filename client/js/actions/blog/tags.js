@@ -47,7 +47,7 @@ export function fetchTags(slug, tagPage){
  *
  * @return {Function}
  */
-export function fetchTagsIfNeeded({blog, params: {slug, tagPage}}){
+export function fetchTagsIfNeeded({blog, params: {slug, tagPage=1}}){
     const posts = get(blog, `tags.${slug}`, false);
     const page  = get(posts, 'meta.pagination.page');
 
