@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
 import Loader from 'components/global/Loader';
+import Article from './Article';
 import { fetchPostIfNeeded, fetchPost } from 'actions/blog/post';
 import hljs from 'lib/highlight';
 
@@ -16,16 +17,11 @@ export default class Post extends Component {
         codeBlocks.forEach(block => hljs.highlightBlock(block));
     }
 
-    createMarkup(){
-        const { blog: {post} } = this.props;
-        return { __html: post.html };
-    }
-
     render() {
         const { blog: {isFetching, post} } = this.props;
         return (
             !isFetching && post ?
-            <article dangerouslySetInnerHTML={this.createMarkup()} /> :
+            <Article post={post} /> :
             <Loader />
         );
     }

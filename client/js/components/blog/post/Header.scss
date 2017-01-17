@@ -1,0 +1,18 @@
+@import '~styles/main';
+
+.header {
+    margin: 0 0 ($global-margin * 2) 0 !important;
+}
+
+.title {
+    font-size: ms(3, $global-font-size);
+    margin-bottom: $global-margin;
+
+    @include breakpoint(small only){
+        font-size: ms(2, $global-font-size);
+    }
+}
+
+.date {
+    margin-bottom: 0;
+}
