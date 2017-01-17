@@ -8,6 +8,7 @@
     li {
         display: inline-block;
         margin-right: rem-calc(30);
+        font-size: $global-font-size * 0.9;
 
         &:last-child {
             margin-right: 0;
@@ -35,6 +36,10 @@
             &:hover:after {
                 transform: translateY(150%) scaleX(1);
             }
+        }
+
+        @include breakpoint(small only){
+            font-size: $global-font-size * 0.8;
         }
 
 

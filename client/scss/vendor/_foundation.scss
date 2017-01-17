@@ -41,4 +41,8 @@
 @include foundation-visibility-classes;
 // @include foundation-float-classes;
 
-
+@include breakpoint(small only){
+    html {
+        font-size: $global-font-size * 0.9;
+    }
+}

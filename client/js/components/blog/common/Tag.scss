@@ -6,11 +6,15 @@
     padding: rem-calc(7.5);
     border-radius: $global-radius;
     transition: color 0.2s;
-    font-size: rem-calc(14);
+    font-size: $global-font-size * 0.9;
     text-transform: lowercase;
     margin-bottom: rem-calc(5);
 
     &:hover {
         color: rgba($white, 0.8);
+    }
+
+    @include breakpoint(small only){
+        font-size: $global-font-size * 0.7;
     }
 }
