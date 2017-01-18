@@ -9,7 +9,9 @@ export function truncate(str='', size=150){
 }
 
 export function cleanMarkdown(str){
-    return str.replace(/(#|\*|`)/g, '');
+    return str
+        .replace(/(#|\*|`)/gi, '') // Removes formatting
+        .replace(/(!?\[|\]\(.*\))/gi, ''); // Removes links and images
 }
 
 export function capitialize(str=''){
