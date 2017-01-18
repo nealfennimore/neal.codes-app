@@ -19,16 +19,16 @@ export default class Home extends Component {
 
                     <div className='row align-center text-center'>
                         <div className='column small-4 medium-2'>
-                            <Link to='https://github.com/nealfennimore'>
+                            <a href='https://github.com/nealfennimore'>
                                 <i className='icon-github'></i>
                                 <span>Github</span>
-                            </Link>
+                            </a>
                         </div>
                         <div className='column small-4 medium-2'>
-                            <Link to='https://www.linkedin.com/in/nealfennimore'>
+                            <a href='https://www.linkedin.com/in/nealfennimore'>
                                 <i className='icon-linkedin'></i>
                                 <span>LinkedIn</span>
-                            </Link>
+                            </a>
                         </div>
                         <div className='column small-4 medium-2'>
                             <Link to='/blog'>
