@@ -40,9 +40,6 @@
 //  35. Tooltip
 //  36. Top Bar
 
-@import '~foundation-sites/scss/util/util';
-@import '~modularscale-sass/stylesheets/modular-scale';
-@import '~styles/variables';
 
 // 1. Global
 // ---------
@@ -111,19 +108,19 @@ $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-sizes: (
   small: (
-  'h1': ms(4, $global-font-size) / 2,
-  'h2': ms(3, $global-font-size) / 2,
-  'h3': ms(2, $global-font-size) / 2,
-  'h4': ms(1, $global-font-size) / 2,
-  'h5': ms(0, $global-font-size) / 2,
+  'h1': ms(5, $global-font-size) / 2,
+  'h2': ms(4, $global-font-size) / 2,
+  'h3': ms(3, $global-font-size) / 2,
+  'h4': ms(2, $global-font-size) / 2,
+  'h5': ms(1, $global-font-size) / 2,
   'h6': ms(0, $global-font-size) / 2
   ),
   medium: (
-    'h1': ms(4, $global-font-size),
-    'h2': ms(3, $global-font-size),
-    'h3': ms(2, $global-font-size),
-    'h4': ms(1, $global-font-size),
-    'h5': ms(0, $global-font-size),
+    'h1': ms(5, $global-font-size),
+    'h2': ms(4, $global-font-size),
+    'h3': ms(3, $global-font-size),
+    'h4': ms(2, $global-font-size),
+    'h5': ms(1, $global-font-size),
     'h6': ms(0, $global-font-size)
   ),
 );
