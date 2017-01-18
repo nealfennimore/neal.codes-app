@@ -21,3 +21,8 @@
 p, pre {
     margin-bottom: rem-calc($global-font-base);
 }
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
