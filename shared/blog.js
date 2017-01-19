@@ -1,6 +1,6 @@
 import merge from 'lodash/merge';
 
-const POSTS_PER_PAGE = 4;
+const POSTS_PER_PAGE = 3;
 
 export const queryParams = {
     params: {
