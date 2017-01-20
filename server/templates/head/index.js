@@ -11,6 +11,7 @@ export default function head(args){
 
     return `
         <head>
+            <link rel="icon" type="image/x-icon" href="/favicon.ico" />
             ${title(_args)}
             ${meta(_args)}
             ${scripts}
