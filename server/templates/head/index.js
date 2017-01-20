@@ -14,6 +14,7 @@ export default function head(args){
             <link rel="icon" type="image/x-icon" href="/favicon.ico" />
             ${title(_args)}
             ${meta(_args)}
+            <meta name="viewport" content="width=device-width, initial-scale=1">
             ${scripts}
             ${styles}
         </head>
