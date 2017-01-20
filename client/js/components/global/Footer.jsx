@@ -6,8 +6,8 @@ import styles from './Footer.scss';
 
 const Footer = () => {
     return (
-        <footer className={`row expanded align-middle ${styles.footer}`}>
-            <div className="column">
+        <footer className={`row expanded align-middle align-center ${styles.footer}`}>
+            <div className="column shrink">
                 <Link to='/'>neal.codes</Link> &copy; {moment.utc().format('YYYY')}
             </div>
         </footer>
