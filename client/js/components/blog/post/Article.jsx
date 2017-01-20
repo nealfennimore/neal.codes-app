@@ -8,10 +8,12 @@ function createMarkup(__html){
 
 const Article = ({post}) => {
     return (
-        <article>
-            <Header post={post} />
-            <section dangerouslySetInnerHTML={createMarkup(post.html)} />
-            <Footer post={post} />
+        <article className='row collapse'>
+            <div className='columns small-12'>
+                <Header post={post} />
+                <section dangerouslySetInnerHTML={createMarkup(post.html)} />
+                <Footer post={post} />
+            </div>
         </article>
     );
 };
