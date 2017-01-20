@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "createBuildVersion": "./scripts/buildVersion.sh",
+    "copyFavicon": "./scripts/copyFavicon.sh",
     "prestart": "npm run build",
     "start": "NODE_ENV=production node ./server/build/production.server.bundle.js",
-    "prebuild": "npm install && npm run createBuildVersion",
+    "prebuild": "npm install && npm run createBuildVersion && npm run copyFavicon",
     "build": "npm run buildClient && npm run buildServer",
     "buildClient": "webpack --config ./webpack/webpack.client.config.babel.js --progress",
     "buildServer": "webpack --config ./webpack/webpack.server.config.babel.js --progress",
