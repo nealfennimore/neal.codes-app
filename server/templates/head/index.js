@@ -15,8 +15,8 @@ export default function head(args){
             ${title(_args)}
             ${meta(_args)}
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            ${scripts}
             ${styles}
+            ${scripts}
         </head>
     `;
 }
