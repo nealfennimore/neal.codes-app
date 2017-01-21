@@ -1,8 +1,8 @@
-import post from './meta/post';
-import posts from './meta/posts';
-import tag from './meta/tag';
-import projects from './meta/projects';
-import home from './meta/home';
+import post from './post';
+import posts from './posts';
+import tag from './tag';
+import projects from './projects';
+import home from './home';
 
 export default function meta(args){
     switch (args.page) {
