@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 
 export default class CodePen extends Component {
     componentDidMount(){
-        if(!this.hasScript()){
+        if(this.hasScript()){
+            window.__CPEmbed();
+        } else {
             this.injectScript();
         }
     }
@@ -12,6 +14,8 @@ export default class CodePen extends Component {
     }
 
     injectScript(){
+        if(typeof document !== 'object'){ return; }
+
         const script = document.createElement('script');
 
         script.async = true;
@@ -19,6 +23,10 @@ export default class CodePen extends Component {
         script.src   = '//production-assets.codepen.io/assets/embed/ei.js';
 
         document.head.appendChild(script);
+    }
+
+    render(){
+        return null;
     }
 }
 
