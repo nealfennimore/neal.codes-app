@@ -13,9 +13,9 @@ export default class CodePen extends Component {
         if(!isBrowser){ return; }
 
         if(this.hasScript()){
-            this.timer = setTimeout(window.__CPEmbed, 2000);
+            this.timer = setTimeout(window.__CPEmbed, this.props.delay);
         } else {
-            this.timer = setTimeout(this.injectScript, 2000);
+            this.timer = setTimeout(this.injectScript, this.props.delay);
         }
     }
 
@@ -38,6 +38,10 @@ export default class CodePen extends Component {
     }
 }
 
-CodePen.propTypes = {
+CodePen.defaultProps = {
+    delay: 1000
+}
 
+CodePen.propTypes = {
+    delay: PropTypes.number
 };
