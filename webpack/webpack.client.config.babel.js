@@ -8,8 +8,7 @@ import config from '../config';
 module.exports = merge({}, webpackCommonClientConfig, {
 
     output: {
-        path: config.paths.PUBLIC,
-        publicPath: '/'
+        path: config.paths.PUBLIC
     },
 
     plugins: [
