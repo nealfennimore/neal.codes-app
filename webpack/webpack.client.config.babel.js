@@ -9,7 +9,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
 
     output: {
         path: config.paths.PUBLIC,
-        publicPath: '/'
+        publicPath: `${config.server.protocol}//${config.server.hostname}/`
     },
 
     plugins: [
