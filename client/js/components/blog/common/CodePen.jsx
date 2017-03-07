@@ -1,21 +1,29 @@
 import React, {Component} from 'react';
 
+const isBrowser = typeof window === 'object';
+
 export default class CodePen extends Component {
+    constructor(props){
+        super(props);
+
+        this.timer = null;
+    }
+    
     componentDidMount(){
+        if(!isBrowser){ return; }
+
         if(this.hasScript()){
-            window.__CPEmbed();
+            this.timer = setTimeout(window.__CPEmbed, 2000);
         } else {
-            this.injectScript();
+            this.timer = setTimeout(this.injectScript, 2000);
         }
     }
 
-    hasScript(){
-        return typeof window === 'object' && window.__CPEmbed;
-    }
+    componentWillUnmount(){ clearTimeout(this.timer); }
+
+    hasScript(){ return !!window.__CPEmbed; }
 
     injectScript(){
-        if(typeof document !== 'object'){ return; }
-
         const script = document.createElement('script');
 
         script.async = true;
