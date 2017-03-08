@@ -22,6 +22,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
         new webpack.SourceMapDevToolPlugin({
             filename: '[file].map',
+            append: '\n//# sourceMappingURL=/[url]',
             exclude: [
                 config.regex.VENDOR_FILES,
                 /html\.js$/,
