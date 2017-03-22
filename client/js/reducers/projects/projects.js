@@ -24,7 +24,7 @@ import HYMHonoredMom from 'images/projects/HonorYourMom/HYM-honored-mom.jpg';
 ////////////////
 // ConceptMap //
 ////////////////
-import CMCover from 'images/projects/ConceptMap/concept-cover.png';
+import CMCover from 'images/projects/ConceptMap/concept-map-cover.png';
 import CMZeroState from 'images/projects/ConceptMap/concept-map-zero-state.png';
 import CMTutorial1 from 'images/projects/ConceptMap/concept-map-tutorial-1.png';
 import CMTutorial2 from 'images/projects/ConceptMap/concept-map-tutorial-2.png';
