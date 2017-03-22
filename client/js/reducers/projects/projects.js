@@ -96,12 +96,12 @@ const initialState = [
             CMTutorial1,
             CMTutorial2,
             CMTutorial3,
+            CMTutorial4,
             CMGraphMathScience,
             CMGraphScience,
             CMGraphMath,
             CMGraphZoomedOut,
             CMNodeDetails,
-            CMTutorial4,
             CMEditor
         ]
     },
