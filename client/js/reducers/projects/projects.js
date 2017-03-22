@@ -40,8 +40,10 @@ import CMEditor from 'images/projects/ConceptMap/concept-map-editor.png';
 //////////////////////
 // TeacherDashboard //
 //////////////////////
+import DBCover from 'images/projects/TeacherDashboard/dashboard-cover.png';
 import DBContent from 'images/projects/TeacherDashboard/dashboard-content.png';
 import DBContentStandards from 'images/projects/TeacherDashboard/dashboard-content-standards.png';
+import DBGroups from 'images/projects/TeacherDashboard/dashboard-groups.png';
 import DBUserProfileEdit from 'images/projects/TeacherDashboard/dashboard-user-profile-edit.png';
 
 
@@ -109,10 +111,11 @@ const initialState = [
         description: `Revamped site-wide teacher dashboard with react and redux.
 
         Allows for better group organization and content finding.`,
-        coverImage: DBContent,
+        coverImage: DBCover,
         images: [
             DBContent,
             DBContentStandards,
+            DBGroups,
             DBUserProfileEdit
         ]
     },
