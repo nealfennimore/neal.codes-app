@@ -33,7 +33,7 @@ export default class ProjectModalGallery extends Component {
 
 
     render() {
-        const { project: {images, title, description}} = this.props;
+        const { project: {images, title, description, url}} = this.props;
         const { imageIndex } = this.state;
         const activeImage = images[imageIndex];
 
@@ -55,6 +55,7 @@ export default class ProjectModalGallery extends Component {
                 <div className='column small-10 medium-4'>
                     <h3>{title}</h3>
                     <p>{description}</p>
+                    { url ? <a href={url} target='_blank'>{url}</a> : null }
                 </div>
             </div>
         );

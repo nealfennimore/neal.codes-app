@@ -89,6 +89,7 @@ const initialState = [
 
         A fully responsive D3.js application, with a functioning graph editor, to better show how different math and science content is related.
         `,
+        url: 'https://www.ck12.org/conceptmap',
         coverImage: CMCover,
         images: [
             CMZeroState,
@@ -111,6 +112,7 @@ const initialState = [
         description: `Revamped site-wide teacher dashboard with react and redux.
 
         Allows for better group organization and content finding.`,
+        url: 'https://www.ck12.org/my/dashboard-new',
         coverImage: DBCover,
         images: [
             DBContent,
