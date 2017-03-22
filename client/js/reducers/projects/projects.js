@@ -21,6 +21,29 @@ import HYMAbout from 'images/projects/HonorYourMom/HYM-about.jpg';
 import HYMHonoredMoms from 'images/projects/HonorYourMom/HYM-honored-moms.jpg';
 import HYMHonoredMom from 'images/projects/HonorYourMom/HYM-honored-mom.jpg';
 
+////////////////
+// ConceptMap //
+////////////////
+import CMZeroState from 'images/projects/ConceptMap/concept-map-zero-state.png';
+import CMTutorial1 from 'images/projects/ConceptMap/concept-map-tutorial-1.png';
+import CMTutorial2 from 'images/projects/ConceptMap/concept-map-tutorial-2.png';
+import CMTutorial3 from 'images/projects/ConceptMap/concept-map-tutorial-3.png';
+import CMGraphMathScience from 'images/projects/ConceptMap/concept-map-graph-science-math.png';
+import CMGraphScience from 'images/projects/ConceptMap/concept-map-graph-science.png';
+import CMGraphMath from 'images/projects/ConceptMap/concept-map-graph-math.png';
+import CMGraphZoomedOut from 'images/projects/ConceptMap/concept-map-graph-zoomed-out.png';
+import CMNodeDetails from 'images/projects/ConceptMap/concept-map-node-details.png';
+import CMTutorial4 from 'images/projects/ConceptMap/concept-map-tutorial-4.png';
+import CMEditor from 'images/projects/ConceptMap/concept-map-editor.png';
+
+//////////////////////
+// TeacherDashboard //
+//////////////////////
+import DBContent from 'images/projects/TeacherDashboard/dashboard-content.png';
+import DBContentStandards from 'images/projects/TeacherDashboard/dashboard-content-standards.png';
+import DBUserProfileEdit from 'images/projects/TeacherDashboard/dashboard-user-profile-edit.png';
+
+
 const initialState = [
     {
         id: 0,
@@ -55,22 +78,43 @@ const initialState = [
             HYMHonoredMom
         ]
     },
-    // {
-    //     title: 'Concept Map',
-    //     subtitle: 'A tribute to moms everywhere',
-    //     coverImage: HYMCover,
-    //     images: [
-    //         HYMCover
-    //     ]
-    // },
-    // {
-    //     title: 'Teacher Dashboard',
-    //     subtitle: 'A tribute to moms everywhere',
-    //     coverImage: HYMCover,
-    //     images: [
-    //         HYMCover
-    //     ]
-    // },
+    {
+        id: 2,
+        title: 'Concept Map',
+        subtitle: 'Showing the interrelatedness between concepts',
+        description: `Explore connections in Math and Science utilizing an interactive visual map.
+
+        A fully responsive D3.js application, with a functioning graph editor, to better show how different math and science content is related.
+        `,
+        coverImage: CMGraphMathScience,
+        images: [
+            CMZeroState,
+            CMTutorial1,
+            CMTutorial2,
+            CMTutorial3,
+            CMGraphMathScience,
+            CMGraphScience,
+            CMGraphMath,
+            CMGraphZoomedOut,
+            CMNodeDetails,
+            CMTutorial4,
+            CMEditor
+        ]
+    },
+    {
+        id: 3,
+        title: 'Teacher Dashboard',
+        subtitle: 'A modern teacher dashboard',
+        description: `Revamped site-wide teacher dashboard with react and redux.
+
+        Allows for better group organization and content finding.`,
+        coverImage: DBContent,
+        images: [
+            DBContent,
+            DBContentStandards,
+            DBUserProfileEdit
+        ]
+    },
 ];
 
 
