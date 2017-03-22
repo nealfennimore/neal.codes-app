@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import Project from 'components/projects/Project';
+import styles from './ProjectsRow.scss';
 
 const ProjectsRow = ({row, onProjectClick}) => {
     return (
-        <div className='row'>
+        <div className={`${styles.row} row`}>
             {row.map((project, i) => <Project key={i} {...project} onProjectClick={onProjectClick} /> )}
         </div>
     );
