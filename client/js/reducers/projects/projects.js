@@ -24,6 +24,7 @@ import HYMHonoredMom from 'images/projects/HonorYourMom/HYM-honored-mom.jpg';
 ////////////////
 // ConceptMap //
 ////////////////
+import CMCover from 'images/projects/ConceptMap/concept-cover.png';
 import CMZeroState from 'images/projects/ConceptMap/concept-map-zero-state.png';
 import CMTutorial1 from 'images/projects/ConceptMap/concept-map-tutorial-1.png';
 import CMTutorial2 from 'images/projects/ConceptMap/concept-map-tutorial-2.png';
@@ -86,7 +87,7 @@ const initialState = [
 
         A fully responsive D3.js application, with a functioning graph editor, to better show how different math and science content is related.
         `,
-        coverImage: CMGraphMathScience,
+        coverImage: CMCover,
         images: [
             CMZeroState,
             CMTutorial1,
