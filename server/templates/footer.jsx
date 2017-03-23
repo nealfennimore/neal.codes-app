@@ -1,7 +1,8 @@
 import clientConfig from '../../webpack/common/webpack.common.client.config.js';
+import buildStamp from '../../buildStamp';
 
 function template(fileName){
-    return `<script src="/${fileName}.js" defer></script>`;
+    return `<script src="/${fileName}.js?v=${buildStamp}" defer></script>`;
 }
 
 const files   = Object.keys(clientConfig.entry).reverse();
