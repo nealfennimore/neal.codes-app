@@ -16,7 +16,7 @@ class Projects extends Component {
 
         return (
             <div className={`${styles.projects} row align-middle align-center`}>
-                <div className='column small-10'>
+                <div className='column small-8 large-7'>
                     <ProjectList projects={projects} onProjectClick={(id)=>showModal(id)} />
                 </div>
 
