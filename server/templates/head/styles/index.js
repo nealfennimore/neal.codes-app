@@ -8,11 +8,11 @@ let files = isDevelopment ? '' : [];
 
 // Stylesheets are injected by the style-loader in development
 if(!isDevelopment){
-    const cssFiles = Object.keys(clientConfig.entry).reverse().map( name => `${name}.css`);
+    const cssFiles = Object.keys(clientConfig.entry).map( name => `${name}.css`);
     const publicDir = path.resolve(process.cwd(), 'public');
     const filesNames = fs.readdirSync(publicDir);
 
-    files = filesNames
+    files = filesNames.reverse()
         .filter( file => includes(cssFiles, file) ) // Grab minified js files
         .map( file => fs.readFileSync(`${publicDir}/${file}`, 'utf8'))
         .map( file => `<style>${file}</style>`)
