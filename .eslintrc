@@ -19,7 +19,9 @@
         ]
     },
     "globals": {
-        "React": false
+        "React": false,
+        "it": false,
+        "describe": false
     },
     "env": {
         "es6": true,
