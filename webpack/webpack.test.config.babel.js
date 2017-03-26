@@ -4,7 +4,7 @@ import nodeExternals from 'webpack-node-externals';
 import webpackClientConfig from './webpack.client.config.babel.js';
 import config from '../config';
 
-export default merge({}, webpackClientConfig, {
+export default merge({}, webpackClientConfig, {module: null}, {
     target: 'node',
     externals: [nodeExternals()],
     devtool: 'cheap-module-eval-source-map',
@@ -24,11 +24,10 @@ export default merge({}, webpackClientConfig, {
                 test: /\.scss$/,
                 exclude: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
                 loaders: [
-                    'style',
-                    `css?modules&importLoaders=3&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
+                    'css/locals?modules&importLoaders=3&localIdentName=[local]',
                     'postcss',
                     'resolve-url',
-                    'sass?sourceMap'
+                    'sass'
                 ]
             },
 
@@ -36,7 +35,6 @@ export default merge({}, webpackClientConfig, {
             {
                 test: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
                 loaders: [
-                    'style',
                     'css',
                     'postcss',
                     'resolve-url',
