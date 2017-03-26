@@ -1,5 +1,5 @@
 {
-  "name": "webpack-build-tools",
+  "name": "neal-codes-app",
   "version": "0.0.1",
   "description": "Personal build tools",
   "main": "index.js",
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nealfennimore/webpack-build-tools.git"
+    "url": "git+https://github.com/nealfennimore/neal.codes-app.git"
   },
   "author": "Neal Fennimore",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nealfennimore/webpack-build-tools/issues"
+    "url": "https://github.com/nealfennimore/neal.codes-app/issues"
   },
-  "homepage": "https://github.com/nealfennimore/webpack-build-tools#readme",
+  "homepage": "https://github.com/nealfennimore/neal.codes-app#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel": "^6.5.2",
