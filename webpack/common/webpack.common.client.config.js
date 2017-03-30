@@ -38,7 +38,8 @@ module.exports = merge({}, webpackCommon, {
     output: {
         filename: '[name].js',
         chunkFilename: '[id].js',
-        path: null
+        path: null,
+        outputPath: '/'
     },
 
     plugins: null,
