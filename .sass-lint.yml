@@ -34,6 +34,6 @@ rules:
     - convention: hyphenatedbem
   property-sort-order: 0
   quotes:
-    - 1
+    - 0
     - style: double
   variable-name-format: 1
