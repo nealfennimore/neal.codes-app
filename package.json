@@ -1,7 +1,7 @@
 {
   "name": "neal-codes-app",
   "version": "0.0.1",
-  "description": "Personal build tools",
+  "description": "Personal website for https://neal.codes",
   "main": "index.js",
   "scripts": {
     "createBuildVersion": "./scripts/buildVersion.sh",
