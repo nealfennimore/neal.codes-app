@@ -1,0 +1,21 @@
+{
+    "extension": [
+      ".js",
+      ".jsx"
+    ],
+    "reporter": [
+      "html",
+      "text-summary"
+    ],
+    "exclude": [
+        "tests",
+        "webpack",
+        "shared",
+        "server",
+        "config.js",
+        "buildStamp.js"
+    ],
+    "cache": true,
+    "sourceMap": false,
+    "instrument": false
+}
