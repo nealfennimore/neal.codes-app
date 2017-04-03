@@ -81,7 +81,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
             // Fonts
             {
                 test: config.regex.FONT_FILES,
-                loader: 'file?name=fonts/[name].[ext]'
+                loader: 'file?name=/fonts/[name].[ext]'
             }
         ]
     }
