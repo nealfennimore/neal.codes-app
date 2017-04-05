@@ -1,13 +1,7 @@
 @import '~styles/main';
 
 .header {
-    margin: 0 0 ($global-margin * 2) 0 !important;
-}
-
-.title {
-    @include breakpoint(small only){
-
-    }
+    margin-bottom: $global-margin * 2;
 }
 
 .date {

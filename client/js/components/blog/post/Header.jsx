@@ -8,10 +8,10 @@ const Header = ({post}) => {
     const isUpdated = updated_at && created_at.slice(0, 10) !== updated_at.slice(0, 10);
 
     return (
-        <header className={`${styles.header} row collapse`}>
+        <header className={`row collapse ${styles.header}`}>
             <div className='columns'>
 
-                <h1 className={styles.title}>
+                <h1>
                     {post.title}
                 </h1>
 
