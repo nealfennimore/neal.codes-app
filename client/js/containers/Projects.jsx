@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 
 import { showProjectModal, hideProjectModal } from 'actions/projects';
+import ProjectsSEO from './ProjectsSEO';
 import ProjectList from 'components/projects';
 import ProjectModal from 'components/projects/ProjectModal';
 import styles from './Projects.scss';
@@ -16,6 +17,7 @@ class Projects extends Component {
 
         return (
             <div className={`${styles.projects} row align-middle align-center`}>
+                <ProjectsSEO />
                 <div className='column small-8 large-7'>
                     <ProjectList projects={projects} onProjectClick={(id)=>showModal(id)} />
                 </div>

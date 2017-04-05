@@ -3,15 +3,15 @@ import head from './head';
 import footer from './footer';
 
 export default function page({
+    helmet,
     content='',
-    initialState={},
-    router
+    initialState={}
 }) {
     return `
         <!doctype html>
-        <html>
-            ${head({initialState, router})}
-            <body>
+        <html ${helmet.htmlAttributes.toString()}>
+            ${head({helmet})}
+            <body ${helmet.bodyAttributes.toString()}>
                 <div id="app">${content}</div>
                 <script>
                     window.__PRELOADED_STATE__ = ${ serialize(initialState, {isJSON: true}) }
