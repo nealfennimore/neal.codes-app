@@ -29,7 +29,7 @@ function getTag({slug, tags}){
 const TagSEO = (props) => {
     const tag  = getTag(props);
     const baseTitle = tag.meta_title || tag.name;
-    const title = `${baseTitle} | Page ${tag.page}`;
+    const title = tag.page == 1 ? baseTitle : `${baseTitle} | Page ${tag.page}`;
     const url   = `${baseUrl}/tag/${tag.slug}`;
     const description = tag.meta_description || tag.description || baseTitle;
 
