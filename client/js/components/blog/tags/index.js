@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
 import { fetchTags, fetchTagsIfNeeded } from 'actions/blog/tags';
+import TagSEO from './TagSEO';
 import Posts from 'components/blog/common/Posts';
 import Pagination from 'components/blog/common/Pagination';
 import Loader from 'components/global/Loader';
@@ -34,11 +35,11 @@ export default class Tags extends Component {
 
     render() {
         const {
-            blog: { tags: {isFetching} },
+            blog: { tags },
             params: {slug}
         } = this.props;
 
-        if( isFetching || !this.hasTags() ){
+        if( tags.isFetching || !this.hasTags() ){
             return <Loader />;
         }
 
@@ -47,9 +48,10 @@ export default class Tags extends Component {
 
         return (
             <div>
+                <TagSEO tags={tags} slug={slug} />
                 <div className='row align-middle'>
-                    <h2 className='column'>{capitializeWords(slug.replace(/-/g, ' '))}</h2>
-                    <h3 className='column shrink'><small>{pagination.total} {pagination.total === 1 ? 'Post': 'Posts'}</small></h3>
+                    <h1 className='column h2'>{capitializeWords(slug.replace(/-/g, ' '))}</h1>
+                    <h2 className='column shrink h3'><small>{pagination.total} {pagination.total === 1 ? 'Post': 'Posts'}</small></h2>
                 </div>
                 <Posts posts={posts} />
                 <Pagination

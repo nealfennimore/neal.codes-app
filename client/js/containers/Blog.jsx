@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { renderChildren } from 'shared/react';
 import { fetchPage as fetchPageAction } from 'actions/blog/posts';
 
+import BlogSEO from './BlogSEO';
 import { Posts } from 'components/blog';
 import styles from './Blog.scss';
 
@@ -11,6 +12,7 @@ class Blog extends Component {
         const { blog, params, dispatch, children } = this.props;
         return (
             <div className={`row align-center align-middle ${styles.blog}`}>
+                <BlogSEO blog={blog} />
                 <main className="column small-11 medium-10">
                     { children ?
                         renderChildren(children, {blog, params, dispatch}) :

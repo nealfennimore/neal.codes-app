@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
+import { Helmet } from 'react-helmet';
 import get from 'lodash/get';
 import last from 'lodash/last';
 
@@ -36,6 +37,7 @@ export default function handleRender({res, renderProps, next}) {
                     <RouterContext {...renderProps} />
                 </Provider>
             );
+            const helmet = Helmet.renderStatic();
 
             // Grab the initial state from our Redux store
             const initialState = store.getState();
@@ -43,7 +45,7 @@ export default function handleRender({res, renderProps, next}) {
             // Send the rendered page back to the client
             res.send(
                 page({
-                    router,
+                    helmet,
                     content,
                     initialState
                 })
