@@ -4,6 +4,9 @@ import Tags from 'components/blog/common/Tags';
 import styles from './Header.scss';
 
 const Header = ({post}) => {
+    const { created_at, updated_at } = post;
+    const isUpdated = updated_at && created_at.slice(0, 10) !== updated_at.slice(0, 10);
+
     return (
         <header className={`${styles.header} row collapse`}>
             <div className='columns'>
@@ -13,7 +16,16 @@ const Header = ({post}) => {
                 </h1>
 
                 <div className='row align-justify align-middle collapse'>
-                    <Date date={post.created_at} className={`column shrink ${styles.date}`}/>
+                    <div className='column shrink'>
+                        <small className={styles.small}>
+                            Posted <Date date={created_at} className={styles.date} />
+                        </small>
+                        { isUpdated ?
+                            <small className={styles.small}>
+                                <br/>Last updated <Date date={updated_at} className={styles.date} />
+                            </small>
+                            : null }
+                    </div>
                     <Tags tags={post.tags} className='column shrink' />
                 </div>
 

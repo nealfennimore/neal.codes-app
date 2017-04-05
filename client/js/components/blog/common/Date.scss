@@ -2,6 +2,6 @@
 
 .date {
     display: block;
-    color: $medium-gray;
+    color: lighten($dark-gray, 10%);
     margin-bottom: rem-calc(7.5);
 }
