@@ -13,7 +13,7 @@ class Blog extends Component {
         return (
             <div className={`row align-center align-middle ${styles.blog}`}>
                 <BlogSEO blog={blog} />
-                <main className="column small-11 medium-10">
+                <main className="column small-11 medium-10 large-9">
                     { children ?
                         renderChildren(children, {blog, params, dispatch}) :
                         <Posts
