@@ -12,7 +12,7 @@ const ArticleSEO = ({post={}}) => {
     const title = baseTitle;
     const description = truncate(cleanMarkdown(baseDescription || ''), 160);
     const url   = `${baseUrl}${get(post, 'url', '')}`;
-    const created = get(post, 'created_at', '');
+    const published = get(post, 'published_at', '');
     const updated = get(post, 'updated_at', '');
 
     const tags = get(post, 'tags', []);
@@ -35,7 +35,7 @@ const ArticleSEO = ({post={}}) => {
             <meta name="twitter:description" content={description} />
             <meta name="twitter:url" content={url} />
 
-            <meta property="article:published_time" content={created} />
+            <meta property="article:published_time" content={published} />
             <meta property="article:modified_time" content={updated} />
 
             {tags.map(
