@@ -20,11 +20,13 @@ const Header = ({post}) => {
                         <small className={styles.small}>
                             Published <Date date={published_at} className={styles.date} />
                         </small>
-                        { isUpdated ?
+                        {
+                            isUpdated ?
                             <small className={styles.small}>
                                 <br/>Last updated <Date date={updated_at} className={styles.date} />
-                            </small>
-                            : null }
+                            </small> :
+                            null
+                        }
                     </div>
                     <Tags tags={post.tags} className='column shrink' />
                 </div>
