@@ -40,7 +40,7 @@ export default class CodePen extends Component {
 
 CodePen.defaultProps = {
     delay: 1000
-}
+};
 
 CodePen.propTypes = {
     delay: PropTypes.number
