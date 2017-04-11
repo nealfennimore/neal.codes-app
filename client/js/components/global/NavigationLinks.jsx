@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import styles from './NavigationLinks.scss';
 
-const links = [
+export const links = [
     {
         title: 'Projects',
         path: '/projects'
