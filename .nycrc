@@ -13,7 +13,9 @@
         "shared",
         "server",
         "config.js",
-        "buildStamp.js"
+        "buildStamp.js",
+        "node_modules",
+        "**/*.spec.js"
     ],
     "cache": true,
     "sourceMap": false,
