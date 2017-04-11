@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
-import NavigationLinks, {links} from './NavigationLinks.jsx';
-import styles from './NavigationLinks.scss';
+import NavigationLinks, {links} from 'components/global/NavigationLinks.jsx';
+import styles from 'components/global/NavigationLinks.scss';
 
 describe('<NavigationLinks/>', function() {
     it('has the right classes', function() {

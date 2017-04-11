@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
-import NotFound from './404.jsx';
-import styles from './404.scss';
+import NotFound from 'components/common/404.jsx';
+import styles from 'components/common/404.scss';
 
 describe('<404/>', function() {
     it('has the right class', function() {

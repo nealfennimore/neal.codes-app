@@ -1,9 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
-import Logo from './Logo.jsx';
-import styles from './Logo.scss';
+import Logo from 'components/global/Logo.jsx';
+import styles from 'components/global/Logo.scss';
 
 describe('<Logo/>', function() {
     it('has the right classes', function() {

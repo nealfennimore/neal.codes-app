@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {expect} from 'chai';
-import Navigation from './Navigation.jsx';
+import Navigation from 'components/global/Navigation.jsx';
 import NavigationLinks from 'components/global/NavigationLinks';
-import styles from './Navigation.scss';
+import styles from 'components/global/Navigation.scss';
 
 describe('<Navigation/>', function() {
     it('has the right classes', function() {
