@@ -19,7 +19,10 @@ module.exports = merge({}, webpackCommonClientConfig, {
             }
         }),
         new ExtractTextPlugin('[name].css'),
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            minChunks: ({context}) => /node_modules/.test(context)
+        }),
         new webpack.SourceMapDevToolPlugin({
             filename: '[file].map',
             append: '\n//# sourceMappingURL=/[url]',
