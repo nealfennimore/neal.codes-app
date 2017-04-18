@@ -1,15 +1,15 @@
 // Set vertical rhythm for headers
 @each $breakpoint, $headers in $header-sizes {
-    $breakpointContext: if($breakpoint == 'small', 'only', 'up');
+    $context: if($breakpoint == 'small', 'only', 'up');
 
-    @include breakpoint($breakpoint $breakpointContext){
-        @each $header, $fontSize in $headers {
-            $vr: vertical-rhythm($fontSize);
+    @include breakpoint($breakpoint $context){
+        @each $header, $font-size in $headers {
+            $vr: vertical-rhythm($font-size);
             $ratio: map-get($vr, 'ratio');
             $count: map-get($vr, 'count');
 
             #{$header}, .#{$header} {
-                font-size: rem-calc($fontSize);
+                font-size: rem-calc($font-size);
                 line-height: emy($ratio);
                 margin-top: emy(($ratio / $count) * 0.75);
                 margin-bottom: emy(($ratio / $count) * 0.25);
