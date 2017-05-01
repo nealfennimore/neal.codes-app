@@ -1,39 +1,10 @@
 {
-    "extends": ["eslint:recommended", "eslint-config-nfen", "plugin:react/recommended"],
-    "rules": {
-        "indent": [
-            2,
-            4
-        ],
-        "quotes": [
-            2,
-            "single"
-        ],
-        "linebreak-style": [
-            2,
-            "unix"
-        ],
-        "semi": [
-            2,
-            "always"
-        ]
-    },
-    "globals": {
-        "React": false,
-        "it": false,
-        "describe": false
-    },
-    "env": {
-        "es6": true,
-        "browser": true,
-        "node": true
-    },
-    "ecmaFeatures": {
-        "modules": true,
-        "jsx": true,
-        "experimentalObjectRestSpread": true
-    },
-    "plugins": [
-        "react"
-    ]
+    "extends": "nfen/react",
+    "settings": {
+        "import/resolver": {
+            "webpack": {
+                "config": "webpack/common/webpack.common.config.babel.js"
+            }
+        }
+    }
 }
