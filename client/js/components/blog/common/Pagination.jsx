@@ -9,13 +9,13 @@ const Pagination = ({ prefix, pagination: {prev, next, page, pages}}) => {
 
     return (
         <div className='row align-center align-middle'>
-            { prev ? <PaginationButton page={prev} prefix={prefix} iconClass='icon-left_arrow' /> : null }
+            { prev ? <PaginationButton page={prev} prefix={prefix} iconClass='icon-arrow_left' /> : null }
 
             <div className={`${styles.pages} column shrink`}>
                 Page {page} of {pages}
             </div>
 
-            { next ? <PaginationButton page={next} prefix={prefix} iconClass='icon-right_arrow' /> : null }
+            { next ? <PaginationButton page={next} prefix={prefix} iconClass='icon-arrow_right' /> : null }
         </div>
     );
 };
