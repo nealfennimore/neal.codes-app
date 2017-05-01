@@ -18,21 +18,27 @@ export default class Home extends Component {
                     </div>
 
                     <div className='row align-center text-center'>
-                        <div className='column small-4 medium-2'>
+                        <div className='column small-3 medium-2'>
                             <a href='https://github.com/nealfennimore'>
                                 <i className='icon-github'></i>
                                 <span>Github</span>
                             </a>
                         </div>
-                        <div className='column small-4 medium-2'>
+                        <div className='column small-3 medium-2'>
+                            <a href='https://codepen.io/nealfennimore'>
+                                <i className='icon-codepen'></i>
+                                <span>Codepen</span>
+                            </a>
+                        </div>
+                        <div className='column small-3 medium-2'>
                             <a href='https://www.linkedin.com/in/nealfennimore'>
                                 <i className='icon-linkedin'></i>
                                 <span>LinkedIn</span>
                             </a>
                         </div>
-                        <div className='column small-4 medium-2'>
+                        <div className='column small-3 medium-2'>
                             <Link to='/blog'>
-                                <i className='icon-ion-social-rss'></i>
+                                <i className='icon-rss'></i>
                                 <span>Blog</span>
                             </Link>
                         </div>
