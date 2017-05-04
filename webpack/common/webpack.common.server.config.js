@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import merge from 'lodash/merge';
 
-import webpackCommon from './webpack.common.config.js';
+import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
 module.exports = merge({}, webpackCommon, {

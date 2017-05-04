@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import autoprefixer from 'autoprefixer';
 
-import webpackCommon from './webpack.common.config.js';
+import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
 module.exports = merge({}, webpackCommon, {
