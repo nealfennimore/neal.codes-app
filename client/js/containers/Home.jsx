@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import { Link } from 'react-router';
 
 import styles from './Home.scss';
 
@@ -31,16 +30,16 @@ export default class Home extends Component {
                             </a>
                         </div>
                         <div className='column small-3 medium-2'>
+                            <a href='https://keybase.io/nealfennimore'>
+                                <i className='icon-keybase'></i>
+                                <span>Keybase</span>
+                            </a>
+                        </div>
+                        <div className='column small-3 medium-2'>
                             <a href='https://www.linkedin.com/in/nealfennimore'>
                                 <i className='icon-linkedin'></i>
                                 <span>LinkedIn</span>
                             </a>
-                        </div>
-                        <div className='column small-3 medium-2'>
-                            <Link to='/blog'>
-                                <i className='icon-rss'></i>
-                                <span>Blog</span>
-                            </Link>
                         </div>
                     </div>
 
