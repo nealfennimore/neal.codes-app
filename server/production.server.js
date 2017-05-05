@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import 'newrelic';
 import express from 'express';
 import config from '../config';
