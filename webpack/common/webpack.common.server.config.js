@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import merge from 'lodash/merge';
+import nodeExternals from 'webpack-node-externals';
 
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
@@ -18,9 +19,9 @@ module.exports = merge({}, webpackCommon, {
         filename: null
     },
 
-    externals: {
-        newrelic: true
-    },
+    externals: [
+        nodeExternals()
+    ],
 
     plugins: [
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/), // Use only the en locale from momentjs
