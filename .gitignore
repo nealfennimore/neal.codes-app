@@ -9,3 +9,4 @@ client/clientConfig.js
 .DS_Store
 coverage
 .nyc_output
+newrelic.js
