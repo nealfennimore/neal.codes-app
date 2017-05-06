@@ -6,6 +6,8 @@ import handleRouting from './routing';
 
 const app = express();
 
+app.head('*', (req, res)=> res.status(200).send({ success: true }) );
+
 app.get('*', handleRouting);
 
 app.listen(config.server.port, ()=>{
