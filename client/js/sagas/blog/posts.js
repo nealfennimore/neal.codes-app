@@ -7,10 +7,10 @@ export const POSTS = 'POSTS';
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
-export function* fetchPosts(action){
+export function* fetchPosts({page}){
     try {
         yield put({ type: REQUEST_POSTS });
-        const params = setPageParams(action.page);
+        const params = setPageParams(page);
         const posts = yield call(blogService.posts, params);
         yield put({type: RECEIVE_POSTS, posts});
     } catch (e) {
@@ -18,10 +18,9 @@ export function* fetchPosts(action){
     }
 }
 
-function* postsFlow({blog, params}){
-    const posts       = get(blog, 'posts', false);
+export function* postsFlow({blog, params}){
     const page        = get(params, 'page', 1);
-    const currentPage = get(posts, 'meta.pagination.page');
+    const currentPage = get(blog, 'posts.meta.pagination.page');
 
     if( page != currentPage  ){
         yield call(fetchPosts, {page});

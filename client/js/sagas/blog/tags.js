@@ -24,7 +24,7 @@ export function* fetchTags({slug, page}){
     }
 }
 
-function* tagsFlow({blog, params: { slug, tagPage=1 }}){
+export function* tagsFlow({blog, params: { slug, tagPage=1 }}){
     const posts = get(blog, `tags.${slug}`, false);
     const page  = get(posts, 'meta.pagination.page');
 

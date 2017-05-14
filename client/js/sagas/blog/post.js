@@ -8,7 +8,7 @@ export const RECEIVE_POST = 'RECEIVE_POST';
 export const GET_POST = 'GET_POST';
 export const SET_POST = 'SET_POST';
 
-function* fetchPost(action){
+export function* fetchPost(action){
     try {
         yield put({type: REQUEST_POST});
         const params = {
@@ -22,7 +22,7 @@ function* fetchPost(action){
     }
 }
 
-function* postFlow({blog, slug}){
+export function* postFlow({blog, slug}){
     const isActive = get(blog, 'post.slug', false) === slug;
     const posts = get(blog, 'posts.posts', []);
     const post = !isActive ? find(posts, p => p.slug === slug) : false;
@@ -32,7 +32,6 @@ function* postFlow({blog, slug}){
     } else if(!post) {
         yield call(fetchPost, {slug});
     }
-
 }
 
 
