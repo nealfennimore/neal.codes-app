@@ -7,17 +7,16 @@ import { createStore, applyMiddleware } from 'redux';
 import { AppContainer } from 'react-hot-loader';
 
 import middleware, { composeEnhancers, sagaMiddleware } from 'client/middleware';
+import configureStore from 'client/store';
 import reducers from 'reducers';
 import sagas from 'sagas';
 import Root from 'client/root';
 
 // Grab the state from a global injected into server-generated HTML
 const preloadedState = window.__PRELOADED_STATE__;
-const store = createStore(reducers, preloadedState, composeEnhancers(
-    applyMiddleware(...middleware)
-));
+const store = configureStore(preloadedState);
 
- sagaMiddleware.run(...sagas)
+store.runSaga(...sagas);
 
 const history = syncHistoryWithStore(browserHistory, store);
 

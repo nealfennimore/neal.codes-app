@@ -1,42 +1,29 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import { Helmet } from 'react-helmet';
-import get from 'lodash/get';
-import last from 'lodash/last';
 
-import reducers from 'reducers';
+import sagas from 'sagas';
+import configureStore from 'client/store';
 import page from 'server/templates/page';
-import middleware, { composeEnhancers } from 'client/middleware';
 
 // Create a new Redux store instance
-const store = createStore(
-    reducers,
-    {},
-    composeEnhancers(
-        applyMiddleware(...middleware)
-    )
-);
+const store = configureStore();
 
-function fetchData({components}){
-    const defaultPromise = ()=> Promise.resolve();
-    return get(last(components), 'fetchData', defaultPromise);
+function renderMarkup(store, renderProps){
+    return renderToString(
+        <Provider store={store}>
+            <RouterContext {...renderProps} />
+        </Provider>
+    );
 }
 
 export default function handleRender({res, renderProps, next}) {
-    const { router } = renderProps;
-
-    // Fetch data server-side if we need to
-    fetchData(renderProps)({store, router})
+    store.runSaga(...sagas).done
         .then(()=> {
-            // Render the component to a string
-            const content = renderToString(
-                <Provider store={store}>
-                    <RouterContext {...renderProps} />
-                </Provider>
-            );
+            // Second render
+            const content = renderMarkup(store, renderProps);
             const helmet = Helmet.renderStatic();
 
             // Grab the initial state from our Redux store
@@ -56,4 +43,8 @@ export default function handleRender({res, renderProps, next}) {
             const status = err.status || 404;
             res.redirect(`/${status}`);
         });
+
+    // Do first render, start initial actions
+    renderMarkup(store, renderProps);
+    store.close();
 }
