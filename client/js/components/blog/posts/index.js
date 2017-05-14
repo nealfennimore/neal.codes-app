@@ -1,25 +1,46 @@
 import React, { Component, PropTypes } from 'react';
 import get from 'lodash/get';
 import size from 'lodash/size';
+import isEmpty from 'lodash/isEmpty';
 
-import { fetchPage, fetchPageIfNeeded } from 'actions/blog/posts';
+import { REQUEST_POSTS } from 'sagas/blog/posts';
 import Loader from 'components/global/Loader';
 import Pagination from 'components/blog/common/Pagination';
 import Posts from 'components/blog/common/Posts';
 
 export default class PostsPage extends Component {
+    componentWillMount(){
+        this.fetchPostsIfNeeded();
+    }
+
     componentDidMount(){
-        const { dispatch } = this.props;
-        dispatch(fetchPageIfNeeded(this.props));
+        this.fetchPostsIfNeeded();
     }
 
     componentWillReceiveProps(nextProps){
         const oldPage = get(this.props, 'params.page');
-        const newPage = get(nextProps, 'params.page');
+        const page    = get(nextProps, 'params.page');
 
-        if(oldPage != newPage){
+        if(oldPage != page){
             const { dispatch } = this.props;
-            dispatch(fetchPage(newPage));
+            dispatch({
+                type: REQUEST_POSTS,
+                page
+            });
+        }
+    }
+
+    fetchPostsIfNeeded(){
+        const { dispatch, blog, params } = this.props;
+        const posts       = get(blog, 'posts', false);
+        const page        = get(params, 'page', 1);
+        const currentPage = get(posts, 'meta.pagination.page');
+
+        if( page != currentPage || isEmpty(posts) ){
+            dispatch({
+                type: REQUEST_POSTS,
+                page
+            });
         }
     }
 
@@ -49,11 +70,6 @@ export default class PostsPage extends Component {
     }
 }
 
-PostsPage.fetchData = ({store, router}) => {
-    const page = get(router, 'params.page', 1);
-    return store.dispatch(fetchPage(page));
-};
-
 PostsPage.propTypes = {
     blog: PropTypes.shape({
         posts: PropTypes.shape({
@@ -62,12 +78,12 @@ PostsPage.propTypes = {
                 pagination: PropTypes.object
             })
         })
-    }),
+    }).isRequired,
     params: PropTypes.shape({
         page: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number
         ])
-    }),
-    dispatch: PropTypes.func
+    }).isRequired,
+    dispatch: PropTypes.func.isRequired
 };

@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { renderChildren } from 'shared/react';
-import { fetchPage as fetchPageAction } from 'actions/blog/posts';
 
 import BlogSEO from './BlogSEO';
 import { Posts } from 'components/blog';
@@ -28,14 +27,12 @@ class Blog extends Component {
     }
 }
 
-Blog.fetchData = ({store}) => store.dispatch(fetchPageAction(1));
-
 Blog.propTypes = {
     blog: PropTypes.shape({
         posts: PropTypes.object,
         post: PropTypes.object,
         tags: PropTypes.object
-    }),
+    }).isRequired,
     params: PropTypes.shape({
         page: PropTypes.oneOfType([
             PropTypes.string,
@@ -46,8 +43,8 @@ Blog.propTypes = {
             PropTypes.number
         ]),
         slug: PropTypes.string
-    }),
-    dispatch: PropTypes.func,
+    }).isRequired,
+    dispatch: PropTypes.func.isRequired,
     children: PropTypes.node
 };
 
