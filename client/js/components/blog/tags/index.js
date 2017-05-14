@@ -3,7 +3,8 @@ import has from 'lodash/has';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
-import { REQUEST_TAGS } from 'sagas/blog/tags';
+import { GET_TAGS } from 'sagas/blog/tags';
+import { isServer } from 'shared/env';
 import TagSEO from './TagSEO';
 import Posts from 'components/blog/common/Posts';
 import Pagination from 'components/blog/common/Pagination';
@@ -12,16 +13,18 @@ import { capitializeWords } from 'shared/formatting';
 
 export default class Tags extends Component {
     componentWillMount(){
-        this.fetchTagsIfNeeded();
+        if(isServer){
+            this.fetchTags();
+        }
     }
 
     componentDidMount(){
-        this.fetchTagsIfNeeded();
+        this.fetchTags();
     }
 
     componentWillReceiveProps(nextProps){
         if(!isEqual(this.props.params, nextProps.params)){
-            this.fetchTagsIfNeeded();
+            this.fetchTags(nextProps);
         }
     }
 
@@ -35,18 +38,13 @@ export default class Tags extends Component {
         return has(tags, slug);
     }
 
-    fetchTagsIfNeeded(){
-        const { dispatch, blog, params: {slug, tagPage=1} } = this.props;
-        const posts = get(blog, `tags.${slug}`, false);
-        const page  = get(posts, 'meta.pagination.page');
-
-        if( !(posts && page == tagPage) ){
-            dispatch({
-                type: REQUEST_TAGS,
-                page: tagPage,
-                slug
-            });
-        }
+    fetchTags(props){
+        const { dispatch, blog, params } = props || this.props;
+        dispatch({
+            type: GET_TAGS,
+            blog,
+            params
+        });
     }
 
     render() {

@@ -1,7 +1,7 @@
 import {
     REQUEST_TAGS,
     RECEIVE_TAGS
-} from 'actions/blog/tags';
+} from 'sagas/blog/tags';
 
 
 function tags(state={}, action) {
