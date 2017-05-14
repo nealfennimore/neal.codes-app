@@ -1,5 +1,4 @@
-import { call, put, take, takeLatest } from 'redux-saga/effects'
-import { Promise } from 'bluebird';
+import { call, put, takeLatest } from 'redux-saga/effects'
 import blogService from 'services/blog';
 import { setPageParams } from 'shared/blog';
 

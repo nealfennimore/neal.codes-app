@@ -1,5 +1,4 @@
-import { call, put, take, takeLatest } from 'redux-saga/effects'
-import { Promise } from 'bluebird';
+import { call, put, takeLatest } from 'redux-saga/effects'
 import merge from 'lodash/merge';
 import { queryParams } from 'shared/blog';
 import blogService from 'services/blog';
@@ -16,7 +15,7 @@ export function* fetchTags(action){
                 page:   Number(page) || 1
             }
         });
-        const tags = yield call(blogService.posts, params);
+        const tags = yield call(blogService.tags, params);
         yield put({type: RECEIVE_TAGS, tags, slug});
     } catch (e) {
 
