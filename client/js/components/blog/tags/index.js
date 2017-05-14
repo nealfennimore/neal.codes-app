@@ -3,7 +3,7 @@ import has from 'lodash/has';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
-import { fetchTags, fetchTagsIfNeeded } from 'actions/blog/tags';
+import { REQUEST_TAGS } from 'sagas/blog/tags';
 import TagSEO from './TagSEO';
 import Posts from 'components/blog/common/Posts';
 import Pagination from 'components/blog/common/Pagination';
@@ -11,15 +11,17 @@ import Loader from 'components/global/Loader';
 import { capitializeWords } from 'shared/formatting';
 
 export default class Tags extends Component {
+    componentWillMount(){
+        this.fetchTagsIfNeeded();
+    }
+
     componentDidMount(){
-        const { dispatch } = this.props;
-        dispatch(fetchTagsIfNeeded(this.props));
+        this.fetchTagsIfNeeded();
     }
 
     componentWillReceiveProps(nextProps){
         if(!isEqual(this.props.params, nextProps.params)){
-            const { dispatch } = nextProps;
-            dispatch(fetchTagsIfNeeded(nextProps));
+            this.fetchTagsIfNeeded();
         }
     }
 
@@ -31,6 +33,20 @@ export default class Tags extends Component {
     hasTags(){
         const { blog: {tags}, params: {slug} } = this.props;
         return has(tags, slug);
+    }
+
+    fetchTagsIfNeeded(){
+        const { dispatch, blog, params: {slug, tagPage=1} } = this.props;
+        const posts = get(blog, `tags.${slug}`, false);
+        const page  = get(posts, 'meta.pagination.page');
+
+        if( !(posts && page == tagPage) ){
+            dispatch({
+                type: REQUEST_TAGS,
+                page: tagPage,
+                slug
+            });
+        }
     }
 
     render() {
@@ -63,21 +79,16 @@ export default class Tags extends Component {
     }
 }
 
-Tags.fetchData = ({
-    store: {dispatch},
-    router: {params: {slug, tagPage}}
-}) => dispatch(fetchTags(slug, tagPage));
-
 Tags.propTypes = {
-    dispatch: PropTypes.func,
+    dispatch: PropTypes.func.isRequired,
     params: PropTypes.shape({
         slug: PropTypes.string.isRequired,
         tagPage: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number
         ])
-    }),
+    }).isRequired,
     blog: PropTypes.shape({
         tags: PropTypes.object
-    })
+    }).isRequired
 };
