@@ -10,6 +10,7 @@ export const SET_POST = 'SET_POST';
 
 function* fetchPost(action){
     try {
+        yield put({type: REQUEST_POST});
         const params = {
             slug: action.slug,
             params: {include: 'tags'}
@@ -27,7 +28,7 @@ function* postFlow({blog, slug}){
     const post = !isActive ? find(posts, p => p.slug === slug) : false;
 
     if(post && !isActive){
-        yield put({ type: SET_POST, posts: post });
+        yield put({ type: SET_POST, posts: [post] });
     } else if(!post) {
         yield call(fetchPost, {slug});
     }
