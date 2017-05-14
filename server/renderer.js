@@ -20,7 +20,7 @@ function renderMarkup(store, renderProps){
 }
 
 export default function handleRender({res, renderProps, next}) {
-    store.runSaga(...sagas).done
+    store.runSaga(sagas).done
         .then(()=> {
             // Second render
             const content = renderMarkup(store, renderProps);

@@ -16,7 +16,7 @@ import Root from 'client/root';
 const preloadedState = window.__PRELOADED_STATE__;
 const store = configureStore(preloadedState);
 
-store.runSaga(...sagas);
+store.runSaga(sagas);
 
 const history = syncHistoryWithStore(browserHistory, store);
 
