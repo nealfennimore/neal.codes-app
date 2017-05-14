@@ -7,7 +7,7 @@ import styles from './Article.scss';
 
 export default class Article extends Component {
     componentDidMount(){
-        this.highlight();
+        setTimeout(this.highlight, 0);
     }
 
     highlight(){
@@ -27,7 +27,9 @@ export default class Article extends Component {
                 <ArticleSEO post={post} />
                 <div className='columns small-12'>
                     <Header post={post} />
-                    <section className={styles.content} dangerouslySetInnerHTML={this.createMarkup(post.html)} />
+                    <section
+                        className={styles.content} dangerouslySetInnerHTML={this.createMarkup(post.html)}
+                    />
                     <Footer post={post} />
                 </div>
             </article>
