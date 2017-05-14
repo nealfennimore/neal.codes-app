@@ -3,18 +3,21 @@ import get from 'lodash/get';
 import size from 'lodash/size';
 import isEmpty from 'lodash/isEmpty';
 
-import { REQUEST_POSTS } from 'sagas/blog/posts';
+import { POSTS } from 'sagas/blog/posts';
+import { isServer } from 'shared/env';
 import Loader from 'components/global/Loader';
 import Pagination from 'components/blog/common/Pagination';
 import Posts from 'components/blog/common/Posts';
 
 export default class PostsPage extends Component {
     componentWillMount(){
-        this.fetchPostsIfNeeded();
+        if(isServer){
+            this.fetchPosts();
+        }
     }
 
     componentDidMount(){
-        this.fetchPostsIfNeeded();
+        this.fetchPosts();
     }
 
     componentWillReceiveProps(nextProps){
@@ -22,26 +25,16 @@ export default class PostsPage extends Component {
         const page    = get(nextProps, 'params.page');
 
         if(oldPage != page){
-            const { dispatch } = this.props;
-            dispatch({
-                type: REQUEST_POSTS,
-                page
-            });
+            this.fetchPosts(nextProps);
         }
     }
 
-    fetchPostsIfNeeded(){
-        const { dispatch, blog, params } = this.props;
-        const posts       = get(blog, 'posts', false);
-        const page        = get(params, 'page', 1);
-        const currentPage = get(posts, 'meta.pagination.page');
-
-        if( page != currentPage || isEmpty(posts) ){
-            dispatch({
-                type: REQUEST_POSTS,
-                page
-            });
-        }
+    fetchPosts(props){
+        const { dispatch, ...rest } = props || this.props;
+        dispatch({
+            type: POSTS,
+            ...rest
+        });
     }
 
     hasPosts(){

@@ -1,21 +1,33 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import blogService from 'services/blog';
 import { setPageParams } from 'shared/blog';
+import get from 'lodash/get';
 
+export const POSTS = 'POSTS';
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 export function* fetchPosts(action){
     try {
+        yield put({ type: REQUEST_POSTS });
         const params = setPageParams(action.page);
         const posts = yield call(blogService.posts, params);
         yield put({type: RECEIVE_POSTS, posts});
-        return posts;
     } catch (e) {
-        // yield put({type: "USER_FETCH_FAILED", message: e.message});
+        //
+    }
+}
+
+function* postsFlow({blog, params}){
+    const posts       = get(blog, 'posts', false);
+    const page        = get(params, 'page', 1);
+    const currentPage = get(posts, 'meta.pagination.page');
+
+    if( page != currentPage  ){
+        yield call(fetchPosts, {page});
     }
 }
 
 export default function* postsSaga(){
-    yield takeLatest(REQUEST_POSTS, fetchPosts);
+    yield takeLatest(POSTS, postsFlow);
 }
