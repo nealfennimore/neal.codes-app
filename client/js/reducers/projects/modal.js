@@ -1,4 +1,4 @@
-import { SHOW_PROJECT_MODAL, HIDE_PROJECT_MODAL } from 'actions/projects';
+import { SHOW_PROJECT_MODAL, HIDE_PROJECT_MODAL } from 'sagas/projects';
 
 const initialState = {
     isActive: false,
