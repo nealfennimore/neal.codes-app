@@ -1,5 +1,4 @@
 import { compose } from 'redux';
-import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import {browserHistory} from 'react-router';
 import createSagaMiddleware from 'redux-saga'
@@ -13,8 +12,7 @@ export const sagaMiddleware   = createSagaMiddleware();
 
 const defaultMiddleware = [
     routerMiddleware(browserHistory),
-    sagaMiddleware,
-    thunk
+    sagaMiddleware
 ];
 
 const middleware = isDevelopment ? [
