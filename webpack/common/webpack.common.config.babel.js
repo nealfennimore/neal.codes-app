@@ -10,6 +10,7 @@ module.exports = {
             styles: 'client/scss',
             scripts: 'client/js',
             actions: 'client/js/actions',
+            sagas: 'client/js/sagas',
             containers: 'client/js/containers',
             components: 'client/js/components',
             reducers: 'client/js/reducers',

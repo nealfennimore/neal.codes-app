@@ -3,23 +3,27 @@ import has from 'lodash/has';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
-import { fetchTags, fetchTagsIfNeeded } from 'actions/blog/tags';
-import TagSEO from './TagSEO';
+import { isServer } from 'shared/env';
 import Posts from 'components/blog/common/Posts';
 import Pagination from 'components/blog/common/Pagination';
 import Loader from 'components/global/Loader';
 import { capitializeWords } from 'shared/formatting';
+import TagSEO from './TagSEO';
 
 export default class Tags extends Component {
+    componentWillMount(){
+        if(isServer){
+            this.props.getTags(this.props);
+        }
+    }
+
     componentDidMount(){
-        const { dispatch } = this.props;
-        dispatch(fetchTagsIfNeeded(this.props));
+        this.props.getTags(this.props);
     }
 
     componentWillReceiveProps(nextProps){
         if(!isEqual(this.props.params, nextProps.params)){
-            const { dispatch } = nextProps;
-            dispatch(fetchTagsIfNeeded(nextProps));
+            this.props.getTags(nextProps);
         }
     }
 
@@ -63,21 +67,16 @@ export default class Tags extends Component {
     }
 }
 
-Tags.fetchData = ({
-    store: {dispatch},
-    router: {params: {slug, tagPage}}
-}) => dispatch(fetchTags(slug, tagPage));
-
 Tags.propTypes = {
-    dispatch: PropTypes.func,
+    getTags: PropTypes.func.isRequired,
     params: PropTypes.shape({
         slug: PropTypes.string.isRequired,
         tagPage: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number
         ])
-    }),
+    }).isRequired,
     blog: PropTypes.shape({
         tags: PropTypes.object
-    })
+    }).isRequired
 };

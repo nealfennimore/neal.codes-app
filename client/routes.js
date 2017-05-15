@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import {Router, Route, IndexRoute} from 'react-router';
-import { Layout, Home, Blog, Projects } from 'containers';
-import { Post, Tags } from 'components/blog';
+import { Layout, Home, Blog, Posts, Post, Tags, Projects } from 'containers';
 import { NotFound } from 'components/common';
 import { logPageView } from 'lib/googleAnalytics';
 
@@ -12,6 +11,7 @@ const ROUTES = (
         <IndexRoute component={Home} />
 
         <Route path='blog(/page/:page)' component={Blog}>
+            <IndexRoute component={Posts} />
             <Route path='tag/:slug(/page/:tagPage)' component={Tags} />
             <Route path=':slug' component={Post} />
         </Route>

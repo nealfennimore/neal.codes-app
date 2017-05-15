@@ -13,5 +13,6 @@ const postBySlug = ({slug='', ...rest})=>fetcher({
 
 export default {
     posts,
+    tags: posts,
     postBySlug
 };
