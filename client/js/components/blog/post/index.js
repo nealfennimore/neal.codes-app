@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import Loader from 'components/global/Loader';
-import Article from './Article';
 import { GET_POST } from 'sagas/blog/post';
 import { isServer } from 'shared/env';
+import Article from './Article';
 
 export default class Post extends Component {
     componentWillMount(){

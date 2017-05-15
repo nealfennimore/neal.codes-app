@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects';
 import merge from 'lodash/merge';
 import get from 'lodash/get';
 import { queryParams } from 'shared/blog';

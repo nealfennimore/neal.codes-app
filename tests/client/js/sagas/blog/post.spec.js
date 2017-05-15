@@ -1,4 +1,3 @@
-import React from 'react';
 import {put, call} from 'redux-saga/effects';
 import { createMockTask } from 'redux-saga/utils';
 import {assert} from 'chai';

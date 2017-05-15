@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects';
 import blogService from 'services/blog';
 import { setPageParams } from 'shared/blog';
 import get from 'lodash/get';
