@@ -1,27 +1,17 @@
 import React, {Component, PropTypes} from 'react';
 import Loader from 'components/global/Loader';
-import { GET_POST } from 'sagas/blog/post';
 import { isServer } from 'shared/env';
 import Article from './Article';
 
 export default class Post extends Component {
     componentWillMount(){
         if(isServer){
-            this.getPost();
+            this.props.getPost(this.props);
         }
     }
 
     componentDidMount(){
-        this.getPost();
-    }
-
-    getPost(){
-        const { dispatch, blog, params: {slug} } = this.props;
-        dispatch({
-            type: GET_POST,
-            blog,
-            slug
-        });
+        this.props.getPost(this.props);
     }
 
     render() {
@@ -35,7 +25,7 @@ export default class Post extends Component {
 }
 
 Post.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    getPost: PropTypes.func.isRequired,
     params: PropTypes.shape({
         slug: PropTypes.string
     }).isRequired,

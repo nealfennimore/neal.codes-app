@@ -3,28 +3,27 @@ import has from 'lodash/has';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
-import { GET_TAGS } from 'sagas/blog/tags';
 import { isServer } from 'shared/env';
-import TagSEO from './TagSEO';
 import Posts from 'components/blog/common/Posts';
 import Pagination from 'components/blog/common/Pagination';
 import Loader from 'components/global/Loader';
 import { capitializeWords } from 'shared/formatting';
+import TagSEO from './TagSEO';
 
 export default class Tags extends Component {
     componentWillMount(){
         if(isServer){
-            this.fetchTags();
+            this.props.getTags(this.props);
         }
     }
 
     componentDidMount(){
-        this.fetchTags();
+        this.props.getTags(this.props);
     }
 
     componentWillReceiveProps(nextProps){
         if(!isEqual(this.props.params, nextProps.params)){
-            this.fetchTags(nextProps);
+            this.props.getTags(nextProps);
         }
     }
 
@@ -36,15 +35,6 @@ export default class Tags extends Component {
     hasTags(){
         const { blog: {tags}, params: {slug} } = this.props;
         return has(tags, slug);
-    }
-
-    fetchTags(props){
-        const { dispatch, blog, params } = props || this.props;
-        dispatch({
-            type: GET_TAGS,
-            blog,
-            params
-        });
     }
 
     render() {
@@ -78,7 +68,7 @@ export default class Tags extends Component {
 }
 
 Tags.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    getTags: PropTypes.func.isRequired,
     params: PropTypes.shape({
         slug: PropTypes.string.isRequired,
         tagPage: PropTypes.oneOfType([

@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import get from 'lodash/get';
 import size from 'lodash/size';
-import isEmpty from 'lodash/isEmpty';
 
-import { POSTS } from 'sagas/blog/posts';
 import { isServer } from 'shared/env';
 import Loader from 'components/global/Loader';
 import Pagination from 'components/blog/common/Pagination';
@@ -12,29 +10,21 @@ import Posts from 'components/blog/common/Posts';
 export default class PostsPage extends Component {
     componentWillMount(){
         if(isServer){
-            this.fetchPosts();
+            this.props.getPosts(this.props);
         }
     }
 
     componentDidMount(){
-        this.fetchPosts();
+        this.props.getPosts(this.props);
     }
 
     componentWillReceiveProps(nextProps){
-        const oldPage = get(this.props, 'params.page');
-        const page    = get(nextProps, 'params.page');
+        const page     = get(this.props, 'params.page');
+        const nextPage = get(nextProps, 'params.page');
 
-        if(oldPage != page){
-            this.fetchPosts(nextProps);
+        if(page != nextPage){
+            this.props.getPosts(nextProps);
         }
-    }
-
-    fetchPosts(props){
-        const { dispatch, ...rest } = props || this.props;
-        dispatch({
-            type: POSTS,
-            ...rest
-        });
     }
 
     hasPosts(){
@@ -77,6 +67,6 @@ PostsPage.propTypes = {
             PropTypes.string,
             PropTypes.number
         ])
-    }).isRequired,
-    dispatch: PropTypes.func.isRequired
+    }),
+    getPosts: PropTypes.func.isRequired
 };
