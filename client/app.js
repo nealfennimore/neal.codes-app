@@ -3,12 +3,9 @@ import React from 'react';
 import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { createStore, applyMiddleware } from 'redux';
 import { AppContainer } from 'react-hot-loader';
 
-import middleware, { composeEnhancers, sagaMiddleware } from 'client/middleware';
 import configureStore from 'client/store';
-import reducers from 'reducers';
 import sagas from 'sagas';
 import Root from 'client/root';
 
