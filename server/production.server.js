@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import 'newrelic';
+import 'babel-polyfill';
 import express from 'express';
 import config from '../config';
 import handleRouting from './routing';
