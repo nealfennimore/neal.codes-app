@@ -49,7 +49,7 @@ module.exports = merge({}, webpackCommon, {
                 test: config.regex.PROJECT_IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
                 loaders: [
-                    'responsive'
+                    'responsive-loader'
                 ]
             }
         ]

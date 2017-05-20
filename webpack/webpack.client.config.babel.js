@@ -40,19 +40,19 @@ module.exports = merge({}, webpackCommonClientConfig, {
     ],
 
     module: {
-        loaders: [
+        rules: [
 
             // Javascript
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: ['babel-loader']
+                use: ['babel-loader']
             },
 
             // HTML
             {
                 test: /\.html$/,
-                loader: 'file?name=[name].[ext]'
+                use: 'file-loader?name=[name].[ext]'
             },
 
             // App styles with CSS locals
@@ -86,7 +86,7 @@ module.exports = merge({}, webpackCommonClientConfig, {
             // {
             //     test: config.regex.IMAGE_FILES,
             //     exclude: config.regex.FONT_FILES,
-            //     loaders: [
+            //     use: [
             //         'file?hash=sha512&digest=hex&name=images/[hash].[ext]',
             //         'image-webpack'
             //     ]
@@ -95,17 +95,17 @@ module.exports = merge({}, webpackCommonClientConfig, {
             {
                 test: config.regex.PROJECT_IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
-                loaders: [
+                use: [
                     // 'file?hash=sha512&digest=hex&name=images/projects/[hash].[ext]',
                     // 'image-webpack',
-                    'responsive'
+                    'responsive-loader'
                 ]
             },
 
             // Fonts
             {
                 test: config.regex.FONT_FILES,
-                loader: 'file?name=/fonts/[name].[ext]'
+                loader: 'file-loader?name=/fonts/[name].[ext]'
             }
         ]
     }
