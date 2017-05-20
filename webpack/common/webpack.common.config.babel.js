@@ -24,11 +24,6 @@ module.exports = {
             // Shared paths
             shared: 'shared'
         },
-        extensions: ['', '.js', '.jsx', '.scss']
-    },
-    responsiveLoader: {
-        name: '[name]-[width]',
-        sizes: [300, 480, 768],
-        placeholder: false
+        extensions: ['.js', '.jsx', '.scss']
     },
 };
