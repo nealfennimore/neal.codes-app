@@ -2,7 +2,10 @@ import config  from '../../config';
 
 module.exports = {
     resolve: {
-        root: config.paths.ROOT,
+        modules: [
+            config.paths.ROOT,
+            'node_modules'
+        ],
         alias: {
             // Client paths
             client: 'client',
