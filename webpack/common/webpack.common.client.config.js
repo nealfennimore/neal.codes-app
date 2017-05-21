@@ -27,8 +27,10 @@ module.exports = merge(webpackCommon, {
     output: {
         filename: '[name].js',
         chunkFilename: '[id].js',
-        path: '/'
+        publicPath: '/',
+        path: null
     },
+
     plugins: [
         new webpack.LoaderOptionsPlugin({
             options: {
@@ -46,7 +48,7 @@ module.exports = merge(webpackCommon, {
                 test: config.regex.IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
                 use: [
-                    'file-loader?name=/images/[name].[ext]',
+                    'file-loader?name=images/[name].[ext]',
                     'image-webpack-loader'
                 ]
             },
@@ -54,7 +56,7 @@ module.exports = merge(webpackCommon, {
             // Fonts
             {
                 test: config.regex.FONT_FILES,
-                use: 'file-loader?name=/fonts/[name].[ext]'
+                use: 'file-loader?name=fonts/[name].[ext]'
             }
         ]
     }

@@ -40,7 +40,7 @@ module.exports = merge(webpackCommon, {
                 test: config.regex.IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
                 use: [
-                    'file-loader?emitFile=false&name=/images/[name].[ext]',
+                    'file-loader?emitFile=false&name=images/[name].[ext]',
                     'image-webpack-loader'
                 ]
             },
