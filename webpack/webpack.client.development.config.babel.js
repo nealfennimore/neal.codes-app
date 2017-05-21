@@ -58,22 +58,11 @@ module.exports = merge(webpackCommonClientConfig, {
                 ]
             },
 
-            // Images
-            // {
-            //     test: config.regex.IMAGE_FILES,
-            //     exclude: [config.regex.FONT_FILES, config.regex.PROJECT_IMAGE_FILES],
-            //     use: [
-            //         'file?hash=sha512&digest=hex&name=images/[hash].[ext]',
-            //         'image-webpack'
-            //     ]
-            // },
-
+            // Project Images
             {
                 test: config.regex.PROJECT_IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
                 use: [
-                    // 'file?hash=sha512&digest=hex&name=images/projects/[hash].[ext]',
-                    // 'image-webpack',
                     'responsive-loader'
                 ]
             },
