@@ -17,7 +17,8 @@
     "develop:exec:server:watch": "NODE_ENV=development babel-node ./server/development.server.watch.js",
     "test": "NODE_ENV=test mocha-webpack",
     "test:watch": "npm run test -- --watch",
-    "test:cover": "NODE_ENV=test nyc mocha-webpack"
+    "test:cover": "NODE_ENV=test nyc mocha-webpack",
+    "bundle:analyze": "webpack --config ./webpack/webpack.bundle.analyzer.config.babel.js --progress"
   },
   "repository": {
     "type": "git",
