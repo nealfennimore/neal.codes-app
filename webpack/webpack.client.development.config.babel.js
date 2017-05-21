@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 
-import webpackCommonClientConfig from './common/webpack.common.client.config.js';
+import webpackCommonClientConfig from './common/webpack.common.client.config';
 import config from '../config';
 
 module.exports = merge(webpackCommonClientConfig, {
