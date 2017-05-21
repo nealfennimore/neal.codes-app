@@ -45,7 +45,7 @@ export default class ProjectModalGallery extends Component {
                             { imageIndex > 0 ? <button onClick={this.prev}><i className='icon-arrow_left'></i></button> : null }
                         </div>
                         <div className={`${styles.image} column small-10`}>
-                            <img src={activeImage.src} srcSet={activeImage.srcSet}/>
+                            <img src={activeImage} alt='' />
                         </div>
                         <div className='column small-1 text-center'>
                             { imageIndex < (images.length - 1) ? <button onClick={this.next}><i className='icon-arrow_right'></i></button> : null }
