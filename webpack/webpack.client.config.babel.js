@@ -1,11 +1,12 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import merge from 'lodash/merge';
+import merge from 'webpack-merge';
 
-import webpackCommonClientConfig from './common/webpack.common.client.config.js';
+import webpackCommonClientConfig from './common/webpack.common.client.config';
 import config from '../config';
 
-module.exports = merge({}, webpackCommonClientConfig, {
+
+module.exports = merge(webpackCommonClientConfig, {
 
     output: {
         path: config.paths.PUBLIC
@@ -82,22 +83,10 @@ module.exports = merge({}, webpackCommonClientConfig, {
                 })
             },
 
-            // Images
-            // {
-            //     test: config.regex.IMAGE_FILES,
-            //     exclude: config.regex.FONT_FILES,
-            //     use: [
-            //         'file?hash=sha512&digest=hex&name=images/[hash].[ext]',
-            //         'image-webpack'
-            //     ]
-            // },
-
             {
                 test: config.regex.PROJECT_IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
                 use: [
-                    // 'file?hash=sha512&digest=hex&name=images/projects/[hash].[ext]',
-                    // 'image-webpack',
                     'responsive-loader'
                 ]
             },
