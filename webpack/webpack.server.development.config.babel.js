@@ -11,6 +11,13 @@ module.exports = merge(webpackCommonServerConfig, {
     },
 
     plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                watchOptions: {
+                    aggregateTimeout: 10 * 1000
+                }
+            }
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('development'),
@@ -18,9 +25,5 @@ module.exports = merge(webpackCommonServerConfig, {
                 NODE_TLS_REJECT_UNAUTHORIZED: JSON.stringify('0')
             }
         })
-    ],
-
-    watchOptions: {
-        aggregateTimeout: 60 * 1000
-    }
+    ]
 });

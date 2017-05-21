@@ -24,6 +24,13 @@ module.exports = merge(webpackCommon, {
     ],
 
     plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                responsiveLoader: {
+                    pass: true // Disable responsive loader on server
+                },
+            }
+        }),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/), // Use only the en locale from momentjs
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: false
@@ -53,8 +60,5 @@ module.exports = merge(webpackCommon, {
                 ]
             }
         ]
-    },
-    responsiveLoader: {
-        pass: true // Disable responsive loader on server
-    },
+    }
 });
