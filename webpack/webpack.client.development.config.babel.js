@@ -1,10 +1,10 @@
 import webpack from 'webpack';
-import merge from 'lodash/merge';
+import merge from 'webpack-merge';
 
 import webpackCommonClientConfig from './common/webpack.common.client.config.js';
 import config from '../config';
 
-module.exports = merge({}, webpackCommonClientConfig, {
+module.exports = merge(webpackCommonClientConfig, {
     output: {
         path: config.paths.DEV,
         pathinfo: true

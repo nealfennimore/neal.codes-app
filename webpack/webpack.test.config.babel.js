@@ -1,10 +1,10 @@
-import merge from 'lodash/merge';
+import merge from 'webpack-merge';
 import nodeExternals from 'webpack-node-externals';
 
-import webpackClientConfig from './webpack.client.config.babel.js';
+import webpackClientConfig from './webpack.client.config.babel';
 import config from '../config';
 
-export default merge({}, webpackClientConfig, {module: null}, {
+export default merge(webpackClientConfig, {module: null}, {
     target: 'node',
     externals: [nodeExternals()],
     devtool: 'cheap-module-eval-source-map',

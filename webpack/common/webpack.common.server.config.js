@@ -1,11 +1,11 @@
 import webpack from 'webpack';
-import merge from 'lodash/merge';
+import merge from 'webpack-merge';
 import nodeExternals from 'webpack-node-externals';
 
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-module.exports = merge({}, webpackCommon, {
+module.exports = merge(webpackCommon, {
     target: 'node',
     name: 'server',
     node: {
