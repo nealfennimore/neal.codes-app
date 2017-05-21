@@ -34,22 +34,28 @@ module.exports = merge(webpackCommon, {
             options: {
                 postcss: [
                     autoprefixer()
-                ],
-
-                imageWebpackLoader: {
-                    pngquant: {
-                        quality: '65-90',
-                        speed: 4
-                    },
-                    svgo: {
-                        plugins: [{
-                            removeViewBox: false
-                        }, {
-                            removeEmptyAttrs: false
-                        }]
-                    }
-                }
+                ]
             }
         })
-    ]
+    ],
+
+    module: {
+        rules: [
+            // Images
+            {
+                test: config.regex.IMAGE_FILES,
+                exclude: [config.regex.FONT_FILES],
+                use: [
+                    'file-loader?name=/images/[name].[ext]',
+                    'image-webpack-loader'
+                ]
+            },
+
+            // Fonts
+            {
+                test: config.regex.FONT_FILES,
+                use: 'file-loader?name=/fonts/[name].[ext]'
+            }
+        ]
+    }
 });

@@ -1,3 +1,4 @@
+import webpack from 'webpack';
 import config  from '../../config';
 
 module.exports = {
@@ -26,4 +27,32 @@ module.exports = {
         },
         extensions: ['.js', '.jsx', '.scss']
     },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                imageWebpackLoader: {
+                    pngquant: {
+                        quality: '65-90',
+                        speed: 4
+                    },
+                    svgo: {
+                        plugins: [{
+                            removeViewBox: false
+                        }, {
+                            removeEmptyAttrs: false
+                        }]
+                    }
+                }
+            }
+        })
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: 'babel-loader'
+            }
+        ]
+    }
 };

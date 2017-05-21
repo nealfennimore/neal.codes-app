@@ -43,19 +43,6 @@ module.exports = merge(webpackCommonClientConfig, {
     module: {
         rules: [
 
-            // Javascript
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: ['babel-loader']
-            },
-
-            // HTML
-            {
-                test: /\.html$/,
-                use: 'file-loader?name=[name].[ext]'
-            },
-
             // App styles with CSS locals
             {
                 test: /\.scss$/,
@@ -81,20 +68,6 @@ module.exports = merge(webpackCommonClientConfig, {
                         'sass-loader'
                     ]
                 })
-            },
-
-            {
-                test: config.regex.PROJECT_IMAGE_FILES,
-                exclude: [config.regex.FONT_FILES],
-                use: [
-                    'responsive-loader'
-                ]
-            },
-
-            // Fonts
-            {
-                test: config.regex.FONT_FILES,
-                loader: 'file-loader?name=/fonts/[name].[ext]'
             }
         ]
     }

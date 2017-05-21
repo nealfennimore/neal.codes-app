@@ -20,19 +20,6 @@ module.exports = merge(webpackCommonClientConfig, {
     module: {
         rules: [
 
-            // Javascript
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: ['babel-loader']
-            },
-
-            // HTML
-            {
-                test: /\.html$/,
-                use: 'file-loader?name=[name].[ext]'
-            },
-
             // CSS Locals
             {
                 test: /\.scss$/,
@@ -56,21 +43,6 @@ module.exports = merge(webpackCommonClientConfig, {
                     'resolve-url-loader',
                     'sass-loader'
                 ]
-            },
-
-            // Project Images
-            {
-                test: config.regex.PROJECT_IMAGE_FILES,
-                exclude: [config.regex.FONT_FILES],
-                use: [
-                    'responsive-loader'
-                ]
-            },
-
-            // Fonts
-            {
-                test: config.regex.FONT_FILES,
-                use: 'file-loader?name=/fonts/[name].[ext]'
             }
         ]
     }
