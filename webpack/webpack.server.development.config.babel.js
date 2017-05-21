@@ -1,9 +1,8 @@
 import webpack from 'webpack';
-import merge from 'lodash/merge';
-
+import merge from 'webpack-merge';
 import webpackCommonServerConfig from './common/webpack.common.server.config';
 
-module.exports = merge({}, webpackCommonServerConfig, {
+module.exports = merge(webpackCommonServerConfig, {
     entry: './development.server.js',
 
     output: {
@@ -11,6 +10,13 @@ module.exports = merge({}, webpackCommonServerConfig, {
     },
 
     plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                watchOptions: {
+                    aggregateTimeout: 10 * 1000
+                }
+            }
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('development'),
@@ -18,9 +24,5 @@ module.exports = merge({}, webpackCommonServerConfig, {
                 NODE_TLS_REJECT_UNAUTHORIZED: JSON.stringify('0')
             }
         })
-    ],
-
-    watchOptions: {
-        aggregateTimeout: 60 * 1000
-    }
+    ]
 });

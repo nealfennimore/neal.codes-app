@@ -1,10 +1,10 @@
-import merge from 'lodash/merge';
+import webpack from 'webpack';
+import merge from 'webpack-merge';
 import autoprefixer from 'autoprefixer';
-
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-module.exports = merge({}, webpackCommon, {
+module.exports = merge(webpackCommon, {
     name: 'client',
     target: 'web',
     context: config.paths.CLIENT,
@@ -27,26 +27,37 @@ module.exports = merge({}, webpackCommon, {
     output: {
         filename: '[name].js',
         chunkFilename: '[id].js',
-        path: null,
-        outputPath: '/'
+        publicPath: '/',
+        path: null
     },
 
-    plugins: null,
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                postcss: [
+                    autoprefixer()
+                ]
+            }
+        })
+    ],
 
-    postcss: function () {
-        return [autoprefixer];
-    },
-    imageWebpackLoader: {
-        pngquant: {
-            quality: '65-90',
-            speed: 4
-        },
-        svgo: {
-            plugins: [{
-                removeViewBox: false
-            }, {
-                removeEmptyAttrs: false
-            }]
-        }
+    module: {
+        rules: [
+            // Images
+            {
+                test: config.regex.IMAGE_FILES,
+                exclude: [config.regex.FONT_FILES],
+                use: [
+                    'file-loader?name=images/[name].[ext]',
+                    'image-webpack-loader'
+                ]
+            },
+
+            // Fonts
+            {
+                test: config.regex.FONT_FILES,
+                use: 'file-loader?name=fonts/[name].[ext]'
+            }
+        ]
     }
 });

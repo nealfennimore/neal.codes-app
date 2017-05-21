@@ -1,11 +1,11 @@
 import webpack from 'webpack';
-import merge from 'lodash/merge';
+import merge from 'webpack-merge';
 import nodeExternals from 'webpack-node-externals';
 
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-module.exports = merge({}, webpackCommon, {
+module.exports = merge(webpackCommon, {
     target: 'node',
     name: 'server',
     node: {
@@ -31,30 +31,20 @@ module.exports = merge({}, webpackCommon, {
         new webpack.DefinePlugin({ 'global.GENTLY': false }) // superagent fix: https://github.com/visionmedia/superagent/wiki/SuperAgent-for-Webpack
     ],
     module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            },
-            {
-                test: /\.json$/,
-                loader: 'json-loader'
-            },
+        rules: [
             {
                 test: /\.scss$/,
-                loader: `css-loader/locals?modules&importLoaders=1&localIdentName=${config.webpack.cssModuleName}`
+                use: `css-loader/locals?modules&importLoaders=1&localIdentName=${config.webpack.cssModuleName}`
             },
             {
-                test: config.regex.PROJECT_IMAGE_FILES,
+                test: config.regex.IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
-                loaders: [
-                    'responsive'
+                use: [
+                    'file-loader?emitFile=false&name=images/[name].[ext]',
+                    'image-webpack-loader'
                 ]
-            }
+            },
+
         ]
-    },
-    responsiveLoader: {
-        pass: true // Disable responsive loader on server
-    },
+    }
 });

@@ -1,8 +1,12 @@
+import webpack from 'webpack';
 import config  from '../../config';
 
 module.exports = {
     resolve: {
-        root: config.paths.ROOT,
+        modules: [
+            config.paths.ROOT,
+            'node_modules'
+        ],
         alias: {
             // Client paths
             client: 'client',
@@ -21,11 +25,34 @@ module.exports = {
             // Shared paths
             shared: 'shared'
         },
-        extensions: ['', '.js', '.jsx', '.scss']
+        extensions: ['.js', '.jsx', '.scss']
     },
-    responsiveLoader: {
-        name: '[name]-[width]',
-        sizes: [300, 480, 768],
-        placeholder: false
-    },
+    plugins: [
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                imageWebpackLoader: {
+                    pngquant: {
+                        quality: '65-90',
+                        speed: 4
+                    },
+                    svgo: {
+                        plugins: [{
+                            removeViewBox: false
+                        }, {
+                            removeEmptyAttrs: false
+                        }]
+                    }
+                }
+            }
+        })
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: 'babel-loader'
+            }
+        ]
+    }
 };

@@ -1,7 +1,7 @@
-import merge from 'lodash/merge';
+import merge from 'webpack-merge';
 import webpackCommonServerConfig from './common/webpack.common.server.config';
 
-module.exports = merge({}, webpackCommonServerConfig, {
+module.exports = merge(webpackCommonServerConfig, {
     entry: './production.server.js',
 
     output: {

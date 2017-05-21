@@ -1,10 +1,10 @@
 import webpack from 'webpack';
-import merge from 'lodash/merge';
+import merge from 'webpack-merge';
 
-import webpackCommonClientConfig from './common/webpack.common.client.config.js';
+import webpackCommonClientConfig from './common/webpack.common.client.config';
 import config from '../config';
 
-module.exports = merge({}, webpackCommonClientConfig, {
+module.exports = merge(webpackCommonClientConfig, {
     output: {
         path: config.paths.DEV,
         pathinfo: true
@@ -18,70 +18,31 @@ module.exports = merge({}, webpackCommonClientConfig, {
         })
     ],
     module: {
-        loaders: [
-
-            // Javascript
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loaders: ['babel-loader']
-            },
-
-            // HTML
-            {
-                test: /\.html$/,
-                loader: 'file?name=[name].[ext]'
-            },
+        rules: [
 
             // CSS Locals
             {
                 test: /\.scss$/,
                 exclude: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
-                loaders: [
-                    'style',
-                    `css?modules&importLoaders=3&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
-                    'postcss',
-                    'resolve-url',
-                    'sass?sourceMap'
+                use: [
+                    'style-loader',
+                    `css-loader?modules&importLoaders=3&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
+                    'postcss-loader',
+                    'resolve-url-loader',
+                    'sass-loader?sourceMap'
                 ]
             },
 
             // CSS Globals
             {
                 test: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
-                loaders: [
-                    'style',
-                    'css',
-                    'postcss',
-                    'resolve-url',
-                    'sass'
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader',
+                    'resolve-url-loader',
+                    'sass-loader'
                 ]
-            },
-
-            // Images
-            // {
-            //     test: config.regex.IMAGE_FILES,
-            //     exclude: [config.regex.FONT_FILES, config.regex.PROJECT_IMAGE_FILES],
-            //     loaders: [
-            //         'file?hash=sha512&digest=hex&name=images/[hash].[ext]',
-            //         'image-webpack'
-            //     ]
-            // },
-
-            {
-                test: config.regex.PROJECT_IMAGE_FILES,
-                exclude: [config.regex.FONT_FILES],
-                loaders: [
-                    // 'file?hash=sha512&digest=hex&name=images/projects/[hash].[ext]',
-                    // 'image-webpack',
-                    'responsive'
-                ]
-            },
-
-            // Fonts
-            {
-                test: config.regex.FONT_FILES,
-                loader: 'file?name=/fonts/[name].[ext]'
             }
         ]
     }
