@@ -55,7 +55,7 @@ export default class ProjectModalGallery extends Component {
                 <div className='column small-10 medium-4'>
                     <h3>{title}</h3>
                     <p>{description}</p>
-                    { url ? <a href={url} target='_blank'>{url}</a> : null }
+                    { url ? <a href={url} rel="noopener noreferrer" target='_blank'>{url}</a> : null }
                 </div>
             </div>
         );
