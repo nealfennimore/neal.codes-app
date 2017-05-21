@@ -80,7 +80,6 @@
     "react-hot-loader": "^3.0.0-beta.6",
     "redux-immutable-state-invariant": "^1.2.4",
     "resolve-url-loader": "^2.0.2",
-    "responsive-loader": "https://github.com/nealfennimore/responsive-loader.git",
     "sass-loader": "^6.0.5",
     "sinon": "^2.1.0",
     "style-loader": "^0.13.1",
