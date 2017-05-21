@@ -42,13 +42,13 @@ export default class ProjectModalGallery extends Component {
                 <div className='columns small-11 medium-8'>
                     <div className='row align-middle'>
                         <div className='column small-1 text-center'>
-                            { imageIndex > 0 ? <button onClick={this.prev}><i className='icon-arrow_left'></i></button> : null }
+                            { imageIndex > 0 ? <button onClick={this.prev}><i className='icon-arrow_left' /></button> : null }
                         </div>
                         <div className={`${styles.image} column small-10`}>
                             <img src={activeImage} alt='' />
                         </div>
                         <div className='column small-1 text-center'>
-                            { imageIndex < (images.length - 1) ? <button onClick={this.next}><i className='icon-arrow_right'></i></button> : null }
+                            { imageIndex < (images.length - 1) ? <button onClick={this.next}><i className='icon-arrow_right' /></button> : null }
                         </div>
                     </div>
                 </div>
@@ -63,5 +63,5 @@ export default class ProjectModalGallery extends Component {
 }
 
 ProjectModalGallery.propTypes = {
-    project: PropTypes.object.isRequired
+    project: PropTypes.shape({}).isRequired
 };

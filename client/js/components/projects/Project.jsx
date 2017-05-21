@@ -19,11 +19,10 @@ const Project = ({id, title, subtitle, coverImage, onProjectClick}) => {
 };
 
 Project.propTypes = {
-    id: PropTypes.number,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    images: PropTypes.arrayOf(PropTypes.object),
-    coverImage: PropTypes.object,
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    coverImage: PropTypes.string.isRequired,
     onProjectClick: PropTypes.func.isRequired
 };
 
