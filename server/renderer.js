@@ -4,14 +4,14 @@ import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import { Helmet } from 'react-helmet';
 
-import sagas from 'sagas';
 import configureStore from 'client/store';
+import waitAll from 'sagas/waitAll';
 import page from 'server/templates/page';
 
 // Create a new Redux store instance
 const store = configureStore();
 
-function renderMarkup(store, renderProps){
+function renderMarkup(renderProps){
     return renderToString(
         <Provider store={store}>
             <RouterContext {...renderProps} />
@@ -19,11 +19,20 @@ function renderMarkup(store, renderProps){
     );
 }
 
+function getPreloaders({ components=[], ...rest }){
+    return components
+        .filter((component) => component && component.preload)
+        .map((component) => component.preload(rest))
+        .reduce((result, preloader) => result.concat(preloader), []);
+}
+
 export default function handleRender({res, renderProps, next}) {
-    store.runSaga(sagas).done
+    store.runSaga(
+        waitAll(getPreloaders(renderProps))
+    ).done
         .then(()=> {
             // Second render
-            const content = renderMarkup(store, renderProps);
+            const content = renderMarkup(renderProps);
             const helmet = Helmet.renderStatic();
 
             // Grab the initial state from our Redux store
@@ -45,6 +54,6 @@ export default function handleRender({res, renderProps, next}) {
         });
 
     // Do first render, start initial actions
-    renderMarkup(store, renderProps);
+    renderMarkup(renderProps);
     store.close();
 }
