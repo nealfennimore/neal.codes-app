@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { GET_TAGS } from 'sagas/blog/tags';
+import { GET_TAGS, tagsFlow } from 'sagas/blog/tags';
 import Tags from 'components/blog/tags';
 
 const mapStateToProps = (state) => ({
@@ -14,5 +14,11 @@ const mapDispatchToProps = (dispatch) => ({
         params
     })
 });
+
+Tags.preload = function preload(args){
+    return [
+        [tagsFlow, args]
+    ];
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tags);

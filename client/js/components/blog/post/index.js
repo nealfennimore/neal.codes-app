@@ -1,15 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import Loader from 'components/global/Loader';
-import { isServer } from 'shared/env';
 import Article from './Article';
 
 export default class Post extends Component {
-    componentWillMount(){
-        if(isServer){
-            this.props.getPost(this.props);
-        }
-    }
-
     componentDidMount(){
         this.props.getPost(this.props);
     }

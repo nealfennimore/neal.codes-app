@@ -3,7 +3,6 @@ import has from 'lodash/has';
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
 
-import { isServer } from 'shared/env';
 import Posts from 'components/blog/common/Posts';
 import Pagination from 'components/blog/common/Pagination';
 import Loader from 'components/global/Loader';
@@ -11,12 +10,6 @@ import { capitializeWords } from 'shared/formatting';
 import TagSEO from './TagSEO';
 
 export default class Tags extends Component {
-    componentWillMount(){
-        if(isServer){
-            this.props.getTags(this.props);
-        }
-    }
-
     componentDidMount(){
         this.props.getTags(this.props);
     }

@@ -9,12 +9,13 @@ export const GET_POST = 'GET_POST';
 export const SET_POST = 'SET_POST';
 
 export function* fetchPost(action){
+    yield put({type: REQUEST_POST});
+    const params = {
+        slug: action.slug,
+        params: {include: 'tags'}
+    };
+
     try {
-        yield put({type: REQUEST_POST});
-        const params = {
-            slug: action.slug,
-            params: {include: 'tags'}
-        };
         const { posts } = yield call(blogService.postBySlug, params);
         yield put({type: RECEIVE_POST, posts});
     } catch (e) {
@@ -22,14 +23,15 @@ export function* fetchPost(action){
     }
 }
 
-export function* postFlow({blog, slug}){
+export function* postFlow({blog, params }){
+    const slug = get(params, 'slug');
     const isActive = get(blog, 'post.slug', false) === slug;
     const posts = get(blog, 'posts.posts', []);
     const post = !isActive ? find(posts, p => p.slug === slug) : false;
 
     if(post && !isActive){
         yield put({ type: SET_POST, posts: [post] });
-    } else if(!post) {
+    } else if(!post && !isActive) {
         yield call(fetchPost, {slug});
     }
 }

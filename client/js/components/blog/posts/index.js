@@ -2,18 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import get from 'lodash/get';
 import size from 'lodash/size';
 
-import { isServer } from 'shared/env';
 import Loader from 'components/global/Loader';
 import Pagination from 'components/blog/common/Pagination';
 import Posts from 'components/blog/common/Posts';
 
 export default class PostsPage extends Component {
-    componentWillMount(){
-        if(isServer){
-            this.props.getPosts(this.props);
-        }
-    }
-
     componentDidMount(){
         this.props.getPosts(this.props);
     }

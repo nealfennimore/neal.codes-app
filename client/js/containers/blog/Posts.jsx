@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { POSTS } from 'sagas/blog/posts';
+import { POSTS, postsFlow } from 'sagas/blog/posts';
 import Posts from 'components/blog/posts';
 
 const mapStateToProps = (state) => ({
@@ -14,5 +14,11 @@ const mapDispatchToProps = (dispatch) => ({
         ...props
     })
 });
+
+Posts.preload = function preload(args){
+    return [
+        [postsFlow, args]
+    ];
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

@@ -8,9 +8,10 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 export function* fetchPosts({page}){
+    yield put({ type: REQUEST_POSTS });
+    const params = setPageParams(page);
+
     try {
-        yield put({ type: REQUEST_POSTS });
-        const params = setPageParams(page);
         const posts = yield call(blogService.posts, params);
         yield put({type: RECEIVE_POSTS, posts});
     } catch (e) {

@@ -9,14 +9,15 @@ export const REQUEST_TAGS = 'REQUEST_TAGS';
 export const RECEIVE_TAGS = 'RECEIVE_TAGS';
 
 export function* fetchTags({slug, page}){
+    yield put({type: REQUEST_TAGS });
+    const params = merge({}, queryParams, {
+        params: {
+            filter: `tags:[${slug}]`,
+            page:   Number(page) || 1
+        }
+    });
+
     try {
-        yield put({type: REQUEST_TAGS });
-        const params = merge({}, queryParams, {
-            params: {
-                filter: `tags:[${slug}]`,
-                page:   Number(page) || 1
-            }
-        });
         const tags = yield call(blogService.tags, params);
         yield put({type: RECEIVE_TAGS, tags, slug});
     } catch (e) {
@@ -33,6 +34,6 @@ export function* tagsFlow({blog, params: { slug, tagPage=1 }}){
     }
 }
 
-export default function* tagsSaga(){
+export default function* tagsWatcher(){
     yield takeLatest(GET_TAGS, tagsFlow);
 }
