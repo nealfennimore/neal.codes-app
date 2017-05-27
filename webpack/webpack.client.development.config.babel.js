@@ -26,10 +26,23 @@ module.exports = merge(webpackCommonClientConfig, {
                 exclude: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
                 use: [
                     'style-loader',
-                    `css-loader?modules&importLoaders=3&sourceMap&localIdentName=${config.webpack.cssModuleName}`,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 3,
+                            sourceMap: true,
+                            localIdentName: config.webpack.cssModuleName
+                        }
+                    },
                     'postcss-loader',
                     'resolve-url-loader',
-                    'sass-loader?sourceMap'
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        }
+                    }
                 ]
             },
 
