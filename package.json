@@ -30,9 +30,6 @@
     "url": "https://github.com/nealfennimore/neal.codes-app/issues"
   },
   "homepage": "https://github.com/nealfennimore/neal.codes-app#readme",
-  "browserslist": [
-    "last 2 versions"
-  ],
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel-cli": "^6.24.1",
