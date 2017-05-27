@@ -3,9 +3,10 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import { Helmet } from 'react-helmet';
+import compose from 'lodash/fp/compose';
 
 import configureStore from 'client/store';
-import waitAll from 'sagas/waitAll';
+import { waitForSagas } from './utils/sagas';
 import page from 'server/templates/page';
 
 function renderMarkup(store, renderProps){
@@ -16,19 +17,12 @@ function renderMarkup(store, renderProps){
     );
 }
 
-function getPreloaders({ components=[], ...rest }){
-    return components
-        .filter((component) => component && component.preload)
-        .map((component) => component.preload(rest))
-        .reduce((result, preloader) => result.concat(preloader), []);
-}
-
 export default function handleRender({res, renderProps, next}) {
     // Create a new Redux store instance
     const store = configureStore();
 
     store.runSaga(
-        waitAll(getPreloaders(renderProps))
+        waitForSagas(renderProps)
     ).done
         .then(()=> {
             // Second render
