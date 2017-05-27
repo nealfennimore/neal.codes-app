@@ -8,10 +8,7 @@ import configureStore from 'client/store';
 import waitAll from 'sagas/waitAll';
 import page from 'server/templates/page';
 
-// Create a new Redux store instance
-const store = configureStore();
-
-function renderMarkup(renderProps){
+function renderMarkup(store, renderProps){
     return renderToString(
         <Provider store={store}>
             <RouterContext {...renderProps} />
@@ -27,12 +24,15 @@ function getPreloaders({ components=[], ...rest }){
 }
 
 export default function handleRender({res, renderProps, next}) {
+    // Create a new Redux store instance
+    const store = configureStore();
+
     store.runSaga(
         waitAll(getPreloaders(renderProps))
     ).done
         .then(()=> {
             // Second render
-            const content = renderMarkup(renderProps);
+            const content = renderMarkup(store, renderProps);
             const helmet = Helmet.renderStatic();
 
             // Grab the initial state from our Redux store
@@ -54,6 +54,7 @@ export default function handleRender({res, renderProps, next}) {
         });
 
     // Do first render, start initial actions
-    renderMarkup(renderProps);
+    renderMarkup(store, renderProps);
+    // Dispatch END event to stop sagas after they're done loading
     store.close();
 }
