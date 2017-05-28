@@ -19,7 +19,7 @@ function renderMarkup(store, renderProps){
 
 export default function handleRender({res, renderProps, next}) {
     // Create a new Redux store instance
-    const store = configureStore();
+    const store = configureStore(null, {isServer: true});
 
     store.runSaga(
         waitForSagas(renderProps)
