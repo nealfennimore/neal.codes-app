@@ -29,13 +29,12 @@ class Projects extends Component {
 }
 
 Projects.propTypes = {
-    dispatch: PropTypes.func,
-    showProjectModal: PropTypes.func,
-    hideProjectModal: PropTypes.func,
+    showProjectModal: PropTypes.func.isRequired,
+    hideProjectModal: PropTypes.func.isRequired,
     projects: PropTypes.shape({
         projects: PropTypes.array,
         modal: PropTypes.object
-    })
+    }).isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -43,7 +42,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatch,
     showProjectModal: (id)=> dispatch(showProjectModal(id)),
     hideProjectModal: ()=> dispatch(hideProjectModal()),
 });
