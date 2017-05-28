@@ -1,11 +1,18 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 
+import { getStore } from 'store';
 import { showProjectModal, hideProjectModal } from 'sagas/projects';
 import ProjectsSEO from './ProjectsSEO';
 import ProjectList from 'components/projects';
 import ProjectModal from 'components/projects/ProjectModal';
+import projects from 'reducers/projects';
 import styles from './Projects.scss';
+
+const store = getStore();
+store.injectAsyncReducers({
+    projects
+});
 
 class Projects extends Component {
     render() {
