@@ -51,7 +51,24 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        babelrc: false, // Disallow babelrc
+                        presets: [
+                            [
+                                'es2015', { modules: false }
+                            ],
+                            'react',
+                            'stage-3'
+                        ],
+                        plugins: [
+                            'babel-plugin-syntax-dynamic-import',
+                            'babel-plugin-transform-object-rest-spread',
+                            'babel-plugin-transform-regenerator',
+                        ]
+                    }
+                }
             }
         ]
     }
