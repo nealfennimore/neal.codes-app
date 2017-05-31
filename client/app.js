@@ -5,13 +5,13 @@ import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
 
-import configureStore from 'client/store';
+import clientStore from 'client/store';
 import sagas from 'sagas';
 import Root from 'client/root';
 
 // Grab the state from a global injected into server-generated HTML
 const preloadedState = window.__PRELOADED_STATE__;
-const store = configureStore(preloadedState);
+const store = clientStore.create(preloadedState);
 
 store.runSaga(sagas);
 

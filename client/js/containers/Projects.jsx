@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
 
-import { getStore } from 'store';
+import store from 'client/store';
 import { showProjectModal, hideProjectModal } from 'sagas/projects';
 import ProjectsSEO from './ProjectsSEO';
 import ProjectList from 'components/projects';

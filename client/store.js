@@ -1,54 +1,37 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
+import noop from 'lodash/noop';
 import {END} from 'redux-saga';
 import middleware, {composeEnhancers, sagaMiddleware} from 'client/middleware';
-import reducers from 'reducers';
+import createReducer from 'reducers';
+import { isBrowser } from 'shared/env';
 
-let __store;
-export function getStore(){
-    return __store;
-}
+const STORE = {
+    __store: { injectAsyncReducers: noop },
+    get instance(){ return this.__store; },
+    set instance(store){ this.__store = store; },
 
-function setStore(store){
-    __store = store;
-}
+    create: function configureStore(initialState={}, options={} ) {
+        const store = createStore(
+            createReducer(),
+            initialState,
+            composeEnhancers(
+                applyMiddleware(...middleware)
+            )
+        );
 
-function replaceReducers(defaultReducers) {
-    const merged = Object.assign({}, defaultReducers, this.asyncReducers);
-    const combined = combineReducers(merged);
-    this.replaceReducer(combined);
-}
+        store.asyncReducers = {};
+        store.injectAsyncReducers = (asyncReducers)=> store.replaceReducer(createReducer(asyncReducers));
 
-function injectAsyncReducers(asyncReducers) {
-    const injectReducers = Object.keys(asyncReducers).reduce((all, item) => {
-        if (this.asyncReducers[item]) {
-            delete all[item];
+        store.runSaga = sagaMiddleware.run;
+        store.close = () => store.dispatch(END);
+
+        if(isBrowser){
+            // We never want to memonize a server store
+            this.instance = store;
         }
 
-        return all;
-    }, asyncReducers);
-
-    this.asyncReducers = Object.assign({}, this.asyncReducers, injectReducers);
-    replaceReducers.call(this, reducers);
-};
-
-export default function configureStore(initialState={}, options={} ) {
-    const store = createStore(
-        reducers,
-        initialState,
-        composeEnhancers(
-            applyMiddleware(...middleware)
-        )
-    );
-
-    store.asyncReducers = {};
-    store.injectAsyncReducers = injectAsyncReducers.bind(store);
-
-    store.runSaga = sagaMiddleware.run;
-    store.close = () => store.dispatch(END);
-
-    if(!options.isServer){
-        setStore(store);
+        return store;
     }
-
-    return store;
 }
+
+export default STORE;

@@ -5,7 +5,7 @@ import { RouterContext } from 'react-router';
 import { Helmet } from 'react-helmet';
 import compose from 'lodash/fp/compose';
 
-import configureStore from 'client/store';
+import clientStore from 'client/store';
 import { waitForSagas } from './utils/sagas';
 import page from 'server/templates/page';
 
@@ -19,7 +19,7 @@ function renderMarkup(store, renderProps){
 
 export default function handleRender({res, renderProps, next}) {
     // Create a new Redux store instance
-    const store = configureStore(null, {isServer: true});
+    const store = clientStore.create();
 
     store.runSaga(
         waitForSagas(renderProps)
