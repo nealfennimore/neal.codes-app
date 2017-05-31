@@ -9,8 +9,7 @@ import ProjectModal from 'components/projects/ProjectModal';
 import projects from 'reducers/projects';
 import styles from './Projects.scss';
 
-const store = getStore();
-store.injectAsyncReducers({
+store.instance.injectAsyncReducers({
     projects
 });
 
