@@ -19,7 +19,6 @@ const STORE = {
             )
         );
 
-        store.asyncReducers = {};
         store.injectAsyncReducers = (asyncReducers)=> store.replaceReducer(createReducer(asyncReducers));
 
         store.runSaga = sagaMiddleware.run;
