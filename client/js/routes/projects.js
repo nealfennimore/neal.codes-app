@@ -5,7 +5,7 @@ const loadProjects = () => import(/* webpackChunkName: "projects" */ 'containers
 
 class Projects extends Component {
     render() {
-        return <Bundle load={loadProjects}/>;
+        return <Bundle load={loadProjects} />;
     }
 }
 
