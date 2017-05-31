@@ -4,7 +4,7 @@ import autoprefixer from 'autoprefixer';
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-module.exports = merge(webpackCommon, {
+export default merge(webpackCommon, {
     name: 'client',
     target: 'web',
     context: config.paths.CLIENT,

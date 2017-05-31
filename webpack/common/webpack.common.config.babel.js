@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import config  from '../../config';
 
-module.exports = {
+export default {
     resolve: {
         modules: [
             config.paths.ROOT,

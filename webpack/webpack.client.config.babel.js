@@ -6,7 +6,7 @@ import webpackCommonClientConfig from './common/webpack.common.client.config';
 import config from '../config';
 
 
-module.exports = merge(webpackCommonClientConfig, {
+export default merge(webpackCommonClientConfig, {
 
     output: {
         path: config.paths.PUBLIC

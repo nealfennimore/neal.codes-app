@@ -5,7 +5,7 @@ import nodeExternals from 'webpack-node-externals';
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-module.exports = merge(webpackCommon, {
+export default merge(webpackCommon, {
     target: 'node',
     name: 'server',
     node: {
