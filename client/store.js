@@ -10,7 +10,7 @@ const STORE = {
     get instance(){ return this.__store; },
     set instance(store){ this.__store = store; },
 
-    create: function configureStore(initialState={}, options={} ) {
+    create: function configureStore(initialState={}) {
         const store = createStore(
             createReducer(),
             initialState,
