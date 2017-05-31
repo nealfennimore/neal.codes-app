@@ -2,13 +2,13 @@ import React, {Component, PropTypes} from 'react';
 import Loader from 'components/global/Loader';
 
 class Bundle extends Component {
-    static propTypes = {
-        load: PropTypes.func.isRequired
-    };
+    constructor(props, context){
+        super(props, context);
 
-    state = {
-        LoadedComponent: null
-    };
+        this.state = {
+            LoadedComponent: null
+        };
+    }
 
     componentWillMount() {
         this.load(this.props);
@@ -33,9 +33,12 @@ class Bundle extends Component {
 
     render() {
         const {LoadedComponent} = this.state;
-
-        return LoadedComponent ? <LoadedComponent {...this.props}/> : <Loader/>;
+        return LoadedComponent ? <LoadedComponent {...this.props} /> : <Loader />;
     }
 }
+
+Bundle.propTypes = {
+    load: PropTypes.func.isRequired
+};
 
 export default Bundle;
