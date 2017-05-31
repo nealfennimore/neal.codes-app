@@ -17,7 +17,7 @@ store.runSaga(sagas);
 
 const history = syncHistoryWithStore(browserHistory, store);
 
-function hotModuleRender(App){
+function appRender(App){
     render(
         <AppContainer>
             <App
@@ -29,7 +29,7 @@ function hotModuleRender(App){
     );
 }
 
-hotModuleRender(Root);
+appRender(Root);
 
 if(module.hot){
     module.hot.accept('./js/reducers', ()=>{
@@ -37,6 +37,6 @@ if(module.hot){
     });
 
     module.hot.accept('./root', ()=>{
-        hotModuleRender(require('./root').default);
+        appRender(require('./root').default);
     });
 }
