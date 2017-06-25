@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import merge from 'webpack-merge';
 
-import webpackCommonClientConfig from './common/webpack.common.client.config';
+import webpackCommonClientConfig from './common/webpack.common.client.config.babel';
 import config from '../config';
 
 
