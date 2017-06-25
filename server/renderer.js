@@ -3,11 +3,11 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import { Helmet } from 'react-helmet';
-import compose from 'lodash/fp/compose';
 
 import clientStore from 'client/store';
-import { waitForSagas } from './utils/sagas';
 import page from 'server/templates/page';
+import { waitForSagas } from './utils/sagas';
+
 
 function renderMarkup(store, renderProps){
     return renderToString(
@@ -31,6 +31,7 @@ export default function handleRender({res, renderProps, next}) {
 
             // Grab the initial state from our Redux store
             const initialState = store.getState();
+            store.reset();
 
             // Send the rendered page back to the client
             res.send(
@@ -42,6 +43,7 @@ export default function handleRender({res, renderProps, next}) {
             );
         })
         .catch( err => {
+            store.reset();
             console.error(err);
             const status = err.status || 404;
             res.redirect(`/${status}`);

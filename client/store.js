@@ -1,12 +1,13 @@
-import {createStore, applyMiddleware, combineReducers} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import noop from 'lodash/noop';
 import {END} from 'redux-saga';
 import middleware, {composeEnhancers, sagaMiddleware} from 'client/middleware';
 import createReducer from 'reducers';
-import { isBrowser } from 'shared/env';
+
+const defaultStore = { injectAsyncReducers: noop };
 
 const STORE = {
-    __store: { injectAsyncReducers: noop },
+    __store: defaultStore,
     get instance(){ return this.__store; },
     set instance(store){ this.__store = store; },
 
@@ -24,13 +25,15 @@ const STORE = {
         store.runSaga = sagaMiddleware.run;
         store.close = () => store.dispatch(END);
 
-        if(isBrowser){
-            // We never want to memonize a server store
-            this.instance = store;
-        }
+        // We never want to memonize a server store
+        this.instance = store;
 
         return store;
+    },
+
+    reset(){
+        this.instance = defaultStore;
     }
-}
+};
 
 export default STORE;
