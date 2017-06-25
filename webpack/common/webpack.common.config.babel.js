@@ -19,7 +19,6 @@ export default {
             components: 'client/js/components',
             reducers: 'client/js/reducers',
             services: 'client/js/services',
-            routes: 'client/js/routes',
             lib: 'client/lib',
             // Server paths
             server: 'server',

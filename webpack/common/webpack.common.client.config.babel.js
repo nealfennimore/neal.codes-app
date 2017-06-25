@@ -4,10 +4,18 @@ import autoprefixer from 'autoprefixer';
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-export default merge(webpackCommon, {
+export default merge.strategy(
+    'resolve.alias': 'append'
+)(webpackCommon, {
     name: 'client',
     target: 'web',
     context: config.paths.CLIENT,
+
+    resolve: {
+        alias: {
+            routes: 'shared/routes/asynchronous'
+        }
+    },
 
     entry: {
         app: [

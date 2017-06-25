@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 
-import Routes from 'client/routes';
+import Routes from 'shared/routes';
 
 const Root = ({store, history}) => {
     return (
@@ -12,8 +12,8 @@ const Root = ({store, history}) => {
 };
 
 Root.propTypes = {
-    store: PropTypes.object,
-    history: PropTypes.object
+    store: PropTypes.shape({}).isRequired,
+    history: PropTypes.shape({}).isRequired
 };
 
 export default Root;

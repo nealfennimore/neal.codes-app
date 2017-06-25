@@ -1,5 +1,5 @@
 import { browserHistory as history, match } from 'react-router';
-import routes from 'client/routes';
+import routes from 'shared/routes';
 import handleRender from './renderer';
 
 export default function handleRouting(req, res, next){

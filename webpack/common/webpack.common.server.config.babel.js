@@ -5,13 +5,21 @@ import nodeExternals from 'webpack-node-externals';
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-export default merge(webpackCommon, {
+export default merge.strategy(
+    'resolve.alias': 'append'
+)(webpackCommon, {
     target: 'node',
     name: 'server',
     node: {
         __dirname: true // superagent fix: https://github.com/visionmedia/superagent/wiki/SuperAgent-for-Webpack
     },
     context: config.paths.SERVER,
+
+    resolve: {
+        alias: {
+            routes: 'shared/routes/synchronous'
+        }
+    },
 
     entry: null,
     output: {
