@@ -56,8 +56,32 @@ export default merge.strategy(
                 test: config.regex.IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
                 use: [
-                    'file-loader?name=images/[name].[ext]',
-                    'image-webpack-loader'
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            emitFile: true,
+                            name: 'images/[name].[ext]'
+                        }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        query:{
+                            progressive: true,
+                            optimizationLevel: 7,
+                            interlaced: false,
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            svgo: {
+                                plugins: [{
+                                    removeViewBox: false
+                                }, {
+                                    removeEmptyAttrs: false
+                                }]
+                            }
+                        }
+                    }
                 ]
             },
 

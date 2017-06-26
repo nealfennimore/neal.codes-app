@@ -27,25 +27,6 @@ export default {
         },
         extensions: ['.js', '.jsx', '.scss']
     },
-    plugins: [
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                imageWebpackLoader: {
-                    pngquant: {
-                        quality: '65-90',
-                        speed: 4
-                    },
-                    svgo: {
-                        plugins: [{
-                            removeViewBox: false
-                        }, {
-                            removeEmptyAttrs: false
-                        }]
-                    }
-                }
-            }
-        })
-    ],
     module: {
         rules: [
             {
