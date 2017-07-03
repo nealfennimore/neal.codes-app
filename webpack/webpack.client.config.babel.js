@@ -20,10 +20,10 @@ export default merge(webpackCommonClientConfig, {
             }
         }),
         new ExtractTextPlugin('[name].css'),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            minChunks: ({context}) => /node_modules/.test(context)
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'vendor',
+        //     minChunks: ({context}) => /node_modules/.test(context)
+        // }),
         new webpack.SourceMapDevToolPlugin({
             filename: '[file].map',
             append: '\n//# sourceMappingURL=/[url]',
