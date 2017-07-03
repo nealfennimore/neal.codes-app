@@ -48,6 +48,7 @@ export default merge(webpackCommonClientConfig, {
                 test: /\.scss$/,
                 exclude: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
                 use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
                     use: [
                         {
                             loader: 'css-loader',
@@ -75,6 +76,7 @@ export default merge(webpackCommonClientConfig, {
             {
                 test: [config.regex.VENDOR_SCSS, config.regex.FONT_STYLES],
                 use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
                     use: [
                         {
                             loader: 'css-loader',
