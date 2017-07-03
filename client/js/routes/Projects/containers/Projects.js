@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { showProjectModal, hideProjectModal } from 'sagas/projects';
 import { injectReducer, syncReducer } from 'sagas/injector';
+import { getProjects, getModal } from '../selectors/projects';
 import projectsReducer from '../reducers';
 import Projects from '../components/Projects';
 
@@ -16,16 +17,10 @@ Projects.preload = function preload(args){
 };
 
 export default connect(
-    (state) => {
-        const _projects = state.projects && state.projects.projects;
-        const modal = state.projects && state.projects.modal;
-
-        return {
-            projects: _projects || [],
-            modal: modal || {},
-            hasProjects: _projects && modal
-        };
-    },
+    (state) => ({
+        projects: getProjects(state),
+        modal: getModal(state)
+    }),
     (dispatch) => ({
         setup: ()=> dispatch( syncReducer(projects) ),
         showModal: (id)=> dispatch(showProjectModal(id)),
