@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { showProjectModal, hideProjectModal } from 'sagas/projects';
 import { injectReducer, syncReducer } from 'sagas/injector';
+import { showProjectModal, hideProjectModal } from '../sagas/projects';
 import { getProjects, getModal } from '../selectors/projects';
 import projectsReducer from '../reducers';
 import Projects from '../components/Projects';
