@@ -22,7 +22,7 @@ export default function handleRender({res, renderProps, next}) {
     const store = clientStore.create();
 
     store.runSaga(
-        waitForSagas(renderProps)
+        waitForSagas({store, ...renderProps})
     ).done
         .then(()=> {
             // Second render
