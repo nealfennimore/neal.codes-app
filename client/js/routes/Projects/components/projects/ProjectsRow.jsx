@@ -12,7 +12,7 @@ const ProjectsRow = ({row, onProjectClick}) => {
 
 ProjectsRow.propTypes = {
     onProjectClick: PropTypes.func.isRequired,
-    row: PropTypes.arrayOf(PropTypes.object)
+    row: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default ProjectsRow;

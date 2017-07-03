@@ -15,7 +15,7 @@ const ProjectList = ({projects, onProjectClick}) => {
 
 ProjectList.propTypes = {
     onProjectClick: PropTypes.func.isRequired,
-    projects: PropTypes.array
+    projects: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default ProjectList;
