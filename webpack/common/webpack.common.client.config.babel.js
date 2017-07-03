@@ -13,7 +13,7 @@ export default merge.strategy(
 
     resolve: {
         alias: {
-            routes: 'shared/routes/asynchronous'
+            routes: 'shared/routes/asynchronous.js'
         }
     },
 

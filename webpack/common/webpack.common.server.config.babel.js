@@ -17,7 +17,7 @@ export default merge.strategy(
 
     resolve: {
         alias: {
-            routes: 'shared/routes/synchronous'
+            routes: 'shared/routes/synchronous.js'
         }
     },
 
