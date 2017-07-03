@@ -1,9 +1,3 @@
-import Post from 'components/blog/post';
-import Posts from 'components/blog/posts';
-import Tags from 'components/blog/tags';
-
-module.exports = {
-    Post,
-    Posts,
-    Tags
-};
+export { default as Post } from 'components/blog/post';
+export { default as Posts } from 'components/blog/posts';
+export { default as Tags } from 'components/blog/tags';

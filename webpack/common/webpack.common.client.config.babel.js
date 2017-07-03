@@ -4,10 +4,18 @@ import autoprefixer from 'autoprefixer';
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-module.exports = merge(webpackCommon, {
+export default merge.strategy(
+    'resolve.alias': 'append'
+)(webpackCommon, {
     name: 'client',
     target: 'web',
     context: config.paths.CLIENT,
+
+    resolve: {
+        alias: {
+            routes: 'shared/routes/asynchronous.js'
+        }
+    },
 
     entry: {
         app: [
@@ -48,8 +56,16 @@ module.exports = merge(webpackCommon, {
                 test: config.regex.IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
                 use: [
-                    'file-loader?name=images/[name].[ext]',
-                    'image-webpack-loader'
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            emitFile: true,
+                            name: 'images/[name].[ext]'
+                        }
+                    },
+                    {
+                        loader: 'image-webpack-loader'
+                    }
                 ]
             },
 

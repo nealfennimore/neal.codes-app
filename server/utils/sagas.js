@@ -15,4 +15,3 @@ function getPreloaders({ components=[], ...rest }){
 }
 
 export const waitForSagas = compose(waitAll, getPreloaders);
-

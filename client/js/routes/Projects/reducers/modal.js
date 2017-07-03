@@ -5,7 +5,7 @@ const initialState = {
     activeID: null
 };
 
-function modal(state=initialState, action) {
+function modal(state=initialState, action={}) {
     switch (action.type) {
     case SHOW_PROJECT_MODAL:
         return Object.assign({}, state, {

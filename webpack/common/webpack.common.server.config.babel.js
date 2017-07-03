@@ -5,13 +5,21 @@ import nodeExternals from 'webpack-node-externals';
 import webpackCommon from './webpack.common.config.babel';
 import config from '../../config';
 
-module.exports = merge(webpackCommon, {
+export default merge.strategy(
+    'resolve.alias': 'append'
+)(webpackCommon, {
     target: 'node',
     name: 'server',
     node: {
         __dirname: true // superagent fix: https://github.com/visionmedia/superagent/wiki/SuperAgent-for-Webpack
     },
     context: config.paths.SERVER,
+
+    resolve: {
+        alias: {
+            routes: 'shared/routes/synchronous.js'
+        }
+    },
 
     entry: null,
     output: {
@@ -40,8 +48,13 @@ module.exports = merge(webpackCommon, {
                 test: config.regex.IMAGE_FILES,
                 exclude: [config.regex.FONT_FILES],
                 use: [
-                    'file-loader?emitFile=false&name=images/[name].[ext]',
-                    'image-webpack-loader'
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            emitFile: false,
+                            name: 'images/[name].[ext]'
+                        }
+                    }
                 ]
             },
 

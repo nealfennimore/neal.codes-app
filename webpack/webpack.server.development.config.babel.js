@@ -1,8 +1,8 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import webpackCommonServerConfig from './common/webpack.common.server.config';
+import webpackCommonServerConfig from './common/webpack.common.server.config.babel';
 
-module.exports = merge(webpackCommonServerConfig, {
+export default merge(webpackCommonServerConfig, {
     entry: './development.server.js',
 
     output: {

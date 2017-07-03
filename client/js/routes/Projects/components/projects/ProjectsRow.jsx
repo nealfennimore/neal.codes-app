@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Project from 'components/projects/Project';
+import Project from './Project';
 import styles from './ProjectsRow.scss';
 
 const ProjectsRow = ({row, onProjectClick}) => {

@@ -3,11 +3,11 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import { Helmet } from 'react-helmet';
-import compose from 'lodash/fp/compose';
 
-import configureStore from 'client/store';
-import { waitForSagas } from './utils/sagas';
+import clientStore from 'client/store';
 import page from 'server/templates/page';
+import { waitForSagas } from './utils/sagas';
+
 
 function renderMarkup(store, renderProps){
     return renderToString(
@@ -19,10 +19,10 @@ function renderMarkup(store, renderProps){
 
 export default function handleRender({res, renderProps, next}) {
     // Create a new Redux store instance
-    const store = configureStore();
+    const store = clientStore.create();
 
     store.runSaga(
-        waitForSagas(renderProps)
+        waitForSagas({store, ...renderProps})
     ).done
         .then(()=> {
             // Second render

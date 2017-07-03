@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import chunk from 'lodash/chunk';
 
-import ProjectsRow from 'components/projects/ProjectsRow';
+import ProjectsRow from './ProjectsRow';
 
 const ProjectList = ({projects, onProjectClick}) => {
     const rows = chunk(projects, 2);

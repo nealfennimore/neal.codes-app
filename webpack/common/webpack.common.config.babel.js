@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import config  from '../../config';
 
-module.exports = {
+export default {
     resolve: {
         modules: [
             config.paths.ROOT,
@@ -27,31 +27,29 @@ module.exports = {
         },
         extensions: ['.js', '.jsx', '.scss']
     },
-    plugins: [
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                imageWebpackLoader: {
-                    pngquant: {
-                        quality: '65-90',
-                        speed: 4
-                    },
-                    svgo: {
-                        plugins: [{
-                            removeViewBox: false
-                        }, {
-                            removeEmptyAttrs: false
-                        }]
-                    }
-                }
-            }
-        })
-    ],
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        babelrc: false, // Disallow babelrc
+                        presets: [
+                            [
+                                'es2015', { modules: false }
+                            ],
+                            'react',
+                            'stage-3'
+                        ],
+                        plugins: [
+                            'babel-plugin-syntax-dynamic-import',
+                            'babel-plugin-transform-object-rest-spread',
+                            'babel-plugin-transform-regenerator',
+                        ]
+                    }
+                }
             }
         ]
     }

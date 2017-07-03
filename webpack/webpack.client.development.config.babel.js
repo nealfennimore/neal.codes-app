@@ -1,10 +1,10 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 
-import webpackCommonClientConfig from './common/webpack.common.client.config';
+import webpackCommonClientConfig from './common/webpack.common.client.config.babel';
 import config from '../config';
 
-module.exports = merge(webpackCommonClientConfig, {
+export default merge(webpackCommonClientConfig, {
     output: {
         path: config.paths.DEV,
         pathinfo: true

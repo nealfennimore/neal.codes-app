@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {Router, Route, IndexRoute} from 'react-router';
-import { Layout, Home, Blog, Posts, Post, Tags, Projects } from 'containers';
+import { Layout, Home, Blog, Posts, Post, Tags } from 'containers';
+import { Projects } from 'routes';
 import { NotFound } from 'components/common';
 import { logPageView } from 'lib/googleAnalytics';
 
@@ -31,5 +32,5 @@ export default function Routes({history}) {
 }
 
 Routes.propTypes = {
-    history: PropTypes.object
+    history: PropTypes.shape({}).isRequired
 };

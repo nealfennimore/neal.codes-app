@@ -1,8 +1,8 @@
 import path from 'path';
 import fs from 'fs';
 import includes from 'lodash/includes';
-import clientConfig from '../../../../webpack/common/webpack.common.client.config.js';
 import { isDevelopment } from 'shared/env';
+import clientConfig from '../../../../webpack/common/webpack.common.client.config.babel';
 
 let files = isDevelopment ? '' : [];
 

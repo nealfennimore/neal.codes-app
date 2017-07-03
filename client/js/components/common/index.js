@@ -1,5 +1,1 @@
-import NotFound from 'components/common/404';
-
-module.exports = {
-    NotFound
-};
+export { default as NotFound } from 'components/common/404';

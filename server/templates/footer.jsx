@@ -1,4 +1,4 @@
-import clientConfig from '../../webpack/common/webpack.common.client.config.js';
+import clientConfig from '../../webpack/common/webpack.common.client.config.babel';
 import buildStamp from '../../buildStamp';
 
 function template(fileName){
