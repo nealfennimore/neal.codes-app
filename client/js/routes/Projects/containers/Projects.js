@@ -1,20 +1,34 @@
 import { connect } from 'react-redux';
-
-import store from 'client/store';
 import { showProjectModal, hideProjectModal } from 'sagas/projects';
-import projects from '../reducers';
+import { injectReducer, syncReducer } from 'sagas/injector';
+import projectsReducer from '../reducers';
 import Projects from '../components/Projects';
 
-store.instance.injectAsyncReducers({
-    projects
-});
+const projects = {
+    key: 'projects',
+    reducer: projectsReducer
+};
+
+Projects.preload = function preload(args){
+    return [
+        [injectReducer, projects, args]
+    ];
+};
 
 export default connect(
-    (state) => ({
-        projects: state.projects
-    }),
+    (state) => {
+        const _projects = state.projects && state.projects.projects;
+        const modal = state.projects && state.projects.modal;
+
+        return {
+            projects: _projects || [],
+            modal: modal || {},
+            hasProjects: _projects && modal
+        };
+    },
     (dispatch) => ({
-        showProjectModal: (id)=> dispatch(showProjectModal(id)),
-        hideProjectModal: ()=> dispatch(hideProjectModal())
+        setup: ()=> dispatch( syncReducer(projects) ),
+        showModal: (id)=> dispatch(showProjectModal(id)),
+        hideModal: ()=> dispatch(hideProjectModal())
     })
 )(Projects);

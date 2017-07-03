@@ -124,7 +124,7 @@ const initialState = [
 ];
 
 
-function projects(state=initialState, action) {
+function projects(state=initialState, action={}) {
     switch (action.type) {
     default:
         return state;
