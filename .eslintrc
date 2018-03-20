@@ -1,0 +1,40 @@
+{
+    "root": true,
+    "extends": "nfen/react",
+    "settings": {
+        "import/parser": "babel-eslint"
+    },
+    "globals": {
+        "shallow": false,
+        "mount": false,
+        "render": false,
+        "renderer": false,
+        "expect": false
+    },
+    "rules": {
+        "import/no-extraneous-dependencies": [
+            0, "never"
+        ],
+        "space-before-blocks": [
+            2, "always"
+        ],
+        "space-before-function-paren": [
+            2,"never"
+        ],
+        "space-in-parens": [
+            2, "always"
+        ],
+        "space-infix-ops": 2,
+        "space-unary-ops": [
+            2,
+            {
+                "words": true,
+                "nonwords": false,
+                "overrides": {
+                    "!!": true,
+                    "!": true
+                }
+            }
+        ]
+    }
+}
