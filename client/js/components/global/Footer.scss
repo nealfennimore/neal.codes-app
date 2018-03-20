@@ -1,9 +1,0 @@
-@import '~styles/main';
-
-.footer {
-    height: $navigation-height;
-
-    @include inverse(){
-        a { color: $white; }
-    }
-}

@@ -1,4 +1,0 @@
--r babel-polyfill
--r jsdom-global/register
---webpack-config ./webpack/webpack.test.config.babel.js
-./tests/**/*.spec.js
