@@ -1,37 +1,35 @@
 const { resolve } = require( 'path' );
 const nodeExternals = require( 'webpack-node-externals' );
+const merge = require( 'webpack-merge' );
+const common = require( './webpack.config' );
 
-module.exports = {
-    target: 'node',
-    node: {
-        __dirname: false,
-        __filename: false,
-    },
-	context: resolve( __dirname, '../../' ),
-	entry: {
-		server: [
-			'./src/server/index.js',
-		]
-	},
-	output: {
-		filename: '[name].js',
-		chunkFilename: '[id]-[chunkhash].js',
-		path: resolve( __dirname, '../../dist' ),
-		publicPath: '/'
-	},
-	resolve: {
-		extensions: [ '.js', '.jsx', '.json', '.pcss' ]
-    },
-    externals: [
-        nodeExternals()
-    ],
-	module: {
-		rules: [
-			{
-				test: /\.jsx?$/,
-				use: [ 'babel-loader', ],
-				exclude: /node_modules/
+module.exports = merge(
+    common,
+    {
+        target: 'node',
+        node: {
+            __dirname: false,
+            __filename: false,
+        },
+        output: {
+            path: resolve( __dirname, '../../dist' ),
+            publicPath: '/'
+        },
+        entry: {
+            server: [
+                './src/server/index.js',
+            ]
+        },
+        externals: [
+            nodeExternals(),
+            function resolveAssetManifest( context, request, callback ) {
+                if ( /manifest\.json$/.test( request ) ) {
+                    // This will be resolved at runtime when `server.js` is run within the dist folder
+                    const manifest = request.replace( /.*\/dist/, '.' );
+                    return callback( null, `commonjs ${manifest}`  );
+                }
+                callback();
             }
-		]
+        ],
     }
-};
+);

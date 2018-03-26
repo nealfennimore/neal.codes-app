@@ -1,13 +1,25 @@
 import path from 'path';
 import express from 'express';
 import React from 'react';
+import { values, map, join } from 'lodash';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
-import App from '../client/App';
+import App from 'client/App.jsx';
+import { __DEV__ } from 'shared/env';
+import manifest from 'dist/assets/manifest.json';
+import injectDevMiddleware from './develop';
+
+const scripts = join( map( values( manifest ), asset => `<script src="${asset}" defer></script>` ), '\n' );
 
 const app = express();
 
-app.use( '/assets', express.static( path.resolve( __dirname, 'assets' ) ) );
+
+
+if ( __DEV__ ) {
+    injectDevMiddleware( app );
+} else {
+    app.use( '/assets', express.static( path.resolve( __dirname, 'assets' ) ) );
+}
 
 app.get( '*', ( req, res ) => {
     const context = {};
@@ -31,7 +43,7 @@ app.get( '*', ( req, res ) => {
                 </head>
                 <body>
                     <div id="app">${html}</div>
-                    <script src="/assets/app.js"></script>
+                    ${scripts}
                 </body>
             </html>
         ` );
@@ -40,5 +52,5 @@ app.get( '*', ( req, res ) => {
 
 const PORT = 3000;
 app.listen( PORT, ()=>{
-    console.log( 'Starting production server', 3000 ); // eslint-disable-line no-console
+    console.log( 'Starting production server', PORT ); // eslint-disable-line no-console
 } );

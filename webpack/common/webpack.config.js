@@ -1,17 +1,10 @@
 const { resolve } = require( 'path' );
 
 module.exports = {
-	context: resolve( __dirname, '../../' ),
-	entry: {
-		app: [
-			'./src/client/index.js',
-		]
-	},
+	context: resolve( process.env.PWD ),
 	output: {
 		filename: '[name].js',
-		chunkFilename: '[id]-[chunkhash].js',
-		path: resolve( __dirname, '../../dist/assets' ),
-		publicPath: '/assets'
+		chunkFilename: '[id]-[chunkhash].js'
 	},
 	resolve: {
 		extensions: [ '.js', '.jsx', '.json', '.pcss' ]

@@ -1,22 +1,35 @@
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
+const mapValues = require( 'lodash/mapValues' );
 const webpack = require( 'webpack' );
-const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const merge = require( 'webpack-merge' );
-const config = require( '../common/webpack.config' );
+const config = require( '../common/webpack.config.client' );
 const { resolve } = require( 'path' );
 
-module.exports = merge(
+const addHotModuleReloading = ( entry, key )=> {
+    return [
+        'react-hot-loader/patch',
+		`webpack-hot-middleware/client?name=${ key }&reload=true`,
+        ...entry
+    ];
+};
+
+module.exports = merge( {
+    customizeObject( a, b, key ) {
+        if ( key === 'entry' ) {
+            return mapValues( a, addHotModuleReloading );
+        }
+        return undefined;
+    }
+} )(
     config,
     {
+        entry: {
+
+        },
         output: {
             filename: '[name].js',
         },
-        devServer: {
-            contentBase: resolve( __dirname, '../../dist' ),
-            compress: true,
-            port: 3001,
-            hot: true
-        },
+        mode: 'development',
         devtool: 'cheap-module-eval-source-map',
         module: {
             rules: [
@@ -39,14 +52,9 @@ module.exports = merge(
         },
         plugins: [
             new CleanWebpackPlugin( ['dist'], {root: resolve( __dirname, '../../' ) } ),
-            new HtmlWebpackPlugin( {
-                title: 'Cryptotrack',
-                template: require( 'html-webpack-template' ),
-                appMountId: 'root',
-                filename: 'index.html'
-            } ),
             new webpack.NamedModulesPlugin(),
-            new webpack.HotModuleReplacementPlugin()
+            new webpack.HotModuleReplacementPlugin(),
+            new webpack.NoEmitOnErrorsPlugin()
         ]
     }
 );

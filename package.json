@@ -8,7 +8,9 @@
     "build": "webpack --progress",
     "build:production": "NODE_ENV=production npm run build -- -p",
     "preserver": "npm run build:production && NODE_ENV=production npm run build -- -p --config ./webpack/common/webpack.config.server.js",
-    "server": "node ./dist/server.js"
+    "server": "node ./dist/server.js",
+    "predevelop": "NODE_ENV=development npm run build -- -d --config ./webpack/development",
+    "develop": "node ./dist/server.js"
   },
   "repository": {
     "type": "git"
@@ -63,12 +65,16 @@
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.9",
     "postcss-pxtorem": "^4.0.1",
+    "react-hot-loader": "^4.0.0",
     "react-test-renderer": "^16.2.0",
     "style-loader": "^0.19.0",
     "stylelint": "^8.3.1",
     "stylelint-config-standard": "^18.0.0",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12",
+    "webpack-dev-middleware": "^3.0.1",
+    "webpack-hot-middleware": "^2.21.2",
+    "webpack-manifest-plugin": "^2.0.0-rc.2",
     "webpack-merge": "^4.1.2",
     "webpack-node-externals": "^1.6.0"
   }

@@ -1,10 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { AppContainer } from 'react-hot-loader';
 import App from './App';
 
-ReactDOM.render( (
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
-), document.getElementById( 'app' ) );
+
+const render = ( Component ) => {
+    ReactDOM.render( (
+        <AppContainer warnings={false}>
+            <BrowserRouter>
+                <Component />
+            </BrowserRouter>
+        </AppContainer>
+    ),
+        document.getElementById( 'app' )
+    );
+};
+
+render( App );
+
+if ( module.hot ) {
+	module.hot.accept( './App', () => {
+		const nextApp = require( './App' ).default;
+		render( nextApp );
+	} );
+}
+
+

@@ -1,12 +1,16 @@
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const merge = require( 'webpack-merge' );
-const config = require( '../common/webpack.config' );
+const config = require( '../common/webpack.config.client' );
 const { resolve } = require( 'path' );
 
-module.exports = merge(
+module.exports = merge.strategy( {
+    'module.rules': 'append',
+    'plugins': 'append'
+} )(
     config,
     {
+        devtool: 'source-map',
         module: {
             rules: [
                 {
@@ -33,6 +37,14 @@ module.exports = merge(
                     } )
                 }
             ]
+        },
+        optimization: {
+            splitChunks: {
+                chunks: 'initial'
+            },
+            runtimeChunk: {
+                name: 'manifest',
+            },
         },
         plugins: [
             new CleanWebpackPlugin( ['dist'], {root: resolve( __dirname, '../../' ) } ),
