@@ -3,7 +3,7 @@ const { resolve } = require( 'path' );
 module.exports = {
 	context: resolve( process.env.PWD ),
 	output: {
-		filename: '[name].js',
+		filename: '[name].[chunkhash].js',
 		chunkFilename: '[id]-[chunkhash].js'
 	},
 	resolve: {

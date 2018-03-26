@@ -4,6 +4,9 @@ const config = require( '../common/webpack.config.server' );
 module.exports = merge(
     config,
     {
-        mode: 'development'
+        mode: 'development',
+        output: {
+            filename: '[name].js',
+        },
     }
 );
