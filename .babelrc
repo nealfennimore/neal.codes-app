@@ -1,6 +1,12 @@
 {
     "presets": [
-        "es2015",
+        ["env", {
+            "modules": false,
+            "targets": {
+                "browsers": ["last 2 versions"]
+            },
+            "useBuiltIns": true
+        }],
         "react",
         "stage-2"
     ],
@@ -13,6 +19,11 @@
                     "."
                 ],
                 "alias": {
+                    "dist": "./dist",
+                    "src": "./src",
+                    "client": "./src/client",
+                    "server": "./src/server",
+                    "shared": "./src/shared"
                 }
             }
         ],

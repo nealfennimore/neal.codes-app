@@ -1,8 +1,18 @@
 {
     "root": true,
-    "extends": "nfen/react",
+    "extends": [
+        "nfen/react",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
     "settings": {
-        "import/parser": "babel-eslint"
+        "import/resolver": {
+            "babel-module": {}
+        }
+    },
+    "parser": "babel-eslint",
+    "env": {
+        "jest": true
     },
     "globals": {
         "shallow": false,
@@ -12,6 +22,13 @@
         "expect": false
     },
     "rules": {
+        "import/no-unresolved": [
+            2,
+            { "commonjs": true, "amd": true }
+        ],
+        "import/extensions": [
+            0, "never"
+        ],
         "import/no-extraneous-dependencies": [
             0, "never"
         ],
