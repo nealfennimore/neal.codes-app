@@ -6,7 +6,7 @@ import App from './App';
 
 
 const render = ( Component ) => {
-    ReactDOM.render( (
+    ReactDOM.hydrate( (
         <AppContainer warnings={false}>
             <BrowserRouter>
                 <Component />

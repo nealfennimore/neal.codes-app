@@ -13,8 +13,6 @@ const scripts = join( map( values( manifest ), asset => `<script src="${asset}" 
 
 const app = express();
 
-
-
 if ( __DEV__ ) {
     injectDevMiddleware( app );
 } else {
@@ -50,7 +48,7 @@ app.get( '*', ( req, res ) => {
     }
 } );
 
-const PORT = 3000;
+const { PORT, NODE_ENV } = process.env;
 app.listen( PORT, ()=>{
-    console.log( 'Starting production server', PORT ); // eslint-disable-line no-console
+    console.log( 'Starting %s server %d', NODE_ENV, PORT ); // eslint-disable-line no-console
 } );

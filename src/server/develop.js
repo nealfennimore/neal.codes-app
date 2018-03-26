@@ -4,7 +4,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import configs from '../../webpack/development';
 
 export default function injectDevMiddleware( app ) {
-    configs.slice( 0,1 ).forEach( config => {
+    configs.slice( 0, 1 ).forEach( config => {
         const compiler = webpack( config );
 
         app.use(
