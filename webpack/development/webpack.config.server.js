@@ -8,5 +8,24 @@ module.exports = merge(
         output: {
             filename: '[name].js',
         },
+        module: {
+            rules: [
+                {
+                    test: /\.p?css$/,
+                    use: [
+                        {
+                            loader: 'css-loader/locals',
+                            options: {
+                                modules: true, // Enable CSS modules
+                                importLoaders: 1, // Number of loaders before CSS loader
+                                localIdentName: '[name]__[local]'
+                            }
+                        },
+                        'postcss-loader'
+                    ]
+                }
+
+            ]
+        },
     }
 );

@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import styles from './App.pcss';
 
 const Home = () => (
     <div>
@@ -53,7 +53,7 @@ const Topics = ( { match } ) => (
 );
 
 const App = () => (
-    <div>
+    <div className={styles.root}>
         <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About</Link></li>
