@@ -13,7 +13,8 @@ module.exports = merge(
         },
         output: {
             path: resolve( __dirname, '../../dist' ),
-            publicPath: '/'
+            publicPath: '/',
+            filename: '[name].js',
         },
         entry: {
             server: [

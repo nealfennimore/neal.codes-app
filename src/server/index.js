@@ -48,7 +48,7 @@ app.get( '*', ( req, res ) => {
     }
 } );
 
-const { PORT, NODE_ENV } = process.env;
-app.listen( PORT, ()=>{
-    console.log( 'Starting %s server %d', NODE_ENV, PORT ); // eslint-disable-line no-console
+const { PORT, HOSTNAME, NODE_ENV } = process.env;
+app.listen( PORT, HOSTNAME, ()=>{
+    console.log( 'Starting %s server @ %s:%d', NODE_ENV, HOSTNAME, PORT ); // eslint-disable-line no-console
 } );

@@ -5,9 +5,6 @@ module.exports = merge(
     config,
     {
         mode: 'development',
-        output: {
-            filename: '[name].js',
-        },
         module: {
             rules: [
                 {

@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './App';
 
-
 const render = ( Component ) => {
     ReactDOM.hydrate( (
         <AppContainer warnings={false}>
