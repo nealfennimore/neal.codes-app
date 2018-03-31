@@ -34,6 +34,7 @@
     "redux-saga": "^0.16.0"
   },
   "devDependencies": {
+    "assets-webpack-plugin": "^3.5.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
@@ -76,7 +77,6 @@
     "webpack-cli": "^2.0.12",
     "webpack-dev-middleware": "^3.0.1",
     "webpack-hot-middleware": "^2.21.2",
-    "webpack-manifest-plugin": "^2.0.0-rc.2",
     "webpack-merge": "^4.1.2",
     "webpack-node-externals": "^1.6.0"
   }
