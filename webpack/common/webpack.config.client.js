@@ -1,6 +1,6 @@
 const { resolve } = require( 'path' );
 const merge = require( 'webpack-merge' );
-const ManifestPlugin = require( 'webpack-manifest-plugin' );
+const AssetsPlugin = require( 'assets-webpack-plugin' );
 const common = require( './webpack.config' );
 
 module.exports = merge(
@@ -29,7 +29,9 @@ module.exports = merge(
             ]
         },
         plugins: [
-            new ManifestPlugin()
+            new AssetsPlugin( {
+                path: resolve( __dirname, '../../dist/assets' )
+            } )
         ]
     }
 );

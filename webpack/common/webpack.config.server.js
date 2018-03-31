@@ -26,7 +26,7 @@ module.exports = merge(
         externals: [
             nodeExternals(),
             function resolveAssetManifest( context, request, callback ) {
-                if ( /manifest\.json$/.test( request ) ) {
+                if ( /webpack-assets\.json$/.test( request ) ) {
                     // This will be resolved at runtime when `server.js` is run within the dist folder
                     const manifest = request.replace( /.*\/dist/, '.' );
                     return callback( null, `commonjs ${manifest}`  );
