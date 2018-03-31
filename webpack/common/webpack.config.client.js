@@ -6,6 +6,7 @@ const common = require( './webpack.config' );
 module.exports = merge(
     common,
     {
+        name: 'client',
         output: {
             path: resolve( __dirname, '../../dist/assets' ),
             publicPath: '/assets/'

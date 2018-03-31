@@ -6,6 +6,7 @@ const common = require( './webpack.config' );
 module.exports = merge(
     common,
     {
+        name: 'server',
         target: 'node',
         node: {
             __dirname: false,
