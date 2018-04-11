@@ -9,7 +9,7 @@
     "logs": "pm2 logs app",
     "prestart": "npm run build -- -p --config ./webpack/production",
     "start": "pm2 startOrReload ecosystem.config.js --env production",
-    "predevelop": "npm run build -- -d --config ./webpack/development",
+    "predevelop": "npm run build -- -d --config ./webpack/development --verbose",
     "develop": "pm2 startOrReload ecosystem.config.js --env development",
     "postdevelop": "npm run logs"
   },
@@ -77,6 +77,7 @@
     "webpack-cli": "^2.0.12",
     "webpack-dev-middleware": "^3.0.1",
     "webpack-hot-middleware": "^2.21.2",
+    "webpack-hot-server-middleware": "^0.5.0",
     "webpack-merge": "^4.1.2",
     "webpack-node-externals": "^1.6.0"
   }
