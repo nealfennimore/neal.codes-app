@@ -1,8 +1,8 @@
 const { resolve } = require( 'path' );
 const express = require( 'express' );
-const render = require( '../renderer' );
+const render = require( '../renderer' ).default;
 
-module.export = function middleware( app ) {
+module.exports = function middleware( app ) {
     app.use( '/assets', express.static( resolve( __dirname, 'assets' ) ) );
     app.get( '*', render );
 };
