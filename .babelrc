@@ -33,7 +33,10 @@
     ],
     "env": {
         "development": {
-            "plugins": []
+            "plugins": [],
+            "presets": [
+                "node8"
+            ]
         },
         "test": {
             "plugins": [

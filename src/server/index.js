@@ -1,18 +1,15 @@
 import path from 'path';
 import express from 'express';
 import { __DEV__ } from 'shared/env';
-import injectDevMiddleware from './develop';
-import render from './renderer';
 
 const app = express();
 
-if ( __DEV__ ) {
-    injectDevMiddleware( app );
-} else {
-    app.use( '/assets', express.static( path.resolve( __dirname, 'assets' ) ) );
-}
+// NOTE: Loading like this prevents `import` syntax errors in dev mode
+const middleware = __DEV__
+    ? require( './development/middleware' )
+    : require( './production/middleware' );
 
-app.get( '*', render );
+middleware( app );
 
 const { PORT, HOSTNAME, NODE_ENV } = process.env;
 app.listen( PORT, HOSTNAME, ()=>{
