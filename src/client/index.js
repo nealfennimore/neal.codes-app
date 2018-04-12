@@ -24,5 +24,3 @@ if ( module.hot ) {
 		render( nextApp );
 	} );
 }
-
-
