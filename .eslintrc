@@ -22,6 +22,10 @@
         "expect": false
     },
     "rules": {
+        "indent": [
+            "error",
+            4
+        ],
         "import/no-unresolved": [
             2,
             { "commonjs": true, "amd": true }
