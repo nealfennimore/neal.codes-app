@@ -1,10 +1,17 @@
 const merge = require( 'webpack-merge' );
 const config = require( '../common/webpack.config.server' );
 
-module.exports = merge(
+module.exports = merge.strategy( {
+    entry: 'replace'
+} )(
     config,
     {
         mode: 'development',
+        entry: './src/server/develop-renderer.js',
+        output: {
+            // Needed for hot server reloading to work
+            libraryTarget: 'commonjs2'
+        },
         module: {
             rules: [
                 {

@@ -6,12 +6,11 @@
   "scripts": {
     "test": "NODE_ENV=test jest --config jest.config.json",
     "build": "webpack --progress",
-    "logs": "pm2 logs app",
     "prestart": "npm run build -- -p --config ./webpack/production",
-    "start": "pm2 startOrReload ecosystem.config.js --env production",
+    "start": "pm2 startOrReload ecosystem.config.js --only production",
     "predevelop": "npm run build -- -d --config ./webpack/development --verbose",
-    "develop": "pm2 startOrReload ecosystem.config.js --env development",
-    "postdevelop": "npm run logs"
+    "develop": "pm2 startOrReload ecosystem.config.js --only development",
+    "postdevelop": "pm2 logs development"
   },
   "repository": {
     "type": "git"
