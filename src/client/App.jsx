@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import Loadable from './Loadable';
+import Loadable1 from './Loadable1';
 import styles from './App.pcss';
 
 const Home = () => (
@@ -11,6 +12,7 @@ const Home = () => (
 
 const About = () => (
     <div>
+        <Loadable1 />
         <h2>About</h2>
     </div>
 );
