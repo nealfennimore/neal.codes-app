@@ -51,7 +51,10 @@ module.exports = merge( {
             ]
         },
         plugins: [
-            new CleanWebpackPlugin( ['dist/assets'], {root: resolve( __dirname, '../../' ) } ),
+            new CleanWebpackPlugin( ['dist/*.js', 'dist/assets/*'], {
+                root: resolve( __dirname, '../../' ),
+                exclude:  ['react-loadable.json'],
+            } ),
             new webpack.NamedModulesPlugin(),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin()
