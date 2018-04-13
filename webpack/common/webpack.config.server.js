@@ -1,4 +1,5 @@
 const { resolve } = require( 'path' );
+const webpack = require( 'webpack' );
 const nodeExternals = require( 'webpack-node-externals' );
 const merge = require( 'webpack-merge' );
 const common = require( './webpack.config' );
@@ -34,6 +35,11 @@ module.exports = merge(
                 }
                 callback();
             }
+        ],
+        plugins: [
+            new webpack.optimize.LimitChunkCountPlugin( {
+                maxChunks: 1
+            } )
         ]
     }
 );
