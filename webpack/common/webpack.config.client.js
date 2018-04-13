@@ -33,7 +33,7 @@ module.exports = merge(
         plugins: [
             new CleanWebpackPlugin( ['dist/*.js', 'dist/assets/*'], {
                 root: resolve( __dirname, '../../' ),
-                exclude:  ['react-loadable.json'],
+                exclude:  ['react-loadable.json', 'webpack-assets.json'],
             } ),
             new AssetsPlugin( {
                 path: resolve( __dirname, '../../dist/assets' )
