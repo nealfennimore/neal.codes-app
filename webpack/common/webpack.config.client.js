@@ -1,6 +1,6 @@
 const { resolve } = require( 'path' );
 const merge = require( 'webpack-merge' );
-const AssetsPlugin = require( 'assets-webpack-plugin' );
+const ReactLoadablePlugin = require( 'react-loadable/webpack' ).ReactLoadablePlugin;
 const common = require( './webpack.config' );
 
 module.exports = merge(
@@ -29,8 +29,8 @@ module.exports = merge(
             ]
         },
         plugins: [
-            new AssetsPlugin( {
-                path: resolve( __dirname, '../../dist/assets' )
+            new ReactLoadablePlugin( {
+                filename: './dist/react-loadable.json',
             } )
         ]
     }

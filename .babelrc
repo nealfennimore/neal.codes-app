@@ -29,7 +29,8 @@
         ],
         "transform-object-rest-spread",
         "transform-regenerator",
-        "syntax-dynamic-import"
+        "syntax-dynamic-import",
+        "react-loadable/babel"
     ],
     "env": {
         "development": {
