@@ -57,6 +57,9 @@ module.exports = merge.strategy( {
                     }
                 },
             },
+            runtimeChunk: {
+                name: 'manifest'
+            }
         },
         plugins: [
             new ExtractTextPlugin( {

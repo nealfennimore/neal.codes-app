@@ -5,6 +5,7 @@ import App from 'client/App.jsx';
 import Loadable from 'react-loadable';
 import {
     getBundleTags,
+    manifest,
     scripts,
     styles
 } from './assets';
@@ -35,6 +36,7 @@ export default function render( req, res ) {
                 <head>
                     ${bundle.styles}
                     ${styles}
+                    ${manifest}
                 </head>
                 <body>
                     <div id="app">${html}</div>

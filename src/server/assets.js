@@ -52,6 +52,12 @@ const getTag = ( bundles, filterBy, template )=> pipe(
 
 const APP_CHUNK_NAMES = ['vendor', 'app'];
 
+export const manifest = getTag(
+    [ 'manifest' ],
+    asset => asset.js,
+    scriptTemplate
+)( webpackAssets );
+
 export const scripts = getTag(
     APP_CHUNK_NAMES,
     asset => asset.js,
