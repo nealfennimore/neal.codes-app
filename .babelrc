@@ -27,9 +27,10 @@
                 }
             }
         ],
+        "react-loadable/babel",
+        "syntax-dynamic-import",
         "transform-object-rest-spread",
-        "transform-regenerator",
-        "syntax-dynamic-import"
+        "transform-regenerator"
     ],
     "env": {
         "development": {
