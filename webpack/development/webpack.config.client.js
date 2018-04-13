@@ -8,7 +8,7 @@ const { resolve } = require( 'path' );
 const addHotModuleReloading = ( entry, key )=> {
     return [
         'react-hot-loader/patch',
-		`webpack-hot-middleware/client?name=${ key }&reload=true`,
+        `webpack-hot-middleware/client?name=${ key }&reload=true`,
         ...entry
     ];
 };
@@ -34,20 +34,20 @@ module.exports = merge( {
         module: {
             rules: [
                 {
-					test: /\.p?css$/,
-					use: [
-						'style-loader',
-						{
-							loader: 'css-loader',
-							options: {
-								modules: true,
-								importLoaders: 1,
-								localIdentName: '[name]__[local]'
-							}
-						},
-						'postcss-loader'
-					],
-				},
+                    test: /\.p?css$/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                importLoaders: 1,
+                                localIdentName: '[name]__[local]'
+                            }
+                        },
+                        'postcss-loader'
+                    ],
+                },
             ]
         },
         plugins: [
