@@ -38,10 +38,24 @@ module.exports = merge.strategy( {
         },
         optimization: {
             splitChunks: {
-                chunks: 'initial'
-            },
-            runtimeChunk: {
-                name: 'manifest',
+                chunks: 'all',
+                minSize: 0,
+                maxAsyncRequests: Infinity,
+                maxInitialRequests: Infinity,
+                name: true,
+                cacheGroups: {
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true,
+                    },
+                    vendor: {
+                        name: 'vendor',
+                        test: /[\\/]node_modules[\\/]/,
+                        priority: -10,
+                        reuseExistingChunk: true,
+                    }
+                },
             },
         },
         plugins: [
