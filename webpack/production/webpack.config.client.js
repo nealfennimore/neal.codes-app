@@ -1,8 +1,6 @@
-const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const merge = require( 'webpack-merge' );
 const config = require( '../common/webpack.config.client' );
-const { resolve } = require( 'path' );
 
 module.exports = merge.strategy( {
     'module.rules': 'append',
@@ -47,7 +45,6 @@ module.exports = merge.strategy( {
             },
         },
         plugins: [
-            new CleanWebpackPlugin( ['dist'], {root: resolve( __dirname, '../../' ) } ),
             new ExtractTextPlugin( {
                 filename: '[name].[contenthash].css',
             } ),
