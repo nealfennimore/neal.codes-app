@@ -1,8 +1,6 @@
-const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 const merge = require( 'webpack-merge' );
 const config = require( '../common/webpack.config.client' );
-const { resolve } = require( 'path' );
 
 module.exports = merge.strategy( {
     'module.rules': 'append',
@@ -40,14 +38,30 @@ module.exports = merge.strategy( {
         },
         optimization: {
             splitChunks: {
-                chunks: 'initial'
+                chunks: 'all',
+                minSize: 0,
+                maxAsyncRequests: Infinity,
+                maxInitialRequests: Infinity,
+                name: true,
+                cacheGroups: {
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true,
+                    },
+                    vendor: {
+                        name: 'vendor',
+                        test: /[\\/]node_modules[\\/]/,
+                        priority: -10,
+                        reuseExistingChunk: true,
+                    }
+                },
             },
             runtimeChunk: {
-                name: 'manifest',
-            },
+                name: 'manifest'
+            }
         },
         plugins: [
-            new CleanWebpackPlugin( ['dist'], {root: resolve( __dirname, '../../' ) } ),
             new ExtractTextPlugin( {
                 filename: '[name].[contenthash].css',
             } ),

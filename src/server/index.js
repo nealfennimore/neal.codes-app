@@ -1,4 +1,3 @@
-import path from 'path';
 import express from 'express';
 import { __DEV__ } from 'shared/env';
 
