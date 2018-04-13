@@ -26,7 +26,7 @@ module.exports = merge(
         externals: [
             nodeExternals(),
             function resolveReactHotLoaderAssets( context, request, callback ) {
-                if ( /react-loadable\.json$/.test( request ) ) {
+                if ( /(react-loadable|webpack-assets)\.json$/.test( request ) ) {
                     // Resolve `react-loadable.json` from within dist directory at run time
                     // Allows to build, without having to have `react-loadable.json` in dist/assets
                     // Modifies require path to be `./assets/react-loadable.json` from within dist

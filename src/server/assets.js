@@ -1,4 +1,5 @@
-import { difference, map, values, flatten, uniqBy, endsWith, filter, pipe, curry, join } from 'lodash';
+import { difference, map, values, flatten, uniqBy, endsWith, filter, pipe, join, pick } from 'lodash';
+import webpackAssets from 'dist/assets/webpack-assets.json';
 
 export const mapModuleFiles = modules => map( modules, _module => _module.file );
 export const isScript = file => endsWith( file, '.js' );
@@ -71,3 +72,23 @@ export const getBundleStyleTags = pipe(
     getBundleStyleFiles,
     createStyleTags
 );
+
+const getTag = ( bundles, filterBy, template )=> pipe(
+    assets => pick( assets, bundles ),
+    assets => filter( assets, filterBy ),
+    assets => map( assets, filterBy ),
+    assets => map( assets, template ),
+    assets => join( assets, '\n' )
+);
+
+export const scripts = getTag(
+    ['vendor', 'app'],
+    asset => asset.js,
+    asset => `<script src="${asset}" defer></script>`
+)( webpackAssets );
+
+export const styles = getTag(
+    ['vendor', 'app'],
+    asset => asset.css,
+    asset => `<link href="${asset}" rel="stylesheet" />`
+)( webpackAssets );

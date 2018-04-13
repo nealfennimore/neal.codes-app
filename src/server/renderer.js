@@ -8,8 +8,8 @@ import stats from 'dist/assets/react-loadable.json';
 import {
     getBundleScriptTags,
     getBundleStyleTags,
-    getScriptTags,
-    getStyleTags,
+    scripts,
+    styles
 } from './assets';
 
 export default function render( req, res ) {
@@ -30,8 +30,6 @@ export default function render( req, res ) {
     const bundles = getBundles( stats, splitModules );
     const bundleScripts = getBundleScriptTags( bundles );
     const bundleStyles = getBundleStyleTags( bundles );
-    const scripts = getScriptTags( stats, bundles );
-    const styles = getStyleTags( stats, bundles );
 
     if ( context.url ) {
         res.redirect( 301, context.url );
