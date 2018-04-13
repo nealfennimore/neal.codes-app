@@ -49,6 +49,6 @@ export default function render( req, res ) {
                     ${scripts}
                 </body>
             </html>
-` );
+        ` );
     }
 }
