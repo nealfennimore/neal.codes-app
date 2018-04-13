@@ -27,10 +27,10 @@
                 }
             }
         ],
-        "transform-object-rest-spread",
-        "transform-regenerator",
+        "react-loadable/babel",
         "syntax-dynamic-import",
-        "react-loadable/babel"
+        "transform-object-rest-spread",
+        "transform-regenerator"
     ],
     "env": {
         "development": {
