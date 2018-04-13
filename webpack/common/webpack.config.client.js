@@ -30,7 +30,7 @@ module.exports = merge(
         },
         plugins: [
             new ReactLoadablePlugin( {
-                filename: './dist/react-loadable.json',
+                filename: './dist/assets/react-loadable.json',
             } )
         ]
     }

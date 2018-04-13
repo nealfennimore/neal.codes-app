@@ -51,7 +51,7 @@ module.exports = merge( {
             ]
         },
         plugins: [
-            new CleanWebpackPlugin( ['dist'], {root: resolve( __dirname, '../../' ) } ),
+            new CleanWebpackPlugin( ['dist/assets'], {root: resolve( __dirname, '../../' ) } ),
             new webpack.NamedModulesPlugin(),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin()

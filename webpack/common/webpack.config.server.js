@@ -26,7 +26,9 @@ module.exports = merge(
             nodeExternals(),
             function resolveReactHotLoaderAssets( context, request, callback ) {
                 if ( /react-loadable\.json$/.test( request ) ) {
-                    // This will be resolved at runtime when `server.js` is run within the dist folder
+                    // Resolve `react-loadable.json` from within dist directory at run time
+                    // Allows to build, without having to have `react-loadable.json` in dist/assets
+                    // Modifies require path to be `./assets/react-loadable.json` from within dist
                     const manifest = request.replace( /.*\/dist/, '.' );
                     return callback( null, `commonjs ${manifest}`  );
                 }
