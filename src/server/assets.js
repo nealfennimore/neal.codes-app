@@ -3,6 +3,7 @@ import { difference, map, values, flatten, uniqBy, endsWith, filter, pipe, curry
 export const mapModuleFiles = modules => map( modules, _module => _module.file );
 export const isScript = file => endsWith( file, '.js' );
 export const isStyle = file => endsWith( file, '.css' );
+export const isChunk = file => /^\d{1,3}-\w{20}/.test( file );
 
 export const getFiles = pipe(
     values,
@@ -31,19 +32,15 @@ export const getBundleStyleFiles = pipe(
     mapModuleFiles
 );
 
-export const getAppScriptFiles = curry( ( stats, bundles )=>{
-    return difference(
-        getScriptFiles( stats ),
-        getBundleScriptFiles( bundles )
-    );
-} );
+export const getAppScriptFiles = pipe(
+    ( stats, bundles )=> difference( getScriptFiles( stats ), getBundleScriptFiles( bundles ) ),
+    ( files ) => filter( files, file => ! isChunk( file ) )
+);
 
-export const getAppStyleFiles = curry( ( stats, bundles )=>{
-    return difference(
-        getStyleFiles( stats ),
-        getBundleStyleFiles( bundles )
-    );
-} );
+export const getAppStyleFiles = pipe(
+    ( stats, bundles )=> difference( getStyleFiles( stats ), getBundleStyleFiles( bundles ) ),
+    ( files ) => filter( files, file => ! isChunk( file ) )
+);
 
 export const scriptTemplate = asset=> `<script src="/assets/${asset}" defer></script>`;
 export const createScriptTags = pipe(
