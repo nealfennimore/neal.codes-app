@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import Loadable from './Loadable';
 import styles from './App.pcss';
 
 const Home = () => (
@@ -61,6 +62,8 @@ const App = () => (
         </ul>
 
         <hr />
+
+        <Loadable />
 
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />

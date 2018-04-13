@@ -1,42 +1,37 @@
 import React from 'react';
-import { pick, map, join, filter, pipe } from 'lodash';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import App from 'client/App.jsx';
-import webpackAssets from 'dist/assets/webpack-assets.json';
-
-const getTag = ( bundles, filterBy, template )=> pipe(
-    assets => pick( assets, bundles ),
-    assets => filter( assets, filterBy ),
-    assets => map( assets, filterBy ),
-    assets => map( assets, template ),
-    assets => join( assets, '\n' )
-);
-
-const scripts = getTag(
-    ['vendor', 'app'],
-    asset => asset.js,
-    asset => `<script src="${asset}" defer></script>`
-)( webpackAssets );
-
-const styles = getTag(
-    ['vendor', 'app'],
-    asset => asset.css,
-    asset => `<link href="${asset}" rel="stylesheet" />`
-)( webpackAssets );
-
+import Loadable from 'react-loadable';
+import { getBundles } from 'react-loadable/webpack';
+import stats from 'dist/assets/react-loadable.json';
+import {
+    getBundleScriptTags,
+    getBundleStyleTags,
+    getScriptTags,
+    getStyleTags,
+} from './assets';
 
 export default function render( req, res ) {
     const context = {};
+    const splitModules = [];
 
     const html = ReactDOMServer.renderToString(
-        <StaticRouter
-            location={req.url}
-            context={context}
-        >
-            <App />
-        </StaticRouter>
+        <Loadable.Capture report={moduleName => splitModules.push( moduleName )}>
+            <StaticRouter
+                location={req.url}
+                context={context}
+            >
+                <App />
+            </StaticRouter>
+        </Loadable.Capture>
     );
+
+    const bundles = getBundles( stats, splitModules );
+    const bundleScripts = getBundleScriptTags( bundles );
+    const bundleStyles = getBundleStyleTags( bundles );
+    const scripts = getScriptTags( stats, bundles );
+    const styles = getStyleTags( stats, bundles );
 
     if ( context.url ) {
         res.redirect( 301, context.url );
@@ -45,13 +40,15 @@ export default function render( req, res ) {
             <!DOCTYPE html>
             <html>
                 <head>
+                    ${bundleStyles}
                     ${styles}
                 </head>
                 <body>
                     <div id="app">${html}</div>
+                    ${bundleScripts}
                     ${scripts}
                 </body>
             </html>
-        ` );
+` );
     }
 }
