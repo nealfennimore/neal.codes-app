@@ -6,18 +6,18 @@ import Loadable from 'react-loadable';
 import serialize from 'serialize-javascript';
 import App from 'client/App.jsx';
 import createStore from 'client/store';
+import preloadSaga from 'server/sagas';
 import {
     getBundleTags,
     manifest,
     scripts,
     styles
 } from './assets';
-import waitForSagas from './utils/sagas';
 
 const Application = ( {
-    store,
+    context,
     req,
-    context
+    store,
 } )=> (
     <Provider store={store}>
         <StaticRouter
@@ -30,13 +30,13 @@ const Application = ( {
 );
 
 const renderInitial = ( {
-    splitModules,
-    store,
+    context,
+    modules,
     req,
-    context
+    store,
 } )=> (
     ReactDOMServer.renderToStaticMarkup(
-        <Loadable.Capture report={moduleName => splitModules.push( moduleName )}>
+        <Loadable.Capture report={moduleName => modules.push( moduleName )}>
             <Application
                 store={store}
                 context={context}
@@ -55,37 +55,47 @@ const renderMarkup = ( args )=> (
 export default async function render( req, res ) {
     const store = createStore();
     const context = {};
-    const splitModules = [];
+    const modules = [];
 
-    renderInitial( {store, context, splitModules, req} );
+    // Server saga listens for any injected sagas to finish
+    const preload = store.runSaga( preloadSaga );
 
+    // Start initial render to start sagas
+    renderInitial( {store, context, modules, req} );
+
+    // End sagas that allow
     store.close();
-    await store.runSaga( waitForSagas( {} ) ).done;
 
-
-    const html = renderMarkup( { store, context, req } );
-    const bundle = getBundleTags( splitModules );
-
+    // Finish early if context was defined
     if( context.url ) {
-        res.redirect( 301, context.url );
-    } else {
-        res.send( `
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    ${bundle.styles}
-                    ${styles}
-                    ${manifest}
-                </head>
-                <body>
-                    <div id="app">${html}</div>
-                    <script>
-                        window.__PRELOADED_STATE__ = ${ serialize( store.getState(), { isJSON: true } ) };
-                    </script>
-                    ${bundle.scripts}
-                    ${scripts}
-                </body>
-            </html>
-        ` );
+        return res.redirect( 301, context.url );
     }
+
+    // Proceed after preload saga finishes
+    await preload.done;
+
+    // Get markup with updated store
+    const html = renderMarkup( { store, context, req } );
+
+    // Get dynamic bundles from code splits needed for this render
+    const bundle = getBundleTags( modules );
+
+    res.send( `
+        <!DOCTYPE html>
+        <html>
+            <head>
+                ${bundle.styles}
+                ${styles}
+                ${manifest}
+            </head>
+            <body>
+                <div id="app">${html}</div>
+                <script>
+                    window.__PRELOADED_STATE__ = ${ serialize( store.getState(), { isJSON: true } ) };
+                </script>
+                ${bundle.scripts}
+                ${scripts}
+            </body>
+        </html>
+    ` );
 }

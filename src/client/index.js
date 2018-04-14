@@ -6,12 +6,13 @@ import { AppContainer } from 'react-hot-loader';
 import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
 import createStore from './store';
+import rootSaga from './sagas';
 import App from './App';
 
 const preloadedState = window.__PRELOADED_STATE__;
 const store = createStore( preloadedState );
 
-// store.runSaga( sagas );
+store.runSaga( rootSaga );
 
 const render = ( Component ) => {
     ReactDOM.hydrate(

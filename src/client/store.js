@@ -76,7 +76,6 @@ export default function configureStore( ...args ) {
     const store = _BROWSER_STORE || StoreFactory( ...args );
 
     if ( isBrowser ) {
-        console.log( 'im cached' );
         _BROWSER_STORE = store;
     }
 
