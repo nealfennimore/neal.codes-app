@@ -29,25 +29,19 @@ const Application = ( {
     </Provider>
 );
 
-const renderInitial = ( {
-    context,
+const renderApp = ( {
     modules,
-    req,
-    store,
+    ...rest
 } )=> (
-    ReactDOMServer.renderToStaticMarkup(
+    ReactDOMServer.renderToString(
         <Loadable.Capture report={moduleName => modules.push( moduleName )}>
-            <Application
-                store={store}
-                context={context}
-                req={req}
-            />
+            <Application {...rest} />
         </Loadable.Capture>
     )
 );
 
 const renderMarkup = ( args )=> (
-    ReactDOMServer.renderToString(
+    ReactDOMServer.renderToStaticMarkup(
         <Application {...args} />
     )
 );
@@ -61,7 +55,8 @@ export default async function render( req, res ) {
     const preload = store.runSaga( preloadSaga );
 
     // Start initial render to start sagas
-    renderInitial( {store, context, modules, req} );
+    // This is a throw away render
+    renderMarkup( { store, context, req } );
 
     // End sagas that allow
     store.close();
@@ -75,7 +70,7 @@ export default async function render( req, res ) {
     await preload.done;
 
     // Get markup with updated store
-    const html = renderMarkup( { store, context, req } );
+    const html = renderApp( {store, context, modules, req} );
 
     // Get dynamic bundles from code splits needed for this render
     const bundle = getBundleTags( modules );
