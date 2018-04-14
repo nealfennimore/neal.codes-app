@@ -4,15 +4,24 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import Loadable from 'react-loadable';
+import { Provider } from 'react-redux';
+import createStore from './store';
 import App from './App';
+
+const preloadedState = window.__PRELOADED_STATE__;
+const store = createStore( preloadedState );
+
+// store.runSaga( sagas );
 
 const render = ( Component ) => {
     ReactDOM.hydrate(
         (
             <AppContainer warnings={false}>
-                <BrowserRouter>
-                    <Component />
-                </BrowserRouter>
+                <Provider store={store}>
+                    <BrowserRouter>
+                        <Component />
+                    </BrowserRouter>
+                </Provider>
             </AppContainer>
         ),
         document.getElementById( 'app' )
