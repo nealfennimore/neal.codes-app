@@ -1,48 +1,34 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { curry, defaultsDeep } from 'lodash';
+import { curry, defaults } from 'lodash';
 import PropTypes from 'prop-types';
 import * as actions from './actions/sagas';
 
-const storeKey = 'store';
-const contextTypes = {
-    [ storeKey ]: PropTypes.object
-};
-
-const propTypes = {
-    cancelSagas: PropTypes.func.isRequired,
-    runSagas: PropTypes.func.isRequired,
-};
-
-const connector = connect(
-    null,
-    dispatch => ( {
-        runSagas: ( sagas ) => dispatch( actions.runSagas( sagas ) ),
-        cancelSagas: () => dispatch( actions.cancelSagas() )
-    } )
-);
+const STORE_KEY = 'store';
 
 function InjectorHOC( options, WrappedComponent ) {
-    const { sagas, reducers } = defaultsDeep( options, { sagas: [], reducers: [] } );
+    const { sagas, reducers } = defaults( options, { sagas: [], reducers: [] } );
 
     const componentName = WrappedComponent.displayName ||
 	WrappedComponent.name ||
-	'Component';
+    'Component';
 
     class Injector extends Component {
         static displayName = `Injector(${ componentName })`
-        static propTypes = propTypes
-        static contextTypes = contextTypes
-
-        constructor( props, context ) {
-            super( props, context );
-            this.store = props[ storeKey ] || context[ storeKey ];
-
-            this.hasInjected = {
-                sagas: false,
-                reducers: false
-            };
+        static propTypes = {
+            cancelSagas: PropTypes.func.isRequired,
+            runSagas: PropTypes.func.isRequired,
         }
+        static contextTypes = {
+            [ STORE_KEY ]: PropTypes.object
+        }
+
+        state = {
+            injectedSagas: false,
+            injectedReducers: false,
+        }
+
+        sagas = sagas
+        reducers = reducers
 
         componentWillMount() {
             this.injectReducers();
@@ -50,20 +36,48 @@ function InjectorHOC( options, WrappedComponent ) {
         }
 
         componentWillUnmount() {
-            this.props.cancelSagas();
+            this.store.dispatch( actions.cancelSagas() );
+        }
+
+        get store() {
+            return this.props[STORE_KEY] || this.context[STORE_KEY];
+        }
+
+        get hasSagas() {
+            return !! this.sagas.length;
+        }
+
+        get hasReducers() {
+            return !! this.reducers.length;
+        }
+
+        get hasInjectedSagas() {
+            return this.state.injectedSagas;
+        }
+
+        get hasInjectedReducers() {
+            return this.state.injectedReducers;
+        }
+
+        set hasInjectedSagas( injectedSagas ) {
+            this.setState( {injectedSagas} );
+        }
+
+        set hasInjectedReducers( injectedReducers ) {
+            this.setState( {injectedReducers} );
         }
 
         injectSagas() {
-            if ( sagas.length && ! this.hasInjected.sagas ) {
-                this.props.runSagas( sagas );
-                this.hasInjected.sagas = true;
+            if ( this.hasSagas && ! this.hasInjectedSagas ) {
+                this.store.dispatch( actions.runSagas( sagas ) );
+                this.hasInjectedSagas = true;
             }
         }
 
         injectReducers() {
-            if ( reducers.length && ! this.hasInjected.reducers ) {
-                reducers.forEach( ( reducer ) => this.store.injectReducer( reducer ) );
-                this.hasInjected.reducers = true;
+            if ( this.hasReducers && ! this.hasInjectedReducers ) {
+                this.reducers.forEach( reducer => this.store.injectReducer( reducer ) );
+                this.hasInjectedReducers = true;
             }
         }
 
@@ -74,7 +88,7 @@ function InjectorHOC( options, WrappedComponent ) {
         }
     }
 
-    return connector( Injector );
+    return Injector;
 }
 
 export default curry( InjectorHOC );
