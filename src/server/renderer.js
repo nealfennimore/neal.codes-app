@@ -6,7 +6,7 @@ import Loadable from 'react-loadable';
 import serialize from 'serialize-javascript';
 import App from 'client/App.jsx';
 import createStore from 'client/store';
-import preloadSaga from 'server/sagas';
+import preloadSaga from 'server/sagas/preload';
 import {
     getBundleTags,
     manifest,
