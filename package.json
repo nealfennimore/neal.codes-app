@@ -19,7 +19,6 @@
   "license": "Fair Source License, version 0.9",
   "dependencies": {
     "express": "^4.16.3",
-    "http": "^0.0.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
