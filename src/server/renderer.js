@@ -82,6 +82,7 @@ export default async function render( req, res ) {
                 ${bundle.styles}
                 ${styles}
                 ${manifest}
+                <link href="https://google.com/favicon.ico" rel="icon" />
             </head>
             <body>
                 <div id="app">${html}</div>
