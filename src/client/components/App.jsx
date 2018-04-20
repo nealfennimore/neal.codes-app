@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Loadable from './Loadable';
-import Loadable1 from './Loadable1';
+import Loadable from '../Loadable';
+import Loadable1 from '../Loadable1';
+import Injector from './Injector';
+import * as test from '../sagas/tests';
 import styles from './App.pcss';
 
 const Home = () => (
@@ -50,7 +52,7 @@ const Topics = ( { match } ) => (
             path={match.path}
             render={() => (
                 <h3>Please select a topic.</h3>
-    )}
+            )}
         />
     </div>
 );
@@ -72,4 +74,13 @@ const App = () => (
         <Route path="/topics" component={Topics} />
     </div>
 );
-export default App;
+
+const inject = Injector( {
+    sagas: [
+        test.saga,
+        test.saga1,
+        test.saga2,
+    ]
+} );
+
+export default inject( App );

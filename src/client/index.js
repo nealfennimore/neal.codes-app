@@ -4,15 +4,25 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import Loadable from 'react-loadable';
-import App from './App';
+import { Provider } from 'react-redux';
+import createStore from './store';
+import rootSaga from './sagas';
+import App from './components/App';
+
+const preloadedState = window.__PRELOADED_STATE__;
+const store = createStore( preloadedState );
+
+store.runSaga( rootSaga );
 
 const render = ( Component ) => {
     ReactDOM.hydrate(
         (
             <AppContainer warnings={false}>
-                <BrowserRouter>
-                    <Component />
-                </BrowserRouter>
+                <Provider store={store}>
+                    <BrowserRouter>
+                        <Component />
+                    </BrowserRouter>
+                </Provider>
             </AppContainer>
         ),
         document.getElementById( 'app' )
@@ -28,8 +38,8 @@ const initialize = async()=> {
 
     // Start hot reloading if in dev mode
     if ( module.hot ) {
-        module.hot.accept( './App', () => {
-            const nextApp = require( './App' ).default;
+        module.hot.accept( './components/App', () => {
+            const nextApp = require( './components/App' ).default;
             render( nextApp );
         } );
     }
