@@ -7,7 +7,7 @@ import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
 import createStore from './store';
 import rootSaga from './sagas';
-import App from './App';
+import App from './components/App';
 
 const preloadedState = window.__PRELOADED_STATE__;
 const store = createStore( preloadedState );
@@ -38,8 +38,8 @@ const initialize = async()=> {
 
     // Start hot reloading if in dev mode
     if ( module.hot ) {
-        module.hot.accept( './App', () => {
-            const nextApp = require( './App' ).default;
+        module.hot.accept( './components/App', () => {
+            const nextApp = require( './components/App' ).default;
             render( nextApp );
         } );
     }

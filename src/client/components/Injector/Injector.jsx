@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { curry, defaults } from 'lodash';
 import PropTypes from 'prop-types';
-import * as actions from './actions/sagas';
+import * as actions from 'client/actions/sagas';
 
 const STORE_KEY = 'store';
 
@@ -15,8 +15,8 @@ function InjectorHOC( options, WrappedComponent ) {
     class Injector extends Component {
         static displayName = `Injector(${ componentName })`
         static propTypes = {
-            cancelSagas: PropTypes.func.isRequired,
-            runSagas: PropTypes.func.isRequired,
+            // cancelSagas: PropTypes.func.isRequired,
+            // runSagas: PropTypes.func.isRequired,
         }
         static contextTypes = {
             [ STORE_KEY ]: PropTypes.object

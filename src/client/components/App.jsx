@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Loadable from './Loadable';
-import Loadable1 from './Loadable1';
+import Loadable from '../Loadable';
+import Loadable1 from '../Loadable1';
 import Injector from './Injector';
-import * as test from './sagas/tests';
+import * as test from '../sagas/tests';
 import styles from './App.pcss';
 
 const Home = () => (

@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import Loadable from 'react-loadable';
 import serialize from 'serialize-javascript';
-import App from 'client/App.jsx';
+import App from 'client/components/App.jsx';
 import createStore from 'client/store';
 import preloadSaga from 'server/sagas/preload';
 import {
