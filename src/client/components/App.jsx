@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import { SagaInjector } from 'redux-saga-injector/react';
 import Loadable from '../Loadable';
 import Loadable1 from '../Loadable1';
-import Injector from './Injector';
 import * as test from '../sagas/tests';
 import styles from './App.pcss';
 
@@ -60,7 +60,7 @@ const Topics = ( { match } ) => (
 const App = () => (
     <div className={styles.root}>
         <ul>
-            <li><Link to="/">Home</Link></li>
+            <li><Link to="/">Hom</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/topics">Topics</Link></li>
         </ul>
@@ -75,7 +75,7 @@ const App = () => (
     </div>
 );
 
-const inject = Injector( {
+const inject = SagaInjector( {
     sagas: [
         test.saga,
         test.saga1,

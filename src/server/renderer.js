@@ -3,10 +3,10 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import Loadable from 'react-loadable';
+import { serverQueue } from 'redux-saga-injector';
 import serialize from 'serialize-javascript';
 import App from 'client/components/App.jsx';
 import createStore from 'client/store';
-import preloadSaga from 'server/sagas/preload';
 import {
     getBundleTags,
     manifest,
@@ -52,14 +52,11 @@ export default async function render( req, res ) {
     const modules = [];
 
     // Server saga listens for any injected sagas to finish
-    const preload = store.runSaga( preloadSaga );
+    const preload = store.runSaga( serverQueue );
 
     // Start initial render to start sagas
     // This is a throw away render
     renderMarkup( { store, context, req } );
-
-    // End sagas that allow
-    store.close();
 
     // Finish early if context was defined
     if( context.url ) {
