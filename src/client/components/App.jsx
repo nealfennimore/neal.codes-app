@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import { SagaInjector } from 'redux-saga-injector/react';
+import { SagaInjector } from '@nealfennimore/redux-saga-injector/react';
 import Loadable from '../Loadable';
 import Loadable1 from '../Loadable1';
 import * as test from '../sagas/tests';

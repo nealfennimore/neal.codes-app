@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import Loadable from 'react-loadable';
-import { serverQueue } from 'redux-saga-injector';
+import { serverQueue } from '@nealfennimore/redux-saga-injector';
 import serialize from 'serialize-javascript';
 import App from 'client/components/App.jsx';
 import createStore from 'client/store';

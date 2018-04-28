@@ -1,1 +1,1 @@
-export { clientRunner as default } from 'redux-saga-injector';
+export { clientRunner as default } from '@nealfennimore/redux-saga-injector';
