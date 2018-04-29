@@ -78,13 +78,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@nealfennimore/redux-saga-injector@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@nealfennimore/redux-saga-injector/-/redux-saga-injector-0.0.7.tgz#541cd89d273cec23149f00b2b2c8e4180e03b2d2"
-  optionalDependencies:
-    prop-types "^15.6.1"
-    react "^16.3.2"
-    react-dom "^16.3.2"
+"@nealfennimore/redux-saga-injector@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@nealfennimore/redux-saga-injector/-/redux-saga-injector-0.0.9.tgz#08d43f10a452decb426ccaaa0bad30b411ef52e5"
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -6984,7 +6980,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.0, prop-types@^15.5.4, prop-types@^15.6.1:
+prop-types@^15.5.0, prop-types@^15.5.4:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -7155,15 +7151,6 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-dom@^16.3.2:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
-
 react-hot-loader@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.0.0.tgz#3452fa9bc0d0ba9dfc5b0ccfa25101ca8dbd2de2"
@@ -7225,15 +7212,6 @@ react-test-renderer@^16.2.0:
 react@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.0"
-
-react@^16.3.2:
-  version "16.3.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
