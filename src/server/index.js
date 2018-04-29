@@ -11,7 +11,7 @@ const middleware = __DEV__
 
 middleware( app );
 
-const { PORT, HOSTNAME, NODE_ENV } = process.env;
-app.listen( PORT, HOSTNAME, ()=>{
-    console.log( 'Starting %s server @ %s:%d', NODE_ENV, HOSTNAME, PORT ); // eslint-disable-line no-console
+const { PORT, IP_ADDR, NODE_ENV } = process.env;
+app.listen( PORT, IP_ADDR, ()=>{
+    console.log( 'Starting %s server @ %s:%d', NODE_ENV, IP_ADDR, PORT ); // eslint-disable-line no-console
 } );

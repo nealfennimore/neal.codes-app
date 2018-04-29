@@ -5,8 +5,9 @@ module.exports = {
             script: './dist/server.js',
             env: {
                 'PORT': 3000,
-                'HOSTNAME': '0.0.0.0',
-                'NODE_ENV': 'production'
+                'IP_ADDR': '0.0.0.0',
+                'NODE_ENV': 'production',
+                'HOSTNAME': 'neal.codes'
             }
         },
         {
@@ -15,8 +16,9 @@ module.exports = {
             exec_interpreter: 'babel-node',
             env: {
                 'PORT': 3000,
-                'HOSTNAME': '0.0.0.0',
-                'NODE_ENV': 'development'
+                'IP_ADDR': '0.0.0.0',
+                'NODE_ENV': 'development',
+                'HOSTNAME': 'neal.codes.test'
             },
         }
     ]
