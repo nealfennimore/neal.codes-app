@@ -11,7 +11,7 @@ services:
     expose:
       - 3000
     volumes:
-      - app:/var/www/app
+      - .:/var/www/app
     env_file:
       - "./docker/env/app.${DOCKER_ENV:-development}.env"
 
@@ -40,7 +40,7 @@ services:
       - nginx-html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./docker/nginx/vhost.d:/etc/nginx/vhost.d:ro
-      - app:/var/www/app
+      - .:/var/www/app
 
   letsencrypt-nginx-proxy-companion:
     links:
@@ -54,7 +54,6 @@ services:
       - ./docker/nginx/vhost.d:/etc/nginx/vhost.d:rw
 
 volumes:
-  app:
   ghost_content:
   nginx-certs:
   nginx-conf:
