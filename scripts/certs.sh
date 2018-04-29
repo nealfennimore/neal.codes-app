@@ -1,4 +1,3 @@
 openssl req \
-       -key "./certs/$1.key" \
-       -new \
-       -x509 -days 365 -out "./certs/$1.crt"
+    -newkey rsa:2048 -nodes -keyout "certs/$1.key "\
+    -out "certs/$1.csr"

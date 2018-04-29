@@ -1,7 +1,7 @@
 FROM keymetrics/pm2:8-alpine
 
-ADD . /app
-WORKDIR /app
+ADD . /var/www/app
+WORKDIR /var/www/app
 
 RUN npm install -g yarn
 RUN yarn install
