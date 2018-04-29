@@ -2,30 +2,6 @@
 root /var/www/app/dist/assets;
 
 # --------------------
-# -------------------- APP
-# --------------------
-
-# send non-static file requests to the app server
-location / {
-    try_files $uri @neal.codes.test; # Check server last
-}
-
-# Webpack hot reloading path
-location /__webpack_hmr {
-    proxy_pass http://neal.codes.test;
-    proxy_redirect off;
-
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-
-    # Enable EventSource streaming
-    proxy_http_version 1.1;
-    proxy_set_header Connection "";
-    proxy_buffering off;
-    proxy_cache off;
-}
-
-# --------------------
 # -------------------- GHOST
 # --------------------
 
@@ -47,20 +23,8 @@ location ~ ^/api/(.*)$ {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
 
-    proxy_pass http://ghost.test/blog/ghost/api/v0.1/$1/?client_id=cool&client_secret=neat&$args; # $1 needs a forward slash else there is a redirect
+    proxy_pass http://ghost.test/blog/ghost/api/v0.1/$1/?client_id=ghost-frontend&client_secret=0d4a21917448$args; # $1 needs a forward slash else there is a redirect
     proxy_redirect off;
-}
-
-# Handle admin assets
-location ~ ^/blog/ghost(.*\.(?:gif|jpe?g|png|js|css)(?:.*))$ {
-    alias /var/lib/ghost/content/core/built/assets$1;
-}
-
-# Handle blog images. Optional blog segment handles old posts
-location ~ ^/(?:blog/)?(?:content)?/images(.*)$ {
-    expires 1M;
-    add_header Cache-Control "public";
-    alias /var/lib/ghost/content/images$1;
 }
 
 # Handle sitemap[-types].xml, sitemap.xsl, and robots.txt
@@ -83,4 +47,28 @@ location /blog/ghost {
 
     proxy_pass http://ghost.test;
     proxy_redirect off;
+}
+
+# --------------------
+# -------------------- APP
+# --------------------
+
+# send non-static file requests to the app server
+location / {
+    try_files $uri @neal.codes.test; # Check server last
+}
+
+# Webpack hot reloading path
+location /__webpack_hmr {
+    proxy_pass http://neal.codes.test;
+    proxy_redirect off;
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+
+    # Enable EventSource streaming
+    proxy_http_version 1.1;
+    proxy_set_header Connection "";
+    proxy_buffering off;
+    proxy_cache off;
 }
