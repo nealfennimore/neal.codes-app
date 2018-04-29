@@ -5,3 +5,4 @@ __coverage__
 *.log
 certs
 .env
+docker/nginx/vhost.d/default
