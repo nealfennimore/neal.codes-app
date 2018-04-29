@@ -1,0 +1,58 @@
+version: '3.3'
+
+services:
+
+  app:
+    image: keymetrics/pm2:8-alpine
+    build:
+      context: .
+    command: docker:${DOCKER_ENV:-development}
+    expose:
+      - 3000
+    volumes:
+      - .:/app
+    env_file:
+      - "./docker/env/app.${DOCKER_ENV:-development}.env"
+
+  ghost:
+    image: ghost:alpine
+    restart: always
+    expose:
+      - 2368
+    volumes:
+      - "ghost_content:/var/lib/ghost/content"
+    # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
+    env_file:
+      - "./docker/env/ghost.${DOCKER_ENV:-development}.env"
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - nginx-certs:/etc/nginx/certs:rw
+      - nginx-conf:/etc/nginx/conf.d
+      - nginx-html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./docker/nginx/vhost.d:/etc/nginx/vhost.d:ro
+
+  letsencrypt-nginx-proxy-companion:
+    links:
+      - nginx-proxy
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    volumes:
+      - nginx-certs:/etc/nginx/certs:rw
+      - nginx-conf:/etc/nginx/conf.d
+      - nginx-html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./docker/nginx/vhost.d:/etc/nginx/vhost.d:rw
+
+volumes:
+  ghost_content:
+  nginx-certs:
+  nginx-conf:
+  nginx-html:

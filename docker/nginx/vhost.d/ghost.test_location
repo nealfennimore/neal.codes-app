@@ -1,0 +1,60 @@
+# This is a template. Referenced variables (e.g. $ROOT_DIR) need
+# to be rewritten with real values in order for this file to work.
+# To learn about all the directives used here, and more, see
+# http://nginx.org/en/docs/dirindex.html
+
+# Enable all /api requests to proxy to /ghost/api/v0.1
+# Client ID and secret appended by default - Must enable public API settings in admin in order to work
+location ~ ^/api/(.*)$ {
+    # proxy_cache api_cache;
+    # proxy_cache_bypass $cookie_nocache $arg_nocache;
+
+    # Add in proxy cache status
+    # add_header X-Proxy-Cache $upstream_cache_status;
+
+    # We ignore the cache control headers from the ghost API so that the query is cached
+    proxy_ignore_headers "Cache-Control";
+    proxy_hide_header "Cache-Control";
+
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+
+    proxy_pass http://ghost.test/blog/ghost/api/v0.1/$1/?client_id=cool&client_secret=neat&$args; # $1 needs a forward slash else there is a redirect
+    proxy_redirect off;
+}
+
+# Handle admin assets
+location ~ ^/blog/ghost(.*\.(?:gif|jpe?g|png|js|css)(?:.*))$ {
+    alias /var/lib/ghost/content/core/built/assets$1;
+}
+
+# Handle blog images. Optional blog segment handles old posts
+location ~ ^/(?:blog/)?(?:content)?/images(.*)$ {
+    expires 1M;
+    add_header Cache-Control "public";
+    alias /var/lib/ghost/content/images$1;
+}
+
+# Handle sitemap[-types].xml, sitemap.xsl, and robots.txt
+location ~ ^/blog/(sitemap(?:-.*)?\.x(?:m|s)l|robots\.txt)$ {
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+
+    proxy_pass http://ghost.test/blog/$1;
+    proxy_redirect off;
+}
+
+# All /blog/ghost requests are handled here by default
+location /blog/ghost {
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+
+    proxy_pass http://ghost.test;
+    proxy_redirect off;
+}

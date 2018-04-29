@@ -5,11 +5,14 @@
   "main": "main.js",
   "scripts": {
     "test": "NODE_ENV=test jest --config jest.config.json",
-    "build": "webpack --progress",
-    "prestart": "npm run build -- -p --config ./webpack/production",
+    "build": "webpack",
+    "prestart": "npm run build -- -p --config ./webpack/production --progress",
     "start": "pm2 startOrReload ecosystem.config.js --only production",
     "develop": "pm2 startOrReload ecosystem.config.js --only development",
-    "postdevelop": "pm2 logs development"
+    "postdevelop": "pm2 logs development",
+    "docker:development": "pm2-docker ecosystem.config.js --only development",
+    "predocker:production": "npm run build -- -p --config ./webpack/production",
+    "docker:production": "pm2-docker ecosystem.config.js --only production"
   },
   "repository": {
     "type": "git"
