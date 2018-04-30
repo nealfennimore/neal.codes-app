@@ -9,10 +9,15 @@ services:
       context: .
     command: docker:${DOCKER_ENV:-development}
     expose:
-      - 3000
+      - ${VIRTUAL_PORT-?err}
     volumes:
       - .:/var/www/app
+    environment:
+      - ${VIRTUAL_HOST-?err}
+      - ${VIRTUAL_PORT-?err}
+      - ${LISTEN_HOSTNAME-?err}
     env_file:
+      - ".env"
       - "./docker/env/app.${DOCKER_ENV:-development}.env"
 
   ghost:
