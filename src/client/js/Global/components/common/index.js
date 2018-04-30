@@ -1,1 +1,0 @@
-export { default as NotFound } from 'components/common/404';
