@@ -16,7 +16,7 @@ module.exports = merge(
         },
         entry: {
             app: [
-                './src/client/index.js',
+                './src/client/js/index.js',
             ],
             vendor: [
                 'react'

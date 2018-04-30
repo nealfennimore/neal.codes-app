@@ -1,16 +1,21 @@
+import first from 'lodash/first';
+
 import {
-    REQUEST_POSTS,
-    RECEIVE_POSTS
-} from 'client/Global/sagas/blog/posts';
+    REQUEST_POST,
+    RECEIVE_POST,
+    SET_POST
+} from 'client/js/Global/sagas/blog/post';
 
 function posts( state = {}, action ) {
     switch ( action.type ) {
-    case RECEIVE_POSTS:
+    case RECEIVE_POST:
+    case SET_POST:
         return Object.assign( {}, state, {
-            ...action.posts,
+            ...first( action.posts ),
             isFetching: false
         } );
-    case REQUEST_POSTS:
+
+    case REQUEST_POST:
         return Object.assign( {}, state, {
             isFetching: true
         } );
