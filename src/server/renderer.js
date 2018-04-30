@@ -60,6 +60,8 @@ export default async function render( req, res ) {
 
     // Finish early if context was defined
     if( context.url ) {
+        // End in progress sagas as we'll never finish render
+        store.close();
         return res.redirect( 301, context.url );
     }
 
