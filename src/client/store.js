@@ -4,7 +4,7 @@ import { END } from 'redux-saga';
 import { set, has } from 'lodash';
 import { isBrowser } from 'shared/env';
 import defaultMiddleware, { composeEnhancers, sagaMiddleware } from './middleware';
-import createReducer from './reducers';
+import createReducer from './Global/reducers';
 
 /**
  * Close redux sagas
