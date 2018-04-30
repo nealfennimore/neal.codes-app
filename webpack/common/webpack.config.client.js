@@ -3,6 +3,7 @@ const merge = require( 'webpack-merge' );
 const AssetsPlugin = require( 'assets-webpack-plugin' );
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const ReactLoadablePlugin = require( 'react-loadable/webpack' ).ReactLoadablePlugin;
+const Dotenv = require( 'dotenv-webpack' );
 const common = require( './webpack.config' );
 
 module.exports = merge(
@@ -31,6 +32,7 @@ module.exports = merge(
             ]
         },
         plugins: [
+            new Dotenv(),
             new CleanWebpackPlugin( ['dist/*.js', 'dist/assets/*'], {
                 root: resolve( __dirname, '../../' ),
                 exclude:  ['react-loadable.json', 'webpack-assets.json'],
