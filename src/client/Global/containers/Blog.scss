@@ -1,0 +1,10 @@
+@import '~styles/main';
+
+.blog {
+    composes: content from 'components/global/Content.scss';
+
+    main {
+        margin-top: rem-calc(25);
+    }
+}
+

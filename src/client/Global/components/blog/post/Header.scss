@@ -1,0 +1,11 @@
+@import '~styles/main';
+
+.header {
+    margin-bottom: $global-margin * 2;
+}
+
+.date {
+    display: inline;
+    margin-bottom: 0;
+    margin-left: rem-calc(5);
+}

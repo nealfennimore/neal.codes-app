@@ -1,0 +1,66 @@
+@import '~styles/main';
+
+$animation-duration: 0.5s;
+
+.logoLink {
+    height: 100%;
+}
+
+.logo {
+    height: 100%;
+
+    path {
+        fill: $primary-color;
+    }
+
+    @include inverse() {
+        path {
+            fill: $white;
+        }
+    }
+
+    .letter {
+        opacity: 0;
+    }
+
+    .endBracket, .startBracket, .forwardSlash {
+        transition: all $animation-duration;
+        transform-origin: center center;
+        opacity: 1;
+    }
+
+    .startBracket {
+        transform: translate(26%, 0%)rotate(58deg)scale(2.3);
+    }
+
+    .forwardSlash {
+        transform: translate(-1550%, -50%)rotate(-805deg)scale(1.4);
+    }
+
+    .endBracket {
+        transform: translate(-1419%, 0%)rotate(60deg)scale(2.3);
+    }
+
+    &:hover {
+        .endBracket, .startBracket, .forwardSlash {
+            transform: translate(0%, 0%)rotate(0deg)scale(1);
+        }
+
+        .letter {
+            animation-name: show-text;
+            animation-duration: $animation-duration;
+            animation-fill-mode: forwards;
+        }
+    }
+}
+
+@include breakpoint(large down){
+    .logo {
+        margin-left: rem-calc(10);
+    }
+}
+
+@keyframes show-text {
+    33% { opacity: 0; }
+    100% { opacity: 1; }
+}

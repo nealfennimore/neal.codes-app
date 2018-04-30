@@ -1,0 +1,21 @@
+@import '~styles/main';
+
+.button {
+    margin-bottom: 0;
+    font-size: rem-calc(36);
+    color: $primary-color;
+
+    &:focus {
+        outline: none;
+    }
+
+    i {
+        display: block;
+    }
+}
+
+.pages {
+    margin: 0 rem-calc(7.5);
+    color: $medium-gray;
+    font-size: rem-calc(14);
+}

@@ -1,0 +1,26 @@
+@import '~styles/main';
+
+.container {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.025);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: $navigation-z-index;
+
+    @include inverse(){
+        border-bottom: none;
+    }
+}
+
+.navigation {
+    height: $navigation-height;
+    background-color: $white;
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include inverse(){
+        background-color: $primary-color;
+    }
+}

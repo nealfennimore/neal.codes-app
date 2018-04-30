@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { map, filter, isFunction, merge, reduce, some, isObject } from 'lodash';
+import blog from './blog';
 
 export const isReducer = ( reducer ) => isFunction( reducer );
 export const hasNestedReducer = ( reducer ) => some( reducer, isReducer );
@@ -39,16 +40,9 @@ export function nestAsyncReducers( asyncReducers ) {
     );
 }
 
-export function test( state = {}, action ) {
-    switch ( action.type ) {
-    default:
-        return state;
-    }
-}
-
 export default function createReducer( asyncReducers = {} ) {
     return combineReducers( {
-        test,
+        blog,
         ...nestAsyncReducers( asyncReducers )
     } );
 }

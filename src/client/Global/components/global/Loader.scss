@@ -1,0 +1,12 @@
+@import '~styles/main';
+
+.loader {
+    display: block;
+    color: $primary-color;
+    font-size: rem-calc(50);
+    composes: rotate from 'styles/animations.scss';
+
+    @include inverse(){
+        color: $white;
+    }
+}
