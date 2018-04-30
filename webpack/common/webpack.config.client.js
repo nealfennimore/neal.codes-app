@@ -28,6 +28,38 @@ module.exports = merge(
                     test: /\.jsx?$/,
                     use: [ 'babel-loader', ],
                     exclude: /node_modules/
+                },
+                // Images
+                {
+                    test: /.*\.(gif|png|jpe?g|svg)$/i,
+                    exclude: [
+                        /fonts\/.*\.(eot|svg|ttf|woff2?)(\?.*)?$/,
+                    ],
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                emitFile: true,
+                                name: 'images/[name].[ext]'
+                            }
+                        },
+                        {
+                            loader: 'image-webpack-loader'
+                        }
+                    ]
+                },
+                // Fonts
+                {
+                    test: /fonts\/.*\.(eot|svg|ttf|woff2?)(\?.*)?$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                emitFile: true,
+                                name: 'fonts/[name].[ext]'
+                            }
+                        }
+                    ]
                 }
             ]
         },

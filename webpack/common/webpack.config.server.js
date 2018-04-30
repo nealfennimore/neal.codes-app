@@ -23,6 +23,26 @@ module.exports = merge(
                 './src/server/index.js',
             ]
         },
+        module: {
+            rules: [
+                // Images
+                {
+                    test: /.*\.(gif|png|jpe?g|svg)$/i,
+                    exclude: [
+                        /fonts\/.*\.(eot|svg|ttf|woff2?)(\?.*)?$/,
+                    ],
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                emitFile: false,
+                                name: 'assets/images/[name].[ext]'
+                            }
+                        }
+                    ]
+                },
+            ]
+        },
         externals: [
             nodeExternals(),
             function resolveAssetsForRuntime( context, request, callback ) {
