@@ -1,5 +1,5 @@
 import 'client/fonts/style.pcss';
-import icon from 'client/images/logo-icon.png';
+// import icon from 'client/images/logo-icon.png';
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import { SagaInjector } from '@nealfennimore/redux-saga-injector/react';
@@ -71,7 +71,7 @@ const App = () => (
 
         <hr />
 
-        <img src={icon} alt="" />
+        {/* <img src={icon} alt="" /> */}
 
         <Loadable />
 

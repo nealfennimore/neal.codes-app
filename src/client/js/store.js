@@ -1,29 +1,10 @@
 /* eslint-disable max-len */
 import { createStore, applyMiddleware } from 'redux';
-import { END } from 'redux-saga';
-import { set, has } from 'lodash';
+import { augmentStore as augmentStoreForReducers } from '@nealfennimore/redux-reducer-injector';
+import { augmentStore as augmentStoreForSagas } from '@nealfennimore/redux-saga-injector';
 import { isBrowser } from 'shared/env';
 import defaultMiddleware, { composeEnhancers, sagaMiddleware } from './middleware';
 import createReducer from './Global/reducers';
-
-/**
- * Close redux sagas
- */
-function close() {
-    this.dispatch( END );
-}
-
-/**
- * Inject a reducer into a store
- *
- * @param {String,Function} { key, reducer }
- */
-function injectReducer( { key, reducer } ) {
-    if ( ! has( this.injectedReducers, key ) ) {
-        set( this.injectedReducers, key, reducer );
-        this.replaceReducer( createReducer( this.injectedReducers ) );
-    }
-}
 
 /**
  * StoreFactory
@@ -46,13 +27,8 @@ export function StoreFactory(
         )
     );
 
-    // Sagas
-    store.runSaga = sagaMiddleware.run;
-    store.close = close.bind( store );
-
-    // Async reducers
-    store.injectedReducers = {};
-    store.injectReducer = injectReducer.bind( store );
+    augmentStoreForReducers( createReducer, store );
+    augmentStoreForSagas( sagaMiddleware, store );
 
     return store;
 }
