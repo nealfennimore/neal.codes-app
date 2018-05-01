@@ -4,8 +4,8 @@ import {
     GET_TAGS,
     REQUEST_TAGS,
     RECEIVE_TAGS
-} from 'client/js/Blog/actions/tags';
-import * as service from 'client/js/Blog/services/posts';
+} from 'client/js/Blog/Tags/actions/tags';
+import * as service from 'client/js/Blog/Posts/services/posts';
 
 export function* fetchTags( {slug, page} ) {
     yield put( {type: REQUEST_TAGS } );

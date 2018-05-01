@@ -4,7 +4,7 @@ import {
     REQUEST_POST,
     RECEIVE_POST,
     SET_POST
-} from 'client/js/Blog/actions/post';
+} from 'client/js/Blog/Post/actions/post';
 
 function posts( state = {}, action ) {
     switch ( action.type ) {

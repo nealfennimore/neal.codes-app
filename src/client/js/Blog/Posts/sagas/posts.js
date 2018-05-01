@@ -6,8 +6,8 @@ import {
     REQUEST_POSTS,
     RECEIVE_POSTS,
     POSTS
-} from 'client/js/Blog/actions/posts';
-import * as service from 'client/js/Blog/services/posts';
+} from 'client/js/Blog/Posts/actions/posts';
+import * as service from 'client/js/Blog/Posts/services/posts';
 
 
 export function* fetchPosts( {page} ) {

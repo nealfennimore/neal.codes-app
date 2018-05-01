@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
-import styles from './Logo.scss';
+// import { Link } from 'react-router';
+import styles from './Logo.pcss';
 
 const Logo = ( props ) => {
     return (
-        <Link to="/" className={`${styles.logoLink} column shrink`}>
+        // <Link to="/" className={`${styles.logoLink} column shrink`}>
             <svg id="logo" className={styles.logo} viewBox="0 -47 416 141" xmlns="http://www.w3.org/2000/svg" xlinkHref="http://www.w3.org/1999/xlink">
                 <title>neal.codes</title>
                 <g id="neal.codes">
@@ -23,7 +23,7 @@ const Logo = ( props ) => {
                     <path d="M390.707 14.736v-4.19l25.016 13.158v2.832l-25.134 14.69v-4.483l20.59-11.564-20.473-10.444z" className={styles.endBracket} />
                 </g>
             </svg>
-        </Link>
+        // </Link>
     );
 };
 
