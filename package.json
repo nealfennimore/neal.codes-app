@@ -22,6 +22,7 @@
   "license": "Fair Source License, version 0.9",
   "dependencies": {
     "@nealfennimore/redux-saga-injector": "^0.0.9",
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
