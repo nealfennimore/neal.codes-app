@@ -2,21 +2,30 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 // import blogService from 'services/blog';
 // import { setPageParams } from 'shared/blog';
 import get from 'lodash/get';
+import {
+    REQUEST_POSTS,
+    RECEIVE_POSTS,
+    POSTS
+} from 'client/js/Blog/actions/posts';
+import * as service from 'client/js/Blog/services/posts';
 
-export const POSTS = 'POSTS';
-export const REQUEST_POSTS = 'REQUEST_POSTS';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 export function* fetchPosts( {page} ) {
     yield put( { type: REQUEST_POSTS } );
-    // const params = setPageParams( page );
+    const options = {
+        params: {
+            limit: 3,
+            include: 'tags',
+            page
+        }
+    };
 
-    // try {
-    //     const posts = yield call( blogService.posts, params );
-    //     yield put( {type: RECEIVE_POSTS, posts} );
-    // } catch ( e ) {
-    //     //
-    // }
+    try {
+        const { data } = yield call( service.getPosts, options );
+        yield put( {type: RECEIVE_POSTS, posts: data.posts} );
+    } catch ( e ) {
+        //
+    }
 }
 
 export function* postsFlow( {blog, params} ) {
@@ -24,7 +33,7 @@ export function* postsFlow( {blog, params} ) {
     const currentPage = get( blog, 'posts.meta.pagination.page' );
 
     if( page != currentPage  ) {
-        yield call( fetchPosts, {page} );
+        yield call( fetchPosts, { page } );
     }
 }
 

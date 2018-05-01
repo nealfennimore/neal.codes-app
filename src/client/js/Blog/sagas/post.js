@@ -1,23 +1,23 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import get from 'lodash/get';
 import find from 'lodash/find';
-// import blogService from 'services/blog';
+import {
+    REQUEST_POST,
+    RECEIVE_POST,
+    SET_POST,
+    GET_POST
+} from 'client/js/Blog/actions/post';
+import * as service from 'client/js/Blog/services/post';
 
-export const REQUEST_POST = 'REQUEST_POST';
-export const RECEIVE_POST = 'RECEIVE_POST';
-export const GET_POST = 'GET_POST';
-export const SET_POST = 'SET_POST';
 
 export function* fetchPost( action ) {
     yield put( {type: REQUEST_POST} );
-    const params = {
-        slug: action.slug,
-        params: {include: 'tags'}
-    };
 
     try {
-        // const { posts } = yield call( blogService.postBySlug, params );
-        // yield put( {type: RECEIVE_POST, posts} );
+        const { data } = yield call( service.getPost, action.slug, {
+            params: {include: 'tags'}
+        } );
+        yield put( {type: RECEIVE_POST, posts: data.posts} );
     } catch ( e ) {
         //
     }

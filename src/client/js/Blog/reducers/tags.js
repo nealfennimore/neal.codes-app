@@ -1,22 +1,23 @@
 import {
-    REQUEST_POSTS,
-    RECEIVE_POSTS
-} from 'client/js/Global/sagas/blog/posts';
+    REQUEST_TAGS,
+    RECEIVE_TAGS
+} from 'client/js/Blog/actions/tags';
 
-function posts( state = {}, action ) {
+function tags( state = {}, action ) {
     switch ( action.type ) {
-    case RECEIVE_POSTS:
+    case RECEIVE_TAGS:
         return Object.assign( {}, state, {
-            ...action.posts,
+            [action.slug]: action.tags,
             isFetching: false
         } );
-    case REQUEST_POSTS:
+    case REQUEST_TAGS:
         return Object.assign( {}, state, {
             isFetching: true
         } );
+
     default:
         return state;
     }
 }
 
-export default posts;
+export default tags;
