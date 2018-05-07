@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import Loadable from 'react-loadable';
-import { serverQueue } from '@nealfennimore/redux-saga-injector';
+import { preloadQueue } from '@nfen/redux-saga-injector';
 import serialize from 'serialize-javascript';
 import App from 'client/js/Global/components/App.jsx';
 import createStore from 'client/js/store';
@@ -52,7 +52,7 @@ export default async function render( req, res ) {
     const modules = [];
 
     // Server saga listens for any injected sagas to finish
-    const preload = store.runSaga( serverQueue );
+    const preload = store.runSaga( preloadQueue );
 
     // Start initial render to start sagas
     // This is a throw away render

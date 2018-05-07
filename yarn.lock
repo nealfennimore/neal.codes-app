@@ -78,15 +78,16 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@nealfennimore/redux-reducer-injector@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@nealfennimore/redux-reducer-injector/-/redux-reducer-injector-0.0.5.tgz#af776c88995c06592d3d697951b5af84ffcdf41b"
+"@nfen/redux-reducer-injector@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@nfen/redux-reducer-injector/-/redux-reducer-injector-0.0.1.tgz#fed28c051b0e734c4d16ce8a1ebf47d60d6c7176"
   dependencies:
     deepmerge "^2.1.0"
+    object-path "^0.11.4"
 
-"@nealfennimore/redux-saga-injector@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@nealfennimore/redux-saga-injector/-/redux-saga-injector-0.0.10.tgz#71cf43cce961453fedbf98c0614b355d5f3a4e9c"
+"@nfen/redux-saga-injector@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@nfen/redux-saga-injector/-/redux-saga-injector-0.0.2.tgz#f2d0404d89a3801edf384171de99bf2e3f748f23"
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -6921,6 +6922,10 @@ object-is@^1.0.1:
 object-keys@^1.0.10, object-keys@^1.0.8:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.0.11.tgz#c54601778ad560f1142ce0e01bcca8b56d13426d"
+
+object-path@^0.11.4:
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.4.tgz#370ae752fbf37de3ea70a861c23bba8915691949"
 
 object-visit@^1.0.0:
   version "1.0.1"

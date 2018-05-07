@@ -1,6 +1,6 @@
+import { sagaRunner } from '@nfen/redux-saga-injector';
 import { spawn } from 'redux-saga/effects';
-import { clientRunner } from '@nealfennimore/redux-saga-injector';
 
 export default function* rootSaga() {
-    yield spawn( clientRunner );
+    yield spawn( sagaRunner );
 }

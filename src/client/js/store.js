@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
-import { createStore, applyMiddleware } from 'redux';
-import { augmentStore as augmentStoreForReducers } from '@nealfennimore/redux-reducer-injector';
-import { augmentStore as augmentStoreForSagas } from '@nealfennimore/redux-saga-injector';
+import { augmentStore as augmentStoreForReducers } from '@nfen/redux-reducer-injector';
+import { augmentStore as augmentStoreForSagas } from '@nfen/redux-saga-injector';
+import { applyMiddleware, createStore } from 'redux';
 import { isBrowser } from 'shared/env';
-import defaultMiddleware, { composeEnhancers, sagaMiddleware } from './middleware';
 import createReducer from './Global/reducers';
+import defaultMiddleware, { composeEnhancers, sagaMiddleware } from './middleware';
 
 /**
  * StoreFactory

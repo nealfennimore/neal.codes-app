@@ -1,5 +1,5 @@
 {
-  "name": "ineal.codes",
+  "name": "neal.codes",
   "version": "0.0.1",
   "description": "https://neal.codes",
   "main": "main.js",
@@ -21,8 +21,8 @@
   "author": "Neal Fennimore",
   "license": "Fair Source License, version 0.9",
   "dependencies": {
-    "@nealfennimore/redux-reducer-injector": "^0.0.5",
-    "@nealfennimore/redux-saga-injector": "^0.0.10",
+    "@nfen/redux-reducer-injector": "^0.0.1",
+    "@nfen/redux-saga-injector": "^0.0.2",
     "axios": "^0.18.0",
     "express": "^4.16.3",
     "lodash": "^4.17.4",
