@@ -13,16 +13,16 @@ import ruby       from 'highlight.js/lib/languages/ruby';
 import scss       from 'highlight.js/lib/languages/scss';
 import xml        from 'highlight.js/lib/languages/xml';
 
-hljs.registerLanguage('apache', apache);
-hljs.registerLanguage('bash', bash);
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('handlebars', handlebars);
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('json', json);
-hljs.registerLanguage('nginx', nginx);
-hljs.registerLanguage('php', php);
-hljs.registerLanguage('ruby', ruby);
-hljs.registerLanguage('scss', scss);
-hljs.registerLanguage('xml', xml);
+hljs.registerLanguage( 'apache', apache );
+hljs.registerLanguage( 'bash', bash );
+hljs.registerLanguage( 'css', css );
+hljs.registerLanguage( 'handlebars', handlebars );
+hljs.registerLanguage( 'javascript', javascript );
+hljs.registerLanguage( 'json', json );
+hljs.registerLanguage( 'nginx', nginx );
+hljs.registerLanguage( 'php', php );
+hljs.registerLanguage( 'ruby', ruby );
+hljs.registerLanguage( 'scss', scss );
+hljs.registerLanguage( 'xml', xml );
 
 export default hljs;
