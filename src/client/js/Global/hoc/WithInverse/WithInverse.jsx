@@ -25,7 +25,6 @@ function WithInverseHOC( styles, WrappedComponent ) {
         styles = styles || {}
 
         get className() {
-            console.log(this.styles, this.props);
             return classnames(
                 this.props.className,
                 {
