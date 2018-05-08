@@ -1,16 +1,16 @@
 import {
-    REQUEST_POSTS,
-    RECEIVE_POSTS
+    FETCH_POSTS,
+    FETCH_POSTS_SUCCESS
 } from 'client/js/Blog/Posts/actions/posts';
 
 function posts( state = {}, action ) {
     switch ( action.type ) {
-    case RECEIVE_POSTS:
+    case FETCH_POSTS_SUCCESS:
         return Object.assign( {}, state, {
             ...action.posts,
             isFetching: false
         } );
-    case REQUEST_POSTS:
+    case FETCH_POSTS:
         return Object.assign( {}, state, {
             isFetching: true
         } );

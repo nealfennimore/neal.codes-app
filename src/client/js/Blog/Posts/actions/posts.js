@@ -1,3 +1,15 @@
-export const POSTS = 'POSTS';
-export const REQUEST_POSTS = 'REQUEST_POSTS';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const FETCH_POSTS = 'FETCH_POSTS';
+
+/**
+ *
+ * @param {{page: number}} params
+ */
+export function fetchPosts( params ) {
+    return {
+        type: FETCH_POSTS,
+        params
+    };
+}
+
+export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
+export const FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR';
