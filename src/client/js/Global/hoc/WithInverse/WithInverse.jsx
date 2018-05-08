@@ -25,11 +25,11 @@ function WithInverseHOC( styles, WrappedComponent ) {
         styles = styles || {}
 
         get className() {
-            console.log( this.props, styles );
+            console.log(this.styles, this.props);
             return classnames(
                 this.props.className,
                 {
-                    // [this.styles.inverse]: this.props.isInverse
+                    [this.styles.inverse]: this.props.isInverse
                 }
             );
         }

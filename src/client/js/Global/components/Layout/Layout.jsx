@@ -1,19 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import WithInverse from 'client/js/Global/hoc/WithInverse';
+import { compose } from 'redux';
 import styles from './Layout.pcss';
 
 const Layout = ( {
-    children
+    children,
+    className
 } ) =>{
     return (
-        <div className={styles.Layout}>
+        <div className={classnames( styles.Layout, className )}>
             { children }
         </div>
     );
 };
 
-Layout.propTypes = {
-    children: PropTypes.node.isRequired
+Layout.defaultProps = {
+    className: ''
 };
 
-export default Layout;
+Layout.propTypes = {
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string
+};
+
+const enhance = compose(
+    WithInverse( styles ),
+);
+
+
+export default enhance( Layout );

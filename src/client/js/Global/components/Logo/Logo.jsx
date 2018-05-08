@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import WithInverse from 'client/js/Global/hoc/WithInverse';
 import styles from './Logo.pcss';
 
 const Logo = ( {
@@ -24,4 +25,4 @@ Logo.defaultProps = {
     className: ''
 };
 
-export default Logo;
+export default WithInverse( styles, Logo );
