@@ -20,7 +20,7 @@ export function StoreFactory(
     middleware = defaultMiddleware,
 ) {
     const store = createStore(
-        initialReducers(),
+        initialReducers( {} ),
         initialState,
         composeEnhancers(
             applyMiddleware( ...middleware() )
