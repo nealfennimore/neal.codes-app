@@ -1,6 +1,6 @@
 import 'client/styles/globals.pcss';
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Layout from 'client/js/Global/components/Layout';
 import NavigationBar from 'client/js/Global/components/NavigationBar';
 import Footer from 'client/js/Global/components/Footer';
@@ -11,7 +11,11 @@ const App = () => (
     <Layout>
         <NavigationBar />
         <Route exact path="/" component={Home} />
-        <Route path="/blog" component={Posts} />
+        <Switch>
+            <Route exact path="/blog" component={Posts} />
+            <Route path="/blog/page/:page(\d+)" component={Posts} />
+            <Route path="/blog/:slug([\w|-]+)" component={Posts} />
+        </Switch>
         <Footer />
     </Layout>
 );
