@@ -1,0 +1,61 @@
+@import 'styles/main.pcss';
+
+.Home {
+    align-items: center;
+    justify-content: center;
+
+    & section {
+        flex-basis: 80%;
+
+        & header hgroup {
+
+            & h1 {
+                margin-bottom: 0;
+            }
+        }
+
+        & footer {
+            display: flex;
+            justify-content: center;
+            margin-top: calc(var(--gutter) * 2);
+
+            & a {
+                text-align: center;
+                flex: 0 0 12.5%;
+
+                & i {
+                    /* color: var(--white); */
+                    display: block;
+                    font-size: 42px;
+                    margin-bottom: 20px;
+                    transition: transform 0.25s ease-in-out;
+                }
+
+                & span {
+                    /* color: var(--white); */
+                    display: block;
+                    opacity: 0;
+                    transition: all 0.25s ease-in-out;
+                }
+
+                &:hover {
+
+                    & i {
+                        transform: scale(1.2) translateY(-10%);
+                    }
+
+                    & span {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (--small-only) {
+
+    .Home section footer a {
+        flex: 0 0 25%;
+    }
+}
