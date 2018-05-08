@@ -20,7 +20,7 @@ export function* fetchPosts( { page } ) {
 
     try {
         const { data } = yield call( service.getPosts, options );
-        yield put( { type: FETCH_POSTS_SUCCESS, posts: data } );
+        yield put( { type: FETCH_POSTS_SUCCESS, data } );
     } catch ( e ) {
         yield put( { type: FETCH_POSTS_ERROR } );
     }

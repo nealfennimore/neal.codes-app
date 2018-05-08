@@ -3,13 +3,24 @@ import {
     FETCH_POSTS_SUCCESS
 } from 'client/js/Blog/Posts/actions/posts';
 
-function posts( state = {}, action ) {
+function mergePosts( state, action ) {
+    const { meta, posts } = action.data;
+
+    return Object.assign( {}, state, {
+        meta,
+        posts: {
+            ...state.posts,
+            [ meta.pagination.page ]: posts,
+        },
+        isFetching:false
+    } );
+}
+
+
+function postsReducer( state = {}, action ) {
     switch ( action.type ) {
     case FETCH_POSTS_SUCCESS:
-        return Object.assign( {}, state, {
-            ...action.posts,
-            isFetching: false
-        } );
+        return mergePosts( state, action );
     case FETCH_POSTS:
         return Object.assign( {}, state, {
             isFetching: true
@@ -19,4 +30,4 @@ function posts( state = {}, action ) {
     }
 }
 
-export default posts;
+export default postsReducer;
