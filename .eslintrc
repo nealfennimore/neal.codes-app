@@ -63,6 +63,9 @@
                 "max": 2,
                 "maxEOF": 1
             }
+        ],
+        "object-curly-spacing": [
+            2, "always"
         ]
     }
 }
