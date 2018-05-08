@@ -1,0 +1,105 @@
+@import "fonts/variables.pcss";
+
+@font-face {
+    font-family: 'nealcodes';
+    src:
+        url('../fonts/nealcodes/nealcodes.ttf?g1wf5o') format('truetype'),
+        url('../fonts/nealcodes/nealcodes.woff?g1wf5o') format('woff'),
+        url('../fonts/nealcodes/nealcodes.svg?g1wf5o#nealcodes') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'nealcodes' !important; /* stylelint-disable-line */
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:global .icon-arrow_left {
+
+    &:before {
+        content: var(--icon-arrow_left);
+    }
+}
+
+:global .icon-arrow_right {
+
+    &:before {
+        content: var(--icon-arrow_right);
+    }
+}
+
+:global .icon-loader {
+
+    &:before {
+        content: var(--icon-loader);
+    }
+}
+
+:global .icon-plus {
+
+    &:before {
+        content: var(--icon-plus);
+    }
+}
+
+:global .icon-close {
+
+    &:before {
+        content: var(--icon-close);
+    }
+}
+
+:global .icon-search {
+
+    &:before {
+        content: var(--icon-search);
+    }
+}
+
+:global .icon-rss {
+
+    &:before {
+        content: var(--icon-rss);
+    }
+}
+
+:global .icon-linkedin {
+
+    &:before {
+        content: var(--icon-linkedin);
+    }
+}
+
+:global .icon-github {
+
+    &:before {
+        content: var(--icon-github);
+    }
+}
+
+:global .icon-keybase {
+
+    &:before {
+        content: var(--icon-keybase);
+    }
+}
+
+:global .icon-codepen {
+
+    &:before {
+        content: var(--icon-codepen);
+    }
+}
+

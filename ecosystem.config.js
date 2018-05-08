@@ -7,7 +7,7 @@ module.exports = {
             script: './dist/server.js',
             env: {
                 ...env,
-                'NODE_ENV': 'production'
+                NODE_ENV: 'production'
             }
         },
         {
@@ -16,7 +16,8 @@ module.exports = {
             exec_interpreter: 'babel-node',
             env: {
                 ...env,
-                'NODE_ENV': 'development'
+                NODE_ENV: 'development',
+                NODE_TLS_REJECT_UNAUTHORIZED: 0
             },
         }
     ]

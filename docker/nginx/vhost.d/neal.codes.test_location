@@ -23,7 +23,7 @@ location ~ ^/api/(.*)$ {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
 
-    proxy_pass http://ghost.test/blog/ghost/api/v0.1/$1/?client_id=ghost-frontend&client_secret=0d4a21917448$args; # $1 needs a forward slash else there is a redirect
+    proxy_pass http://ghost.test/blog/ghost/api/v0.1/$1/?client_id=ghost-frontend&client_secret=57217f471e24&$args; # $1 needs a forward slash else there is a redirect
     proxy_redirect off;
 }
 

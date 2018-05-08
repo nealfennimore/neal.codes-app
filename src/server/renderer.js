@@ -3,10 +3,10 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import Loadable from 'react-loadable';
-import { serverQueue } from '@nealfennimore/redux-saga-injector';
+import { preloadQueue } from '@nfen/redux-saga-injector';
 import serialize from 'serialize-javascript';
-import App from 'client/components/App.jsx';
-import createStore from 'client/store';
+import App from 'client/js/Global/components/App.jsx';
+import createStore from 'client/js/store';
 import {
     getBundleTags,
     manifest,
@@ -52,7 +52,7 @@ export default async function render( req, res ) {
     const modules = [];
 
     // Server saga listens for any injected sagas to finish
-    const preload = store.runSaga( serverQueue );
+    const preload = store.runSaga( preloadQueue );
 
     // Start initial render to start sagas
     // This is a throw away render
@@ -81,6 +81,17 @@ export default async function render( req, res ) {
                 ${bundle.styles}
                 ${styles}
                 ${manifest}
+
+                <script>
+                    (function(d) {
+                    var config = {
+                        kitId: 'ppk4ako',
+                        scriptTimeout: 3000,
+                        async: true
+                    },
+                    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+                    })(document);
+                </script>
                 <link href="https://google.com/favicon.ico" rel="icon" />
             </head>
             <body>

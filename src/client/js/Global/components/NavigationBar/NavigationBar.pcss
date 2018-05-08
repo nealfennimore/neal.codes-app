@@ -1,0 +1,37 @@
+@import 'styles/main.pcss';
+
+.NavigationBar {
+    align-items: center;
+    display: flex;
+    height: var(--navigation-height);
+    justify-content: space-between;
+    left: 50%;
+    max-width: var(--xlarge-width);
+    position: fixed;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    padding: 0 var(--gutter-medium);
+
+    & .logo,
+    & .menu {
+        @apply --shrink;
+    }
+
+    & .logo {
+        height: var(--navigation-height);
+    }
+
+    & .menu {
+        display: flex;
+
+        & li {
+            flex: 1;
+            margin-right: var(--gutter);
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

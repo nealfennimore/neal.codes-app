@@ -1,9 +1,7 @@
-const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const mapValues = require( 'lodash/mapValues' );
 const webpack = require( 'webpack' );
 const merge = require( 'webpack-merge' );
 const config = require( '../common/webpack.config.client' );
-const { resolve } = require( 'path' );
 
 const addHotModuleReloading = ( entry, key )=> {
     return [
