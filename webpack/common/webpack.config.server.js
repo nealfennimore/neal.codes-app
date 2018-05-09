@@ -3,6 +3,8 @@ const webpack = require( 'webpack' );
 const nodeExternals = require( 'webpack-node-externals' );
 const merge = require( 'webpack-merge' );
 const common = require( './webpack.config' );
+const ReactLoadablePlugin = require( '../plugins/react-loadable' );
+const AssetsPlugin = require( '../plugins/assets-webpack-plugin' );
 
 module.exports = merge(
     common,
@@ -59,7 +61,9 @@ module.exports = merge(
         plugins: [
             new webpack.optimize.LimitChunkCountPlugin( {
                 maxChunks: 1
-            } )
+            } ),
+            AssetsPlugin,
+            ReactLoadablePlugin
         ]
     }
 );

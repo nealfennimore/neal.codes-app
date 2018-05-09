@@ -1,10 +1,10 @@
 const { resolve } = require( 'path' );
 const merge = require( 'webpack-merge' );
-const AssetsPlugin = require( 'assets-webpack-plugin' );
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
-const ReactLoadablePlugin = require( 'react-loadable/webpack' ).ReactLoadablePlugin;
 const Dotenv = require( 'dotenv-webpack' );
 const common = require( './webpack.config' );
+const ReactLoadablePlugin = require( '../plugins/react-loadable' );
+const AssetsPlugin = require( '../plugins/assets-webpack-plugin' );
 
 module.exports = merge(
     common,
@@ -69,12 +69,8 @@ module.exports = merge(
                 root: resolve( __dirname, '../../' ),
                 exclude:  ['react-loadable.json', 'webpack-assets.json'],
             } ),
-            new AssetsPlugin( {
-                path: resolve( __dirname, '../../dist/assets' )
-            } ),
-            new ReactLoadablePlugin( {
-                filename: './dist/assets/react-loadable.json',
-            } )
+            AssetsPlugin,
+            ReactLoadablePlugin
         ]
     }
 );
