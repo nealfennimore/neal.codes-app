@@ -1,11 +1,16 @@
 @import 'sanitize.css/sanitize.css';
 @import './_fonts.pcss';
 @import './_variables.pcss';
+@import './_colors.pcss';
 @import './_kitchen-sink.pcss';
 
 a {
-    color: inherit;
+    color: var(--primary);
     text-decoration: none;
+
+    &:hover {
+        color: var(--turqouise-dark);
+    }
 }
 
 button {

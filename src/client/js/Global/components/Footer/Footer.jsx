@@ -2,11 +2,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
+import WithInverse from 'src/client/js/Global/hoc/WithInverse';
 import styles from './Footer.pcss';
 
-const Footer = ( props ) =>{
+const Footer = ( {
+    className
+} ) =>{
     return (
-        <footer className={styles.Footer}>
+        <footer className={classnames( styles.Footer, className )}>
             <Link to="/">neal.codes</Link>
             <span>©</span>
             <span>{new Date().getFullYear()}</span>
@@ -14,6 +18,8 @@ const Footer = ( props ) =>{
     );
 };
 
-Footer.propTypes = {};
+Footer.propTypes = {
+    className: PropTypes.string
+};
 
-export default Footer;
+export default WithInverse( styles, Footer );

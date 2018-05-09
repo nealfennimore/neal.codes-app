@@ -20,3 +20,8 @@ export const getPostsByPage = createSelector(
     [getPosts, getPage],
     ( posts, page )=> get( posts, page )
 );
+
+export const shouldFetchPosts = createSelector(
+    [isFetching, getPostsByPage],
+    ( fetching, posts ) => ! fetching && !! posts
+);
