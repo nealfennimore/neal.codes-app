@@ -1,4 +1,4 @@
-import { map, endsWith, filter, pipe, join, pick } from 'lodash';
+import { map, startsWith, endsWith, filter, pipe, join, pick, some } from 'lodash';
 import { getBundles } from 'react-loadable/webpack';
 import stats from 'dist/assets/react-loadable.json';
 import webpackAssets from 'dist/assets/webpack-assets.json';
@@ -12,14 +12,22 @@ export const scriptTemplate = asset=> `<script src="${asset}" defer></script>`;
 export const styleTemplate = asset=> `<link href="${asset}" rel="stylesheet" />`;
 export const concatWithNewLine = tags => join( tags, '\n' );
 
+const BUNDLE_BLACKLIST = [ 'main' ];
+
+export const filterBlacklist = ( assets )=> filter( assets, asset =>
+    ! some( BUNDLE_BLACKLIST, name => startsWith( asset, name ) )
+);
+
 export const getBundleScriptFiles = pipe(
     bundles => filter( bundles, bundle => isScript( bundle.file ) ),
-    mapModuleFiles
+    mapModuleFiles,
+    filterBlacklist,
 );
 
 export const getBundleStyleFiles = pipe(
     bundles => filter( bundles, bundle => isStyle( bundle.file ) ),
-    mapModuleFiles
+    mapModuleFiles,
+    filterBlacklist,
 );
 
 export const getBundleScriptTags = pipe(
