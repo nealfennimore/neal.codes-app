@@ -7,7 +7,7 @@ module.exports = ( { file, options, env } = {} ) => ( {
             ]
         },
         'postcss-pxtorem': {
-            rootValue: 18,
+            rootValue: 16,
             propList: [ '*' ],
             selectorBlackList: [
                 /^html$/,
