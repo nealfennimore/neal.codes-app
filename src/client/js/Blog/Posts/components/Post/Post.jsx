@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import format from 'date-fns/format';
 import { PostPropType } from 'client/js/Global/proptypes/post';
-import Tag from 'client/js/Blog/Tags/components/Tag';
+import Tags from 'client/js/Blog/Tags/components/Tags';
 import { truncate } from 'lodash';
 import styles from './Post.pcss';
 
@@ -32,15 +32,7 @@ const Post = ( {
                 <time dateTime={published_at}>
                     { format( published_at, 'MMMM Do, YYYY' ) }
                 </time>
-                <ul>
-                    {
-                        tags.map( tag=>(
-                            <li key={tag.id}>
-                                <Tag {...tag} />
-                            </li>
-                        ) )
-                    }
-                </ul>
+                <Tags tags={tags} />
             </footer>
         </article>
     );
