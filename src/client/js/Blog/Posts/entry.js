@@ -6,11 +6,13 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import Main from 'client/js/Global/components/Main';
 import injector from 'client/js/Global/components/Injector';
+import { PostPropType } from 'client/js/Global/proptypes/post';
 import { fetchPosts } from './actions/posts';
 import { getPostsByPage, getNextPage, getPrevPage, getPage, getTotalPages, shouldFetchPosts } from './selectors/posts';
 import postsSaga from './sagas/posts';
 import postsReducer from './reducers';
 import Pagination from './components/Pagination';
+import Post from './components/Post';
 import styles from './Posts.pcss';
 
 export class Posts extends PureComponent {
@@ -22,7 +24,7 @@ export class Posts extends PureComponent {
         nextPage: PropTypes.number,
         page: PropTypes.number,
         pages: PropTypes.number,
-        posts: PropTypes.arrayOf( PropTypes.object ),
+        posts: PropTypes.arrayOf( PostPropType ),
         prevPage: PropTypes.number,
         shouldFetchPosts: PropTypes.bool.isRequired
     }
@@ -38,7 +40,7 @@ export class Posts extends PureComponent {
         this.props.fetchPosts( this.page );
     }
 
-    componentWillUpdate( nextProps ) {
+    componentWillReceiveProps( nextProps ) {
         if( this.props.shouldFetchPosts ) {
             this.props.fetchPosts( nextProps.match.params.page );
         }
@@ -54,9 +56,7 @@ export class Posts extends PureComponent {
                 <section>
                     {
                         this.props.posts.map( ( post )=>(
-                            <article>
-                                {post.title}
-                            </article>
+                            <Post key={post.id} {...post} />
                         ) )
                     }
                     <Pagination

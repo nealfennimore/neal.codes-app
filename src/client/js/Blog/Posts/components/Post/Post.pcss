@@ -1,0 +1,49 @@
+@import 'styles/main.pcss';
+
+.Post {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & section {
+        flex-basis: 66%;
+    }
+
+    & footer {
+        flex-basis: 25%;
+
+        & time {
+            color: var(--secondary);
+            display: block;
+            margin-bottom: var(--gutter);
+        }
+
+        & ul {
+            display: flex;
+            flex-flow: row wrap;
+            list-style-type: none;
+
+            & li {
+                margin: 0 var(--gutter) var(--gutter-small) 0;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (--small-only) {
+
+    .Post {
+
+        & section {
+            flex-basis: 100%;
+        }
+
+        & footer {
+            display: none;
+        }
+    }
+}

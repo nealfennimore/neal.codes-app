@@ -14,7 +14,8 @@ export function* fetchPosts( { page } ) {
         params: {
             limit: 3,
             include: 'tags',
-            page
+            page,
+            formats: 'plaintext'
         }
     };
 
