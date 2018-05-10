@@ -1,6 +1,7 @@
 import idx from 'idx';
 import { get } from 'lodash';
 import { createSelector } from 'reselect';
+import * as meta from 'client/js/Blog/selectors/meta';
 
 export const selector = state => idx( state, _ => _.blog.posts );
 
@@ -9,12 +10,12 @@ export const isFetching = createSelector( selector, posts => idx( posts, _ => _.
 export const getPosts = createSelector( selector, posts => idx( posts, _ => _.posts ) );
 
 export const getMeta = createSelector( selector, posts => idx( posts, _ => _.meta ) );
-export const getPagination = createSelector( getMeta, meta => idx( meta, _ => _.pagination ) );
-export const getPage = createSelector( getPagination, pagination => idx( pagination, _ => _.page ) );
-export const getTotalPages = createSelector( getPagination, pagination => idx( pagination, _ => _.pages ) );
-export const getTotalPosts = createSelector( getPagination, pagination => idx( pagination, _ => _.total ) );
-export const getNextPage = createSelector( getPagination, pagination => idx( pagination, _ => _.next ) );
-export const getPrevPage = createSelector( getPagination, pagination => idx( pagination, _ => _.prev ) );
+export const getPagination = createSelector( getMeta, meta.getPagination );
+export const getPage = createSelector( getMeta, meta.getPage );
+export const getTotalPages = createSelector( getMeta, meta.getTotalPages );
+export const getTotalPosts = createSelector( getMeta, meta.getTotalPosts );
+export const getNextPage = createSelector( getMeta, meta.getNextPage );
+export const getPrevPage = createSelector( getMeta, meta.getPrevPage );
 
 export const getPostsByPage = createSelector(
     [getPosts, getPage],
