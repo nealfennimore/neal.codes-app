@@ -43,8 +43,9 @@ export const PostPropType = PropTypes.shape( {
     visibility: PropTypes.string,
 } );
 
+export const PostsPropType = PropTypes.arrayOf( PostPropType );
 
-export const PostsPropType = {
-    posts: PropTypes.arrayOf( PostPropType ),
+export const PostsApiPropType = {
+    posts: PostsPropType,
     meta: MetaPropType
 };
