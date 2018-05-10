@@ -1,115 +1,118 @@
-body {
-    font-family: var(--font-family-body);
-    font-size: 18px;
-    line-height: 23px;
-    margin: auto;
-}
+:global {
 
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-    color: inherit;
-    font-family: var(--font-family-headers);
-    font-style: normal;
-    font-weight: 500;
-    text-rendering: optimizeLegibility;
-}
+    & body {
+        font-family: var(--font-family-body);
+        font-size: 18px;
+        line-height: 23px;
+        margin: auto;
+    }
 
-h1,
-.h1 {
-    font-size: 76px;
-    line-height: 92px;
-    margin-top: 23px;
-    margin-bottom: 46px;
-}
+    & h1,
+    & .h1,
+    & h2,
+    & .h2,
+    & h3,
+    & .h3,
+    & h4,
+    & .h4,
+    & h5,
+    & .h5,
+    & h6,
+    & .h6 {
+        color: inherit;
+        font-family: var(--font-family-headers);
+        font-style: normal;
+        font-weight: 500;
+        text-rendering: optimizeLegibility;
+    }
 
-h2,
-.h2 {
-    font-size: 47px;
-    line-height: 69px;
-    margin-top: 23px;
-    margin-bottom: 23px;
-}
+    & h1,
+    & .h1 {
+        font-size: 76px;
+        line-height: 92px;
+        margin-top: 23px;
+        margin-bottom: 46px;
+    }
 
-h3,
-.h3 {
-    font-size: 29px;
-    line-height: 46px;
-    margin-top: 23px;
-    margin-bottom: 0;
-}
+    & h2,
+    & .h2 {
+        font-size: 47px;
+        line-height: 69px;
+        margin-top: 23px;
+        margin-bottom: 23px;
+    }
 
-h4,
-.h4 {
-    font-size: 18px;
-    line-height: 23px;
-    margin-top: 23px;
-    margin-bottom: 0;
-}
+    & h3,
+    & .h3 {
+        font-size: 29px;
+        line-height: 46px;
+        margin-top: 23px;
+        margin-bottom: 0;
+    }
 
-h5,
-.h5 {
-    font-size: 18px;
-    line-height: 23px;
-    margin-top: 23px;
-    margin-bottom: 0;
-}
+    & h4,
+    & .h4 {
+        font-size: 18px;
+        line-height: 23px;
+        margin-top: 23px;
+        margin-bottom: 0;
+    }
 
-p,
-ul,
-ol,
-pre,
-table,
-blockquote {
-    margin-top: 0;
-    margin-bottom: 23px;
-}
+    & h5,
+    & .h5 {
+        font-size: 18px;
+        line-height: 23px;
+        margin-top: 23px;
+        margin-bottom: 0;
+    }
 
-ul ul,
-ol ol,
-ul ol,
-ol ul {
-    margin-top: 0;
-    margin-bottom: 0;
-}
+    & p,
+    & ul,
+    & ol,
+    & pre,
+    & table,
+    & blockquote {
+        margin-top: 0;
+        margin-bottom: 23px;
+    }
 
-/* Let's make sure all's aligned */
-hr,
-.hr {
-    border: 1px solid;
-    margin: -1px 0;
-}
+    & ul ul,
+    & ol ol,
+    & ul ol,
+    & ol ul {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 
-/* a,
-b,
-i,
-strong,
-em,
-small,
-code {
-    line-height: 0;
-} */
+    /* Let's make sure all's aligned */
+    & hr,
+    & .hr {
+        border: 1px solid;
+        margin: -1px 0;
+    }
 
-sub,
-sup {
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-}
+    /* a,
+    b,
+    i,
+    strong,
+    em,
+    small,
+    code {
+        line-height: 0;
+    } */
 
-sup {
-    top: -0.5em;
-}
+    & sub,
+    & sup {
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+    }
 
-sub {
-    bottom: -0.25em;
+    & sup {
+        top: -0.5em;
+    }
+
+    & sub {
+        bottom: -0.25em;
+    }
 }
