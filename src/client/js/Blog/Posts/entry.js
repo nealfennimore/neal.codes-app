@@ -10,12 +10,12 @@ import { PostPropType } from 'client/js/Global/proptypes/post';
 import { fetchPosts } from './actions/posts';
 import { getPostsByPage, getNextPage, getPrevPage, getPage, getTotalPages, shouldFetchPosts } from './selectors/posts';
 import postsSaga from './sagas/posts';
-import postsReducer from './reducers';
+import postsReducer from './reducers/posts';
 import Pagination from './components/Pagination';
-import Post from './components/Post';
+import Posts from './components/Posts';
 import styles from './Posts.pcss';
 
-export class Posts extends PureComponent {
+export class PostsEntry extends PureComponent {
     static propTypes = {
         fetchPosts: PropTypes.func.isRequired,
         match: PropTypes.shape( {
@@ -54,15 +54,12 @@ export class Posts extends PureComponent {
         return (
             <Main className={styles.Posts}>
                 <section>
-                    {
-                        this.props.posts.map( ( post )=>(
-                            <Post key={post.id} {...post} />
-                        ) )
-                    }
+                    <Posts posts={this.props.posts} />
                     <Pagination
                         nextPage={this.props.nextPage}
                         page={this.props.page}
                         pages={this.props.pages}
+                        prefix="/blog/page"
                         prevPage={this.props.prevPage}
                     />
                 </section>
@@ -91,9 +88,9 @@ const enhance = compose(
     injector( {
         sagas: [ postsSaga ],
         reducers: {
-            blog: postsReducer
+            'blog.posts': postsReducer
         }
     } )
 );
 
-export default enhance( Posts );
+export default enhance( PostsEntry );

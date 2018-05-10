@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './Pagination.pcss';
 
-const Pagination = ( { nextPage, prevPage, page, pages } ) => {
+const Pagination = ( {
+    nextPage,
+    page,
+    pages,
+    prefix,
+    prevPage,
+} ) => {
     if( ! nextPage && ! prevPage ) {
         return null;
     }
@@ -13,7 +19,7 @@ const Pagination = ( { nextPage, prevPage, page, pages } ) => {
         <footer className={styles.Pagination}>
             {
                 !! prevPage && (
-                    <Link to={`/blog/page/${prevPage}`}>
+                    <Link to={`${prefix}/${prevPage}`}>
                         <i className='icon-arrow_left' />
                     </Link>
                 )
@@ -23,7 +29,7 @@ const Pagination = ( { nextPage, prevPage, page, pages } ) => {
             </span>
             {
                 !! nextPage && (
-                    <Link to={`/blog/page/${nextPage}`}>
+                    <Link to={`${prefix}/${nextPage}`}>
                         <i className='icon-arrow_right' />
                     </Link>
                 )
@@ -37,6 +43,7 @@ Pagination.propTypes = {
     page: PropTypes.number,
     pages: PropTypes.number,
     prevPage: PropTypes.number,
+    prefix: PropTypes.string,
 };
 
 export default Pagination;
