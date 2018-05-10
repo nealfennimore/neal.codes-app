@@ -69,7 +69,7 @@ export default async function render( req, res ) {
     await preload.done;
 
     // Get markup with updated store
-    const html = renderApp( {store, context, modules, req} );
+    const html = renderApp( { store, context, modules, req } );
 
     // Get dynamic bundles from code splits needed for this render
     const bundle = getBundleTags( modules );

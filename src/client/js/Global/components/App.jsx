@@ -13,10 +13,15 @@ const App = () => (
         <NavigationBar />
         <Route exact path="/" component={Home} />
         <Switch>
+            {/* ─── BLOG ─────────────────────────────────────────────────────────────────────── */}
             <Route exact path="/blog" component={Posts} />
             <Route exact path="/blog/page/:page(\d+)" component={Posts} />
-            <Route exact path="/blog/tag/:slug([\w|-]+)/page/:page(\d+)" component={Tags} />
+
+            {/* ─── TAGS ─────────────────────────────────────────────────────────────────────── */}
             <Route exact path="/blog/tag/:slug([\w|-]+)" component={Tags} />
+            <Route exact path="/blog/tag/:slug([\w|-]+)/page/:page(\d+)" component={Tags} />
+
+            {/* ─── POST ─────────────────────────────────────────────────────────────────────── */}
             <Route exact path="/blog/:slug([\w|-]+)" component={Posts} />
         </Switch>
         <Footer />
