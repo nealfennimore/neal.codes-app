@@ -1,7 +1,8 @@
 @import 'sanitize.css/sanitize.css';
-@import './_fonts.pcss';
+@import 'highlight.js/styles/tomorrow-night.css';
 @import './_variables.pcss';
 @import './_colors.pcss';
+@import './_fonts.pcss';
 @import './_kitchen-sink.pcss';
 
 a {
@@ -34,7 +35,7 @@ ul {
 }
 
 /* http://a11yproject.com/posts/how-to-hide-content/ */
-:global(.visually-hidden) {
+.visually-hidden {
     border: 0 !important;
     clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
     clip: rect(1px, 1px, 1px, 1px);

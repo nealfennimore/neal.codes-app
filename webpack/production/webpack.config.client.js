@@ -13,6 +13,31 @@ module.exports = merge.strategy( {
             rules: [
                 {
                     test: /\.p?css$/,
+                    include: [/\.?globals?\.?/, /node_modules/],
+                    use: ExtractTextPlugin.extract( {
+                        fallback: {
+                            loader: 'style-loader',
+                            options: {
+                                hmr: false
+                            }
+                        },
+                        use: [
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    modules: false,
+                                    importLoaders: 1,
+                                    minimize: true,
+                                    sourceMap: true
+                                }
+                            },
+                            'postcss-loader'
+                        ]
+                    } )
+                },
+                {
+                    test: /\.p?css$/,
+                    exclude: [/\.?globals?\.?/, /node_modules/],
                     use: ExtractTextPlugin.extract( {
                         fallback: {
                             loader: 'style-loader',

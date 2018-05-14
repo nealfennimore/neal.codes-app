@@ -16,6 +16,21 @@ module.exports = merge.strategy( {
             rules: [
                 {
                     test: /\.p?css$/,
+                    include: [/\.?globals?\.?/, /node_modules/],
+                    use: [
+                        {
+                            loader: 'css-loader/locals',
+                            options: {
+                                modules: false, // Enable CSS modules
+                                importLoaders: 1, // Number of loaders before CSS loader
+                            }
+                        },
+                        'postcss-loader'
+                    ]
+                },
+                {
+                    test: /\.p?css$/,
+                    exclude: [/\.?globals?\.?/, /node_modules/],
                     use: [
                         {
                             loader: 'css-loader/locals',
@@ -28,7 +43,6 @@ module.exports = merge.strategy( {
                         'postcss-loader'
                     ]
                 }
-
             ]
         },
     }

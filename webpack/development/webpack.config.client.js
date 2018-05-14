@@ -33,6 +33,22 @@ module.exports = merge( {
             rules: [
                 {
                     test: /\.p?css$/,
+                    include: [/\.?globals?\.?/, /node_modules/],
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: false,
+                                importLoaders: 1,
+                            }
+                        },
+                        'postcss-loader'
+                    ],
+                },
+                {
+                    test: /\.p?css$/,
+                    exclude: [/\.?globals?\.?/, /node_modules/],
                     use: [
                         'style-loader',
                         {

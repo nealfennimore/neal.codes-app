@@ -24,11 +24,6 @@ module.exports = merge(
         },
         module: {
             rules: [
-                {
-                    test: /\.jsx?$/,
-                    use: [ 'babel-loader', ],
-                    exclude: /node_modules/
-                },
                 // Images
                 {
                     test: /.*\.(gif|png|jpe?g|svg)$/i,

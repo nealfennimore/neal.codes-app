@@ -8,6 +8,21 @@ module.exports = merge(
             rules: [
                 {
                     test: /\.p?css$/,
+                    include: [/\.?globals?\.?/, /node_modules/],
+                    use: [
+                        {
+                            loader: 'css-loader/locals',
+                            options: {
+                                modules: false,
+                                importLoaders: 1,
+                            }
+                        },
+                        'postcss-loader'
+                    ]
+                },
+                {
+                    test: /\.p?css$/,
+                    exclude: [/\.?globals?\.?/, /node_modules/],
                     use: [
                         {
                             loader: 'css-loader/locals',
@@ -19,7 +34,6 @@ module.exports = merge(
                         'postcss-loader'
                     ]
                 }
-
             ]
         },
     }
