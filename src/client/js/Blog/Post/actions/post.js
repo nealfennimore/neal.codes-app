@@ -1,4 +1,17 @@
-export const REQUEST_POST = 'REQUEST_POST';
-export const RECEIVE_POST = 'RECEIVE_POST';
-export const GET_POST = 'GET_POST';
-export const SET_POST = 'SET_POST';
+export const FETCH_POST = 'FETCH_POST';
+
+/**
+ *
+ * @param {{slug: string}} params
+ */
+export function fetchPost( params ) {
+    return {
+        type: FETCH_POST,
+        params
+    };
+}
+
+export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
+export const FETCH_POST_ERROR = 'FETCH_POST_ERROR';
+
+export const LOOKUP_POST = 'LOOKUP_POST';

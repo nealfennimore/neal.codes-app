@@ -3,8 +3,8 @@ import { get } from 'lodash';
 import { createSelector } from 'reselect';
 import * as meta from 'client/js/Blog/selectors/meta';
 
-const getTags = state => idx( state, _ => _.blog.tags );
-const getSlug = props => get( props, 'match.params.slug' );
+export const getTags = state => idx( state, _ => _.blog.tags );
+export const getSlug = props => get( props, 'match.params.slug' );
 export const getTagsBySlug = ( state, props ) => get( getTags( state ), getSlug( props ) );
 
 export const isFetching = createSelector( getTags, tags => idx( tags, _ => _.isFetching ) );

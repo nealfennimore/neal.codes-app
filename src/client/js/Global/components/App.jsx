@@ -6,6 +6,7 @@ import NavigationBar from 'client/js/Global/components/NavigationBar';
 import Footer from 'client/js/Global/components/Footer';
 import Home from 'client/js/Home';
 import Posts from 'client/js/Blog/Posts';
+import Post from 'client/js/Blog/Post';
 import Tags from 'client/js/Blog/Tags';
 
 const App = () => (
@@ -22,7 +23,7 @@ const App = () => (
             <Route exact path="/blog/tag/:slug([\w|-]+)/page/:page(\d+)" component={Tags} />
 
             {/* ─── POST ─────────────────────────────────────────────────────────────────────── */}
-            <Route exact path="/blog/:slug([\w|-]+)" component={Posts} />
+            <Route exact path="/blog/:slug([\w|-]+)" component={Post} />
         </Switch>
         <Footer />
     </Layout>

@@ -1,42 +1,43 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import get from 'lodash/get';
-import find from 'lodash/find';
-import {
-    REQUEST_POST,
-    RECEIVE_POST,
-    SET_POST,
-    GET_POST
-} from 'client/js/Blog/Post/actions/post';
+import { call, put, select, take, takeLatest, cancel } from 'redux-saga/effects';
+import { find } from 'lodash';
+import { __SERVER__ } from 'shared/env';
+import * as actions from 'client/js/Blog/Post/actions/post';
 import * as service from 'client/js/Blog/Post/services/post';
+import { getCurrentPosts } from 'client/js/Blog/Post/selectors/post';
 
 
 export function* fetchPost( action ) {
-    yield put( {type: REQUEST_POST} );
-
     try {
         const { data } = yield call( service.getPost, action.slug, {
-            params: {include: 'tags'}
+            params: { include: 'tags' }
         } );
-        yield put( {type: RECEIVE_POST, posts: data.posts} );
-    } catch ( e ) {
-        //
+        yield put( { type: actions.FETCH_POST_SUCCESS, data } );
+    } catch ( error ) {
+        yield put( { type: actions.FETCH_POST_ERROR, error } );
     }
 }
 
-export function* postFlow( {blog, params } ) {
-    const slug = get( params, 'slug' );
-    const isActive = get( blog, 'post.slug', false ) === slug;
-    const posts = get( blog, 'posts.posts', [] );
-    const post = ! isActive ? find( posts, p => p.slug === slug ) : false;
+export function* postFlow( { params: { slug } } ) {
+    const posts = yield select( getCurrentPosts );
+    const post = find( posts, p => p.slug === slug );
 
-    if( post && ! isActive ) {
-        yield put( { type: SET_POST, posts: [post] } );
-    } else if( ! post && ! isActive ) {
-        yield call( fetchPost, {slug} );
+    if( post ) {
+        yield put( {
+            type: actions.LOOKUP_POST,
+            data: {
+                posts: [ post ]
+            }
+        } );
+    } else {
+        yield call( fetchPost, { slug } );
     }
 }
-
 
 export default function* postSaga() {
-    yield takeLatest( GET_POST, postFlow );
+    const task = yield takeLatest( actions.FETCH_POST, postFlow );
+    if( __SERVER__ ) {
+        yield take( [actions.FETCH_POST_SUCCESS, actions.FETCH_POST_ERROR]
+        );
+        yield cancel( task );
+    }
 }

@@ -15,7 +15,7 @@ export function* fetchPosts( { page } ) {
             limit: 3,
             include: 'tags',
             page,
-            formats: 'plaintext'
+            formats: 'plaintext,html'
         }
     };
 

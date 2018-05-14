@@ -8229,6 +8229,10 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-disqus-comments@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-disqus-comments/-/react-disqus-comments-1.2.0.tgz#e5aae2ea6cdce998cfc1340aab11df1be68f71f5"
+
 react-dom@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"

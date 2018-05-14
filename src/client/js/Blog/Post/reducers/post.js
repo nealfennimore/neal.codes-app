@@ -1,21 +1,38 @@
-import first from 'lodash/first';
+import { first, reduce } from 'lodash';
+import * as actions from 'client/js/Blog/Post/actions/post';
+import { getSlug } from 'client/js/Blog/selectors/post';
+import { FETCH_POSTS_SUCCESS } from 'client/js/Blog/Posts/actions/posts';
 
-import {
-    REQUEST_POST,
-    RECEIVE_POST,
-    SET_POST
-} from 'client/js/Blog/Post/actions/post';
+function keyBySlug( state, action ) {
+    return Object.assign( {}, state, reduce(
+        action.data.posts,
+        ( result, post )=>{
+            const slug = getSlug( post );
+
+            if( slug ) {
+                result[ slug ] = post;
+            }
+
+            return result;
+        },
+        {} )
+    );
+}
 
 function posts( state = {}, action ) {
     switch ( action.type ) {
-    case RECEIVE_POST:
-    case SET_POST:
+
+    case actions.FETCH_POST_SUCCESS:
+    case actions.LOOKUP_POST:
         return Object.assign( {}, state, {
-            ...first( action.posts ),
+            ...keyBySlug( state, action ),
             isFetching: false
         } );
 
-    case REQUEST_POST:
+    case FETCH_POSTS_SUCCESS:
+        return keyBySlug( state, action );
+
+    case actions.FETCH_POST:
         return Object.assign( {}, state, {
             isFetching: true
         } );
