@@ -9,7 +9,7 @@ const Footer = ( { post } ) => {
         <footer>
             <CodePen />
             <ReactDisqusComments
-                shortname=""
+                shortname="neal-codes"
                 identifier={getID( post )}
             />
         </footer>
