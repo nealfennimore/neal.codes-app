@@ -3,7 +3,6 @@
 .NavigationBar {
     align-items: center;
     background-color: var(--white);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.025);
     display: flex;
     height: var(--navigation-height);
     justify-content: space-between;
@@ -14,6 +13,18 @@
     top: 0;
     transform: translateX(-50%);
     width: 100%;
+
+    &:before {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.025);
+        content: '';
+        height: 1px;
+        left: 50%;
+        position: absolute;
+        top: var(--navigation-height);
+        transform: translateX(-50%);
+        width: 100vw;
+        z-index: 1;
+    }
 
     & .logo,
     & .menu {
@@ -70,7 +81,10 @@
 
 .NavigationBar.inverse {
     background-color: transparent;
-    border-bottom-color: transparent;
+
+    &:before {
+        border-bottom-color: transparent;
+    }
 
     & .menu li a {
         color: var(--white);
