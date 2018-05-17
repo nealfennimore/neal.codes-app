@@ -6,6 +6,15 @@
     & .date {
         display: inline;
         margin-bottom: 0;
-        margin-left: 5;
+        margin-left: 5px;
+    }
+
+    & .meta {
+        display: flex;
+        justify-content: space-between;
+
+        & > div {
+            @apply --shrink;
+        }
     }
 }

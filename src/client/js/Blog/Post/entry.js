@@ -12,8 +12,9 @@ import { fetchPost } from './actions/post';
 import { getPostBySlug, shouldFetchPost, isFetching } from './selectors/post';
 import postSaga from './sagas/post';
 import postReducer from './reducers/post';
+import styles from './Post.pcss';
 
-export class TagsEntry extends PureComponent {
+export class PostEntry extends PureComponent {
     static propTypes = {
         fetchPost: PropTypes.func.isRequired,
         isFetching: PropTypes.bool.isRequired,
@@ -38,7 +39,7 @@ export class TagsEntry extends PureComponent {
 
     render() {
         return (
-            <Main>
+            <Main className={styles.Post}>
                 {
                     this.props.post && ! this.props.isFetching
                         ? <Article post={this.props.post} />
@@ -71,4 +72,4 @@ const enhance = compose(
     } )
 );
 
-export default enhance( TagsEntry );
+export default enhance( PostEntry );

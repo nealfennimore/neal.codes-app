@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import {
     getHTML
 } from 'client/js/Global/selectors/post';

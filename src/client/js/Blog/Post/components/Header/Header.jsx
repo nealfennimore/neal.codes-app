@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { PostPropType } from 'client/js/Global/proptypes/post';
 import isAfter from 'date-fns/is_after';
 import {
@@ -24,19 +24,27 @@ const Header = ( {
             <h1>
                 { getTitle( post ) }
             </h1>
-            <small className={styles.small}>
-                Published
-                <Date date={published} className={styles.date} />
-            </small>
-            {
-                isUpdated && (
-                    <small className={styles.small}>
-                        <br />Last updated
-                        <Date date={updated} className={styles.date} />
+
+            <div className={styles.meta}>
+                <div>
+                    <small>
+                        Published
+                        <Date date={published} className={styles.date} />
                     </small>
-                )
-            }
-            <Tags tags={getTags( post )} />
+                    {
+                        isUpdated && (
+                            <small>
+                                <br />Last updated
+                                <Date date={updated} className={styles.date} />
+                            </small>
+                        )
+                    }
+                </div>
+                <div>
+                    <Tags tags={getTags( post )} />
+                </div>
+            </div>
+
         </header>
     );
 };
