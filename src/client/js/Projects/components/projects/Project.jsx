@@ -1,20 +1,19 @@
-import React, { PropTypes } from 'react';
-import styles from './Project.scss';
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './Project.pcss';
 
-const Project = ({id, title, subtitle, coverImage, onProjectClick}) => {
+const Project = ( { id, title, subtitle, coverImage, onProjectClick } ) => {
     return (
-        <div className={`column small-12 medium-6 ${styles.project}`} onClick={()=>onProjectClick(id)}>
+        <button className={styles.project} onClick={()=>onProjectClick( id )}>
             <img src={coverImage} alt={title} />
             <div className={styles.overlay}>
-                <div className={`row align-middle align-center text-center ${styles.titles}`}>
-                    <div className='column small-8'>
-                        <h2>{title}</h2>
-                        <p>{subtitle}</p>
-                        <i className='icon-plus' />
-                    </div>
+                <div className={styles.titles}>
+                    <h2 className="h3">{title}</h2>
+                    <p>{subtitle}</p>
+                    <i className='icon-plus' />
                 </div>
             </div>
-        </div>
+        </button>
     );
 };
 

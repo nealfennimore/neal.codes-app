@@ -1,29 +1,31 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { injectReducer, syncReducer } from 'sagas/injector';
-import { showProjectModal, hideProjectModal } from '../sagas/projects';
+import Injector from 'client/js/Global/components/Injector';
+import { showProjectModal, hideProjectModal } from '../actions/projects';
 import { getProjects, getModal } from '../selectors/projects';
 import projectsReducer from '../reducers';
 import Projects from '../components/Projects';
 
-const projects = {
-    key: 'projects',
-    reducer: projectsReducer
-};
+const injector = Injector( {
+    reducers: {
+        projects: projectsReducer
+    }
+} );
 
-Projects.preload = function preload(args){
-    return [
-        [injectReducer, projects, args]
-    ];
-};
+const connector =  connect(
+    ( state ) => ( {
+        projects: getProjects( state ),
+        modal: getModal( state )
+    } ),
+    ( dispatch ) => ( {
+        showModal: ( id )=> dispatch( showProjectModal( id ) ),
+        hideModal: ()=> dispatch( hideProjectModal() )
+    } )
+);
 
-export default connect(
-    (state) => ({
-        projects: getProjects(state),
-        modal: getModal(state)
-    }),
-    (dispatch) => ({
-        setup: ()=> dispatch( syncReducer(projects) ),
-        showModal: (id)=> dispatch(showProjectModal(id)),
-        hideModal: ()=> dispatch(hideProjectModal())
-    })
-)(Projects);
+const enhance = compose(
+    connector,
+    injector
+);
+
+export default enhance( Projects );

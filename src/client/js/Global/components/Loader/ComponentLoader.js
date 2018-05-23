@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import Loader from './Loader';
 
 const ComponentLoader = ( {
-    pastDelay
+    pastDelay,
+    error
 } ) =>{
-    if ( pastDelay ) {
+    if( error ) {
+        return error;
+    } else if ( pastDelay ) {
         return <Loader />;
     } else {
         return null;
@@ -13,7 +16,8 @@ const ComponentLoader = ( {
 };
 
 ComponentLoader.propTypes = {
-    pastDelay: PropTypes.bool
+    pastDelay: PropTypes.bool,
+    error: PropTypes.string,
 };
 
 export default ComponentLoader;

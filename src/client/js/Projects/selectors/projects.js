@@ -1,4 +1,6 @@
-import get from 'lodash/get';
+import idx from 'idx';
+import { createSelector } from 'reselect';
 
-export const getProjects = (state)=> get(state, 'projects.projects', []);
-export const getModal = (state)=> get(state, 'projects.modal', {});
+export const selector = state => idx( state, _=> _.projects );
+export const getProjects = createSelector( selector, select => idx( select, _=> _.projects ) );
+export const getModal = createSelector( selector, select => idx( select, _=> _.modal ) );

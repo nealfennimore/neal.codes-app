@@ -1,17 +1,14 @@
-import React, { PropTypes } from 'react';
-import styles from './ProjectModal.scss';
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './ProjectModal.pcss';
 import ProjectModalGallery from './ProjectModalGallery';
 
-const ProjectModal = ({onHide, project}) => {
+const ProjectModal = ( { onHide, project } ) => {
     return (
         <div className={styles.modal}>
-            <div className={`row ${styles.close}`}>
-                <div className='column'>
-                    <button className={styles.closeButton} onClick={onHide}>
-                        <i className='icon-close'></i>
-                    </button>
-                </div>
-            </div>
+            <button className={styles.closeButton} onClick={onHide}>
+                <i className='icon-close' />
+            </button>
             <ProjectModalGallery project={project} />
         </div>
     );
@@ -19,7 +16,7 @@ const ProjectModal = ({onHide, project}) => {
 
 ProjectModal.propTypes = {
     onHide: PropTypes.func.isRequired,
-    project: PropTypes.object.isRequired
+    project: PropTypes.shape( {} ).isRequired
 };
 
 export default ProjectModal;

@@ -1,67 +1,66 @@
-import React, {Component, PropTypes} from 'react';
-import styles from './ProjectModalGallery.scss';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styles from './ProjectModalGallery.pcss';
 
 export default class ProjectModalGallery extends Component {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
 
         this.state = {
             imageIndex: 0,
         };
 
-        this.prev = this.prev.bind(this);
-        this.next = this.next.bind(this);
+        this.prev = this.prev.bind( this );
+        this.next = this.next.bind( this );
     }
 
-    prev(){
+    prev() {
         this.setState(
-            Object.assign({}, this.state, {
-                imageIndex: Math.max(0, this.state.imageIndex - 1)
+            Object.assign( {}, this.state, {
+                imageIndex: Math.max( 0, this.state.imageIndex - 1 )
             }
-        ));
+            ) );
     }
 
-    next(){
+    next() {
         const { project: { images } } = this.props;
 
         this.setState(
-            Object.assign({}, this.state, {
-                imageIndex: Math.min(images.length - 1, this.state.imageIndex + 1)
+            Object.assign( {}, this.state, {
+                imageIndex: Math.min( images.length - 1, this.state.imageIndex + 1 )
             }
-        ));
+            ) );
     }
 
 
     render() {
-        const { project: {images, title, description, url}} = this.props;
+        const { project: { images, title, description, url } } = this.props;
         const { imageIndex } = this.state;
         const activeImage = images[imageIndex];
 
         return (
-            <div className={`${styles.gallery} row align-middle align-center`}>
-                <div className='columns small-11 medium-8'>
-                    <div className='row align-middle'>
-                        <div className='column small-1 text-center'>
-                            { imageIndex > 0 ? <button onClick={this.prev}><i className='icon-arrow_left' /></button> : null }
-                        </div>
-                        <div className={`${styles.image} column small-10`}>
-                            <img src={activeImage} alt='' />
-                        </div>
-                        <div className='column small-1 text-center'>
-                            { imageIndex < (images.length - 1) ? <button onClick={this.next}><i className='icon-arrow_right' /></button> : null }
-                        </div>
-                    </div>
-                </div>
-                <div className='column small-10 medium-4'>
-                    <h3>{title}</h3>
+            <div className={styles.gallery}>
+                <section className={styles.image}>
+                    <button onClick={this.prev} disabled={imageIndex === 0}>
+                        <i className='icon-arrow_left' />
+                    </button>
+                    <img src={activeImage} alt='' />
+                    <button onClick={this.next} disabled={imageIndex === images.length - 1}>
+                        <i className='icon-arrow_right' />
+                    </button>
+                </section>
+                <section className={styles.description}>
+                    <header>
+                        <h3>{title}</h3>
+                    </header>
                     <p>{description}</p>
                     { url ? <a href={url} rel="noopener noreferrer" target='_blank'>{url}</a> : null }
-                </div>
+                </section>
             </div>
         );
     }
 }
 
 ProjectModalGallery.propTypes = {
-    project: PropTypes.shape({}).isRequired
+    project: PropTypes.shape( {} ).isRequired
 };

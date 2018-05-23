@@ -1,21 +1,24 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import chunk from 'lodash/chunk';
 
 import ProjectsRow from './ProjectsRow';
 
-const ProjectList = ({projects, onProjectClick}) => {
-    const rows = chunk(projects, 2);
+const ProjectList = ( { projects, onProjectClick } ) => {
+    const rows = chunk( projects, 2 );
 
     return (
-        <div>
-            {rows.map((row, i) => <ProjectsRow key={i} row={row} onProjectClick={onProjectClick} />)}
-        </div>
+        <section>
+            {
+                rows.map( ( row, i ) => <ProjectsRow key={i} row={row} onProjectClick={onProjectClick} /> )
+            }
+        </section>
     );
 };
 
 ProjectList.propTypes = {
     onProjectClick: PropTypes.func.isRequired,
-    projects: PropTypes.arrayOf(PropTypes.object).isRequired
+    projects: PropTypes.arrayOf( PropTypes.object ).isRequired
 };
 
 export default ProjectList;

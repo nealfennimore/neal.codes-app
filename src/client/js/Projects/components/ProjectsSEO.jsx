@@ -5,7 +5,7 @@ const title = 'Projects - neal.codes';
 const description = 'Projects I\'ve worked on';
 const url   = 'https://neal.codes/projects';
 
-const ProjectsSEO = (props) => {
+const ProjectsSEO = ( props ) => {
     return (
         <Helmet>
             <title>Projects</title>

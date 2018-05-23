@@ -1,50 +1,50 @@
 ///////////////
 // HopeCards //
 ///////////////
-import HopecardsCover from 'images/projects/Hopecards/hopecards-cover.jpg';
-import HopecardsHomepage from 'images/projects/Hopecards/hopecards-homepage.jpg';
-import HopecardsStep2 from 'images/projects/Hopecards/hopecards-step-2.jpg';
-import HopecardsStep3 from 'images/projects/Hopecards/hopecards-step-3.jpg';
-import HopecardsDedication from 'images/projects/Hopecards/hopecards-dedication-page.jpg';
-import HopecardsFavorites from 'images/projects/Hopecards/hopecards-favorites.jpg';
-import HopecardsImpact from 'images/projects/Hopecards/hopecards-impact.jpg';
+import HopecardsCover from 'client/images/projects/Hopecards/hopecards-cover.jpg';
+import HopecardsHomepage from 'client/images/projects/Hopecards/hopecards-homepage.jpg';
+import HopecardsStep2 from 'client/images/projects/Hopecards/hopecards-step-2.jpg';
+import HopecardsStep3 from 'client/images/projects/Hopecards/hopecards-step-3.jpg';
+import HopecardsDedication from 'client/images/projects/Hopecards/hopecards-dedication-page.jpg';
+import HopecardsFavorites from 'client/images/projects/Hopecards/hopecards-favorites.jpg';
+import HopecardsImpact from 'client/images/projects/Hopecards/hopecards-impact.jpg';
 
 /////////
 // HYM //
 /////////
-import HYMCover from 'images/projects/HonorYourMom/HYM-cover.jpg';
-import HYMHomepage from 'images/projects/HonorYourMom/HYM-homepage.jpg';
-import HYMStep1 from 'images/projects/HonorYourMom/HYM-step-1.jpg';
-import HYMStep2 from 'images/projects/HonorYourMom/HYM-step-2.jpg';
-import HYMStep3 from 'images/projects/HonorYourMom/HYM-step-3.jpg';
-import HYMAbout from 'images/projects/HonorYourMom/HYM-about.jpg';
-import HYMHonoredMoms from 'images/projects/HonorYourMom/HYM-honored-moms.jpg';
-import HYMHonoredMom from 'images/projects/HonorYourMom/HYM-honored-mom.jpg';
+import HYMCover from 'client/images/projects/HonorYourMom/HYM-cover.jpg';
+import HYMHomepage from 'client/images/projects/HonorYourMom/HYM-homepage.jpg';
+import HYMStep1 from 'client/images/projects/HonorYourMom/HYM-step-1.jpg';
+import HYMStep2 from 'client/images/projects/HonorYourMom/HYM-step-2.jpg';
+import HYMStep3 from 'client/images/projects/HonorYourMom/HYM-step-3.jpg';
+import HYMAbout from 'client/images/projects/HonorYourMom/HYM-about.jpg';
+import HYMHonoredMoms from 'client/images/projects/HonorYourMom/HYM-honored-moms.jpg';
+import HYMHonoredMom from 'client/images/projects/HonorYourMom/HYM-honored-mom.jpg';
 
 ////////////////
 // ConceptMap //
 ////////////////
-import CMCover from 'images/projects/ConceptMap/concept-map-cover.png';
-import CMZeroState from 'images/projects/ConceptMap/concept-map-zero-state.png';
-import CMTutorial1 from 'images/projects/ConceptMap/concept-map-tutorial-1.png';
-import CMTutorial2 from 'images/projects/ConceptMap/concept-map-tutorial-2.png';
-import CMTutorial3 from 'images/projects/ConceptMap/concept-map-tutorial-3.png';
-import CMGraphMathScience from 'images/projects/ConceptMap/concept-map-graph-science-math.png';
-import CMGraphScience from 'images/projects/ConceptMap/concept-map-graph-science.png';
-import CMGraphMath from 'images/projects/ConceptMap/concept-map-graph-math.png';
-import CMGraphZoomedOut from 'images/projects/ConceptMap/concept-map-graph-zoomed-out.png';
-import CMNodeDetails from 'images/projects/ConceptMap/concept-map-node-details.png';
-import CMTutorial4 from 'images/projects/ConceptMap/concept-map-tutorial-4.png';
-import CMEditor from 'images/projects/ConceptMap/concept-map-editor.png';
+import CMCover from 'client/images/projects/ConceptMap/concept-map-cover.png';
+import CMZeroState from 'client/images/projects/ConceptMap/concept-map-zero-state.png';
+import CMTutorial1 from 'client/images/projects/ConceptMap/concept-map-tutorial-1.png';
+import CMTutorial2 from 'client/images/projects/ConceptMap/concept-map-tutorial-2.png';
+import CMTutorial3 from 'client/images/projects/ConceptMap/concept-map-tutorial-3.png';
+import CMGraphMathScience from 'client/images/projects/ConceptMap/concept-map-graph-science-math.png';
+import CMGraphScience from 'client/images/projects/ConceptMap/concept-map-graph-science.png';
+import CMGraphMath from 'client/images/projects/ConceptMap/concept-map-graph-math.png';
+import CMGraphZoomedOut from 'client/images/projects/ConceptMap/concept-map-graph-zoomed-out.png';
+import CMNodeDetails from 'client/images/projects/ConceptMap/concept-map-node-details.png';
+import CMTutorial4 from 'client/images/projects/ConceptMap/concept-map-tutorial-4.png';
+import CMEditor from 'client/images/projects/ConceptMap/concept-map-editor.png';
 
 //////////////////////
 // TeacherDashboard //
 //////////////////////
-import DBCover from 'images/projects/TeacherDashboard/dashboard-cover.png';
-import DBContent from 'images/projects/TeacherDashboard/dashboard-content.png';
-import DBContentStandards from 'images/projects/TeacherDashboard/dashboard-content-standards.png';
-import DBGroups from 'images/projects/TeacherDashboard/dashboard-groups.png';
-import DBUserProfileEdit from 'images/projects/TeacherDashboard/dashboard-user-profile-edit.png';
+import DBCover from 'client/images/projects/TeacherDashboard/dashboard-cover.png';
+import DBContent from 'client/images/projects/TeacherDashboard/dashboard-content.png';
+import DBContentStandards from 'client/images/projects/TeacherDashboard/dashboard-content-standards.png';
+import DBGroups from 'client/images/projects/TeacherDashboard/dashboard-groups.png';
+import DBUserProfileEdit from 'client/images/projects/TeacherDashboard/dashboard-user-profile-edit.png';
 
 
 const initialState = [
@@ -124,8 +124,8 @@ const initialState = [
 ];
 
 
-function projects(state=initialState, action={}) {
-    switch (action.type) {
+function projects( state = initialState, action = {} ) {
+    switch ( action.type ) {
     default:
         return state;
     }

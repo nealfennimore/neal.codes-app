@@ -1,13 +1,13 @@
 import React from 'react';
-import Bundle from 'components/common/Bundle';
+import Loadable from 'react-loadable';
+import Loader from 'client/js/Global/components/Loader/ComponentLoader';
 
-const loadProjects = () => import(/* webpackChunkName: "projects" */ './entry');
-const Projects = (props) => {
-    return <Bundle load={loadProjects} {...props} />;
-};
+const ProjectsLoader = Loadable( {
+    loader: () => import( './entry' ),
+    loading: Loader,
+    delay: 300
+} );
 
-Projects.propTypes = {
 
-};
-
+const Projects = ()=> <ProjectsLoader />;
 export default Projects;
