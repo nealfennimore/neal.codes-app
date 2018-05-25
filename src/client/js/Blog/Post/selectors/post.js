@@ -4,6 +4,7 @@ import { pipe } from 'lodash/fp';
 import { createSelector } from 'reselect';
 import { getPosts } from 'client/js/Blog/Posts/selectors/posts';
 import { getTags } from 'client/js/Blog/Tags/selectors/tags';
+import { getParamsSlug } from 'client/js/Global/selectors/params';
 
 export const getPostsFromPages = createSelector(
     getPosts,
@@ -29,8 +30,7 @@ export const getCurrentPosts = createSelector(
 );
 
 export const getPost = state => idx( state, _ => _.blog.post );
-export const getSlug = props => get( props, 'match.params.slug' );
-export const getPostBySlug = ( state, props ) => get( getPost( state ), getSlug( props ) );
+export const getPostBySlug = ( state, props ) => get( getPost( state ), getParamsSlug( state, props ) );
 
 export const isFetching = createSelector(
     getPost,
@@ -39,5 +39,5 @@ export const isFetching = createSelector(
 
 export const shouldFetchPost = createSelector(
     [isFetching, getPostBySlug],
-    ( fetching, tags ) => ! fetching && !! tags
+    ( fetching, post ) => ! fetching && ! post
 );

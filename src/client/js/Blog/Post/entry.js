@@ -24,16 +24,20 @@ export class PostEntry extends PureComponent {
             } )
         } ).isRequired,
         post: PostPropType,
-        shouldfetchPost: PropTypes.bool.isRequired,
+        shouldFetchPost: PropTypes.bool.isRequired,
     }
 
     componentWillMount() {
-        this.props.fetchPost( this.props.match.params );
+        this.fetchPost();
     }
 
-    componentWillReceiveProps( nextProps ) {
-        if( this.props.shouldfetchPost ) {
-            this.props.fetchPost( nextProps.match.params );
+    componentDidUpdate() {
+        this.fetchPost();
+    }
+
+    fetchPost() {
+        if( this.props.shouldFetchPost ) {
+            this.props.fetchPost( this.props.match.params );
         }
     }
 
@@ -53,7 +57,7 @@ export class PostEntry extends PureComponent {
 const connector = connect(
     ( state, ownProps ) => ( {
         post: getPostBySlug( state, ownProps ),
-        shouldfetchPost: shouldFetchPost( state, ownProps ),
+        shouldFetchPost: shouldFetchPost( state, ownProps ),
         isFetching: isFetching( state, ownProps )
     } ),
     dispatch => ( {
