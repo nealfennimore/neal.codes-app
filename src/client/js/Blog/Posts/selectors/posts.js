@@ -2,6 +2,7 @@ import idx from 'idx';
 import { get } from 'lodash';
 import { createSelector } from 'reselect';
 import * as meta from 'client/js/Blog/selectors/meta';
+import { getParamsPage } from 'client/js/Global/selectors/params';
 
 export const selector = state => idx( state, _ => _.blog.posts );
 
@@ -18,11 +19,11 @@ export const getNextPage = createSelector( getMeta, meta.getNextPage );
 export const getPrevPage = createSelector( getMeta, meta.getPrevPage );
 
 export const getPostsByPage = createSelector(
-    [getPosts, getPage],
+    [getPosts, getParamsPage],
     ( posts, page )=> get( posts, page )
 );
 
 export const shouldFetchPosts = createSelector(
     [isFetching, getPostsByPage],
-    ( fetching, posts ) => ! fetching && !! posts
+    ( fetching, posts ) => ! fetching && ! posts
 );

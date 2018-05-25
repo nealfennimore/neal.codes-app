@@ -7,7 +7,8 @@ import { withRouter } from 'react-router';
 import Main from 'client/js/Global/components/Main';
 import injector from 'client/js/Global/components/Injector';
 import { PostPropType } from 'client/js/Global/proptypes/post';
-import { fetchPosts } from './actions/posts';
+import { getParamsPage } from 'client/js/Global/selectors/params';
+import { fetchPosts, syncPage } from './actions/posts';
 import { getPostsByPage, getNextPage, getPrevPage, getPage, getTotalPages, shouldFetchPosts } from './selectors/posts';
 import postsSaga from './sagas/posts';
 import postsReducer from './reducers/posts';
@@ -19,6 +20,7 @@ import styles from './Posts.pcss';
 export class PostsEntry extends PureComponent {
     static propTypes = {
         fetchPosts: PropTypes.func.isRequired,
+        syncPage: PropTypes.func.isRequired,
         match: PropTypes.shape( {
             params: PropTypes.object
         } ).isRequired,
@@ -27,7 +29,8 @@ export class PostsEntry extends PureComponent {
         pages: PropTypes.number,
         posts: PropTypes.arrayOf( PostPropType ),
         prevPage: PropTypes.number,
-        shouldFetchPosts: PropTypes.bool.isRequired
+        shouldFetchPosts: PropTypes.bool.isRequired,
+        shouldSyncPage: PropTypes.bool.isRequired,
     }
 
     static defaultProps = {
@@ -38,17 +41,28 @@ export class PostsEntry extends PureComponent {
     }
 
     componentWillMount() {
-        this.props.fetchPosts( this.page );
+        this.fetchPosts();
     }
 
-    componentWillReceiveProps( nextProps ) {
-        if( this.props.shouldFetchPosts ) {
-            this.props.fetchPosts( nextProps.match.params.page );
-        }
+    componentDidUpdate() {
+        this.syncPage();
+        this.fetchPosts();
     }
 
     get page() {
         return this.props.match.params.page || 1;
+    }
+
+    fetchPosts() {
+        if( this.props.shouldFetchPosts ) {
+            this.props.fetchPosts( this.page );
+        }
+    }
+
+    syncPage() {
+        if( this.props.shouldSyncPage ) {
+            this.props.syncPage( this.page );
+        }
     }
 
     render() {
@@ -71,16 +85,18 @@ export class PostsEntry extends PureComponent {
 }
 
 const connector = connect(
-    state => ( {
-        nextPage: getNextPage( state ),
-        page: getPage( state ),
-        pages: getTotalPages( state ),
-        posts: getPostsByPage( state ),
-        prevPage: getPrevPage( state ),
-        shouldFetchPosts: shouldFetchPosts( state ),
+    ( state, ownProps ) => ( {
+        nextPage: getNextPage( state, ownProps ),
+        page: getPage( state, ownProps ),
+        pages: getTotalPages( state, ownProps ),
+        posts: getPostsByPage( state, ownProps ),
+        prevPage: getPrevPage( state, ownProps ),
+        shouldFetchPosts: shouldFetchPosts( state, ownProps ),
+        shouldSyncPage: getParamsPage( state, ownProps ) != getPage( state, ownProps )
     } ),
     dispatch => ( {
-        fetchPosts: ( page )=> dispatch( fetchPosts( { page } ) )
+        fetchPosts: ( page )=> dispatch( fetchPosts( { page } ) ),
+        syncPage: page => dispatch( syncPage( page ) )
     } )
 );
 
