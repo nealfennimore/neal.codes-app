@@ -9,8 +9,9 @@ import injector from 'client/js/Global/components/Injector';
 import { PostsPropType } from 'client/js/Global/proptypes/post';
 import Pagination from 'client/js/Blog/Posts/components/Pagination';
 import Posts from 'client/js/Blog/Posts/components/Posts';
+import { getParamsPage } from 'client/js/Global/selectors/params';
 import { TagPropType } from 'client/js/Global/proptypes/tag';
-import { fetchTags } from './actions/tags';
+import { fetchPostsByTag, syncPage } from './actions/tags';
 import { getPostsByPage, getNextPage, getPrevPage, getPage, getTotalPages, shouldFetchPosts, getTag } from './selectors/tags';
 import tagSaga from './sagas/tags';
 import tagReducer from './reducers/tags';
@@ -19,7 +20,8 @@ import styles from './Tags.pcss';
 
 export class TagsEntry extends PureComponent {
     static propTypes = {
-        fetchTags: PropTypes.func.isRequired,
+        fetchPostsByTag: PropTypes.func.isRequired,
+        syncPage: PropTypes.func.isRequired,
         match: PropTypes.shape( {
             params: PropTypes.object
         } ).isRequired,
@@ -29,6 +31,7 @@ export class TagsEntry extends PureComponent {
         posts: PostsPropType,
         prevPage: PropTypes.number,
         shouldfetchPosts: PropTypes.bool.isRequired,
+        shouldSyncPage: PropTypes.bool.isRequired,
         tag: TagPropType,
     }
 
@@ -40,19 +43,12 @@ export class TagsEntry extends PureComponent {
     }
 
     componentWillMount() {
-        this.props.fetchTags( {
-            page: this.page,
-            slug: this.slug
-        } );
+        this.fetchPosts();
     }
 
-    componentDidUpdate( nextProps ) {
-        if( this.props.shouldfetchPosts ) {
-            this.props.fetchTags( {
-                page: nextProps.match.params.page,
-                slug: nextProps.match.params.slug
-            } );
-        }
+    componentDidUpdate() {
+        this.syncPage();
+        this.fetchPosts();
     }
 
     get slug() {
@@ -61,6 +57,21 @@ export class TagsEntry extends PureComponent {
 
     get page() {
         return this.props.match.params.page || 1;
+    }
+
+    fetchPosts() {
+        if( this.props.shouldfetchPosts ) {
+            this.props.fetchPostsByTag( {
+                page: this.page,
+                slug: this.slug
+            } );
+        }
+    }
+
+    syncPage() {
+        if( this.props.shouldSyncPage ) {
+            this.props.syncPage( this.slug, this.page );
+        }
     }
 
     render() {
@@ -94,11 +105,13 @@ const connector = connect(
         pages: getTotalPages( state, ownProps ),
         prevPage: getPrevPage( state, ownProps ),
         shouldfetchPosts: shouldFetchPosts( state, ownProps ),
+        shouldSyncPage: getParamsPage( state, ownProps ) != getPage( state, ownProps ),
         posts: getPostsByPage( state, ownProps ),
         tag: getTag( state, ownProps ),
     } ),
     dispatch => ( {
-        fetchTags: ( params )=> dispatch( fetchTags( params ) )
+        fetchPostsByTag: ( params )=> dispatch( fetchPostsByTag( params ) ),
+        syncPage: ( slug, page ) => dispatch( syncPage( slug, page ) )
     } )
 );
 
