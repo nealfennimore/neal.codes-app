@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ProjectList from './projects';
 import ProjectModal from './projects/ProjectModal';
+import ProjectsSEO from './ProjectsSEO';
 
 export const Projects = ( {
     projects,
@@ -11,6 +12,7 @@ export const Projects = ( {
 } ) =>{
     return (
         <Fragment>
+            <ProjectsSEO />
             <ProjectList projects={projects} onProjectClick={( id )=>showModal( id )} />
 
             { modal.isActive ? <ProjectModal project={projects[modal.activeID]} onHide={()=>hideModal()} /> : null}

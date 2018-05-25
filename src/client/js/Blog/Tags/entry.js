@@ -9,10 +9,12 @@ import injector from 'client/js/Global/components/Injector';
 import { PostsPropType } from 'client/js/Global/proptypes/post';
 import Pagination from 'client/js/Blog/Posts/components/Pagination';
 import Posts from 'client/js/Blog/Posts/components/Posts';
+import { TagPropType } from 'client/js/Global/proptypes/tag';
 import { fetchTags } from './actions/tags';
-import { getPostsByPage, getNextPage, getPrevPage, getPage, getTotalPages, shouldFetchPosts } from './selectors/tags';
+import { getPostsByPage, getNextPage, getPrevPage, getPage, getTotalPages, shouldFetchPosts, getTag } from './selectors/tags';
 import tagSaga from './sagas/tags';
 import tagReducer from './reducers/tags';
+import TagsSEO from './TagsSEO';
 import styles from './Tags.pcss';
 
 export class TagsEntry extends PureComponent {
@@ -26,7 +28,8 @@ export class TagsEntry extends PureComponent {
         pages: PropTypes.number,
         posts: PostsPropType,
         prevPage: PropTypes.number,
-        shouldfetchPosts: PropTypes.bool.isRequired
+        shouldfetchPosts: PropTypes.bool.isRequired,
+        tag: TagPropType,
     }
 
     static defaultProps = {
@@ -43,7 +46,7 @@ export class TagsEntry extends PureComponent {
         } );
     }
 
-    componentWillReceiveProps( nextProps ) {
+    componentDidUpdate( nextProps ) {
         if( this.props.shouldfetchPosts ) {
             this.props.fetchTags( {
                 page: nextProps.match.params.page,
@@ -63,6 +66,7 @@ export class TagsEntry extends PureComponent {
     render() {
         return (
             <Main className={styles.Tags}>
+                <TagsSEO page={this.props.page} tag={this.props.tag} />
                 <section>
                     <header>
                         <h1 className="h2">
@@ -91,6 +95,7 @@ const connector = connect(
         prevPage: getPrevPage( state, ownProps ),
         shouldfetchPosts: shouldFetchPosts( state, ownProps ),
         posts: getPostsByPage( state, ownProps ),
+        tag: getTag( state, ownProps ),
     } ),
     dispatch => ( {
         fetchTags: ( params )=> dispatch( fetchTags( params ) )

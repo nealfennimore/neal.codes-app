@@ -1,11 +1,12 @@
 import idx from 'idx';
-import { get } from 'lodash';
+import { get, first, find } from 'lodash';
 import { createSelector } from 'reselect';
 import * as meta from 'client/js/Blog/selectors/meta';
+import { getTags as getPostTags } from 'client/js/Global/selectors/post';
 
 export const getTags = state => idx( state, _ => _.blog.tags );
-export const getSlug = props => get( props, 'match.params.slug' );
-export const getTagsBySlug = ( state, props ) => get( getTags( state ), getSlug( props ) );
+export const getSlug = ( _, props ) => get( props, 'match.params.slug' );
+export const getTagsBySlug = ( state, props ) => get( getTags( state ), getSlug( state, props ) );
 
 export const isFetching = createSelector( getTags, tags => idx( tags, _ => _.isFetching ) );
 
@@ -20,6 +21,15 @@ export const getPrevPage = createSelector( getMeta, meta.getPrevPage );
 export const getPostsByPage = createSelector(
     [getTagsBySlug, getPage],
     ( tags, page )=> get( tags, page )
+);
+
+export const getTagSlug = tag => idx( tag, _ => _.slug );
+export const getTag = createSelector(
+    [getPostsByPage, getSlug],
+    ( posts, slug )=> {
+        const tags = getPostTags( first( posts ) );
+        return find( tags, tag => getTagSlug( tag ) === slug );
+    }
 );
 
 export const shouldFetchPosts = createSelector(

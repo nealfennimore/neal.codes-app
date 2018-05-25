@@ -13,6 +13,7 @@ import postsSaga from './sagas/posts';
 import postsReducer from './reducers/posts';
 import Pagination from './components/Pagination';
 import Posts from './components/Posts';
+import PostsSEO from './PostsSEO';
 import styles from './Posts.pcss';
 
 export class PostsEntry extends PureComponent {
@@ -53,6 +54,7 @@ export class PostsEntry extends PureComponent {
     render() {
         return (
             <Main className={styles.Posts}>
+                <PostsSEO />
                 <section>
                     <Posts posts={this.props.posts} />
                     <Pagination

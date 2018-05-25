@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import WithInverse from 'client/js/Global/hoc/WithInverse';
 import { compose } from 'redux';
+import LayoutSEO from './LayoutSEO';
 import styles from './Layout.pcss';
 
 const Layout = ( {
@@ -11,6 +12,7 @@ const Layout = ( {
 } ) =>{
     return (
         <div className={classnames( styles.Layout, className )}>
+            <LayoutSEO />
             { children }
         </div>
     );

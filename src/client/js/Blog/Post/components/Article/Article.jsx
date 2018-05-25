@@ -6,6 +6,7 @@ import hljs from 'client/js/lib/highlight';
 import { PostPropType } from 'client/js/Global/proptypes/post';
 import Header from '../Header';
 import Footer from '../Footer';
+import ArticleSEO from './ArticleSEO';
 import styles from './Article.pcss';
 
 export default class Article extends Component {
@@ -23,6 +24,7 @@ export default class Article extends Component {
 
         return (
             <article className={styles.Article}>
+                <ArticleSEO post={post} />
                 <Header post={post} />
                 <section
                     className={styles.content}
