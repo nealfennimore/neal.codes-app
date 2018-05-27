@@ -85,9 +85,9 @@
     deepmerge "^2.1.0"
     object-path "^0.11.4"
 
-"@nfen/redux-saga-injector@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@nfen/redux-saga-injector/-/redux-saga-injector-0.0.2.tgz#f2d0404d89a3801edf384171de99bf2e3f748f23"
+"@nfen/redux-saga-injector@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@nfen/redux-saga-injector/-/redux-saga-injector-0.1.1.tgz#ace1d2cc8d9bec4d392921b5d7b0240f39e6d6fb"
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"

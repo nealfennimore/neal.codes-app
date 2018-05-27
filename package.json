@@ -22,7 +22,7 @@
   "license": "Fair Source License, version 0.9",
   "dependencies": {
     "@nfen/redux-reducer-injector": "^0.0.1",
-    "@nfen/redux-saga-injector": "^0.0.2",
+    "@nfen/redux-saga-injector": "^0.1.1",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "date-fns": "^1.29.0",
