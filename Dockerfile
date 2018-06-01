@@ -2,6 +2,8 @@ FROM keymetrics/pm2:8-alpine
 
 WORKDIR /var/www/app
 
+RUN mkdir -p /var/www/app/dist/assets
+
 RUN apk add --update \
     autoconf \
     automake \
