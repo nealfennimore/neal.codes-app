@@ -1,7 +1,8 @@
 const { resolve } = require( 'path' );
 const merge = require( 'webpack-merge' );
-const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const Dotenv = require( 'dotenv-webpack' );
+const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const common = require( './webpack.config' );
 const ReactLoadablePlugin = require( '../plugins/react-loadable' );
 const AssetsPlugin = require( '../plugins/assets-webpack-plugin' );
@@ -64,6 +65,9 @@ module.exports = merge(
                 root: resolve( __dirname, '../../' ),
                 exclude:  ['react-loadable.json', 'webpack-assets.json'],
             } ),
+            new CopyWebpackPlugin( [
+                { from: 'src/client/images/favicon.ico', to: 'dist/assets/favicon.ico' }
+            ] ),
             AssetsPlugin,
             ReactLoadablePlugin
         ]
