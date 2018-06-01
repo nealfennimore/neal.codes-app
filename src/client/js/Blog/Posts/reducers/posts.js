@@ -3,6 +3,7 @@ import {
     FETCH_POSTS_SUCCESS,
     SYNC_PAGE
 } from 'client/js/Blog/Posts/actions/posts';
+import { getTotalPages } from 'client/js/Blog/selectors/meta';
 import { merge } from 'lodash';
 
 function mergePosts( state, action ) {
@@ -24,7 +25,7 @@ function syncPage( state, action ) {
             pagination: {
                 prev: action.page - 1 > 0 ? action.page - 1 : null,
                 page: action.page,
-                next: action.page + 1 <= state.meta.pagination.pages ? action.page + 1 : null
+                next: action.page + 1 <= getTotalPages( state.meta ) ? action.page + 1 : null
             }
         }
     } );
