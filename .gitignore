@@ -7,3 +7,4 @@ certs
 .env
 docker/nginx/vhost.d/default
 docker/nginx/vhost.d/*.neal.codes*
+docker/nginx/vhost.d/neal.codes*
