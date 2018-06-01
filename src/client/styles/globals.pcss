@@ -1,0 +1,47 @@
+@import 'sanitize.css/sanitize.css';
+@import 'highlight.js/styles/tomorrow-night.css';
+@import './_variables.pcss';
+@import './_colors.pcss';
+@import './_fonts.pcss';
+@import './_kitchen-sink.pcss';
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--turquoise-dark);
+    }
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* http://a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+    border: 0 !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px !important;
+    overflow: hidden;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}

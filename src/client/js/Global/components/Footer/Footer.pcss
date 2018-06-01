@@ -1,0 +1,22 @@
+@import 'styles/main.pcss';
+
+.Footer {
+    align-items: center;
+    display: flex;
+    height: var(--navigation-height);
+    justify-content: center;
+    width: 100%;
+
+    & > * {
+        @apply --shrink;
+
+        margin-right: var(--gutter-small);
+    }
+}
+
+.Footer.inverse {
+
+    & a {
+        color: var(--white);
+    }
+}

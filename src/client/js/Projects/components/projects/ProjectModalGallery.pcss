@@ -1,0 +1,62 @@
+@import 'styles/main.pcss';
+
+.gallery {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    padding: var(--gutter);
+
+    & .image {
+        align-items: center;
+        display: flex;
+        flex-basis: 66.66%;
+        justify-content: center;
+
+        & img {
+            width: 85%;
+        }
+
+        & button {
+            @apply --shrink;
+
+            color: var(--primary);
+            font-size: 32px;
+            outline: none;
+            margin: 0 var(--gutter-medium);
+
+            &:disabled {
+                opacity: 0;
+            }
+        }
+    }
+
+    & .description {
+        flex-basis: 33.33%;
+        margin-left: calc(var(--gutter) * 2);
+    }
+}
+
+@media (--small-only) {
+
+    .gallery {
+        flex-flow: column;
+        max-height: 100vh;
+
+        & .image {
+            flex-basis: 100%;
+
+            & img {
+                width: 70%;
+                max-height: 70vh;
+            }
+        }
+
+        & .description {
+            @apply --shrink;
+
+            margin-left: 0;
+            padding: calc(var(--gutter) * 2);
+        }
+    }
+}

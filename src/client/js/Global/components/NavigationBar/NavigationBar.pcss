@@ -1,0 +1,104 @@
+@import 'styles/main.pcss';
+
+.NavigationBar {
+    align-items: center;
+    background-color: var(--white);
+    display: flex;
+    height: var(--navigation-height);
+    justify-content: space-between;
+    left: 50%;
+    max-width: var(--xlarge-width);
+    padding: 0 var(--gutter-medium);
+    position: fixed;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 2;
+
+    &:before {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.025);
+        content: '';
+        height: 1px;
+        left: 50%;
+        position: absolute;
+        top: var(--navigation-height);
+        transform: translateX(-50%);
+        width: 100vw;
+        z-index: 1;
+    }
+
+    & .logo,
+    & .menu {
+        @apply --shrink;
+    }
+
+    & .logo {
+        height: var(--navigation-height);
+    }
+
+    & .menu {
+        display: flex;
+
+        & li {
+            flex: 1;
+            font-size: 16px;
+            margin-right: var(--gutter);
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            & a {
+                color: var(--primary);
+                position: relative;
+
+                &:hover {
+                    color: var(--turquoise-dark);
+                }
+
+                &.active {
+                    font-weight: bold;
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    background-color: var(--primary);
+                    height: 1px;
+                    width: 100%;
+                    bottom: -5px;
+                    left: 0;
+                    transform: translateY(150%) scaleX(0);
+                    transition: all 0.25s;
+                }
+
+                &:hover:after {
+                    transform: translateY(150%) scaleX(1);
+                }
+            }
+        }
+    }
+}
+
+.NavigationBar.inverse {
+    background-color: transparent;
+
+    &:before {
+        border-bottom-color: transparent;
+    }
+
+    & .menu li a {
+        color: var(--white);
+
+        &:after {
+            background-color: var(--white);
+        }
+    }
+}
+
+@media (--small-only) {
+
+    .NavigationBar .menu li {
+        font-size: 14px;
+    }
+}

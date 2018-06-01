@@ -1,0 +1,36 @@
+@import 'styles/main.pcss';
+
+.Post {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & section {
+        flex-basis: 66%;
+    }
+
+    & footer {
+        flex-basis: 25%;
+        margin-left: var(--gutter);
+
+        & time {
+            color: var(--secondary);
+            display: block;
+            margin-bottom: var(--gutter);
+        }
+    }
+}
+
+@media (--small-only) {
+
+    .Post {
+
+        & section {
+            flex-basis: 100%;
+        }
+
+        & footer {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+@import 'styles/main.pcss';
+
+.Pagination {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: var(--gutter);
+
+    & a,
+    & span {
+        @apply --shrink;
+
+        text-align: center;
+    }
+
+    & span {
+        margin: 0 7.5px;
+        color: var(--tertiary);
+        font-size: 14px;
+    }
+
+    & a {
+        color: var(--primary);
+        font-size: 36px;
+        margin: 0 var(--gutter);
+    }
+}

@@ -1,0 +1,13 @@
+@import 'styles/main.pcss';
+
+.row {
+    margin-bottom: var(--gutter);
+    display: flex;
+}
+
+@media (--small-only) {
+
+    .row {
+        flex-flow: column;
+    }
+}

@@ -1,0 +1,15 @@
+@import 'styles/main.pcss';
+
+.Tags {
+    display: flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+
+    & li {
+        margin: 0 calc(var(--gutter-small) / 2) calc(var(--gutter-small) / 2) 0;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

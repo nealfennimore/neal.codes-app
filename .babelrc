@@ -1,21 +1,49 @@
 {
     "presets": [
-        "es2015",
+        ["env", {
+            "modules": false,
+            "targets": {
+                "browsers": ["last 2 versions"]
+            },
+            "useBuiltIns": true
+        }],
         "react",
-        "stage-3"
+        "stage-2"
     ],
     "plugins": [
         "lodash",
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "."
+                ],
+                "alias": {
+                    "dist": "./dist",
+                    "src": "./src",
+                    "client": "./src/client",
+                    "server": "./src/server",
+                    "shared": "./src/shared"
+                }
+            }
+        ],
+        "react-loadable/babel",
+        "syntax-dynamic-import",
         "transform-object-rest-spread",
-        "transform-regenerator",
-        "syntax-dynamic-import"
+        "transform-regenerator"
     ],
     "env": {
         "development": {
-            "plugins": ["react-hot-loader/babel"]
+            "plugins": [],
+            "presets": [
+                "node8"
+            ]
         },
         "test": {
-            "plugins": ["istanbul"]
+            "plugins": [
+                "transform-es2015-modules-commonjs",
+                "dynamic-import-node"
+            ]
         }
     }
 }

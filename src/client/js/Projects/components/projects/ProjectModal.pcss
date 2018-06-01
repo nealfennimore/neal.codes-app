@@ -1,0 +1,29 @@
+@import 'styles/main.pcss';
+
+.modal {
+    background-color: var(--white);
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+
+    & .close {
+        position: relative;
+        margin: 0 auto !important;
+    }
+
+    & .closeButton {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        outline: none;
+
+        & i {
+            font-size: 48px;
+            line-height: 0;
+            vertical-align: middle;
+        }
+    }
+}
