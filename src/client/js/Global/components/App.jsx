@@ -14,18 +14,18 @@ const App = () => (
     <Layout>
         <NavigationBar />
         <Route exact path="/" component={Home} />
-        <Route exact path="/projects" component={Projects} />
+        <Route exact path="/projects" render={Projects} />
         <Switch>
             {/* ─── BLOG ─────────────────────────────────────────────────────────────────────── */}
-            <Route exact path="/blog" component={Posts} />
-            <Route exact path="/blog/page/:page(\d+)" component={Posts} />
+            <Route exact path="/blog" render={Posts} />
+            <Route exact path="/blog/page/:page(\d+)" render={Posts} />
 
             {/* ─── TAGS ─────────────────────────────────────────────────────────────────────── */}
-            <Route exact path="/blog/tag/:slug([\w|-]+)" component={Tags} />
-            <Route exact path="/blog/tag/:slug([\w|-]+)/page/:page(\d+)" component={Tags} />
+            <Route exact path="/blog/tag/:slug([\w|-]+)" render={Tags} />
+            <Route exact path="/blog/tag/:slug([\w|-]+)/page/:page(\d+)" render={Tags} />
 
             {/* ─── POST ─────────────────────────────────────────────────────────────────────── */}
-            <Route exact path="/blog/:slug([\w|-]+)" component={Post} />
+            <Route exact path="/blog/:slug([\w|-]+)" render={Post} />
         </Switch>
         <Footer />
     </Layout>

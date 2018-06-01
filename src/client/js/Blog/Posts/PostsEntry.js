@@ -1,15 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import Main from 'client/js/Global/components/Main';
 import injector from 'client/js/Global/components/Injector';
+import Loader from 'client/js/Global/components/Loader/ComponentLoader';
 import { PostPropType } from 'client/js/Global/proptypes/post';
 import { getParamsPage } from 'client/js/Global/selectors/params';
 import { fetchPosts, syncPage } from './actions/posts';
-import { getPostsByPage, getNextPage, getPrevPage, getPage, getTotalPages, shouldFetchPosts } from './selectors/posts';
+import { getPostsByPage, getNextPage, getPrevPage, getPage, getTotalPages, shouldFetchPosts, isFetching } from './selectors/posts';
 import postsSaga from './sagas/posts';
 import postsReducer from './reducers/posts';
 import Pagination from './components/Pagination';
@@ -20,7 +21,7 @@ import styles from './Posts.pcss';
 export class PostsEntry extends PureComponent {
     static propTypes = {
         fetchPosts: PropTypes.func.isRequired,
-        syncPage: PropTypes.func.isRequired,
+        isFetching: PropTypes.bool.isRequired,
         match: PropTypes.shape( {
             params: PropTypes.object
         } ).isRequired,
@@ -31,6 +32,7 @@ export class PostsEntry extends PureComponent {
         prevPage: PropTypes.number,
         shouldFetchPosts: PropTypes.bool.isRequired,
         shouldSyncPage: PropTypes.bool.isRequired,
+        syncPage: PropTypes.func.isRequired,
     }
 
     static defaultProps = {
@@ -68,17 +70,25 @@ export class PostsEntry extends PureComponent {
     render() {
         return (
             <Main className={styles.Posts}>
-                <PostsSEO />
-                <section>
-                    <Posts posts={this.props.posts} />
-                    <Pagination
-                        nextPage={this.props.nextPage}
-                        page={this.props.page}
-                        pages={this.props.pages}
-                        prefix="/blog/page"
-                        prevPage={this.props.prevPage}
-                    />
-                </section>
+                {
+                    this.props.isFetching || this.props.shouldFetchPosts
+                        ? <Loader />
+                        : (
+                            <Fragment>
+                                <PostsSEO />
+                                <section>
+                                    <Posts posts={this.props.posts} />
+                                    <Pagination
+                                        nextPage={this.props.nextPage}
+                                        page={this.props.page}
+                                        pages={this.props.pages}
+                                        prefix="/blog/page"
+                                        prevPage={this.props.prevPage}
+                                    />
+                                </section>
+                            </Fragment>
+                        )
+                }
             </Main>
         );
     }
@@ -86,6 +96,7 @@ export class PostsEntry extends PureComponent {
 
 const connector = connect(
     ( state, ownProps ) => ( {
+        isFetching: isFetching( state, ownProps ),
         nextPage: getNextPage( state, ownProps ),
         page: getPage( state, ownProps ),
         pages: getTotalPages( state, ownProps ),

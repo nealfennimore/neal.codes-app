@@ -6,3 +6,4 @@ __coverage__
 certs
 .env
 docker/nginx/vhost.d/default
+docker/nginx/vhost.d/*.neal.codes*
