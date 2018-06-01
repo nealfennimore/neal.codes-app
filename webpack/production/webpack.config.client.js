@@ -1,4 +1,4 @@
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const merge = require( 'webpack-merge' );
 const config = require( '../common/webpack.config.client' );
 
@@ -14,50 +14,32 @@ module.exports = merge.strategy( {
                 {
                     test: /\.p?css$/,
                     include: [/\.?globals?\.?/, /node_modules/],
-                    use: ExtractTextPlugin.extract( {
-                        fallback: {
-                            loader: 'style-loader',
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
                             options: {
-                                hmr: false
+                                modules: false,
+                                importLoaders: 1,
                             }
                         },
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    modules: false,
-                                    importLoaders: 1,
-                                    minimize: true,
-                                    sourceMap: true
-                                }
-                            },
-                            'postcss-loader'
-                        ]
-                    } )
+                        'postcss-loader'
+                    ]
                 },
                 {
                     test: /\.p?css$/,
                     exclude: [/\.?globals?\.?/, /node_modules/],
-                    use: ExtractTextPlugin.extract( {
-                        fallback: {
-                            loader: 'style-loader',
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
                             options: {
-                                hmr: false
+                                modules: true,
+                                importLoaders: 1,
                             }
                         },
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    modules: true,
-                                    importLoaders: 1,
-                                    minimize: true,
-                                    sourceMap: true
-                                }
-                            },
-                            'postcss-loader'
-                        ]
-                    } )
+                        'postcss-loader'
+                    ]
                 }
             ]
         },
@@ -79,6 +61,13 @@ module.exports = merge.strategy( {
                         test: /[\\/]node_modules[\\/]/,
                         priority: -10,
                         reuseExistingChunk: true,
+                    },
+                    app: {
+                        name: 'app',
+                        test: /\.p?css$/,
+                        chunks: 'all',
+                        enforce: true,
+                        reuseExistingChunk: true,
                     }
                 },
             },
@@ -87,9 +76,10 @@ module.exports = merge.strategy( {
             }
         },
         plugins: [
-            new ExtractTextPlugin( {
+            new MiniCssExtractPlugin( {
                 filename: '[name].[contenthash].css',
-            } ),
+                chunkFilename: '[id].[contenthash].css',
+            } )
         ]
     }
 );
