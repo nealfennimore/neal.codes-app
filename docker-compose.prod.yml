@@ -1,9 +1,18 @@
 version: '3.3'
 
 services:
+  app:
+    volumes:
+      - /mnt/volume-sfo2-01/app:/var/www/app  
+
+  nginx-proxy:
+    volumes:
+      - /mnt/volume-sfo2-01/app:/var/www/app  
+
   letsencrypt-nginx-proxy-companion:
     env_file:
       - ".env"
+
   ghost:
     volumes:
       - "/mnt/volume-sfo2-01/ghost/content:/var/lib/ghost/content"

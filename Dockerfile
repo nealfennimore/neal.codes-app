@@ -22,4 +22,3 @@ RUN yarn install
 RUN npm rebuild
 
 ENTRYPOINT [ "/usr/local/bin/yarn", "run" ]
-CMD [ "docker:development" ]

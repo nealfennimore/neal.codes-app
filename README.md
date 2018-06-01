@@ -7,7 +7,10 @@ ln -s .env.production.sample .env
 
 docker-machine create --driver digitalocean \
     --digitalocean-access-token $DIGITAL_OCEAN_TOKEN \
-    --digitalocean-region "sfo2"
+    --digitalocean-backups \
+    --digitalocean-monitoring \
+    --digitalocean-region "sfo2" \
+    neal.codes.docker
 ```
 
 ## Updating
