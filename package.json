@@ -10,8 +10,9 @@
     "start": "pm2 startOrReload ecosystem.config.js --only production",
     "develop": "pm2 startOrReload ecosystem.config.js --only development",
     "postdevelop": "pm2 logs development",
+    "predocker:development": "npm rebuild",
     "docker:development": "pm2-docker ecosystem.config.js --only development",
-    "predocker:production": "npm run build -- -p --config ./webpack/production",
+    "predocker:production": "npm rebuild && npm run build -- -p --config ./webpack/production",
     "docker:production": "pm2-docker ecosystem.config.js --only production",
     "analyze": "npm run build -- -p --config ./webpack/analyze"
   },
