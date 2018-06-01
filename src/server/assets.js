@@ -63,7 +63,7 @@ const APP_CHUNK_NAMES = ['vendor', 'app'];
 export const manifest = getTag(
     [ 'manifest' ],
     asset => asset.js,
-    scriptTemplate
+    asset=> `<script src="${asset}"></script>`
 )( webpackAssets );
 
 export const scripts = getTag(
