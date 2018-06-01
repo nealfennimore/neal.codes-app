@@ -3,7 +3,7 @@ import Loadable from 'react-loadable';
 import Loader from 'client/js/Global/components/Loader/ComponentLoader';
 
 const TagsLoader = Loadable( {
-    loader: () => import( './entry' ),
+    loader: () => import( './TagsEntry' ),
     loading: Loader,
     delay: 300
 } );
