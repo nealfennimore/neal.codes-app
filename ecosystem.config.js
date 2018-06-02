@@ -14,6 +14,7 @@ module.exports = {
             name: 'development',
             script: './src/server/index.js',
             exec_interpreter: 'babel-node',
+            node_args: '--inspect=0.0.0.0:9229',
             env: {
                 ...env,
                 NODE_ENV: 'development',
