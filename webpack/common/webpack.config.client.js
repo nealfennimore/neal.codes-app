@@ -66,7 +66,7 @@ module.exports = merge(
                 exclude:  ['react-loadable.json', 'webpack-assets.json'],
             } ),
             new CopyWebpackPlugin( [
-                { from: 'src/client/images/favicon.ico', to: 'dist/assets/favicon.ico' }
+                { from: './src/client/images/favicon.ico', to: 'favicon.ico' }
             ] ),
             AssetsPlugin,
             ReactLoadablePlugin
