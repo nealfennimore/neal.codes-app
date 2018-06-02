@@ -82,7 +82,7 @@ export default async function render( req, res ) {
         <html ${helmet.htmlAttributes.toString()}>
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link href="/favicon.ico" rel="icon" />
+                <link href="/assets/favicon.ico" rel="icon" />
 
                 ${helmet.title.toString()}
                 ${helmet.meta.toString()}
