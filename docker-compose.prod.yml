@@ -9,6 +9,7 @@ services:
     volumes:
       - /mnt/volume-sfo2-01/app:/var/www/app  
       - /mnt/volume-sfo2-01/app/docker/nginx/vhost.d:/etc/nginx/vhost.d:ro
+      - /mnt/volume-sfo2-01/app/docker/nginx/conf.d:/etc/nginx/conf.d:rw
 
   letsencrypt-nginx-proxy-companion:
     env_file:
