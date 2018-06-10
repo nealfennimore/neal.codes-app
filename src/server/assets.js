@@ -58,7 +58,7 @@ const getTag = ( bundles, filterBy, template )=> pipe(
     concatWithNewLine
 );
 
-const APP_CHUNK_NAMES = ['vendor', 'app'];
+const APP_CHUNK_NAMES = ['vendor', 'app', 'styles'];
 
 export const manifest = getTag(
     [ 'manifest' ],

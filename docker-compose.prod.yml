@@ -15,6 +15,7 @@ services:
       - ".env"
     volumes:
       - /mnt/volume-sfo2-01/app/docker/nginx/vhost.d:/etc/nginx/vhost.d:rw
+      - /mnt/volume-sfo2-01/app/docker/nginx/conf.d:/etc/nginx/conf.d:rw
 
   ghost:
     volumes:

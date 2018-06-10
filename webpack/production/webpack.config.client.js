@@ -61,6 +61,13 @@ module.exports = merge.strategy( {
                         test: /[\\/]node_modules[\\/]/,
                         priority: -10,
                         reuseExistingChunk: true,
+                    },
+                    styles: {
+                        name: 'styles',
+                        test: /\.p?css$/,
+                        chunks: 'all',
+                        enforce: true,
+                        reuseExistingChunk: true,
                     }
                 },
             },
