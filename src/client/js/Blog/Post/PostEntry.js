@@ -12,7 +12,7 @@ import { fetchPost } from './actions/post';
 import { getPostBySlug, shouldFetchPost, isFetching } from './selectors/post';
 import postSaga from './sagas/post';
 import postReducer from './reducers/post';
-import styles from './Post.pcss';
+import styles from './PostEntry.pcss';
 
 export class PostEntry extends PureComponent {
     static propTypes = {
@@ -43,7 +43,7 @@ export class PostEntry extends PureComponent {
 
     render() {
         return (
-            <Main className={styles.Post}>
+            <Main className={styles.PostEntry}>
                 {
                     this.props.post && ! this.props.isFetching
                         ? <Article post={this.props.post} />

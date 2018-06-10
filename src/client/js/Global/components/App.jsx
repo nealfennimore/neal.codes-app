@@ -1,6 +1,7 @@
 import 'client/styles/globals.pcss';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import withAnalytics from 'client/js/Global/hoc/GoogleAnalytics';
 import Layout from 'client/js/Global/components/Layout';
 import NavigationBar from 'client/js/Global/components/NavigationBar';
 import Footer from 'client/js/Global/components/Footer';
@@ -31,4 +32,4 @@ const App = () => (
     </Layout>
 );
 
-export default App;
+export default withAnalytics( App );
