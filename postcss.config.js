@@ -14,6 +14,10 @@ module.exports = ( { file, options, env } = {} ) => ( {
                 /^body$/
             ]
         },
-        'postcss-cssnext': {}
+        'postcss-apply': {},
+        'postcss-mixins': {},
+        'postcss-preset-env': {
+            stage: 0
+        }
     }
 } );

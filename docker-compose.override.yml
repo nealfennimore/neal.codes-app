@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  app:
+    ports:
+      # Allow node debugger
+      - "9229:9229"
