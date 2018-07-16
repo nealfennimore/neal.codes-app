@@ -27,8 +27,7 @@
                 }
             }
         ],
-        "react-loadable/babel",
-        "syntax-dynamic-import",
+        "universal-import",
         "transform-object-rest-spread",
         "transform-regenerator"
     ],
