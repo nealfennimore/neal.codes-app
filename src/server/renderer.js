@@ -1,19 +1,14 @@
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
-import Loadable from 'react-loadable';
 import { Helmet } from 'react-helmet';
 import { preloadQueue } from '@nfen/redux-saga-injector';
+import { flushChunkNames, clearChunks } from 'react-universal-component/server';
+import flushChunks from 'webpack-flush-chunks';
 import serialize from 'serialize-javascript';
 import App from 'client/js/Global/components/App.jsx';
 import createStore from 'client/js/store';
-import {
-    getBundleTags,
-    manifest,
-    scripts,
-    styles
-} from './assets';
 
 const Application = ( {
     context,
@@ -30,34 +25,16 @@ const Application = ( {
     </Provider>
 );
 
-const renderApp = ( {
-    modules,
-    ...rest
-} )=> (
-    ReactDOMServer.renderToString(
-        <Loadable.Capture report={moduleName => modules.push( moduleName )}>
-            <Application {...rest} />
-        </Loadable.Capture>
-    )
-);
-
-const renderMarkup = ( args )=> (
-    ReactDOMServer.renderToStaticMarkup(
-        <Application {...args} />
-    )
-);
-
-export default async function render( req, res ) {
+export default ( { clientStats } )=> async( req, res ) => {
     const store = createStore();
     const context = {};
-    const modules = [];
 
     // Server saga listens for any injected sagas to finish
-    const preload = store.runSaga( preloadQueue );
+    const preload = store.runSaga( preloadQueue, { preloadTimeout: 10 } );
 
     // Start initial render to start sagas
     // This is a throw away render
-    renderMarkup( { store, context, req } );
+    renderToStaticMarkup( <Application store={store} context={context} req={req} /> );
 
     // Finish early if context was defined
     if( context.url ) {
@@ -69,12 +46,17 @@ export default async function render( req, res ) {
     // Proceed after preload saga finishes
     await preload.done;
 
+    // Clear chunks from previous requests
+    clearChunks();
+
     // Get markup with updated store
-    const html = renderApp( { store, context, modules, req } );
+    const html = renderToString( <Application store={store} context={context} req={req} /> );
 
     // Get dynamic bundles from code splits needed for this render
-    const bundle = getBundleTags( modules );
+    const chunkNames = flushChunkNames();
+    const { js, styles } = flushChunks( clientStats, { chunkNames } );
 
+    // Get helmet attributes for page
     const helmet = Helmet.renderStatic();
 
     res.send( `
@@ -87,10 +69,7 @@ export default async function render( req, res ) {
                 ${helmet.title.toString()}
                 ${helmet.meta.toString()}
                 ${helmet.link.toString()}
-
-                ${bundle.styles}
                 ${styles}
-                ${manifest}
 
                 <script>
                     (function(d) {
@@ -108,9 +87,8 @@ export default async function render( req, res ) {
                 <script>
                     window.__PRELOADED_STATE__ = ${ serialize( store.getState(), { isJSON: true } ) };
                 </script>
-                ${bundle.scripts}
-                ${scripts}
+                ${js}
             </body>
         </html>
     ` );
-}
+};

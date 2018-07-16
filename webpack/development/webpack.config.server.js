@@ -7,7 +7,7 @@ module.exports = merge.strategy( {
     config,
     {
         mode: 'development',
-        entry: './src/server/development/renderer.js',
+        entry: './src/server/renderer.js',
         output: {
             // Needed for hot server reloading to work
             libraryTarget: 'commonjs2'
