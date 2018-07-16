@@ -1,6 +1,7 @@
 const mapValues = require( 'lodash/mapValues' );
 const webpack = require( 'webpack' );
 const merge = require( 'webpack-merge' );
+const ExtractCssChunks = require( 'extract-css-chunks-webpack-plugin' );
 const config = require( '../common/webpack.config.client' );
 
 const addHotModuleReloading = ( entry, key )=> {
@@ -21,9 +22,6 @@ module.exports = merge( {
 } )(
     config,
     {
-        entry: {
-
-        },
         output: {
             filename: '[name].js',
         },
@@ -35,7 +33,7 @@ module.exports = merge( {
                     test: /\.p?css$/,
                     include: [/\.?globals?\.?/, /node_modules/],
                     use: [
-                        'style-loader',
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -50,7 +48,7 @@ module.exports = merge( {
                     test: /\.p?css$/,
                     exclude: [/\.?globals?\.?/, /node_modules/],
                     use: [
-                        'style-loader',
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -65,6 +63,7 @@ module.exports = merge( {
             ]
         },
         plugins: [
+            new ExtractCssChunks( { hot: true } ),
             new webpack.NamedModulesPlugin(),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin()
