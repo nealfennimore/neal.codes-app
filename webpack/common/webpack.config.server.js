@@ -1,10 +1,8 @@
+const fs = require( 'fs' );
 const { resolve } = require( 'path' );
 const webpack = require( 'webpack' );
-const nodeExternals = require( 'webpack-node-externals' );
 const merge = require( 'webpack-merge' );
 const common = require( './webpack.config' );
-const ReactLoadablePlugin = require( '../plugins/react-loadable' );
-const AssetsPlugin = require( '../plugins/assets-webpack-plugin' );
 
 module.exports = merge(
     common,
@@ -46,24 +44,28 @@ module.exports = merge(
             ]
         },
         externals: [
-            nodeExternals(),
+            // Fixes SSR - use instead of webpack-node-externals
+            fs.readdirSync( 'node_modules' )
+                .filter( x => ! /\.bin|react-universal-component|webpack-flush-chunks/.test( x ) )
+                .reduce( ( externals, mod ) => {
+                    externals[mod] = `commonjs ${mod}`;
+                    return externals;
+                }, {} ),
             function resolveAssetsForRuntime( context, request, callback ) {
-                if ( /(react-loadable|webpack-assets)\.json$/.test( request ) ) {
-                    // Resolve `react-loadable.json` or `webpack-assets.json` from within dist directory at runtime
-                    // Allows to build, without having to have `react-loadable.json` in dist/assets
-                    // Modifies require path to be `./assets/react-loadable.json` from within dist
+                if ( /(stats)\.json$/.test( request ) ) {
+                    // Resolve `stats.json` from within dist directory at runtime
+                    // Allows to build, without having to have `stats.json` in dist/assets
+                    // Modifies require path to be `./assets/stats.json` from within dist
                     const manifest = request.replace( /.*\/dist/, '.' );
                     return callback( null, `commonjs ${manifest}`  );
                 }
                 callback();
-            }
+            },
         ],
         plugins: [
             new webpack.optimize.LimitChunkCountPlugin( {
                 maxChunks: 1
             } ),
-            AssetsPlugin,
-            ReactLoadablePlugin
         ]
     }
 );

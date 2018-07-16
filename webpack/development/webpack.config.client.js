@@ -1,29 +1,17 @@
-const mapValues = require( 'lodash/mapValues' );
 const webpack = require( 'webpack' );
 const merge = require( 'webpack-merge' );
+const ExtractCssChunks = require( 'extract-css-chunks-webpack-plugin' );
 const config = require( '../common/webpack.config.client' );
 
-const addHotModuleReloading = ( entry, key )=> {
-    return [
-        'react-hot-loader/patch',
-        `webpack-hot-middleware/client?name=${ key }&reload=true`,
-        ...entry
-    ];
-};
-
-module.exports = merge( {
-    customizeObject( a, b, key ) {
-        if ( key === 'entry' ) {
-            return mapValues( a, addHotModuleReloading );
-        }
-        return undefined;
-    }
+module.exports = merge.strategy( {
+    entry: 'prepend'
 } )(
     config,
     {
-        entry: {
-
-        },
+        entry: [
+            'react-hot-loader/patch',
+            'webpack-hot-middleware/client?reload=true',
+        ],
         output: {
             filename: '[name].js',
         },
@@ -35,7 +23,7 @@ module.exports = merge( {
                     test: /\.p?css$/,
                     include: [/\.?globals?\.?/, /node_modules/],
                     use: [
-                        'style-loader',
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -50,7 +38,7 @@ module.exports = merge( {
                     test: /\.p?css$/,
                     exclude: [/\.?globals?\.?/, /node_modules/],
                     use: [
-                        'style-loader',
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -65,6 +53,7 @@ module.exports = merge( {
             ]
         },
         plugins: [
+            new ExtractCssChunks( { hot: true } ),
             new webpack.NamedModulesPlugin(),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoEmitOnErrorsPlugin()

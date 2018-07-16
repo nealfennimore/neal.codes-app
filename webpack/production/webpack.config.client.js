@@ -1,5 +1,6 @@
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const merge = require( 'webpack-merge' );
+const ExtractCssChunks = require( 'extract-css-chunks-webpack-plugin' );
+const StatsPlugin = require( 'stats-webpack-plugin' );
 const config = require( '../common/webpack.config.client' );
 
 module.exports = merge.strategy( {
@@ -15,7 +16,7 @@ module.exports = merge.strategy( {
                     test: /\.p?css$/,
                     include: [/\.?globals?\.?/, /node_modules/],
                     use: [
-                        MiniCssExtractPlugin.loader,
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -30,7 +31,7 @@ module.exports = merge.strategy( {
                     test: /\.p?css$/,
                     exclude: [/\.?globals?\.?/, /node_modules/],
                     use: [
-                        MiniCssExtractPlugin.loader,
+                        ExtractCssChunks.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -45,41 +46,29 @@ module.exports = merge.strategy( {
         },
         optimization: {
             splitChunks: {
-                chunks: 'all',
-                minSize: 0,
-                maxAsyncRequests: Infinity,
-                maxInitialRequests: Infinity,
+                chunks: 'async',
+                minSize: 30000,
+                minChunks: 1,
+                maxAsyncRequests: 5,
+                maxInitialRequests: 3,
+                automaticNameDelimiter: '~',
                 name: true,
                 cacheGroups: {
+                    vendors: {
+                        test: /[\\/]node_modules[\\/]/,
+                        priority: -10
+                    },
                     default: {
                         minChunks: 2,
                         priority: -20,
-                        reuseExistingChunk: true,
-                    },
-                    vendor: {
-                        name: 'vendor',
-                        test: /[\\/]node_modules[\\/]/,
-                        priority: -10,
-                        reuseExistingChunk: true,
-                    },
-                    styles: {
-                        name: 'styles',
-                        test: /\.p?css$/,
-                        chunks: 'all',
-                        enforce: true,
-                        reuseExistingChunk: true,
+                        reuseExistingChunk: true
                     }
-                },
-            },
-            runtimeChunk: {
-                name: 'manifest'
+                }
             }
         },
         plugins: [
-            new MiniCssExtractPlugin( {
-                filename: '[name].[contenthash].css',
-                chunkFilename: '[id].[contenthash].css',
-            } )
+            new ExtractCssChunks(),
+            new StatsPlugin( 'stats.json' ),
         ]
     }
 );

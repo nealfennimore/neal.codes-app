@@ -4,8 +4,6 @@ const Dotenv = require( 'dotenv-webpack' );
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const common = require( './webpack.config' );
-const ReactLoadablePlugin = require( '../plugins/react-loadable' );
-const AssetsPlugin = require( '../plugins/assets-webpack-plugin' );
 
 module.exports = merge(
     common,
@@ -15,14 +13,9 @@ module.exports = merge(
             path: resolve( __dirname, '../../dist/assets' ),
             publicPath: '/assets/'
         },
-        entry: {
-            app: [
-                './src/client/js/index.js',
-            ],
-            vendor: [
-                'react'
-            ]
-        },
+        entry: [
+            './src/client/js/index.js',
+        ],
         module: {
             rules: [
                 // Images
@@ -63,13 +56,11 @@ module.exports = merge(
             new Dotenv(),
             new CleanWebpackPlugin( ['dist/*.js', 'dist/assets/*'], {
                 root: resolve( __dirname, '../../' ),
-                exclude:  ['react-loadable.json', 'webpack-assets.json'],
+                exclude:  ['stats.json'],
             } ),
             new CopyWebpackPlugin( [
                 { from: './src/client/images/favicon.ico', to: 'favicon.ico' }
             ] ),
-            AssetsPlugin,
-            ReactLoadablePlugin
         ]
     }
 );
