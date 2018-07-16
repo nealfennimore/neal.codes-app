@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
-import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
 import createStore from './store';
 import rootSaga from './Global/sagas';
@@ -29,21 +28,14 @@ const render = ( Component ) => {
     );
 };
 
-const initialize = async()=> {
-    // Wait til preload is ready
-    await Loadable.preloadReady();
+// Initial render
+render( App );
 
-    // Initial render
-    render( App );
-
-    // Start hot reloading if in dev mode
-    if ( module.hot ) {
-        module.hot.accept( './Global/components/App', () => {
-            const nextApp = require( './Global/components/App' ).default;
-            render( nextApp );
-        } );
-    }
-};
-
-initialize();
+// Start hot reloading if in dev mode
+if ( module.hot ) {
+    module.hot.accept( './Global/components/App', () => {
+        const nextApp = require( './Global/components/App' ).default;
+        render( nextApp );
+    } );
+}
 

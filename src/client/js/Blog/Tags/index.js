@@ -1,13 +1,6 @@
 import React from 'react';
-import Loadable from 'react-loadable';
-import Loader from 'client/js/Global/components/Loader/ComponentLoader';
+import AsyncBundle from 'client/js/Global/components/AsyncBundle';
 
-const TagsLoader = Loadable( {
-    loader: () => import( './TagsEntry' ),
-    loading: Loader,
-    delay: 300
-} );
-
-
+const TagsLoader = AsyncBundle(  import( './TagsEntry' ) );
 const Tags = ()=> <TagsLoader />;
 export default Tags;

@@ -1,13 +1,6 @@
 import React from 'react';
-import Loadable from 'react-loadable';
-import Loader from 'client/js/Global/components/Loader/ComponentLoader';
+import AsyncBundle from 'client/js/Global/components/AsyncBundle';
 
-const PostsLoader = Loadable( {
-    loader: () => import( './PostsEntry' ),
-    loading: Loader,
-    delay: 300
-} );
-
-
+const PostsLoader = AsyncBundle( import( './PostsEntry' ) );
 const Posts = ()=> <PostsLoader />;
 export default Posts;
