@@ -10,11 +10,12 @@ docker-machine create --driver digitalocean \
     --digitalocean-backups \
     --digitalocean-monitoring \
     --digitalocean-region "sfo2" \
-    neal.codes.docker
+    $DIGITAL_OCEAN_NEAL_CODES
 ```
 
 ## Updating
 
 ```sh
+eval "$(docker-machine env $DIGITAL_OCEAN_NEAL_CODES)"
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml restart
 ```
