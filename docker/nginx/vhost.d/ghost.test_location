@@ -1,0 +1,12 @@
+location / {
+    return 404;
+}
+
+# Handle sitemap[-types].xml, sitemap.xsl, and robots.txt
+location ~ ^/blog/(sitemap(?:-.*)?\.x(?:m|s)l|robots\.txt)$ {
+    try_files $uri @ghost;
+}
+
+location /blog/ghost {
+    try_files $uri @ghost;
+}
