@@ -67,7 +67,10 @@ module.exports = merge.strategy( {
             }
         },
         plugins: [
-            new ExtractCssChunks(),
+            new ExtractCssChunks( {
+                filename: '[name].[hash].css',
+                chunkFilename: '[id].[hash].css',
+            } ),
             new StatsPlugin( 'stats.json' ),
         ]
     }
