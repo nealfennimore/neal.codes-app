@@ -23,7 +23,7 @@ location ~ ^/api/(.*)$ {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
 
-    proxy_pass http://ghost.test/blog/ghost/api/v0.1/$1/?client_id=ghost-frontend&client_secret=57217f471e24&$args; # $1 needs a forward slash else there is a redirect
+    proxy_pass http://ghost/blog/ghost/api/v0.1/$1/?client_id=ghost-frontend&client_secret=57217f471e24&$args; # $1 needs a forward slash else there is a redirect
     proxy_redirect off;
 }
 
@@ -34,7 +34,7 @@ location ~ ^/blog/(sitemap(?:-.*)?\.x(?:m|s)l|robots\.txt)$ {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
 
-    proxy_pass http://ghost.test/blog/$1;
+    proxy_pass http://ghost/blog/$1;
     proxy_redirect off;
 }
 
@@ -45,7 +45,7 @@ location /blog/ghost {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
 
-    proxy_pass http://ghost.test;
+    proxy_pass http://ghost;
     proxy_redirect off;
 }
 

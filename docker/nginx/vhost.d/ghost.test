@@ -1,5 +1,5 @@
 location @ghost {
-    proxy_pass http://ghost.test;
+    proxy_pass http://ghost;
     proxy_redirect off;
 
     # prevent infinite request loop
