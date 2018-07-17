@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import ReactDisqusComments from 'react-disqus-comments';
 import CodePen from 'client/js/Blog/Post/components/CodePen';
 import { PostPropType } from 'client/js/Global/proptypes/post';
-import { getID } from 'client/js/Global/selectors/post';
+import { getCommentID } from 'client/js/Global/selectors/post';
 
 const Footer = ( { post } ) => {
     return (
@@ -10,7 +10,7 @@ const Footer = ( { post } ) => {
             <CodePen />
             <ReactDisqusComments
                 shortname="neal-codes"
-                identifier={getID( post )}
+                identifier={getCommentID( post )}
             />
         </footer>
     );
