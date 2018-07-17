@@ -31,9 +31,6 @@ export function* postsFlow( { blog, params } ) {
     const page        = get( params, 'page', 1 );
     const currentPage = get( blog, 'posts.meta.pagination.page' );
 
-
-    console.warn( 'FETCH ME PLZ' );
-
     if( page != currentPage  ) {
         yield call( fetchPosts, { page } );
     }
