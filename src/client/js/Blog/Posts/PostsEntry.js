@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import { withRouter } from 'react-router';
 import Main from 'client/js/Global/components/Main';
 import injector from 'client/js/Global/components/Injector';
-import Loader from 'client/js/Global/components/Loader/ComponentLoader';
+import Loader from 'client/js/Global/components/Loader';
 import { PostPropType } from 'client/js/Global/proptypes/post';
 import { getParamsPage } from 'client/js/Global/selectors/params';
 import { fetchPosts, syncPage } from './actions/posts';
