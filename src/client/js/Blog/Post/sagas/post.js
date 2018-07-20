@@ -1,4 +1,4 @@
-import { call, put, select, take, takeLatest, cancel } from 'redux-saga/effects';
+import { call, put, select, take, takeLatest, cancel, cancelled } from 'redux-saga/effects';
 import { find } from 'lodash';
 import { __SERVER__ } from 'shared/env';
 import * as actions from 'client/js/Blog/Post/actions/post';
@@ -13,7 +13,12 @@ export function* fetchPost( action ) {
         } );
         yield put( { type: actions.FETCH_POST_SUCCESS, data } );
     } catch ( error ) {
+        console.error( error );
         yield put( { type: actions.FETCH_POST_ERROR, error } );
+    } finally {
+        if( yield cancelled() ) {
+            yield put( { type: actions.FETCH_POST_ERROR } );
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-import { call, put, take, takeLatest, cancel } from 'redux-saga/effects';
+import { call, put, take, takeLatest, cancel, cancelled } from 'redux-saga/effects';
 import get from 'lodash/get';
 import { __SERVER__ } from 'shared/env';
 import {
@@ -22,8 +22,13 @@ export function* fetchPosts( { page } ) {
     try {
         const { data } = yield call( service.getPosts, options );
         yield put( { type: FETCH_POSTS_SUCCESS, data } );
-    } catch ( e ) {
-        yield put( { type: FETCH_POSTS_ERROR } );
+    } catch ( error ) {
+        console.error( error );
+        yield put( { type: FETCH_POSTS_ERROR, error } );
+    } finally {
+        if( yield cancelled() ) {
+            yield put( { type: FETCH_POSTS_ERROR } );
+        }
     }
 }
 
