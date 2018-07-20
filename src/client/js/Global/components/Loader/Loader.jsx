@@ -10,7 +10,7 @@ const Loader = ( {
         <i className={
             classnames(
                 'icon-loader',
-                styles.loader,
+                styles.Loader,
                 className
             )}
         />
