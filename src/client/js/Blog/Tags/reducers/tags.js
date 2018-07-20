@@ -1,6 +1,7 @@
 import {
     FETCH_TAGS,
     FETCH_TAGS_SUCCESS,
+    FETCH_TAGS_ERROR,
     SYNC_PAGE
 } from 'client/js/Blog/Tags/actions/tags';
 import { merge } from 'lodash';
@@ -45,9 +46,15 @@ function tags( state = {}, action ) {
     case FETCH_TAGS_SUCCESS:
         return mergePosts( state, action );
     case FETCH_TAGS:
-        return Object.assign( {}, state, {
+        return {
+            ...state,
             isFetching: true
-        } );
+        };
+    case FETCH_TAGS_ERROR:
+        return {
+            ...state,
+            isFetching: false
+        };
 
     default:
         return state;

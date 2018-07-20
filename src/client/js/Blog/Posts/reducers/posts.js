@@ -1,6 +1,7 @@
 import {
     FETCH_POSTS,
     FETCH_POSTS_SUCCESS,
+    FETCH_POSTS_ERROR,
     SYNC_PAGE
 } from 'client/js/Blog/Posts/actions/posts';
 import { getTotalPages } from 'client/js/Blog/selectors/meta';
@@ -38,9 +39,15 @@ function postsReducer( state = {}, action ) {
     case FETCH_POSTS_SUCCESS:
         return mergePosts( state, action );
     case FETCH_POSTS:
-        return Object.assign( {}, state, {
+        return {
+            ...state,
             isFetching: true
-        } );
+        };
+    case FETCH_POSTS_ERROR:
+        return {
+            ...state,
+            isFetching: false
+        };
     default:
         return state;
     }
