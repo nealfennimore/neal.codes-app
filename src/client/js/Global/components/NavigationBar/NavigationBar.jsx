@@ -7,6 +7,8 @@ import Logo from 'src/client/js/Global/components/Logo';
 import WithInverse from 'src/client/js/Global/hoc/WithInverse';
 import styles from './NavigationBar.pcss';
 
+const isBlog = ( match, location )=> /^\/blog/.test( location.pathname );
+
 const NavigationBar = ( {
     className
 } ) =>{
@@ -17,10 +19,10 @@ const NavigationBar = ( {
             </Link>
             <ul className={styles.menu}>
                 <li>
-                    <NavLink to="/projects" activeClassName={styles.active}>Projects</NavLink>
+                    <NavLink to="/projects" activeClassName={styles.active} exact>Projects</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/blog" activeClassName={styles.active}>Blog</NavLink>
+                    <NavLink to="/blog" activeClassName={styles.active} isActive={isBlog}>Blog</NavLink>
                 </li>
             </ul>
         </nav>
