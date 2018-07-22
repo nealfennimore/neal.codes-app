@@ -80,7 +80,7 @@ export class PostsEntry extends PureComponent {
                                     <Posts posts={this.props.posts} />
                                     <Pagination
                                         nextPage={this.props.nextPage}
-                                        page={this.props.page}
+                                        page={this.page}
                                         pages={this.props.pages}
                                         prefix="/blog/page"
                                         prevPage={this.props.prevPage}
@@ -98,7 +98,6 @@ const connector = connect(
     ( state, ownProps ) => ( {
         isFetching: isFetching( state, ownProps ),
         nextPage: getNextPage( state, ownProps ),
-        page: getPage( state, ownProps ),
         pages: getTotalPages( state, ownProps ),
         posts: getPostsByPage( state, ownProps ),
         prevPage: getPrevPage( state, ownProps ),
