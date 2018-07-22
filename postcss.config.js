@@ -6,6 +6,7 @@ module.exports = ( { file, options, env } = {} ) => ( {
                 './src/client'
             ]
         },
+        'postcss-css-variables': {},
         'postcss-pxtorem': {
             rootValue: 16,
             propList: [ '*' ],

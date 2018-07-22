@@ -88,6 +88,7 @@
     "image-webpack-loader": "^4.2.0",
     "jest": "^21.2.1",
     "postcss-apply": "^0.10.0",
+    "postcss-css-variables": "^0.9.0",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.9",
     "postcss-mixins": "^6.2.0",
