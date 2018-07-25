@@ -11,6 +11,7 @@ const LayoutSEO = () => {
             defaultTitle={defaultTitle}
             titleTemplate={`%s | ${defaultTitle}`}
         >
+            <html lang="en" />
             <link rel="canonical" href={url} />
             <meta name="description" content={description} />
 
