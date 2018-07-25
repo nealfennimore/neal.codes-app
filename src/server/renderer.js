@@ -54,7 +54,7 @@ export default ( { clientStats } )=> async( req, res ) => {
 
     // Get dynamic bundles from code splits needed for this render
     const chunkNames = flushChunkNames();
-    const { js, styles } = flushChunks( clientStats, { chunkNames } );
+    const { js, css } = flushChunks( clientStats, { chunkNames } );
 
     // Get helmet attributes for page
     const helmet = Helmet.renderStatic();
@@ -69,7 +69,7 @@ export default ( { clientStats } )=> async( req, res ) => {
                 ${helmet.title.toString()}
                 ${helmet.meta.toString()}
                 ${helmet.link.toString()}
-                ${styles}
+                ${css}
 
                 <script>
                     (function(d) {
