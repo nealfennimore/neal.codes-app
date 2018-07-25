@@ -7,22 +7,20 @@ import Logo from 'src/client/js/Global/components/Logo';
 import WithInverse from 'src/client/js/Global/hoc/WithInverse';
 import styles from './NavigationBar.pcss';
 
-const isBlog = ( match, location )=> /^\/blog/.test( location.pathname );
-
 const NavigationBar = ( {
     className
 } ) =>{
     return (
         <nav className={classnames( styles.NavigationBar, className )}>
-            <Link className={styles.logo} to="/">
+            <Link className={styles.logo} to="/" title="Logo">
                 <Logo />
             </Link>
             <ul className={styles.menu}>
                 <li>
-                    <NavLink to="/projects" activeClassName={styles.active} exact>Projects</NavLink>
+                    <NavLink to="/projects" activeClassName={styles.active}>Projects</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/blog" activeClassName={styles.active} isActive={isBlog}>Blog</NavLink>
+                    <NavLink to="/blog" activeClassName={styles.active}>Blog</NavLink>
                 </li>
             </ul>
         </nav>
