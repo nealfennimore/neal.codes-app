@@ -1,3 +1,4 @@
+import { resolve } from 'path';
 import React from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
@@ -54,7 +55,10 @@ export default ( { clientStats } )=> async( req, res ) => {
 
     // Get dynamic bundles from code splits needed for this render
     const chunkNames = flushChunkNames();
-    const { js, css } = flushChunks( clientStats, { chunkNames } );
+    const { js, css } = flushChunks( clientStats, {
+        chunkNames,
+        outputPath: resolve( __dirname, './assets' )
+    } );
 
     // Get helmet attributes for page
     const helmet = Helmet.renderStatic();
