@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "paths": {
+            "client/*": [
+                "src/client/*"
+            ],
+            "server/*": [
+                "src/server/*"
+            ],
+            "shared/*": [
+                "src/shared/*"
+            ]
+        }
+    },
+    "include": [
+        "src",
+    ],
+    "exclude": [
+        "**/node_modules/*",
+        "**/dist/*"
+    ]
+}
