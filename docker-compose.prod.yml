@@ -4,9 +4,6 @@ services:
   app:
     volumes:
       - /mnt/volume-sfo2-01/app:/var/www/app  
-    env_file:
-      - /var/www/app/.env
-      - /var/www/app/docker/env/app.production.env
 
   nginx-proxy:
     volumes:
