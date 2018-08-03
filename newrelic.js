@@ -1,5 +1,7 @@
 require( 'dotenv' ).config();
 
+console.warn( process.env );
+
 /**
  * New Relic agent configuration.
  *
