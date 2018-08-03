@@ -16,6 +16,7 @@ RUN apk add --update \
     libtool \ 
     make \
     nasm \
+    openssl \
     pkgconfig \
     python \
     python-dev \
