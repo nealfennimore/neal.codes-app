@@ -8,6 +8,7 @@ RUN apk add --update \
     autoconf \
     automake \
     bash \
+    ca-certificates \
     dpkg \
     g++ \
     gcc \
