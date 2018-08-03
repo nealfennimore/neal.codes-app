@@ -1,3 +1,4 @@
+require( 'dotenv' ).config();
 
 /**
  * New Relic agent configuration.
