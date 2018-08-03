@@ -17,6 +17,8 @@ RUN apk add --update \
     make \
     nasm \
     pkgconfig \
+    python \
+    python-dev \
     && rm -rf /var/cache/apk/*
 
 RUN npm install -g yarn
