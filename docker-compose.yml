@@ -47,6 +47,7 @@ services:
       - ./docker/nginx/conf.d/headers.development.conf:/etc/nginx/conf.d/headers.conf:ro
       - ./docker/nginx/vhost.d:/etc/nginx/vhost.d:ro
       - .:/var/www/app
+      - ghost_content:/var/www/ghost/content
 
   letsencrypt-nginx-proxy-companion:
     links:

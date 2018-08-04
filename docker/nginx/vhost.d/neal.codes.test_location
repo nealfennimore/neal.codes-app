@@ -27,6 +27,14 @@ location ~ ^/api/(.*)$ {
     proxy_redirect off;
 }
 
+# Handle blog images. Optional blog segment handles old posts
+location /content/images/ {
+    alias /var/www/ghost/content/images/;
+    expires 1M;
+    add_header Cache-Control "public";
+    try_files $uri =404;
+}
+
 # Handle sitemap[-types].xml, sitemap.xsl, and robots.txt
 location ~ ^/blog/(sitemap(?:-.*)?\.x(?:m|s)l|robots\.txt)$ {
     proxy_set_header X-Forwarded-Proto $scheme;
