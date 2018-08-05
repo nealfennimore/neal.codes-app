@@ -2,6 +2,24 @@
 root /var/www/app/dist/assets;
 
 # --------------------
+# -------------------- ASSETS
+# --------------------
+
+# CSS and Javascript
+location ~* \.(?:css|js)$ {
+    expires 1y;
+    access_log off;
+    add_header Cache-Control "public";
+}
+
+# Media: images, icons, video, audio, HTC
+location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc)$ {
+    expires 1M;
+    access_log off;
+    add_header Cache-Control "public";
+}
+
+# --------------------
 # -------------------- GHOST
 # --------------------
 
@@ -30,8 +48,6 @@ location ~ ^/api/(.*)$ {
 # Handle blog images. Optional blog segment handles old posts
 location /content/images/ {
     alias /var/www/ghost/content/images/;
-    expires 1M;
-    add_header Cache-Control "public";
     try_files $uri =404;
 }
 
