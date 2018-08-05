@@ -8,7 +8,7 @@ services:
   nginx-proxy:
     volumes:
       - /mnt/volume-sfo2-01/app:/var/www/app  
-      - /mnt/volume-sfo2-01/ghost:/var/www/ghost
+      - /mnt/volume-sfo2-01/ghost/content:/var/www/ghost/content
       - /mnt/volume-sfo2-01/app/docker/nginx/vhost.d:/etc/nginx/vhost.d:ro
       - /mnt/volume-sfo2-01/app/docker/nginx/conf.d/headers.conf:/etc/nginx/conf.d/headers.conf:ro
       - /mnt/volume-sfo2-01/app/docker/nginx/conf.d/gzip.conf:/etc/nginx/conf.d/gzip.conf:ro
