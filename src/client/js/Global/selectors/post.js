@@ -14,3 +14,4 @@ export const getPublishedAt = createSelector( getPost, post => idx( post, _ => _
 export const getUpdatedAt = createSelector( getPost, post => idx( post, _ => _.updated_at ) );
 export const getTags = createSelector( getPost, post => idx( post, _ => _.tags ) );
 export const getURL = createSelector( getPost, post => idx( post, _ => _.url ) );
+export const getFeatureImage = createSelector( getPost, post => idx( post, _ => _.feature_image ) );
