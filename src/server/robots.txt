@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: http://neal.codes/blog/sitemap.xml
+Disallow: /blog/ghost/

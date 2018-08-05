@@ -59,7 +59,8 @@ module.exports = merge(
                 exclude:  ['stats.json'],
             } ),
             new CopyWebpackPlugin( [
-                { from: './src/client/images/favicon.ico', to: 'favicon.ico' }
+                { from: './src/client/images/favicon.ico', to: 'favicon.ico' },
+                { from: './src/server/robots.txt', to: 'robots.txt' }
             ] ),
         ]
     }
