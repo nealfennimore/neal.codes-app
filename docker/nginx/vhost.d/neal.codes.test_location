@@ -39,6 +39,13 @@ location /content/images/ {
     try_files $uri =404;
 }
 
+# Some images have /blog/ prepended
+location /blog/content/images/ {
+    alias /var/www/ghost/content/images/;
+    expires max;
+    try_files $uri =404;
+}
+
 # Handle sitemap[-types].xml, sitemap.xsl, and robots.txt
 location ~ ^/blog/(sitemap(?:-.*)?\.x(?:m|s)l|robots\.txt)$ {
     proxy_set_header X-Forwarded-Proto $scheme;
