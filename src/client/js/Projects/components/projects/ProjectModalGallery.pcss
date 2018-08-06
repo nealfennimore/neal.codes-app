@@ -13,8 +13,17 @@
         flex-basis: 66.66%;
         justify-content: center;
 
-        & img {
-            width: 85%;
+        & .viewport {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+
+            & img {
+                flex: 1;
+                max-height: 100vh;
+                width: 100%;
+            }
         }
 
         & button {
@@ -46,9 +55,12 @@
         & .image {
             flex-basis: 100%;
 
-            & img {
+            & .viewport {
                 width: 70%;
-                max-height: 70vh;
+
+                & img {
+                    max-height: 70vh;
+                }
             }
         }
 

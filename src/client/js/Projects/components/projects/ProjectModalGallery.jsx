@@ -44,7 +44,9 @@ export default class ProjectModalGallery extends Component {
                     <button onClick={this.prev} disabled={imageIndex === 0}>
                         <i className='icon-arrow_left' />
                     </button>
-                    <img src={activeImage} alt='' />
+                    <div className={styles.viewport}>
+                        <img src={activeImage} alt='' />
+                    </div>
                     <button onClick={this.next} disabled={imageIndex === images.length - 1}>
                         <i className='icon-arrow_right' />
                     </button>
