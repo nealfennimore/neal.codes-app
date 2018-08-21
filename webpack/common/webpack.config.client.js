@@ -54,9 +54,9 @@ module.exports = merge(
         },
         plugins: [
             new Dotenv(),
-            new CleanWebpackPlugin( ['dist/*.js', 'dist/assets/*'], {
+            new CleanWebpackPlugin( ['dist/server.js', 'dist/assets/*'], {
                 root: resolve( __dirname, '../../' ),
-                exclude:  ['stats.json'],
+                exclude:  ['stats.json', 'dist/server_entry.js'],
             } ),
             new CopyWebpackPlugin( [
                 { from: './src/client/images/favicon.ico', to: 'favicon.ico' },

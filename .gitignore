@@ -1,5 +1,6 @@
 node_modules
-dist
+/dist/*
+!/dist/server_entry.js
 __coverage__
 .vscode
 *.log

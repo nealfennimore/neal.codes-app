@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import 'newrelic';
 import express from 'express';
 import { __DEV__ } from 'shared/env';
 
