@@ -1,8 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-const defaultTitle = 'Neal Fennimore | Front End Developer';
-const description = 'Neal Fennimore, front end web developer';
+const defaultTitle = 'Neal Fennimore | Full Stack Developer';
+const description = 'Neal Fennimore, full stack web developer';
 const url         = 'https://neal.codes';
 
 const LayoutSEO = () => {

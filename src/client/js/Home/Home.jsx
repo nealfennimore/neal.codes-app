@@ -13,11 +13,13 @@ export const Home = ( props ) =>{
                 <header>
                     <hgroup>
                         <h1>Neal Fennimore</h1>
-                        <h2>Front End Developer</h2>
+                        <h2>Full Stack Developer</h2>
                     </hgroup>
                 </header>
                 <p>
-                    I'm a full-stack web developer specializing in design and front-end engineering. I'm a polyglot programmer versed in Javascript, Ruby, PHP, and HTML/CSS. I have experience building with front-end frameworks Backbone and React, building single-page applications, and creating data visualization in D3 and CSS3.
+                    {
+                        `I'm a full-stack developer specializing in security and UI. I'm a polyglot programmer versed in Javascript, Ruby, PHP, Rust, SQL, Docker, and HTML/CSS. I have experience building complex applications with React, performing security audits, and orchestrating deployments within cloud ecosystems. I'm usually researching security and operating systems in my spare time.`
+                    }
                 </p>
                 <footer>
                     <a href='https://github.com/nealfennimore'>

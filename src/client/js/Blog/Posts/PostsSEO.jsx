@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { getPage } from 'client/js/Blog/Posts/selectors/posts';
 
 const baseTitle   = 'Blog';
-const description = 'Front end web development blog';
+const description = 'Full stack web development blog';
 const baseUrl     = 'https://neal.codes/blog';
 
 const PostsSEO = ( { page } ) => {
