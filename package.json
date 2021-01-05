@@ -25,7 +25,7 @@
   "dependencies": {
     "@nfen/redux-reducer-injector": "^0.0.1",
     "@nfen/redux-saga-injector": "^0.1.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "classnames": "^2.2.5",
     "date-fns": "^1.29.0",
     "express": "^4.16.3",
